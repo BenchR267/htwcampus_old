@@ -13,7 +13,7 @@
 
 NSMutableData *receivedData;
 
-@interface StundenplanParser () <NSXMLParserDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface HTWStundenplanParser () <NSXMLParserDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
     
     BOOL isData;
@@ -48,7 +48,7 @@ NSMutableData *receivedData;
 
 @end
 
-@implementation StundenplanParser
+@implementation HTWStundenplanParser
 
 #pragma mark - INIT
 
@@ -112,8 +112,8 @@ NSMutableData *receivedData;
 {
     // Wenn eins dieser Strings in dem HTML-File vorkommt, ist die Nummer falsch oder es gibt keine Daten dazu
     if (([response rangeOfString:@"Stundenplan im csv-Format erstellen"].length != 0) || [response rangeOfString:@"Es wurden keine Daten gefunden."].length != 0) {
-        if(!_boolRaum) [_delegate stundenplanParserError:@"Falsche Matrikelnummer oder Studiengruppe. Bitte erneut eingeben."];
-        else [_delegate stundenplanParserError:@"Raum nicht gefunden. Bitte erneut eingeben. (Format: Z 355)"];
+        if(!_boolRaum) [_delegate HTWStundenplanParserError:@"Falsche Matrikelnummer oder Studiengruppe. Bitte erneut eingeben."];
+        else [_delegate HTWStundenplanParserError:@"Raum nicht gefunden. Bitte erneut eingeben. (Format: Z 355)"];
         return;
     }
     
@@ -148,7 +148,7 @@ NSMutableData *receivedData;
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [_delegate stundenplanParserError:@"Fehler mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."];
+    [_delegate HTWStundenplanParserError:@"Fehler mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."];
 }
 
 #pragma mark - Parser delegate methods
@@ -321,7 +321,7 @@ NSMutableData *receivedData;
             NSLog(@"Es wurden %lu Datensätze gefunden. (Alles außer 1 ist falsch.)", (unsigned long)[objects count]);
             
         }        
-        [_delegate stundenplanParserFinished];
+        [_delegate HTWStundenplanParserFinished];
         
         return;
     }
@@ -352,6 +352,8 @@ NSMutableData *receivedData;
         
         
         [newStudent addStundenObject:stunde];
+        
+        [_context save:nil];
         
         titel = nil;
         kuerzel = nil;
