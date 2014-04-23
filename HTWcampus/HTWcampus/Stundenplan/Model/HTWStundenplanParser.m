@@ -15,7 +15,6 @@ NSMutableData *receivedData;
 
 @interface StundenplanParser () <NSXMLParserDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
-    int lengthFormattedXML;
     
     BOOL isData;
     BOOL isStunde;
@@ -42,11 +41,10 @@ NSMutableData *receivedData;
     NSMutableString *anfang;
     NSMutableString *ende;
     NSMutableString *anfangZeit;
-    NSString *ID;
 }
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
-@property BOOL forRaum;
+@property BOOL boolRaum;
 
 @end
 
@@ -61,10 +59,10 @@ NSMutableData *receivedData;
 
 -(id)initWithMatrikelNummer:(NSString*)Matrnr andRaum:(BOOL)forRaum{
     self = [super init];
-    self.Matrnr = Matrnr;
-    self.forRaum = forRaum;
+    _Matrnr = Matrnr;
+    _boolRaum = forRaum;
     appDelegate = [[UIApplication sharedApplication] delegate];
-    self.context = [appDelegate managedObjectContext];
+    _context = [appDelegate managedObjectContext];
     return self;
 }
 
@@ -72,31 +70,29 @@ NSMutableData *receivedData;
 
 -(void)parserStart
 {
-    // Create your request string with parameter name as defined in PHP file
+    // Request String für PHP-Argumente
     NSString *myRequestString = [NSString stringWithFormat:@"matr=%@&pressme=%@",self.Matrnr,@"S+T+A+R+T"];
     
-    // Create Data from request
+    // NSData synchron füllen (wird im ViewController durch unterschiedliche Threads ansynchron)
     NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: @"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:10];
-    // set Request Type
+
     [request setHTTPMethod: @"POST"];
     // Set content-type
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
     // Set Request Body
     [request setHTTPBody: myRequestData];
-    // Now send a request and get Response
     
     response = [[NSMutableString alloc] init];
     
-    
+    // Connection mit dem oben definierten Request
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     
     if (connection) {
         // Connection succesfull
-        NSLog(@"Connection steht.");
     }
     else {
         // Error with connection
@@ -109,16 +105,14 @@ NSMutableData *receivedData;
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    // Log Response
     [response appendString:[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]];
-    
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    
+    // Wenn eins dieser Strings in dem HTML-File vorkommt, ist die Nummer falsch oder es gibt keine Daten dazu
     if (([response rangeOfString:@"Stundenplan im csv-Format erstellen"].length != 0) || [response rangeOfString:@"Es wurden keine Daten gefunden."].length != 0) {
-        if(!_forRaum) [_delegate stundenplanParserError:@"Falsche Matrikelnummer. Bitte erneut eingeben."];
+        if(!_boolRaum) [_delegate stundenplanParserError:@"Falsche Matrikelnummer oder Studiengruppe. Bitte erneut eingeben."];
         else [_delegate stundenplanParserError:@"Raum nicht gefunden. Bitte erneut eingeben. (Format: Z 355)"];
         return;
     }
@@ -134,19 +128,19 @@ NSMutableData *receivedData;
                                      dataAfterHtml];
     
     
+    // eventuell auftretende Sonderzeichen entfernen, damit der Parser ordentlich funktioniert
     [formattedXML replaceOccurrencesOfString:@"&" withString:@" und " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [formattedXML length])];
-    
-    lengthFormattedXML = (int)[formattedXML length];
     
     NSData *retData = [formattedXML dataUsingEncoding:NSUTF8StringEncoding];
     
+    // Parser initialisieren
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:retData];
-    if (!parser)
-    {
-        NSLog(@"Error with parser");
-        [_delegate stundenplanParserError:@"Parser Error. Bitte Internetverbindung überprüfungen und nochmal probieren."];
-    }
-    else NSLog(@"parser successfully initialised");
+//    if (!parser)
+//    {
+//        NSLog(@"Error with parser");
+//        [_delegate stundenplanParserError:@"Parser konnte nicht initialisiert werden. Bitte Internetverbindung überprüfungen und nochmal probieren."];
+//    }
+//    else NSLog(@"parser successfully initialised");
     
     [parser setDelegate:self];
     [parser parse];
@@ -154,7 +148,7 @@ NSMutableData *receivedData;
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [_delegate stundenplanParserError:@"Error with connection. Bitte Internetverbindung überprüfungen und erneut versuchen."];
+    [_delegate stundenplanParserError:@"Fehler mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."];
 }
 
 #pragma mark - Parser delegate methods
@@ -165,11 +159,9 @@ NSMutableData *receivedData;
     if ([elementName isEqualToString:@"data"]) {
         isData = YES;
         
-        NSEntityDescription *entityDesc =[NSEntityDescription entityForName:@"Student"
-                                                     inManagedObjectContext:_context];
-        
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityDesc];
+        [request setEntity:[NSEntityDescription entityForName:@"Student"
+                                       inManagedObjectContext:_context]];
         
         NSPredicate *pred =[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.Matrnr];
         [request setPredicate:pred];
@@ -192,9 +184,9 @@ NSMutableData *receivedData;
             newStudent = [NSEntityDescription
                           insertNewObjectForEntityForName:@"Student"
                           inManagedObjectContext:_context];
-            [newStudent setValue: self.Matrnr forKey:@"matrnr"];
-            [newStudent setValue:[NSDate date] forKey:@"letzteAktualisierung"];
-            [newStudent setRaum:[NSNumber numberWithBool:self.forRaum]];
+            newStudent.matrnr = self.Matrnr;
+            newStudent.letzteAktualisierung = [NSDate date];
+            newStudent.raum = [NSNumber numberWithBool:self.boolRaum];
         }
         
         
@@ -305,14 +297,11 @@ NSMutableData *receivedData;
         
         isData = NO;
         
-        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Student"
-                                                      inManagedObjectContext:_context];
-        
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityDesc];
+        [request setEntity:[NSEntityDescription entityForName:@"Student"
+                                       inManagedObjectContext:_context]];
         
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(matrnr = %@)", self.Matrnr];
-        [request setPredicate:pred];
+        [request setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.Matrnr]];
         
         Student *matches;
         
@@ -328,9 +317,8 @@ NSMutableData *receivedData;
             NSLog(@"No matches");
         } else {
             matches = objects[0];
-            NSLog(@"Matrikelnummer: %@\n Letzte Aktualisierung: %@", [matches valueForKey:@"matrnr"], [matches valueForKey:@"letzteAktualisierung"]);
+            NSLog(@"Neuer Datensatz:\tKennung: %@\tLetzte Aktualisierung: %@\tRaum:%@", matches.matrnr, matches.letzteAktualisierung, _boolRaum?@"ja":@"nein");
             NSLog(@"Es wurden %lu Datensätze gefunden. (Alles außer 1 ist falsch.)", (unsigned long)[objects count]);
-            // NSLog(@"Stunden: %@", [matches valueForKey:@"stunden"]);
             
         }        
         [_delegate stundenplanParserFinished];
@@ -346,11 +334,8 @@ NSMutableData *receivedData;
         
         [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
         
-        
-        NSEntityDescription *entityDesc =[NSEntityDescription entityForName:@"Stunde"
-                                                     inManagedObjectContext:_context];
-        
-        Stunde *stunde = [[Stunde alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:_context];
+        Stunde *stunde = [[Stunde alloc] initWithEntity:[NSEntityDescription entityForName:@"Stunde"
+                                                                    inManagedObjectContext:_context] insertIntoManagedObjectContext:_context];
         stunde.titel = titel;
         stunde.kurzel = kuerzel;
         stunde.dozent = dozent;
@@ -367,13 +352,6 @@ NSMutableData *receivedData;
         
         
         [newStudent addStundenObject:stunde];
-        
-        NSError *error;
-        [_context save:&error];
-        
-        if (error) {
-            NSLog(@"ERROR %@", [error localizedDescription]);
-        }
         
         titel = nil;
         kuerzel = nil;
@@ -424,7 +402,7 @@ NSMutableData *receivedData;
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
-    NSLog(@"ERROR while parsing: %@", parseError.localizedDescription);
+    NSLog(@"ERROR while parsing schedule for %@: %@", self.Matrnr, parseError.localizedDescription);
 }
 
 @end

@@ -12,6 +12,7 @@
 		E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */; };
 		E61D880819082FF40033D543 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D880719082FF40033D543 /* Student.m */; };
 		E61D880B19082FF50033D543 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D880A19082FF50033D543 /* Stunde.m */; };
+		E61D880E19084BC40033D543 /* HTWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D880D19084BC40033D543 /* HTWViewController.m */; };
 		E63772C71908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
 		E63772C91908146300DEE8AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C81908146300DEE8AB /* CoreGraphics.framework */; };
 		E63772CB1908146300DEE8AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CA1908146300DEE8AB /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 		E61D880719082FF40033D543 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = Stundenplan/Model/Student.m; sourceTree = "<group>"; };
 		E61D880919082FF50033D543 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
 		E61D880A19082FF50033D543 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
+		E61D880C19084BC40033D543 /* HTWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWViewController.h; path = Stundenplan/Portait/HTWViewController.h; sourceTree = "<group>"; };
+		E61D880D19084BC40033D543 /* HTWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWViewController.m; path = Stundenplan/Portait/HTWViewController.m; sourceTree = "<group>"; };
 		E63772C31908146300DEE8AB /* HTWcampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTWcampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772C61908146300DEE8AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E63772C81908146300DEE8AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,6 +122,8 @@
 		E61D87DA19082D970033D543 /* Portait */ = {
 			isa = PBXGroup;
 			children = (
+				E61D880C19084BC40033D543 /* HTWViewController.h */,
+				E61D880D19084BC40033D543 /* HTWViewController.m */,
 			);
 			name = Portait;
 			sourceTree = "<group>";
@@ -164,12 +169,10 @@
 		E63772CE1908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXGroup;
 			children = (
+				6D7B451B1908150F00D99C9D /* main.storyboard */,
 				E61D87D819082D870033D543 /* Stundenplan */,
-				E63772D71908146300DEE8AB /* HTWAppDelegate.h */,
-				E63772D81908146300DEE8AB /* HTWAppDelegate.m */,
 				E63772DD1908146300DEE8AB /* Images.xcassets */,
 				E63772CF1908146300DEE8AB /* Supporting Files */,
-				6D7B451B1908150F00D99C9D /* main.storyboard */,
 			);
 			path = HTWcampus;
 			sourceTree = "<group>";
@@ -177,6 +180,8 @@
 		E63772CF1908146300DEE8AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E63772D71908146300DEE8AB /* HTWAppDelegate.h */,
+				E63772D81908146300DEE8AB /* HTWAppDelegate.m */,
 				E63772D01908146300DEE8AB /* HTWcampus-Info.plist */,
 				E63772D11908146300DEE8AB /* InfoPlist.strings */,
 				E63772D41908146300DEE8AB /* main.m */,
@@ -304,6 +309,7 @@
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
 				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
+				E61D880E19084BC40033D543 /* HTWViewController.m in Sources */,
 				E61D880B19082FF50033D543 /* Stunde.m in Sources */,
 				E61D880819082FF40033D543 /* Student.m in Sources */,
 			);
