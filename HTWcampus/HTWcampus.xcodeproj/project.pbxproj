@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D7B451C1908150F00D99C9D /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D7B451B1908150F00D99C9D /* main.storyboard */; };
 		E63772C71908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
 		E63772C91908146300DEE8AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C81908146300DEE8AB /* CoreGraphics.framework */; };
 		E63772CB1908146300DEE8AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CA1908146300DEE8AB /* UIKit.framework */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D7B451B1908150F00D99C9D /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
 		E63772C31908146300DEE8AB /* HTWcampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTWcampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772C61908146300DEE8AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E63772C81908146300DEE8AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,6 +122,7 @@
 				E63772DD1908146300DEE8AB /* Images.xcassets */,
 				E63772DA1908146300DEE8AB /* HTWcampus.xcdatamodeld */,
 				E63772CF1908146300DEE8AB /* Supporting Files */,
+				6D7B451B1908150F00D99C9D /* main.storyboard */,
 			);
 			path = HTWcampus;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */,
+				6D7B451C1908150F00D99C9D /* main.storyboard in Resources */,
 				E63772DE1908146300DEE8AB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +452,7 @@
 				E63772F71908146300DEE8AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E63772F81908146300DEE8AB /* Build configuration list for PBXNativeTarget "HTWcampusTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +461,7 @@
 				E63772FA1908146300DEE8AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
