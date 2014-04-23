@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Student" representedClassName="Student" syncable="YES">
+        <attribute name="letzteAktualisierung" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="matrnr" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="raum" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="stunden" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stunde" inverseName="student" inverseEntity="Stunde" syncable="YES"/>
+    </entity>
+    <entity name="Stunde" representedClassName="Stunde" syncable="YES">
+        <attribute name="anfang" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="anzeigen" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="bemerkungen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dozent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ende" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="kurzel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="raum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titel" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="stunden" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Student" positionX="270" positionY="327" width="128" height="103"/>
+        <element name="Stunde" positionX="522" positionY="342" width="128" height="193"/>
+    </elements>
+</model>

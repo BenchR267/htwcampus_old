@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6D7B451C1908150F00D99C9D /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D7B451B1908150F00D99C9D /* main.storyboard */; };
+		E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
+		E61D87F619082EE30033D543 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87F519082EE30033D543 /* Stunde.m */; };
+		E61D87F919082EE30033D543 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87F819082EE30033D543 /* Student.m */; };
 		E63772C71908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
 		E63772C91908146300DEE8AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C81908146300DEE8AB /* CoreGraphics.framework */; };
 		E63772CB1908146300DEE8AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CA1908146300DEE8AB /* UIKit.framework */; };
@@ -15,7 +18,6 @@
 		E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E63772D11908146300DEE8AB /* InfoPlist.strings */; };
 		E63772D51908146300DEE8AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772D41908146300DEE8AB /* main.m */; };
 		E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772D81908146300DEE8AB /* HTWAppDelegate.m */; };
-		E63772DC1908146300DEE8AB /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E63772DA1908146300DEE8AB /* HTWcampus.xcdatamodeld */; };
 		E63772DE1908146300DEE8AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E63772DD1908146300DEE8AB /* Images.xcassets */; };
 		E63772E51908146300DEE8AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772E41908146300DEE8AB /* XCTest.framework */; };
 		E63772E61908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
@@ -37,6 +39,11 @@
 
 /* Begin PBXFileReference section */
 		6D7B451B1908150F00D99C9D /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
+		E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HTWcampus.xcdatamodel; sourceTree = "<group>"; };
+		E61D87F419082EE30033D543 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
+		E61D87F519082EE30033D543 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
+		E61D87F719082EE30033D543 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Student.h; path = Stundenplan/Model/Student.h; sourceTree = "<group>"; };
+		E61D87F819082EE30033D543 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = Stundenplan/Model/Student.m; sourceTree = "<group>"; };
 		E63772C31908146300DEE8AB /* HTWcampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTWcampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772C61908146300DEE8AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E63772C81908146300DEE8AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,7 +55,6 @@
 		E63772D61908146300DEE8AB /* HTWcampus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTWcampus-Prefix.pch"; sourceTree = "<group>"; };
 		E63772D71908146300DEE8AB /* HTWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTWAppDelegate.h; sourceTree = "<group>"; };
 		E63772D81908146300DEE8AB /* HTWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTWAppDelegate.m; sourceTree = "<group>"; };
-		E63772DB1908146300DEE8AB /* HTWcampus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HTWcampus.xcdatamodel; sourceTree = "<group>"; };
 		E63772DD1908146300DEE8AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E63772E31908146300DEE8AB /* HTWcampusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTWcampusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772E41908146300DEE8AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -83,6 +89,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E61D87D819082D870033D543 /* Stundenplan */ = {
+			isa = PBXGroup;
+			children = (
+				E61D87DA19082D970033D543 /* Portait */,
+				E61D87DB19082D9D0033D543 /* Landscape */,
+				E61D87D919082D920033D543 /* Model */,
+			);
+			name = Stundenplan;
+			sourceTree = "<group>";
+		};
+		E61D87D919082D920033D543 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */,
+				E61D87F719082EE30033D543 /* Student.h */,
+				E61D87F819082EE30033D543 /* Student.m */,
+				E61D87F419082EE30033D543 /* Stunde.h */,
+				E61D87F519082EE30033D543 /* Stunde.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E61D87DA19082D970033D543 /* Portait */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Portait;
+			sourceTree = "<group>";
+		};
+		E61D87DB19082D9D0033D543 /* Landscape */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Landscape;
+			sourceTree = "<group>";
+		};
 		E63772BA1908146300DEE8AB = {
 			isa = PBXGroup;
 			children = (
@@ -117,10 +159,10 @@
 		E63772CE1908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXGroup;
 			children = (
+				E61D87D819082D870033D543 /* Stundenplan */,
 				E63772D71908146300DEE8AB /* HTWAppDelegate.h */,
 				E63772D81908146300DEE8AB /* HTWAppDelegate.m */,
 				E63772DD1908146300DEE8AB /* Images.xcassets */,
-				E63772DA1908146300DEE8AB /* HTWcampus.xcdatamodeld */,
 				E63772CF1908146300DEE8AB /* Supporting Files */,
 				6D7B451B1908150F00D99C9D /* main.storyboard */,
 			);
@@ -253,9 +295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E63772DC1908146300DEE8AB /* HTWcampus.xcdatamodeld in Sources */,
+				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
+				E61D87F919082EE30033D543 /* Student.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
+				E61D87F619082EE30033D543 /* Stunde.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,13 +510,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E63772DA1908146300DEE8AB /* HTWcampus.xcdatamodeld */ = {
+		E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E63772DB1908146300DEE8AB /* HTWcampus.xcdatamodel */,
+				E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */,
 			);
-			currentVersion = E63772DB1908146300DEE8AB /* HTWcampus.xcdatamodel */;
-			path = HTWcampus.xcdatamodeld;
+			currentVersion = E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */;
+			name = HTWcampus.xcdatamodeld;
+			path = Stundenplan/Model/HTWcampus.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
