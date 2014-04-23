@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		6D7B451C1908150F00D99C9D /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D7B451B1908150F00D99C9D /* main.storyboard */; };
 		E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
-		E61D87F619082EE30033D543 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87F519082EE30033D543 /* Stunde.m */; };
-		E61D87F919082EE30033D543 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87F819082EE30033D543 /* Student.m */; };
+		E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */; };
+		E61D880819082FF40033D543 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D880719082FF40033D543 /* Student.m */; };
+		E61D880B19082FF50033D543 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D880A19082FF50033D543 /* Stunde.m */; };
 		E63772C71908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
 		E63772C91908146300DEE8AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C81908146300DEE8AB /* CoreGraphics.framework */; };
 		E63772CB1908146300DEE8AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CA1908146300DEE8AB /* UIKit.framework */; };
@@ -40,10 +41,12 @@
 /* Begin PBXFileReference section */
 		6D7B451B1908150F00D99C9D /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
 		E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HTWcampus.xcdatamodel; sourceTree = "<group>"; };
-		E61D87F419082EE30033D543 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
-		E61D87F519082EE30033D543 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
-		E61D87F719082EE30033D543 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Student.h; path = Stundenplan/Model/Student.h; sourceTree = "<group>"; };
-		E61D87F819082EE30033D543 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = Stundenplan/Model/Student.m; sourceTree = "<group>"; };
+		E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanParser.h; path = Stundenplan/Model/HTWStundenplanParser.h; sourceTree = "<group>"; };
+		E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanParser.m; path = Stundenplan/Model/HTWStundenplanParser.m; sourceTree = "<group>"; };
+		E61D880619082FF40033D543 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Student.h; path = Stundenplan/Model/Student.h; sourceTree = "<group>"; };
+		E61D880719082FF40033D543 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = Stundenplan/Model/Student.m; sourceTree = "<group>"; };
+		E61D880919082FF50033D543 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
+		E61D880A19082FF50033D543 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
 		E63772C31908146300DEE8AB /* HTWcampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTWcampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772C61908146300DEE8AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E63772C81908146300DEE8AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,11 +105,13 @@
 		E61D87D919082D920033D543 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */,
+				E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */,
 				E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */,
-				E61D87F719082EE30033D543 /* Student.h */,
-				E61D87F819082EE30033D543 /* Student.m */,
-				E61D87F419082EE30033D543 /* Stunde.h */,
-				E61D87F519082EE30033D543 /* Stunde.m */,
+				E61D880619082FF40033D543 /* Student.h */,
+				E61D880719082FF40033D543 /* Student.m */,
+				E61D880919082FF50033D543 /* Stunde.h */,
+				E61D880A19082FF50033D543 /* Stunde.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -297,9 +302,10 @@
 			files = (
 				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
-				E61D87F919082EE30033D543 /* Student.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
-				E61D87F619082EE30033D543 /* Stunde.m in Sources */,
+				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
+				E61D880B19082FF50033D543 /* Stunde.m in Sources */,
+				E61D880819082FF40033D543 /* Student.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

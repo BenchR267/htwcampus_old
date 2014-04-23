@@ -16,6 +16,14 @@
 @property (nonatomic, retain) NSDate * letzteAktualisierung;
 @property (nonatomic, retain) NSString * matrnr;
 @property (nonatomic, retain) NSNumber * raum;
-@property (nonatomic, retain) Stunde *stunden;
+@property (nonatomic, retain) NSSet *stunden;
+@end
+
+@interface Student (CoreDataGeneratedAccessors)
+
+- (void)addStundenObject:(Stunde *)value;
+- (void)removeStundenObject:(Stunde *)value;
+- (void)addStunden:(NSSet *)values;
+- (void)removeStunden:(NSSet *)values;
 
 @end

@@ -4,7 +4,7 @@
         <attribute name="letzteAktualisierung" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="matrnr" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="raum" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="stunden" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stunde" inverseName="student" inverseEntity="Stunde" syncable="YES"/>
+        <relationship name="stunden" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stunde" inverseName="student" inverseEntity="Stunde" syncable="YES"/>
     </entity>
     <entity name="Stunde" representedClassName="Stunde" syncable="YES">
         <attribute name="anfang" optional="YES" attributeType="Date" syncable="YES"/>
