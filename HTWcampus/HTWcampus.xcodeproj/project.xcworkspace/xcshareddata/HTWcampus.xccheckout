@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CF10DE57-A611-4876-A377-91F63115121F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HTWcampus</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>79ECE810-C7E3-4F97-A30B-BCF675EF07F1</key>
+		<string>https://github.com/BenchR267/htwcampus.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HTWcampus/HTWcampus.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>79ECE810-C7E3-4F97-A30B-BCF675EF07F1</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/BenchR267/htwcampus.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>79ECE810-C7E3-4F97-A30B-BCF675EF07F1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>79ECE810-C7E3-4F97-A30B-BCF675EF07F1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>htwcampus</string>
+		</dict>
+	</array>
+</dict>
+</plist>
