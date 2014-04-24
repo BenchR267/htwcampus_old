@@ -39,6 +39,7 @@
 		E63772F01908146300DEE8AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E63772EE1908146300DEE8AB /* InfoPlist.strings */; };
 		E63772F21908146300DEE8AB /* HTWcampusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772F11908146300DEE8AB /* HTWcampusTests.m */; };
 		E6FE12A119093D6700D56D52 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator.png */; };
+		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,8 @@
 		E63772EF1908146300DEE8AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E63772F11908146300DEE8AB /* HTWcampusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTWcampusTests.m; sourceTree = "<group>"; };
 		E6FE12A019093D6700D56D52 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
+		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
+		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,12 +184,12 @@
 		E61D882419085B3E0033D543 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				E61D882519085B4C0033D543 /* HTWDatePickViewController.h */,
-				E61D882619085B4C0033D543 /* HTWDatePickViewController.m */,
 				E61D882719085B4C0033D543 /* HTWMatrikelnummernTableViewController.h */,
 				E61D882819085B4C0033D543 /* HTWMatrikelnummernTableViewController.m */,
 				E61D882919085B4C0033D543 /* HTWStundeAddTableViewController.h */,
 				E61D882A19085B4C0033D543 /* HTWStundeAddTableViewController.m */,
+				E61D882519085B4C0033D543 /* HTWDatePickViewController.h */,
+				E61D882619085B4C0033D543 /* HTWDatePickViewController.m */,
 				E61D882B19085B4C0033D543 /* StundenplanSettingsTableViewCell.h */,
 				E61D882C19085B4C0033D543 /* StundenplanSettingsTableViewCell.m */,
 				E61D882D19085B4C0033D543 /* StundenplanSettingsTableViewController.h */,
@@ -238,6 +241,7 @@
 				E61D8818190858D80033D543 /* HTWColors.h */,
 				E61D8819190858D80033D543 /* HTWColors.m */,
 				E61D87D819082D870033D543 /* Stundenplan */,
+				E6FE12A21909880500D56D52 /* Raumplaner */,
 				E63772CF1908146300DEE8AB /* Supporting Files */,
 			);
 			path = HTWcampus;
@@ -272,6 +276,15 @@
 				E63772EE1908146300DEE8AB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6FE12A21909880500D56D52 /* Raumplaner */ = {
+			isa = PBXGroup;
+			children = (
+				E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */,
+				E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */,
+			);
+			name = Raumplaner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +405,7 @@
 				E61D887F1908705E0033D543 /* landscapeSegue.m in Sources */,
 				E61D880819082FF40033D543 /* Student.m in Sources */,
 				E61D883419085B4C0033D543 /* HTWMatrikelnummernTableViewController.m in Sources */,
+				E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */,
 				E61D883819085B4C0033D543 /* StundenplanSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

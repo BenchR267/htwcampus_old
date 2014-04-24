@@ -16,7 +16,7 @@
 
 #define PixelPerMin 0.37
 
-@interface HTWLandscapeViewController ()
+@interface HTWLandscapeViewController () <UIScrollViewDelegate>
 {
     HTWAppDelegate *appdelegate;
     BOOL isPortait;
@@ -57,46 +57,25 @@
     }
 }
 
--(BOOL)shouldAutorotate
-{
-    return NO;
-}
-
--(NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskLandscape;
-}
-
--(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return (UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight);
-}
-
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
 #pragma mark - View Controller Lifecycle
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    
+
     htwColors = [[HTWColors alloc] init];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterInForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterInForeground)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
     
-    UIDevice *device = [UIDevice currentDevice];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
-    [device beginGeneratingDeviceOrientationNotifications];
-    //Get the notification centre for the app
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(orientationChanged:)
-               name:UIDeviceOrientationDidChangeNotification
-             object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
     isPortait = NO;
 }
 
@@ -127,10 +106,12 @@
     self.navigationController.navigationBar.tintColor = htwColors.darkTextColor;
     self.navigationController.navigationBarHidden = YES;
     self.scrollView.contentSize = CGSizeMake(508*2+68, 320);
+    _scrollView.delegate = self;
     
     
     _detailView = [[UIView alloc] init];
     _detailView.hidden = YES;
+    _detailView.tag = 1;
     [_scrollView addSubview:_detailView];
     
     self.scrollView.backgroundColor = htwColors.darkViewBackground;
@@ -184,6 +165,18 @@
     [nc removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
     isPortait = YES;
 }
+
+#pragma mark - UIScrollView Delegate
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    for (UIView *this in _scrollView.subviews) {
+        if (this.tag == 1)
+            this.hidden = YES;
+    }
+}
+
+
 
 #pragma mark - Interface
 
@@ -415,6 +408,7 @@
     dozent.textAlignment = NSTextAlignmentCenter;
     dozent.font = [UIFont systemFontOfSize:15];
     [_detailView addSubview:dozent];
+    
     
     [_scrollView bringSubviewToFront:_detailView];
     

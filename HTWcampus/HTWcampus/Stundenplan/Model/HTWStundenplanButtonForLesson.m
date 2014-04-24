@@ -58,7 +58,6 @@
 -(void)setNow:(BOOL)now
 {
     _now = now;
-//    NSLog(@"Stunde: %@ ist jetzt!", self.lesson.titel);
     
     if (lesson.anzeigen) {
         self.backgroundColor = htwColors.darkButtonIsNow;
@@ -78,8 +77,6 @@
 {
     lesson = lessonForButton;
     
-    //NSLog(@"%@", lesson.id);
-    
     height = (CGFloat)[lesson.ende timeIntervalSinceDate:lesson.anfang] / 60 * PixelPerMin;
     if (_portait) width = 108;
     else width = 90;
@@ -98,35 +95,47 @@
         
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
         
-        NSDate *tomorrow = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
-        NSDate *dayAfterTomorrow = [theCalendar dateByAddingComponents:dayComponent toDate:tomorrow options:0];
-        NSDate *dayAfterAfterTomorrow = [theCalendar dateByAddingComponents:dayComponent toDate:dayAfterTomorrow options:0];
-        NSDate *dayAfterAfterAfterTomorrow = [theCalendar dateByAddingComponents:dayComponent toDate:dayAfterAfterTomorrow options:0];
+        NSDate *day2 = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
+        NSDate *day3 = [theCalendar dateByAddingComponents:dayComponent toDate:day2 options:0];
+        NSDate *day4 = [theCalendar dateByAddingComponents:dayComponent toDate:day3 options:0];
+        NSDate *day5 = [theCalendar dateByAddingComponents:dayComponent toDate:day4 options:0];
+        NSDate *day6 = [theCalendar dateByAddingComponents:dayComponent toDate:day5 options:0];
+        NSDate *day7 = [theCalendar dateByAddingComponents:dayComponent toDate:day6 options:0];
         
         //Wenn die Stunde heute ist
         if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:today]) {
             x = 78;
             y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[today dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
-        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:tomorrow])
+        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:day2])
         {
             x = 194;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[tomorrow dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
-        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:dayAfterTomorrow])
+        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:day3])
         {
             x = 310;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dayAfterTomorrow dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day3 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
-        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:dayAfterAfterTomorrow])
+        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:day4])
         {
             x = 426;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dayAfterAfterTomorrow dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day4 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
-        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:dayAfterAfterAfterTomorrow])
+        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:day5])
         {
             x = 542;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dayAfterAfterAfterTomorrow dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day5 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+        }
+        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:day6])
+        {
+            x = 542+116;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day6 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+        }
+        else if ([[nurTag dateFromString:[nurTag stringFromDate:lesson.anfang]] isEqual:day7])
+        {
+            x = 542+116+116;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day7 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
     }
     else {

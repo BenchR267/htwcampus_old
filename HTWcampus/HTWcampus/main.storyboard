@@ -16,6 +16,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="LKt-8b-hr2" kind="relationship" relationship="viewControllers" id="70w-Ml-MJn"/>
+                        <segue destination="Ks8-ti-cl6" kind="relationship" relationship="viewControllers" id="QeI-eD-zYx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fRj-Hh-B05" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -63,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K9e-kS-iga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1410" y="85"/>
+            <point key="canvasLocation" x="1410" y="-1027"/>
         </scene>
         <!--Navigation Controller - Stundenplan-->
         <scene sceneID="i0a-xJ-Bbr">
@@ -86,7 +87,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LE-Wa-410" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="85"/>
+            <point key="canvasLocation" x="884" y="-1027"/>
         </scene>
         <!--Landscape View Controller-->
         <scene sceneID="pIa-Ma-5oj">
@@ -131,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iLO-lU-mew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1760" y="-590"/>
+            <point key="canvasLocation" x="1760" y="-1702"/>
         </scene>
         <!--Matrikelnummern Table View Controller-->
         <scene sceneID="zna-Kx-nD6">
@@ -175,7 +176,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeI-YR-gEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="-1337"/>
+            <point key="canvasLocation" x="103" y="-2449"/>
         </scene>
         <!--Stundenplan Settings View Controller - Einstellungen-->
         <scene sceneID="8lM-94-6mh">
@@ -312,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8R-9Z-m30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="563" y="-684"/>
+            <point key="canvasLocation" x="563" y="-1796"/>
         </scene>
         <!--Stundenplan Settings Table View Controller - Stundenübersicht-->
         <scene sceneID="Psp-BU-Qme">
@@ -373,7 +374,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tf9-vu-rzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="859" y="-1561"/>
+            <point key="canvasLocation" x="859" y="-2673"/>
         </scene>
         <!--Stunde Add Table View Controller - Stunde hinzufügen-->
         <scene sceneID="99A-Rh-NN8">
@@ -624,7 +625,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thO-kM-yZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350" y="-1561"/>
+            <point key="canvasLocation" x="1350" y="-2673"/>
         </scene>
         <!--Date Pick View Controller-->
         <scene sceneID="1KB-M2-ArW">
@@ -686,10 +687,164 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMs-de-HqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1805" y="-1561"/>
+            <point key="canvasLocation" x="1805" y="-2673"/>
+        </scene>
+        <!--Raumplaner Table View Controller - Raumplaner-->
+        <scene sceneID="3mW-bb-GzR">
+            <objects>
+                <tableViewController id="SFJ-87-Rd3" customClass="HTWRaumplanerTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ajv-wf-lBN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="8s6-Ut-vbH" detailTextLabel="clZ-Ti-FEA" style="IBUITableViewCellStyleValue1" id="g6i-Cp-PgU">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g6i-Cp-PgU" id="AmL-TD-BcB">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8s6-Ut-vbH">
+                                            <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="clZ-Ti-FEA">
+                                            <rect key="frame" x="241" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ew8-qk-P5R" kind="push" identifier="showRaum" id="AVP-bU-nS0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SFJ-87-Rd3" id="t00-Vv-BX2"/>
+                            <outlet property="delegate" destination="SFJ-87-Rd3" id="3r2-Lr-kci"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Raumplaner" id="Fn6-tV-g3r">
+                        <barButtonItem key="rightBarButtonItem" image="add" id="xRy-7l-qiC">
+                            <connections>
+                                <action selector="addBarButtonItemPressed:" destination="SFJ-87-Rd3" id="O12-xK-GrY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addBarButtonItem" destination="xRy-7l-qiC" id="MiZ-It-80t"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wqP-MO-kMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1501" y="368"/>
+        </scene>
+        <!--Navigation Controller - Räume-->
+        <scene sceneID="0mp-Mg-j6I">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Ks8-ti-cl6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Räume" image="Haus" id="Ftu-lT-buJ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="syy-4I-5A9">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="SFJ-87-Rd3" kind="relationship" relationship="rootViewController" id="HSV-Pa-K9D"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ItD-be-O6W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="969" y="368"/>
+        </scene>
+        <!--Portrait View Controller - Stundenplan-->
+        <scene sceneID="LkZ-hK-WIU">
+            <objects>
+                <viewController id="ew8-qk-P5R" customClass="HTWPortraitViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Io9-BN-NBD"/>
+                        <viewControllerLayoutGuide type="bottom" id="nZt-3F-3VO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DXL-et-qvd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p3h-nu-sQ2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p3h-nu-sQ2" firstAttribute="leading" secondItem="DXL-et-qvd" secondAttribute="leading" id="C6k-Rx-GUs"/>
+                            <constraint firstAttribute="trailing" secondItem="p3h-nu-sQ2" secondAttribute="trailing" id="bc4-4B-dMR"/>
+                            <constraint firstAttribute="bottom" secondItem="p3h-nu-sQ2" secondAttribute="bottom" id="msG-2z-MLc"/>
+                            <constraint firstItem="p3h-nu-sQ2" firstAttribute="top" secondItem="DXL-et-qvd" secondAttribute="top" id="rsq-xR-8u4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Stundenplan" id="29I-4O-v8m"/>
+                    <connections>
+                        <outlet property="scrollView" destination="p3h-nu-sQ2" id="WTx-fc-oqT"/>
+                        <segue destination="lSU-Cn-pEh" kind="custom" identifier="switchToLandscape" customClass="landscapeSegue" id="bvS-vl-Jia"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LVs-oC-R2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2024" y="368"/>
+        </scene>
+        <!--Landscape View Controller-->
+        <scene sceneID="QNJ-5h-Tnd">
+            <objects>
+                <viewController id="lSU-Cn-pEh" customClass="HTWLandscapeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nto-je-W6I"/>
+                        <viewControllerLayoutGuide type="bottom" id="s94-rf-4Qo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I3P-Ua-L9b">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2os-B3-FFZ">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oiw-8X-ozQ">
+                                <rect key="frame" x="60" y="0.0" width="508" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="2os-B3-FFZ" secondAttribute="bottom" id="0y6-TO-pNL"/>
+                            <constraint firstItem="2os-B3-FFZ" firstAttribute="leading" secondItem="I3P-Ua-L9b" secondAttribute="leading" id="DK8-tT-KCa"/>
+                            <constraint firstItem="2os-B3-FFZ" firstAttribute="top" secondItem="I3P-Ua-L9b" secondAttribute="top" id="LPI-y5-HeG"/>
+                            <constraint firstItem="Oiw-8X-ozQ" firstAttribute="leading" secondItem="I3P-Ua-L9b" secondAttribute="leading" constant="60" id="QRB-El-TO5"/>
+                            <constraint firstItem="Oiw-8X-ozQ" firstAttribute="leading" secondItem="2os-B3-FFZ" secondAttribute="trailing" id="Tcd-F8-faX"/>
+                            <constraint firstAttribute="trailing" secondItem="Oiw-8X-ozQ" secondAttribute="trailing" id="VcR-TJ-joO"/>
+                            <constraint firstItem="2os-B3-FFZ" firstAttribute="bottom" secondItem="Oiw-8X-ozQ" secondAttribute="bottom" id="YGf-HO-S6N"/>
+                            <constraint firstItem="2os-B3-FFZ" firstAttribute="top" secondItem="Oiw-8X-ozQ" secondAttribute="top" id="ZeO-8k-qGb"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Tr4-Ce-7dM"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="scrollView" destination="Oiw-8X-ozQ" id="7nK-8j-gzI"/>
+                        <outlet property="zeitenView" destination="2os-B3-FFZ" id="cDo-BK-V4t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DoA-R1-h8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2608" y="270"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Haus" width="30" height="30"/>
         <image name="Kalender" width="30" height="30"/>
         <image name="Settings" width="30" height="30"/>
         <image name="add" width="28" height="28"/>

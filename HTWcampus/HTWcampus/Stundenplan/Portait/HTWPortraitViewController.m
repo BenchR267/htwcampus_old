@@ -111,7 +111,7 @@
     
     //[defaults setObject:Matrnr forKey:@"Matrikelnummer"];
     
-    _scrollView.contentSize = CGSizeMake(660, 520);
+    _scrollView.contentSize = CGSizeMake(80+116*7, 520);
     _scrollView.directionalLockEnabled = YES;
     _scrollView.delegate = self;
     
@@ -181,7 +181,7 @@
             [nurTag setDateFormat:@"dd.MM.yyyy"];
             
             NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
-            dayComponent.day = 5;
+            dayComponent.day = 7;
             
             NSCalendar *theCalendar = [NSCalendar currentCalendar];
             
@@ -247,13 +247,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     for (UIView *this in self.scrollView.subviews) {
-        if (this.tag == -2) {
-            CGPoint origin;
-            origin.x = _scrollView.contentOffset.x;
-            origin.y = this.frame.origin.y;
-            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
-        }
-        else if (this.tag == -3)
+        if (this.tag == -3)
         {
             CGPoint origin;
             origin.x = _scrollView.contentOffset.x+15;
@@ -261,13 +255,18 @@
             this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
         }
         else if (this.tag == 1) this.hidden = YES;
-//        else if (this.tag == -4)
-//        {
-//            CGPoint origin;
-//            origin.x = _scrollView.contentOffset.x;
-//            origin.y = this.frame.origin.y + _scrollView.contentOffset.y + 300;
-//            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
-//        }
+        else if (this.tag == -4)
+        {
+            this.frame = CGRectMake(-_scrollView.contentSize.width, 0-300+_scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50+300);
+            [_scrollView bringSubviewToFront:this];
+        }
+        if (this.tag == -2) {
+            CGPoint origin;
+            origin.x = _scrollView.contentOffset.x;
+            origin.y = this.frame.origin.y;
+            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
+            [_scrollView bringSubviewToFront:this];
+        }
     }
 }
 
@@ -406,7 +405,7 @@
     
     NSMutableArray *labels = [[NSMutableArray alloc] init];
     
-    for (int i=0; i < 5; i++) {
+    for (int i=0; i < 7; i++) {
         UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+78+_scrollView.contentSize.width, 20+300, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
         this.font = [UIFont fontWithName:@"Helvetica" size:20];
@@ -424,7 +423,7 @@
         [labels addObject:this];
     }
     
-    UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, 0-300, _scrollView.contentSize.width*3, 50+300)];
+    UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, 0-300+_scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50+300)];
     
     UIImage *indicator = [UIImage imageNamed:@"indicator.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
@@ -475,13 +474,13 @@
     
     NSMutableArray *stundenTexte = [[NSMutableArray alloc] initWithArray:@[@"07:00",@"08:00",@"09:00",@"10:00",@"11:00",@"12:00",@"13:00",@"14:00",@"15:00",@"16:00",@"17:00",@"18:00",@"19:00",@"20:00",@"21:00",@"22:00",@"23:00", @"00:00"]];
     
-    UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, 0, 63, _scrollView.contentSize.height+350)];
+    UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 63, _scrollView.contentSize.height+700)];
     zeitenView.backgroundColor = htwColors.darkZeitenAndButtonBackground;
     zeitenView.tag = -2;
     
     
     for (int i = 0; i < [stundenZeiten count]; i++) {
-        CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin;
+        CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin + 350;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, y, 108, 20)];
         label.text = [stundenTexte objectAtIndex:i];
         label.textAlignment = NSTextAlignmentLeft;
