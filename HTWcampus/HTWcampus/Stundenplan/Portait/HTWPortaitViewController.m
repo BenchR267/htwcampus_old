@@ -112,6 +112,7 @@
     //[defaults setObject:Matrnr forKey:@"Matrikelnummer"];
     
     _scrollView.contentSize = CGSizeMake(660, 520);
+    _scrollView.directionalLockEnabled = YES;
     _scrollView.delegate = self;
     
     _detailView = [[UIView alloc] init];
@@ -142,26 +143,23 @@
                                                            delegate:self
                                                   cancelButtonTitle:[self alertViewCancelButtonTitle]
                                                   otherButtonTitles:[self alertViewOkButtonTitle], nil];
-        
         [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-        
-        
         [alertView show];
     }
     else
     {
         
-        NSEntityDescription *entityDesc =[NSEntityDescription entityForName:@"Student"
-                                                     inManagedObjectContext:_context];
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityDesc];
+        [request setEntity:[NSEntityDescription entityForName:@"Student"
+                                       inManagedObjectContext:_context]];
         NSPredicate *pred;
         
         if(Matrnr) pred = [NSPredicate predicateWithFormat:@"(matrnr = %@)", Matrnr];
         else pred = [NSPredicate predicateWithFormat:@"(matrnr = %@)", _raumNummer];
         [request setPredicate:pred];
         
+        // FetchRequest-Ergebnisse
         NSMutableArray *objects = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
                                                                                          error:nil]];
         
@@ -235,6 +233,7 @@
         if (Matrnr){
             UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
             longPressGR.minimumPressDuration = 0.1;
+            longPressGR.allowableMovement = 0;
             [button addGestureRecognizer:longPressGR];
         }
     }
@@ -243,6 +242,7 @@
 }
 
 #pragma mark - UIScrollView Delegate
+
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
