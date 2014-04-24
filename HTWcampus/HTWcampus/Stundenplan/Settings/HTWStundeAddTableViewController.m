@@ -61,8 +61,6 @@
     NSDateFormatter *datum = [[NSDateFormatter alloc] init];
     [datum setDateFormat:@"dd.MM.yyyy HH:mm"];
 
-    ende = [anfang dateByAddingTimeInterval:60*90];
-    _endeCell.detailTextLabel.text = [datum stringFromDate:ende];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults boolForKey:@"hellesDesign"]) {
@@ -84,9 +82,9 @@
 
 - (IBAction)speichernButtonPressed:(UIBarButtonItem *)sender
 {
-    if ([_titelTextField.text isEqualToString:@""] || [_kurzelTextField.text isEqualToString:@""] || [_dozentTextField.text isEqualToString:@""] || [_raumTextField.text isEqualToString:@""] || [_wiederholungenTextField.text isEqualToString:@""] || _wiederholungenTextField.text.floatValue == 0) {
+    if ([_titelTextField.text isEqualToString:@""] || [_kurzelTextField.text isEqualToString:@""] || [_dozentTextField.text isEqualToString:@""] || [_raumTextField.text isEqualToString:@""] || [_wiederholungenTextField.text isEqualToString:@""] || _wiederholungenTextField.text.floatValue == 0 || anfang > ende) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Da ist wohl was schief gegangen"
-                                                            message:@"Bitte alle Felder ausfüllen!"
+                                                            message:@"Bitte alle Felder ausfüllen und achten Sie darauf, dass das Anfangsdatum vor dem Enddatum liegen muss."
                                                            delegate:self
                                                   cancelButtonTitle:@"Ok, ich versuchs nochmal!"
                                                   otherButtonTitles: nil];
@@ -100,18 +98,31 @@
     _context = [appdelegate managedObjectContext];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *MatrNr = [defaults objectForKey:@"Matrikelnummer"];
     
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student"
-                                              inManagedObjectContext:_context];
-    [request setEntity:entity];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", MatrNr];
+    
+    [request setEntity:[NSEntityDescription entityForName:@"Student"
+                                   inManagedObjectContext:_context]];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", [defaults objectForKey:@"Matrikelnummer"]];
     request.predicate = pred;
     
     NSArray *ret = [_context executeFetchRequest:request error:nil];
-    Student *dieserStudent = ret[0];
+    Student *dieserStudent;
+    
+    if (ret.count > 0) {
+        dieserStudent = ret[0];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Da ist wohl was schief gegangen"
+                                                            message:@"Es ist ein Fehler aufgetreten. Der betreffende Student konnte nicht aus der Datenbank geladen werden."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Ok, ich versuchs nochmal!"
+                                                  otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
     
     
     NSEntityDescription *entityDesc =[NSEntityDescription entityForName:@"Stunde"
@@ -123,7 +134,6 @@
     _neueStunde.dozent = _dozentTextField.text;
     _neueStunde.raum = _raumTextField.text;
     _neueStunde.bemerkungen = @"";
-//    _neueStunde.student = dieserStudent;
     _neueStunde.anzeigen = [NSNumber numberWithBool:YES];
     
     _neueStunde.anfang = anfang;
@@ -138,8 +148,6 @@
     
     _neueStunde.id = [NSString stringWithFormat:@"%@%d%@", _neueStunde.kurzel, weekday, anfangZeit];
     
-    NSLog(@"ID: %@", _neueStunde.id);
-    
     [dieserStudent addStundenObject: _neueStunde];
     
     
@@ -153,10 +161,7 @@
         if (_woechentlichSegControl.selectedSegmentIndex == 0) dayComponent.day = 7;
         else dayComponent.day = 14;
         
-        
-        
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
-//        dateToBeIncremented = [theCalendar dateByAddingComponents:dayComponent toDate:dateToBeIncremented options:0];
         
         for (int i = 1; i < (int)(_wiederholungenTextField.text.floatValue / 2); i++) {
             Stunde *nochEineStunde = [[Stunde alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:_context];
@@ -169,7 +174,6 @@
             
             anfangD = [theCalendar dateByAddingComponents:dayComponent toDate:anfangD options:0];
             
-//            anfangD = [anfangD dateByAddingTimeInterval:60*60*24*7];
             nochEineStunde.anfang = anfangD;
             
             endeD = [theCalendar dateByAddingComponents:dayComponent toDate:endeD options:0];
@@ -181,16 +185,17 @@
         }
     }
     
-    [_context save:nil];
+//    [_context save:nil];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)getNewDate:(NSDate *)newDate andAnfang:(BOOL)ja
 {
-//    NSLog(@"newDate: %@", newDate);
-    
-    if (ja) anfang = newDate;
+    if (ja) {
+        anfang = newDate;
+        ende = [anfang dateByAddingTimeInterval:60*90];
+    }
     else ende = newDate;
     
     NSDateFormatter *datum = [[NSDateFormatter alloc] init];

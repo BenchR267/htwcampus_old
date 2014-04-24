@@ -28,9 +28,6 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
-
-
-
 @end
 
 @implementation StundenplanSettingsTableViewController
@@ -98,19 +95,7 @@
 	}
     
     self.title = [NSString stringWithFormat:@"%@ Stunden", Matrnr];
-    
-//    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editItem:)];
-//    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, editButton, nil];
 }
-
-//-(void)editItem:(UIBarButtonItem*)sender
-//{
-//    [self.tableView setEditing:!self.tableView.editing animated:YES];
-//    if ([sender.title isEqualToString:@"Fertig"]) {
-//        sender.title = @"Edit";
-//    }
-//    else sender.title = @"Fertig";
-//}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -181,6 +166,11 @@
 }
 
 #pragma mark - Table view data source
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Löschen";
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
