@@ -38,6 +38,7 @@
 		E63772E81908146300DEE8AB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CC1908146300DEE8AB /* CoreData.framework */; };
 		E63772F01908146300DEE8AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E63772EE1908146300DEE8AB /* InfoPlist.strings */; };
 		E63772F21908146300DEE8AB /* HTWcampusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772F11908146300DEE8AB /* HTWcampusTests.m */; };
+		E6FE12A119093D6700D56D52 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		E63772ED1908146300DEE8AB /* HTWcampusTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTWcampusTests-Info.plist"; sourceTree = "<group>"; };
 		E63772EF1908146300DEE8AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E63772F11908146300DEE8AB /* HTWcampusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTWcampusTests.m; sourceTree = "<group>"; };
+		E6FE12A019093D6700D56D52 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				E61D880F190857F90033D543 /* HTWPortaitViewController.h */,
 				E61D8810190857F90033D543 /* HTWPortaitViewController.m */,
+				E6FE12A019093D6700D56D52 /* indicator.png */,
 			);
 			name = Portait;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E61D883B19085E380033D543 /* Images.xcassets in Resources */,
+				E6FE12A119093D6700D56D52 /* indicator.png in Resources */,
 				E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */,
 				6D7B451C1908150F00D99C9D /* main.storyboard in Resources */,
 			);

@@ -523,7 +523,9 @@
         if([view isKindOfClass:[HTWStundenplanButtonForLesson class]])
         {
             HTWStundenplanButtonForLesson *button = (HTWStundenplanButtonForLesson*)view;
-            if ([[NSDate date] compare:[button.lesson.anfang dateByAddingTimeInterval:-[defaults floatForKey:@"markierSliderValue"]*60]] == NSOrderedDescending &&
+            float einstellungMarkierung = [defaults floatForKey:@"markierSliderValue"]*60;
+            if(_raumNummer) einstellungMarkierung = 0;
+            if ([[NSDate date] compare:[button.lesson.anfang dateByAddingTimeInterval:-einstellungMarkierung]] == NSOrderedDescending &&
                 [[NSDate date] compare:button.lesson.ende] == NSOrderedAscending) {
                 [button setNow:YES];
             }
