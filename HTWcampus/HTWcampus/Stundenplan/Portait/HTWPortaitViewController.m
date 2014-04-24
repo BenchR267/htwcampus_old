@@ -233,12 +233,9 @@
         button.tag = -1;
         [self.scrollView addSubview:button];
         if (Matrnr){
-            [button addTarget:self
-                       action:@selector(buttonPressed:)
-             forControlEvents:UIControlEventTouchDown];
-            [button addTarget:self
-                       action:@selector(buttonReleased:)
-             forControlEvents:UIControlEventTouchUpOutside|UIControlEventTouchUpInside];
+            UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
+            longPressGR.minimumPressDuration = 0.1;
+            [button addGestureRecognizer:longPressGR];
         }
     }
     [self setUpZeitenView];
@@ -542,13 +539,18 @@
     [self.scrollView setContentOffset:CGPointMake(0, -64) animated:YES];
 }
 
--(IBAction)buttonPressed:(id)sender
+-(IBAction)buttonIsPressed:(UILongPressGestureRecognizer*)gesture
 {
-    HTWStundenplanButtonForLesson *buttonPressed = (HTWStundenplanButtonForLesson*)sender;
+    HTWStundenplanButtonForLesson *buttonPressed = (HTWStundenplanButtonForLesson*)gesture.view;
     _detailView.frame = CGRectMake(buttonPressed.frame.origin.x-buttonPressed.frame.size.width/2, buttonPressed.frame.origin.y-180*PixelPerMin, buttonPressed.frame.size.width*2,180*PixelPerMin);
     _detailView.layer.cornerRadius = 10;
     _detailView.backgroundColor = [UIColor redColor];
     _detailView.alpha = 0.8;
+    
+    for (UIView *this in _detailView.subviews) {
+        [this removeFromSuperview];
+    }
+    
     UILabel *titel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _detailView.frame.size.width, _detailView.frame.size.height*4/5)];
     titel.text = buttonPressed.lesson.titel;
     titel.textAlignment = NSTextAlignmentCenter;
@@ -563,26 +565,9 @@
     dozent.font = [UIFont systemFontOfSize:17];
     [_detailView addSubview:dozent];
     
-    for (UIView *aktuell in _scrollView.subviews) {
-        if (aktuell.tag == 1) {
-            [_scrollView bringSubviewToFront:aktuell];
-            aktuell.hidden = NO;
-            break;
-        }
-    }
-}
-
--(IBAction)buttonReleased:(id)sender
-{
-    for (UIView *aktuell in _scrollView.subviews) {
-        if (aktuell.tag == 1) {
-            for (UIView *this in aktuell.subviews) {
-                [this removeFromSuperview];
-            }
-            aktuell.hidden = YES;
-            break;
-        }
-    }
+    [_scrollView bringSubviewToFront:_detailView];
+    
+    _detailView.hidden = !_detailView.hidden;
 }
 
 #pragma mark - Navigation
