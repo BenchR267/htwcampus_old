@@ -203,6 +203,28 @@
             [self.scrollView addGestureRecognizer:tapRecognizer];
         }
     }
+    for (UIView *this in self.scrollView.subviews) {
+        if (this.tag == -3)
+        {
+            CGPoint origin;
+            origin.x = _scrollView.contentOffset.x+15;
+            origin.y = this.frame.origin.y;
+            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
+        }
+        else if (this.tag == 1) this.hidden = YES;
+        else if (this.tag == -4)
+        {
+            this.frame = CGRectMake(-_scrollView.contentSize.width, 0-300+_scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50+300);
+            [_scrollView bringSubviewToFront:this];
+        }
+        if (this.tag == -2) {
+            CGPoint origin;
+            origin.x = _scrollView.contentOffset.x;
+            origin.y = this.frame.origin.y;
+            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
+            [_scrollView bringSubviewToFront:this];
+        }
+    }
 }
 
 -(void)dealloc
