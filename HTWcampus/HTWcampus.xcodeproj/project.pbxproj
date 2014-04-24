@@ -12,7 +12,7 @@
 		E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */; };
 		E61D880819082FF40033D543 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D880719082FF40033D543 /* Student.m */; };
 		E61D880B19082FF50033D543 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D880A19082FF50033D543 /* Stunde.m */; };
-		E61D8811190857F90033D543 /* HTWPortaitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D8810190857F90033D543 /* HTWPortaitViewController.m */; };
+		E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D8810190857F90033D543 /* HTWPortraitViewController.m */; };
 		E61D88141908583C0033D543 /* HTWStundenplanButtonForLesson.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D88131908583C0033D543 /* HTWStundenplanButtonForLesson.m */; };
 		E61D881A190858D80033D543 /* HTWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D8819190858D80033D543 /* HTWColors.m */; };
 		E61D8820190859180033D543 /* HTWLandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D881E190859180033D543 /* HTWLandscapeViewController.m */; };
@@ -60,8 +60,8 @@
 		E61D880719082FF40033D543 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = Stundenplan/Model/Student.m; sourceTree = "<group>"; };
 		E61D880919082FF50033D543 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
 		E61D880A19082FF50033D543 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
-		E61D880F190857F90033D543 /* HTWPortaitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPortaitViewController.h; path = Stundenplan/Portait/HTWPortaitViewController.h; sourceTree = "<group>"; };
-		E61D8810190857F90033D543 /* HTWPortaitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPortaitViewController.m; path = Stundenplan/Portait/HTWPortaitViewController.m; sourceTree = "<group>"; };
+		E61D880F190857F90033D543 /* HTWPortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPortraitViewController.h; path = Stundenplan/Portait/HTWPortraitViewController.h; sourceTree = "<group>"; };
+		E61D8810190857F90033D543 /* HTWPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPortraitViewController.m; path = Stundenplan/Portait/HTWPortraitViewController.m; sourceTree = "<group>"; };
 		E61D88121908583C0033D543 /* HTWStundenplanButtonForLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanButtonForLesson.h; path = Stundenplan/Model/HTWStundenplanButtonForLesson.h; sourceTree = "<group>"; };
 		E61D88131908583C0033D543 /* HTWStundenplanButtonForLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanButtonForLesson.m; path = Stundenplan/Model/HTWStundenplanButtonForLesson.m; sourceTree = "<group>"; };
 		E61D8818190858D80033D543 /* HTWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWColors.h; path = Stundenplan/TEMP/HTWColors.h; sourceTree = "<group>"; };
@@ -160,8 +160,8 @@
 		E61D87DA19082D970033D543 /* Portait */ = {
 			isa = PBXGroup;
 			children = (
-				E61D880F190857F90033D543 /* HTWPortaitViewController.h */,
-				E61D8810190857F90033D543 /* HTWPortaitViewController.m */,
+				E61D880F190857F90033D543 /* HTWPortraitViewController.h */,
+				E61D8810190857F90033D543 /* HTWPortraitViewController.m */,
 				E6FE12A019093D6700D56D52 /* indicator.png */,
 			);
 			name = Portait;
@@ -385,7 +385,7 @@
 				E61D883919085B4C0033D543 /* SwitchInStundenplanSettingsTableViewCell.m in Sources */,
 				E61D881A190858D80033D543 /* HTWColors.m in Sources */,
 				E61D88141908583C0033D543 /* HTWStundenplanButtonForLesson.m in Sources */,
-				E61D8811190857F90033D543 /* HTWPortaitViewController.m in Sources */,
+				E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
 				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
 				E61D880B19082FF50033D543 /* Stunde.m in Sources */,

@@ -12,7 +12,7 @@
 #import "Stunde.h"
 #import "Student.h"
 #import "HTWColors.h"
-#import "HTWPortaitViewController.h"
+#import "HTWPortraitViewController.h"
 
 #define PixelPerMin 0.37
 

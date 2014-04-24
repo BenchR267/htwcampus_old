@@ -22,10 +22,10 @@
             </objects>
             <point key="canvasLocation" x="-433" y="306"/>
         </scene>
-        <!--Portait View Controller - Stundenplan-->
+        <!--Portrait View Controller - Stundenplan-->
         <scene sceneID="W7V-Tb-zzG">
             <objects>
-                <viewController id="7hh-2p-6tI" customClass="HTWPortaitViewController" sceneMemberID="viewController">
+                <viewController id="7hh-2p-6tI" customClass="HTWPortraitViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kFu-5I-pcA"/>
                         <viewControllerLayoutGuide type="bottom" id="yQG-f1-4n5"/>

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HTWPortaitViewController : UIViewController
+@interface HTWPortraitViewController : UIViewController
 
 @property (nonatomic, strong) NSString *raumNummer; // Nur für Raum..
 

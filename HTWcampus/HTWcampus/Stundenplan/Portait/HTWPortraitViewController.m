@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Benjamin Herzog. All rights reserved.
 //
 
-#import "HTWPortaitViewController.h"
+#import "HTWPortraitViewController.h"
 #import "HTWStundenplanParser.h"
 #import "HTWAppDelegate.h"
 #import "Student.h"
@@ -17,10 +17,10 @@
 
 #define PixelPerMin 0.5
 
-@interface HTWPortaitViewController () <HTWStundenplanParserDelegate, UIScrollViewDelegate>
+@interface HTWPortraitViewController () <HTWStundenplanParserDelegate, UIScrollViewDelegate>
 {
     NSString *Matrnr; // Nur für Stundenplan Studenten
-    BOOL isPortait;
+    BOOL isPortrait;
     
     HTWAppDelegate *appdelegate;
     
@@ -39,7 +39,7 @@
 
 @end
 
-@implementation HTWPortaitViewController
+@implementation HTWPortraitViewController
 
 #pragma mark - Interface Orientation
 
@@ -56,15 +56,15 @@
 - (void)orientationChanged:(NSNotification *)notification
 {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-    if (UIDeviceOrientationIsLandscape(deviceOrientation) && isPortait)
+    if (UIDeviceOrientationIsLandscape(deviceOrientation) && isPortrait)
     {
         [self performSegueWithIdentifier:@"switchToLandscape" sender:self];
-        isPortait = NO;
+        isPortrait = NO;
     }
-    else if (UIDeviceOrientationIsPortrait(deviceOrientation) && !isPortait)
+    else if (UIDeviceOrientationIsPortrait(deviceOrientation) && !isPortrait)
     {
         [self dismissViewControllerAnimated:YES completion:nil];
-        isPortait = YES;
+        isPortrait = YES;
     }
 }
 
@@ -95,7 +95,7 @@
     [nc addObserver:self selector:@selector(orientationChanged:)
                name:UIDeviceOrientationDidChangeNotification
              object:nil];
-    isPortait = YES;
+    isPortrait = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -209,7 +209,7 @@
 {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-    isPortait = YES;
+    isPortrait = YES;
 }
 
 
