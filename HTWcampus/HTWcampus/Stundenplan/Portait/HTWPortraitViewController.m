@@ -242,27 +242,29 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    for (UIView *this in self.scrollView.subviews) {
-        if (this.tag == -3)
-        {
-            CGPoint origin;
-            origin.x = _scrollView.contentOffset.x+15;
-            origin.y = this.frame.origin.y;
-            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
+    for (UIView *this in _scrollView.subviews) {
+        CGPoint origin;
+        switch (this.tag) {
+            case 1: this.hidden = YES; break;
+            case -4:
+                this.frame = CGRectMake(-_scrollView.contentSize.width, 0-300+_scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50+300);
+                [_scrollView bringSubviewToFront:this];
+                break;
+            case -2:
+                origin.x = _scrollView.contentOffset.x;
+                origin.y = this.frame.origin.y;
+                this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
+                [_scrollView bringSubviewToFront:this];
+                break;
+            case -3:
+                origin.x = _scrollView.contentOffset.x+15;
+                origin.y = this.frame.origin.y;
+                this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
+                break;
+            default:
+                break;
         }
-        else if (this.tag == 1) this.hidden = YES;
-        else if (this.tag == -4)
-        {
-            this.frame = CGRectMake(-_scrollView.contentSize.width, 0-300+_scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50+300);
-            [_scrollView bringSubviewToFront:this];
-        }
-        if (this.tag == -2) {
-            CGPoint origin;
-            origin.x = _scrollView.contentOffset.x;
-            origin.y = this.frame.origin.y;
-            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
-            [_scrollView bringSubviewToFront:this];
-        }
+        if(this.tag == -3) [_scrollView bringSubviewToFront:this];
     }
 }
 
@@ -419,7 +421,6 @@
 -(void)reloadCellLabels
 {
     UIColor *schriftfarbe = htwColors.darkTextColor;
-    // UIColor *linieUndClock = [UIColor colorWithRed:255/255.f green:72/255.f blue:68/255.f alpha:1];
     
     NSArray *wochentage = @[@"Montag",@"Dienstag",@"Mittwoch",@"Donnerstag",@"Freitag",@"Samstag",@"Sonntag"];
     
@@ -540,6 +541,7 @@
         lineView.tag = -3;
         [self.scrollView addSubview:lineView];
         [self.scrollView addSubview:clockView];
+        [_scrollView bringSubviewToFront:lineView];
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

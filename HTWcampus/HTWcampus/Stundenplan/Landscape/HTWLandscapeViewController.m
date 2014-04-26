@@ -280,48 +280,20 @@
     NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
     
     NSMutableArray *stundenZeiten = [[NSMutableArray alloc] init];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:7*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:8*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:9*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:10*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:11*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:12*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:13*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:14*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:15*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:16*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:17*60*60]];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:18*60*60]];
-    NSMutableArray *stundenTexte = [[NSMutableArray alloc] init];
-    [stundenTexte addObject:@"07:00"];
-    [stundenTexte addObject:@"08:00"];
-    [stundenTexte addObject:@"09:00"];
-    [stundenTexte addObject:@"10:00"];
-    [stundenTexte addObject:@"11:00"];
-    [stundenTexte addObject:@"12:00"];
-    [stundenTexte addObject:@"13:00"];
-    [stundenTexte addObject:@"14:00"];
-    [stundenTexte addObject:@"15:00"];
-    [stundenTexte addObject:@"16:00"];
-    [stundenTexte addObject:@"17:00"];
-    [stundenTexte addObject:@"18:00"];
+    [stundenZeiten addObject:[today dateByAddingTimeInterval:60*60*7]];
+    for (int i=0; i<11; i++) {
+        [stundenZeiten addObject:[(NSDate*)stundenZeiten[i] dateByAddingTimeInterval:60*60]];
+    }
+    NSMutableArray *stundenTexte = [[NSMutableArray alloc] initWithArray:@[@"07:00",@"08:00",@"09:00",@"10:00",@"11:00",@"12:00",@"13:00",@"14:00",@"15:00",@"16:00",@"17:00",@"18:00"]];
     
     for (int i = 0; i < [stundenZeiten count]; i++) {
         CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(22, y, 108, 20)];
-        //        UIView *strich1 = [[UIView alloc] initWithFrame:CGRectMake(5, y-3, self.zeitenView.bounds.size.width, 2)];
-        //        strich1.backgroundColor = [UIColor lightGrayColor];
-        //        strich1.tag = -1;
-        //        UIView *strich2 = [[UIView alloc] initWithFrame:CGRectMake(-350, y-3, self.scrollView.contentSize.width+350-10, 2)];
-        //        strich2.backgroundColor = [UIColor lightGrayColor];
-        //        strich2.tag = -1;
         label.text = [stundenTexte objectAtIndex:i];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont fontWithName:@"Helvetica" size:12];
         label.textColor = htwColors.darkTextColor;
         [self.zeitenView addSubview:label];
-        //        [self.zeitenView addSubview:strich1];
-        //        [self.scrollView addSubview:strich2];
     }
     
     BOOL abwechselnd = YES;
