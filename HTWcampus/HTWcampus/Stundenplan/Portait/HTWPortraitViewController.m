@@ -143,29 +143,7 @@
     else
     {
         
-        NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-        [nurTag setDateFormat:@"dd.MM.yyyy"];
-        
-        NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
-        dayComponent.day = 7;
-        
-        NSCalendar *theCalendar = [NSCalendar currentCalendar];
-        
-        NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
-        NSDate *theDayAfterTomorrow = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
-        
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:[NSEntityDescription entityForName:@"Stunde"
-                                       inManagedObjectContext:_context]];
-        NSPredicate *pred;
-        
-        if(Matrnr) pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", Matrnr, today, theDayAfterTomorrow];
-        else pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", _raumNummer, today, theDayAfterTomorrow];
-        [request setPredicate:pred];
-        
-        // FetchRequest-Ergebnisse
-        _angezeigteStunden = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
-                                                                                         error:nil]];
+        [self updateAngezeigteStunden];
         
         if ([_angezeigteStunden count] == 0) {
             Matrnr = [defaults objectForKey:@"Matrikelnummer"];
@@ -262,24 +240,10 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
             
-            NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-            [nurTag setDateFormat:@"dd.MM.yyyy"];
-            NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
-            NSDate *theDayAfterTomorrow = [today dateByAddingTimeInterval:48*60*60];
             
             _parser = nil;
             
-            NSEntityDescription *entityDesc =[NSEntityDescription entityForName:@"Stunde"
-                                                         inManagedObjectContext:_context];
-            
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:entityDesc];
-            
-            NSPredicate *pred =[NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", Matrnr, today, theDayAfterTomorrow];
-            [request setPredicate:pred];
-            
-            _angezeigteStunden = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
-                                                                                             error:nil]];
+            [self updateAngezeigteStunden];
             
             if ([_angezeigteStunden count] == 0) {
                 Matrnr = [defaults objectForKey:@"Matrikelnummer"];
@@ -313,36 +277,7 @@
 
 -(void)HTWStundenplanParserFinished
 {
-    appdelegate = [[UIApplication sharedApplication] delegate];
-    _context = [appdelegate managedObjectContext];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    Matrnr = [defaults objectForKey:@"Matrikelnummer"];
-    
-    
-    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-    [nurTag setDateFormat:@"dd.MM.yyyy"];
-    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
-    NSDate *theDayAfterTomorrow = [today dateByAddingTimeInterval:48*60*60];
-    
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = entityDesc;
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"student.matrnr = %@ && anfang > %@ && ende < %@", Matrnr, today, theDayAfterTomorrow];
-    request.predicate = pred;
-    
-    self.angezeigteStunden = [_context executeFetchRequest:request error:nil];
-//    Student *student = studenten[0];
-//    self.parserStunden = [[NSArray alloc] initWithArray:[student.stunden allObjects]];
-//    self.angezeigteStunden = [[NSMutableArray alloc] init];
-//    
-//    
-//    for (Stunde *aktuell in _parserStunden) {
-//        if ([aktuell.anfang timeIntervalSinceDate:today] < 0 || [aktuell.anfang timeIntervalSinceDate:theDayAfterTomorrow] > 0) {
-//            continue;
-//        }
-//        else [_angezeigteStunden addObject:aktuell];
-//    }
+    [self updateAngezeigteStunden];
     
     [self setUpInterface];
 }
@@ -431,7 +366,6 @@
     
     
     heuteMorgenLabelsView.backgroundColor = htwColors.darkZeitenAndButtonBackground;
-//    heuteMorgenLabelsView.tag = -1;
     
     for (UILabel *this in labels) {
         [heuteMorgenLabelsView addSubview:this];
@@ -566,6 +500,35 @@
     [_scrollView bringSubviewToFront:_detailView];
     
     _detailView.hidden = !_detailView.hidden;
+}
+
+#pragma mark - Hilfsfunktionen
+
+-(void)updateAngezeigteStunden
+{
+    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
+    [nurTag setDateFormat:@"dd.MM.yyyy"];
+    
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = 7;
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    
+    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
+    NSDate *theDayAfterTomorrow = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Stunde"
+                                   inManagedObjectContext:_context]];
+    NSPredicate *pred;
+    
+    if(Matrnr) pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", Matrnr, today, theDayAfterTomorrow];
+    else pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", _raumNummer, today, theDayAfterTomorrow];
+    [request setPredicate:pred];
+    
+    // FetchRequest-Ergebnisse
+    _angezeigteStunden = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
+                                                                                error:nil]];
 }
 
 #pragma mark - Navigation
