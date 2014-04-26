@@ -27,10 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, strong) UIView *detailView;
-
-@property (nonatomic, strong) NSArray *parserStunden;
-@property (nonatomic, strong) NSMutableArray *angezeigteStunden;
-
+@property (nonatomic, strong) NSArray *angezeigteStunden;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
 @end
@@ -120,18 +117,6 @@
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
     
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = entityDesc;
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", Matrnr];
-    request.predicate = pred;
-    
-    NSArray *studenten = [_context executeFetchRequest:request error:nil];
-    Student *student = nil;
-    if([studenten count])
-        student = studenten[0];
-    self.parserStunden = [[NSArray alloc] initWithArray:[student.stunden allObjects]];
-    self.angezeigteStunden = [[NSMutableArray alloc] init];
     
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
@@ -142,12 +127,14 @@
     NSDate *letzterMontag = [[nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]] dateByAddingTimeInterval:-60*60*24*weekday ];
     NSDate *zweiWochenNachDemMontag = [letzterMontag dateByAddingTimeInterval:60*60*24*13];
     
-    for (Stunde *aktuell in _parserStunden) {
-        if ([aktuell.anfang timeIntervalSinceDate:letzterMontag] < 0 || [aktuell.anfang timeIntervalSinceDate:zweiWochenNachDemMontag] > 0) {
-            continue;
-        }
-        else [_angezeigteStunden addObject:aktuell];
-    }
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = entityDesc;
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"student.matrnr = %@ && anfang > %@ && ende < %@", Matrnr, letzterMontag, zweiWochenNachDemMontag];
+    request.predicate = pred;
+    
+    _angezeigteStunden = [_context executeFetchRequest:request error:nil];
+    
     
     [self setUpInterface];
     
