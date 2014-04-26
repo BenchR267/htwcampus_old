@@ -36,19 +36,8 @@
 {
     [super viewDidLoad];
     htwColors = [[HTWColors alloc] init];
-    appdelegate = [[UIApplication sharedApplication] delegate];
-    _context = [appdelegate managedObjectContext];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
-    [fetchRequest setEntity:entity];
-    
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-    
-    
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1)"]];
-    
-    _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
+    [self updateZimmerArray];
     
 }
 
@@ -108,7 +97,6 @@
                 naechsteZeit = aktuell.ende;
                 break;
             }
-//            NSLog(@"%f &&&&&& %f",[aktuell.anfang timeIntervalSinceDate:[NSDate date]], [naechsteZeit timeIntervalSinceDate:[NSDate date]]);
             if ([[NSDate date] compare:aktuell.anfang] == NSOrderedAscending &&
                 fabsf([aktuell.anfang timeIntervalSinceDate:[NSDate date]]) < fabsf([naechsteZeit timeIntervalSinceDate:[NSDate date]]))
             {
@@ -169,16 +157,7 @@
         }
         [_context save:nil];
         
-        fetchRequest = [[NSFetchRequest alloc] init];
-        entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
-        [fetchRequest setEntity:entity];
-        
-        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-        
-        
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1)"]];
-        
-        _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
+        [self updateZimmerArray];
         
         [self.tableView reloadData];
         
@@ -205,37 +184,22 @@
                 [raumNummer insertString:@" " atIndex:1];
             }
             
-            appdelegate = [[UIApplication sharedApplication] delegate];
-            _context = [appdelegate managedObjectContext];
-            
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
-            [fetchRequest setEntity:entity];
-            
-            [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-            
-            
-            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1) && (matrnr = %@)", raumNummer]];
-            
-            NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
-            
-            
-            if(tempArray.count == 0)
-            {
-                _parser = nil;
-                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:raumNummer andRaum:YES];
-                [_parser setDelegate:self];
-                [_parser parserStart];
+            for (Student *this in _zimmer) {
+                if ([this.matrnr isEqualToString:raumNummer]) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                                    message:@"Dieser Raum ist schon in der Übersicht enthalten."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Ok"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                    return;
+                }
             }
-            else
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
-                                                                message:@"Dieser Raum ist schon in der Übersicht enthalten."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
+            
+            _parser = nil;
+            _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:raumNummer andRaum:YES];
+            [_parser setDelegate:self];
+            [_parser parserStart];
         }
     }
 }
@@ -246,19 +210,7 @@
 {
     NSLog(@"Parser fertig");
     
-    appdelegate = [[UIApplication sharedApplication] delegate];
-    _context = [appdelegate managedObjectContext];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
-    [fetchRequest setEntity:entity];
-    
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-    
-    
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1)"]];
-    
-    _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
+    [self updateZimmerArray];
     
     [self.tableView reloadData];
 }
@@ -298,6 +250,23 @@
     return [comp1 day]   == [comp2 day] &&
     [comp1 month] == [comp2 month] &&
     [comp1 year]  == [comp2 year];
+}
+
+-(void)updateZimmerArray
+{
+    appdelegate = [[UIApplication sharedApplication] delegate];
+    _context = [appdelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+    
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1)"]];
+    
+    _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
 }
 
 #pragma mark - Navigation
