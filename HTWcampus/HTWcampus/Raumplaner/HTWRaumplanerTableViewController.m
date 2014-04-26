@@ -49,7 +49,11 @@
     if ([clickedButtonTitle isEqualToString:@"Ok"])
     {
         if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
-            NSString *raumNummer = [alertView textFieldAtIndex:0].text;
+            NSMutableString *raumNummer = [NSMutableString stringWithString:[alertView textFieldAtIndex:0].text];
+            
+            if([raumNummer rangeOfString:@" "].length == 0) {
+                [raumNummer insertString:@" " atIndex:1];
+            }
             
             appdelegate = [[UIApplication sharedApplication] delegate];
             _context = [appdelegate managedObjectContext];
@@ -246,7 +250,7 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"want to delete object at row %ld", (long)indexPath.row);
+        NSLog(@"Zimmer %@ wird gelöscht.", [(Student*)_zimmer[indexPath.row] matrnr]);
         appdelegate = [[UIApplication sharedApplication] delegate];
         _context = [appdelegate managedObjectContext];
         
