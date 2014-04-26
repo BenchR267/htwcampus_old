@@ -284,12 +284,13 @@
     for (int i=0; i<11; i++) {
         [stundenZeiten addObject:[(NSDate*)stundenZeiten[i] dateByAddingTimeInterval:60*60]];
     }
-    NSMutableArray *stundenTexte = [[NSMutableArray alloc] initWithArray:@[@"07:00",@"08:00",@"09:00",@"10:00",@"11:00",@"12:00",@"13:00",@"14:00",@"15:00",@"16:00",@"17:00",@"18:00"]];
     
+    NSDateFormatter *uhrzeit = [[NSDateFormatter alloc] init];
+    [uhrzeit setDateFormat:@"HH:mm"];
     for (int i = 0; i < [stundenZeiten count]; i++) {
         CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(22, y, 108, 20)];
-        label.text = [stundenTexte objectAtIndex:i];
+        label.text = [uhrzeit stringFromDate:stundenZeiten[i]];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont fontWithName:@"Helvetica" size:12];
         label.textColor = htwColors.darkTextColor;
