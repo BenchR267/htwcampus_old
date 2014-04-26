@@ -235,33 +235,7 @@
 }
 
 
--(void)setUpInterface
-{
-    // Daten anzeigen
-    
-    for (UIView *view in self.scrollView.subviews) {
-        if (view.tag < 0) {
-            [view removeFromSuperview];
-        }
-    }
-    
-    [self reloadCellLabels];
-    
-    for (Stunde *aktuell in self.angezeigteStunden) {
-        if (!aktuell.anzeigen.boolValue) continue;
-        HTWStundenplanButtonForLesson *button = [[HTWStundenplanButtonForLesson alloc] initWithLesson:aktuell andPortait:YES];
-        button.tag = -1;
-        [self.scrollView addSubview:button];
-        if (Matrnr){
-            UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
-            longPressGR.minimumPressDuration = 0.1;
-            longPressGR.allowableMovement = 0;
-            [button addGestureRecognizer:longPressGR];
-        }
-    }
-    [self setUpZeitenView];
 
-}
 
 #pragma mark - UIScrollView Delegate
 
@@ -412,7 +386,36 @@
 }
 
 
-#pragma mark - Labels loading
+#pragma mark - Interface
+
+-(void)setUpInterface
+{
+    // Daten anzeigen
+    
+    for (UIView *view in self.scrollView.subviews) {
+        if (view.tag < 0) {
+            [view removeFromSuperview];
+        }
+    }
+    
+    [self reloadCellLabels];
+    
+    for (Stunde *aktuell in self.angezeigteStunden) {
+        if (!aktuell.anzeigen.boolValue) continue;
+        HTWStundenplanButtonForLesson *button = [[HTWStundenplanButtonForLesson alloc] initWithLesson:aktuell andPortait:YES];
+        button.tag = -1;
+        [self.scrollView addSubview:button];
+        if (Matrnr){
+            UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
+            longPressGR.minimumPressDuration = 0.1;
+            longPressGR.allowableMovement = 0;
+            [button addGestureRecognizer:longPressGR];
+        }
+    }
+    [self setUpZeitenView];
+    
+}
+
 -(void)reloadCellLabels
 {
     UIColor *schriftfarbe = htwColors.darkTextColor;

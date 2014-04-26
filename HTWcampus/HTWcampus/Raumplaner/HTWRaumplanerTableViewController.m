@@ -30,96 +30,6 @@
 
 @implementation HTWRaumplanerTableViewController
 
-
-
-- (IBAction)addBarButtonItemPressed:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Raum hinzufügen"
-                                                    message:@"Bitte geben Sie den Raum ein. (Format: Z 355)"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Ok", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [alert show];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *clickedButtonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    
-    if ([clickedButtonTitle isEqualToString:@"Ok"])
-    {
-        if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
-            NSMutableString *raumNummer = [NSMutableString stringWithString:[alertView textFieldAtIndex:0].text];
-            
-            if([raumNummer rangeOfString:@" "].length == 0) {
-                [raumNummer insertString:@" " atIndex:1];
-            }
-            
-            appdelegate = [[UIApplication sharedApplication] delegate];
-            _context = [appdelegate managedObjectContext];
-            
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
-            [fetchRequest setEntity:entity];
-            
-            [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-            
-            
-            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1) && (matrnr = %@)", raumNummer]];
-            
-            NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
-            
-            
-            if(tempArray.count == 0)
-            {
-                _parser = nil;
-                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:raumNummer andRaum:YES];
-                [_parser setDelegate:self];
-                [_parser parserStart];
-            }
-            else
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
-                                                                message:@"Dieser Raum ist schon in der Übersicht enthalten."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        }}}
-
--(void)HTWStundenplanParserFinished
-{
-    NSLog(@"Parser fertig");
-    
-    appdelegate = [[UIApplication sharedApplication] delegate];
-    _context = [appdelegate managedObjectContext];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
-    [fetchRequest setEntity:entity];
-    
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-    
-    
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1)"]];
-    
-    _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
-    
-    [self.tableView reloadData];
-}
-
--(void)HTWStundenplanParserError:(NSString *)errorMessage
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
-                                                    message:errorMessage
-                                                   delegate:self
-                                          cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Ok", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [alert show];
-}
-
 #pragma mark - ViewController Lifecycle
 
 -(void)viewDidLoad
@@ -230,17 +140,7 @@
     return cell;
 }
 
-- (BOOL)isSameDayWithDate1:(NSDate*)date1 date2:(NSDate*)date2 {
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-    NSDateComponents* comp1 = [calendar components:unitFlags fromDate:date1];
-    NSDateComponents* comp2 = [calendar components:unitFlags fromDate:date2];
-    
-    return [comp1 day]   == [comp2 day] &&
-    [comp1 month] == [comp2 month] &&
-    [comp1 year]  == [comp2 year];
-}
+
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -288,6 +188,116 @@
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return @"Löschen";
+}
+
+#pragma mark - UIAlertView Delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *clickedButtonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if ([clickedButtonTitle isEqualToString:@"Ok"])
+    {
+        if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
+            NSMutableString *raumNummer = [NSMutableString stringWithString:[alertView textFieldAtIndex:0].text];
+            
+            if([raumNummer rangeOfString:@" "].length == 0) {
+                [raumNummer insertString:@" " atIndex:1];
+            }
+            
+            appdelegate = [[UIApplication sharedApplication] delegate];
+            _context = [appdelegate managedObjectContext];
+            
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+            [fetchRequest setEntity:entity];
+            
+            [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+            
+            
+            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1) && (matrnr = %@)", raumNummer]];
+            
+            NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
+            
+            
+            if(tempArray.count == 0)
+            {
+                _parser = nil;
+                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:raumNummer andRaum:YES];
+                [_parser setDelegate:self];
+                [_parser parserStart];
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                                message:@"Dieser Raum ist schon in der Übersicht enthalten."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+    }
+}
+
+#pragma mark - HTWStundenplanParser Delegate
+
+-(void)HTWStundenplanParserFinished
+{
+    NSLog(@"Parser fertig");
+    
+    appdelegate = [[UIApplication sharedApplication] delegate];
+    _context = [appdelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+    
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1)"]];
+    
+    _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
+    
+    [self.tableView reloadData];
+}
+
+-(void)HTWStundenplanParserError:(NSString *)errorMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                    message:errorMessage
+                                                   delegate:self
+                                          cancelButtonTitle:@"Abbrechen"
+                                          otherButtonTitles:@"Ok", nil];
+    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [alert show];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)addBarButtonItemPressed:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Raum hinzufügen"
+                                                    message:@"Bitte geben Sie den Raum ein. (Format: Z 355)"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Abbrechen"
+                                          otherButtonTitles:@"Ok", nil];
+    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [alert show];
+}
+
+#pragma mark - Hilfsfunktionen
+
+- (BOOL)isSameDayWithDate1:(NSDate*)date1 date2:(NSDate*)date2 {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents* comp1 = [calendar components:unitFlags fromDate:date1];
+    NSDateComponents* comp2 = [calendar components:unitFlags fromDate:date2];
+    
+    return [comp1 day]   == [comp2 day] &&
+    [comp1 month] == [comp2 month] &&
+    [comp1 year]  == [comp2 year];
 }
 
 #pragma mark - Navigation
