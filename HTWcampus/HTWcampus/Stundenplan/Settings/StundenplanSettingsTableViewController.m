@@ -125,7 +125,7 @@
             [_context deleteObject:aktuell];
         }
         
-//        [_context save:nil];
+        [_context save:nil];
         
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
