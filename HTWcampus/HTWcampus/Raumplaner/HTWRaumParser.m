@@ -63,7 +63,7 @@
             [_raum setObject:[self dateFromStringsWoche:_raum[@"woche"] andTag:_raum[@"tagNum"] andZeit:_raum[@"ende"]] forKey:@"endeDatum"];
 //            NSLog(@"anfang: %@\tende: %@", _raum[@"anfangDatum"], _raum[@"endeDatum"]);
             
-            if ([self isBetweenDate:[NSDate date] earlyDate:_raum[@"anfangDatum"] andLateDate:_raum[@"endeDatum"]])
+            if ((![self isBetweenDate:[NSDate date] earlyDate:_raum[@"anfangDatum"] andLateDate:_raum[@"endeDatum"]]) && [self isDate1:[NSDate date] onSameDayAsDate2:_raum[@"anfangDatum"]])
                  [_raeumeHeute addObject:_raum];
             
             [_raeume addObject:_raum];
@@ -184,6 +184,11 @@
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
     return [nurTag dateFromString:[nurTag stringFromDate:date]];
+}
+
+-(BOOL)isDate1:(NSDate*)date1 onSameDayAsDate2:(NSDate*)date2
+{
+    return ([[self nurTagFromDate:date1] compare:[self nurTagFromDate:date2]] == NSOrderedSame);
 }
 
 -(int)getWeekNumberFromDate:(NSDate*)date

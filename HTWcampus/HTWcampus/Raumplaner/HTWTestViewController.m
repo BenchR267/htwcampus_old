@@ -31,11 +31,11 @@
 
 -(void)finished
 {
-    _textView.text = @"";
+    _textView.text = @"Freie Räume:\n";
     for (int i=0; i < _parser.raeumeHeute.count; i++) {
-        _textView.text = [NSString stringWithFormat:@"%@Raum: %@\tAnfang: %@\n", _textView.text, _parser.raeumeHeute[i][@"raum"], _parser.raeumeHeute[i][@"anfangDatum"]];
+        _textView.text = [NSString stringWithFormat:@"%@Raum: %@\n", _textView.text, _parser.raeumeHeute[i][@"raum"]];
     }
-    if(_parser.raeumeHeute.count == 0) _textView.text = @"Momentan sind keine Räume belegt";
+    if(_parser.raeumeHeute.count == 0) _textView.text = @"Momentan sind keine Räume frei";
     
     
     _nachher = [NSDate date];
