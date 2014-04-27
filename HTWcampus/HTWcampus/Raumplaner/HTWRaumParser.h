@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol HTWRaumParserDelegate <NSObject>
+
+@optional
+-(void)finished;
+
+@end
+
 @interface HTWRaumParser : NSObject
 
 @property (nonatomic, strong) NSMutableArray *raeume;
+@property id <HTWRaumParserDelegate> delegate;
 
 -(void)startParser;
 

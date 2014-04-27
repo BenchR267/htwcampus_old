@@ -40,6 +40,7 @@
 		E63772F21908146300DEE8AB /* HTWcampusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772F11908146300DEE8AB /* HTWcampusTests.m */; };
 		E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C6E190D3F34002AE150 /* HTWRaumParser.m */; };
 		E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C70190D3F34002AE150 /* HTWTabParser.m */; };
+		E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C74190D3FD1002AE150 /* HTWTestViewController.m */; };
 		E6FE12A119093D6700D56D52 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -108,6 +109,8 @@
 		E6379C6E190D3F34002AE150 /* HTWRaumParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumParser.m; path = Raumplaner/HTWRaumParser.m; sourceTree = "<group>"; };
 		E6379C6F190D3F34002AE150 /* HTWTabParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTabParser.h; path = Raumplaner/HTWTabParser.h; sourceTree = "<group>"; };
 		E6379C70190D3F34002AE150 /* HTWTabParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTabParser.m; path = Raumplaner/HTWTabParser.m; sourceTree = "<group>"; };
+		E6379C73190D3FD1002AE150 /* HTWTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTestViewController.h; path = Raumplaner/HTWTestViewController.h; sourceTree = "<group>"; };
+		E6379C74190D3FD1002AE150 /* HTWTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTestViewController.m; path = Raumplaner/HTWTestViewController.m; sourceTree = "<group>"; };
 		E6FE12A019093D6700D56D52 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 			children = (
 				E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */,
 				E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */,
+				E6379C73190D3FD1002AE150 /* HTWTestViewController.h */,
+				E6379C74190D3FD1002AE150 /* HTWTestViewController.m */,
 				E6379C6D190D3F34002AE150 /* HTWRaumParser.h */,
 				E6379C6E190D3F34002AE150 /* HTWRaumParser.m */,
 				E6379C6F190D3F34002AE150 /* HTWTabParser.h */,
@@ -398,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */,
 				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
 				E61D883719085B4C0033D543 /* StundenplanSettingsTableViewController.m in Sources */,

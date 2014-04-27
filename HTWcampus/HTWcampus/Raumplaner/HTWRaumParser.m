@@ -82,9 +82,7 @@
 -(void)HTWdocumentEnd
 {
     NSLog(@"HTWRaumParser finished..");
-    for (int i=0; i<_raeume.count; i++) {
-        NSLog(@"%@", _raeume[i][@"woche"]);
-    }
+    [_delegate finished];
 }
 
 #pragma mark - Hilfsfunktionen
