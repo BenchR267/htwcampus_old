@@ -38,6 +38,8 @@
 		E63772E81908146300DEE8AB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CC1908146300DEE8AB /* CoreData.framework */; };
 		E63772F01908146300DEE8AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E63772EE1908146300DEE8AB /* InfoPlist.strings */; };
 		E63772F21908146300DEE8AB /* HTWcampusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772F11908146300DEE8AB /* HTWcampusTests.m */; };
+		E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C6E190D3F34002AE150 /* HTWRaumParser.m */; };
+		E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C70190D3F34002AE150 /* HTWTabParser.m */; };
 		E6FE12A119093D6700D56D52 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -102,6 +104,10 @@
 		E63772ED1908146300DEE8AB /* HTWcampusTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTWcampusTests-Info.plist"; sourceTree = "<group>"; };
 		E63772EF1908146300DEE8AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E63772F11908146300DEE8AB /* HTWcampusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTWcampusTests.m; sourceTree = "<group>"; };
+		E6379C6D190D3F34002AE150 /* HTWRaumParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumParser.h; path = Raumplaner/HTWRaumParser.h; sourceTree = "<group>"; };
+		E6379C6E190D3F34002AE150 /* HTWRaumParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumParser.m; path = Raumplaner/HTWRaumParser.m; sourceTree = "<group>"; };
+		E6379C6F190D3F34002AE150 /* HTWTabParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTabParser.h; path = Raumplaner/HTWTabParser.h; sourceTree = "<group>"; };
+		E6379C70190D3F34002AE150 /* HTWTabParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTabParser.m; path = Raumplaner/HTWTabParser.m; sourceTree = "<group>"; };
 		E6FE12A019093D6700D56D52 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
@@ -283,6 +289,10 @@
 			children = (
 				E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */,
 				E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */,
+				E6379C6D190D3F34002AE150 /* HTWRaumParser.h */,
+				E6379C6E190D3F34002AE150 /* HTWRaumParser.m */,
+				E6379C6F190D3F34002AE150 /* HTWTabParser.h */,
+				E6379C70190D3F34002AE150 /* HTWTabParser.m */,
 			);
 			name = Raumplaner;
 			sourceTree = "<group>";
@@ -397,12 +407,14 @@
 				E61D8820190859180033D543 /* HTWLandscapeViewController.m in Sources */,
 				E61D883919085B4C0033D543 /* SwitchInStundenplanSettingsTableViewCell.m in Sources */,
 				E61D881A190858D80033D543 /* HTWColors.m in Sources */,
+				E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */,
 				E61D88141908583C0033D543 /* HTWStundenplanButtonForLesson.m in Sources */,
 				E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
 				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
 				E61D880B19082FF50033D543 /* Stunde.m in Sources */,
 				E61D887F1908705E0033D543 /* landscapeSegue.m in Sources */,
+				E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */,
 				E61D880819082FF40033D543 /* Student.m in Sources */,
 				E61D883419085B4C0033D543 /* HTWMatrikelnummernTableViewController.m in Sources */,
 				E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */,
