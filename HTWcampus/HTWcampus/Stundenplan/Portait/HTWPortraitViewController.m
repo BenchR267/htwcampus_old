@@ -330,8 +330,7 @@
     
     NSArray *wochentage = @[@"Montag",@"Dienstag",@"Mittwoch",@"Donnerstag",@"Freitag",@"Samstag",@"Sonntag"];
     
-    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:[NSDate date]] weekday] - 2;
-    if(weekday == -1) weekday=6;
+    int weekday = [self weekdayFromDate:[NSDate date]];
     
     int wochentagePointer = weekday;
     
@@ -534,6 +533,14 @@
     // FetchRequest-Ergebnisse
     _angezeigteStunden = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
                                                                                 error:nil]];
+}
+
+-(int)weekdayFromDate:(NSDate*)date
+{
+    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
+    if(weekday == -1) weekday=6;
+    
+    return weekday;
 }
 
 #pragma mark - Navigation

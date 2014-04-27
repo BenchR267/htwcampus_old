@@ -27,10 +27,13 @@
 
 -(void)startParser
 {
+    [self dateFromStringsWoche:@"wö" andTag:@"2" andZeit:@""];
+    
     NSString *string = [NSString stringWithContentsOfURL:[NSURL URLWithString:kURL] encoding:NSASCIIStringEncoding error:nil];
     HTWTabParser *parser = [[HTWTabParser alloc] initWithContent:string];
     parser.delegate = self;
     _raeume = [[NSMutableArray alloc] init];
+    _raeumeHeute = [[NSMutableArray alloc] init];
     [parser startParser];
 }
 
@@ -56,7 +59,12 @@
         case 6: [_raum setObject:characters forKey:@"raum"]; break;
         case 7: [_raum setObject:characters forKey:@"studiengruppe"];
             
+            [_raum setObject:[self dateFromStringsWoche:_raum[@"woche"] andTag:_raum[@"tagNum"] andZeit:_raum[@"anfang"]] forKey:@"anfangDatum"];
+            [_raum setObject:[self dateFromStringsWoche:_raum[@"woche"] andTag:_raum[@"tagNum"] andZeit:_raum[@"ende"]] forKey:@"endeDatum"];
+//            NSLog(@"anfang: %@\tende: %@", _raum[@"anfangDatum"], _raum[@"endeDatum"]);
             
+            if ([self isBetweenDate:[NSDate date] earlyDate:_raum[@"anfangDatum"] andLateDate:_raum[@"endeDatum"]])
+                 [_raeumeHeute addObject:_raum];
             
             [_raeume addObject:_raum];
             _raum = nil;
@@ -89,11 +97,8 @@
 
 - (BOOL)isBetweenDate:(NSDate*)date earlyDate:(NSDate *)earlierDate andLateDate:(NSDate *)laterDate
 {
-    if ([date compare:earlierDate] == NSOrderedDescending) {
-        if ( [date compare:laterDate] == NSOrderedAscending ) {
-            return YES;
-        }
-    }
+    if ([date compare:earlierDate] == NSOrderedDescending && [date compare:laterDate] == NSOrderedAscending)
+        return YES;
     return NO;
 }
 
@@ -106,6 +111,7 @@
 -(NSString*)getWeekNameFrom:(NSString*)week
 {
     NSArray *teile = [week componentsSeparatedByString:@"("];
+    teile = [teile[0] componentsSeparatedByString:@" "];
     return teile[0];
 }
 
@@ -121,25 +127,87 @@
     return -1;
 }
 
-- (NSDate*) dateFromStrings:(NSString *)woche andTag:(NSString*)tag andZeit:(NSString*)zeit
+-(NSDate*)dateFromStringsWoche:(NSString *)woche andTag:(NSString*)tag andZeit:(NSString*)zeit
 {
-    NSDate *erg = [[NSDate alloc] init];
+    NSDate *erg = [NSDate date];
     NSDateFormatter *bildeDatum = [[NSDateFormatter alloc] init];
     [bildeDatum setDateFormat:@"dd.MM.yyyy HH:mm"];
     
+    int heuteWochentag = [self weekdayFromDate:[NSDate date]];
+    BOOL geradeWoche = [self getWeekNumberFromDate:[NSDate date]]%2==0?YES:NO;
     
-    if ([woche isEqualToString:@"wö"]) {
+    
+    if ([woche isEqualToString:@"wö"] || ([woche isEqualToString:@"1.Wo"] && geradeWoche) || ([woche isEqualToString:@"2.Wo"] && !geradeWoche)) {
         //Ist jede Woche
-        erg = [bildeDatum dateFromString:[NSString stringWithFormat:@""]];
+        
+        NSString *dd = [NSString stringWithFormat:@"%d",[[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]] day]];
+        NSString *MM = [NSString stringWithFormat:@"%d", [[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
+        NSString *yyyy = [NSString stringWithFormat:@"%d", [[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
+        erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"%@.%@.%@ %@",dd,MM,yyyy, zeit]];
+        erg = [self addDays:-heuteWochentag toDate:erg];
+        erg = [self addDays:tag.intValue toDate:erg];
     }
-    else if ([woche isEqualToString:@"1.Wo"])
+    else if ([woche isEqualToString:@"1.Wo"] && !geradeWoche)
     {
         //nur erste Woche
+        NSString *dd = [NSString stringWithFormat:@"%d",[[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]] day]];
+        NSString *MM = [NSString stringWithFormat:@"%d", [[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
+        NSString *yyyy = [NSString stringWithFormat:@"%d", [[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
+        erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"%@.%@.%@ %@",dd,MM,yyyy, zeit]];
+        erg = [self addDays:-heuteWochentag toDate:erg];
+        erg = [self addDays:tag.intValue toDate:erg];
+        erg = [self addDays:7 toDate:erg];
     }
-    else if ([woche isEqualToString:@"2.Wo"])
+    else if ([woche isEqualToString:@"2.Wo"] && geradeWoche)
     {
         //nur zweite Woche
+        NSString *dd = [NSString stringWithFormat:@"%d",[[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]] day]];
+        NSString *MM = [NSString stringWithFormat:@"%d", [[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
+        NSString *yyyy = [NSString stringWithFormat:@"%d", [[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
+        erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"%@.%@.%@ %@",dd,MM,yyyy, zeit]];
+        erg = [self addDays:-heuteWochentag toDate:erg];
+        erg = [self addDays:tag.intValue toDate:erg];
+        erg = [self addDays:7 toDate:erg];
     }
+    else erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"01.01.1970 %@", zeit]];
+    
+    if(!erg) {
+        erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"01.01.1970 %@", zeit]];
+//        NSLog(@"'%@' '%@' '%@'", woche, tag, zeit);
+    }
+    
+    return erg;
+}
+
+-(NSDate*)nurTagFromDate:(NSDate*)date
+{
+    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
+    [nurTag setDateFormat:@"dd.MM.yyyy"];
+    return [nurTag dateFromString:[nurTag stringFromDate:date]];
+}
+
+-(int)getWeekNumberFromDate:(NSDate*)date
+{
+    NSCalendar *calender = [NSCalendar currentCalendar];
+    
+    return [[calender components:NSWeekOfYearCalendarUnit fromDate:date] weekOfYear];
+}
+
+-(int)weekdayFromDate:(NSDate*)date
+{
+    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
+    if(weekday == -1) weekday=6;
+    
+    return weekday;
+}
+
+-(NSDate*)addDays:(int)day toDate:(NSDate*)date
+{
+    if(!date) return date;
+    NSCalendar *calender = [NSCalendar currentCalendar];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.day = day;
+    NSDate *erg = [calender dateByAddingComponents:components toDate:date options:0];
     
     return erg;
 }

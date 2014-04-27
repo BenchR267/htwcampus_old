@@ -121,8 +121,7 @@
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
     
-    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:[NSDate date]] weekday] - 2;
-    if(weekday == -1) weekday=6;
+    int weekday = [self weekdayFromDate:[NSDate date]];
     
     NSDate *letzterMontag = [[nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]] dateByAddingTimeInterval:-60*60*24*weekday ];
     NSDate *zweiWochenNachDemMontag = [letzterMontag dateByAddingTimeInterval:60*60*24*13];
@@ -377,6 +376,16 @@
     }
     else if (gesture.state == UIGestureRecognizerStateEnded)
         _detailView.hidden = YES;
+}
+
+#pragma mark - Hilfsfunktionen
+
+-(int)weekdayFromDate:(NSDate*)date
+{
+    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
+    if(weekday == -1) weekday=6;
+    
+    return weekday;
 }
 
 #pragma mark - Navigation

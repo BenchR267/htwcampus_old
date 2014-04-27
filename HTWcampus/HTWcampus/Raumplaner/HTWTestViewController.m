@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @property HTWRaumParser *parser;
+@property (nonatomic, strong) NSDate *vorher;
+@property (nonatomic, strong) NSDate *nachher;
 
 @end
 
@@ -23,15 +25,26 @@
 {
     _parser = [[HTWRaumParser alloc] init];
     _parser.delegate = self;
+    _vorher = [NSDate date];
     [_parser startParser];
 }
 
 -(void)finished
 {
     _textView.text = @"";
-    for (int i=0; i < 30; i++) {
-        _textView.text = [NSMutableString stringWithFormat:@"%@Raum: %@\tTag: %@\tAnfang: %@\tEnde: %@\n",_textView.text,_parser.raeume[i][@"raum"],_parser.raeume[i][@"tag"],_parser.raeume[i][@"anfang"],_parser.raeume[i][@"ende"]];
+    for (int i=0; i < _parser.raeumeHeute.count; i++) {
+        _textView.text = [NSString stringWithFormat:@"%@Raum: %@\tAnfang: %@\n", _textView.text, _parser.raeumeHeute[i][@"raum"], _parser.raeumeHeute[i][@"anfangDatum"]];
     }
+    if(_parser.raeumeHeute.count == 0) _textView.text = @"Momentan sind keine Räume belegt";
+    
+    
+    _nachher = [NSDate date];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Zeit Parser"
+                                                    message:[NSString stringWithFormat:@"%lf sec", [_nachher timeIntervalSinceDate:_vorher]]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

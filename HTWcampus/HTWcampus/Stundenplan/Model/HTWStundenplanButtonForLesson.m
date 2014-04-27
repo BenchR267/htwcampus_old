@@ -144,8 +144,7 @@
     }
     else {
         
-        int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:[NSDate date]] weekday] - 2;
-        if(weekday == -1) weekday=6;
+        int weekday = [self weekdayFromDate:[NSDate date]];
         
         NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
         dayComponent.day = 7;
@@ -288,6 +287,14 @@
     return [comp1 day]   == [comp2 day] &&
     [comp1 month] == [comp2 month] &&
     [comp1 year]  == [comp2 year];
+}
+
+-(int)weekdayFromDate:(NSDate*)date
+{
+    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
+    if(weekday == -1) weekday=6;
+    
+    return weekday;
 }
 
 -(NSString *)description

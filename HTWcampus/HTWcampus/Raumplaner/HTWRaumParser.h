@@ -18,6 +18,7 @@
 @interface HTWRaumParser : NSObject
 
 @property (nonatomic, strong) NSMutableArray *raeume;
+@property (nonatomic, strong) NSMutableArray *raeumeHeute;
 @property id <HTWRaumParserDelegate> delegate;
 
 -(void)startParser;
