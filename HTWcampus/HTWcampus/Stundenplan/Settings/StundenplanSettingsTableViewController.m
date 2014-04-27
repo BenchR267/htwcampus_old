@@ -174,14 +174,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return [[fetchedResultsController sections] count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    id  sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-//    return [sectionInfo numberOfObjects];
     return 1;
 }
 
@@ -237,9 +234,6 @@
     cell.ID = info.id;
     
     cell.backgroundColor = htwColors.darkCellBackground;
-    
-    // NSLog(@"ID: %@ anzeigen: %@",info.id, info.anzeigen);
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -326,9 +320,5 @@
     [_context save:&saveError];
     if(saveError) NSLog(@"Saving changes to %@ failed: %@", onoff.ID, saveError);
 }
-
-
-
-
 
 @end

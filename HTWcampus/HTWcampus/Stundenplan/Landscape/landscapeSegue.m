@@ -12,7 +12,7 @@
 
 -(void) perform
 {
-    [[[self sourceViewController] navigationController] pushViewController:[self   destinationViewController] animated:NO];
+    [[[self sourceViewController] navigationController] pushViewController:[self destinationViewController] animated:NO];
 }
 
 @end
