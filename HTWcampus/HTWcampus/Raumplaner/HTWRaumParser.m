@@ -141,8 +141,8 @@
         //Ist jede Woche
         
         NSString *dd = [NSString stringWithFormat:@"%ld",(long)[[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]] day]];
-        NSString *MM = [NSString stringWithFormat:@"%ld", [[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
-        NSString *yyyy = [NSString stringWithFormat:@"%ld", [[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
+        NSString *MM = [NSString stringWithFormat:@"%ld", (long)[[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
+        NSString *yyyy = [NSString stringWithFormat:@"%ld", (long)[[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
         erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"%@.%@.%@ %@",dd,MM,yyyy, zeit]];
         erg = [self addDays:-heuteWochentag toDate:erg];
         erg = [self addDays:tag.intValue toDate:erg];
@@ -150,9 +150,9 @@
     else if ([woche isEqualToString:@"1.Wo"] && !geradeWoche)
     {
         //nur erste Woche
-        NSString *dd = [NSString stringWithFormat:@"%ld",[[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]] day]];
-        NSString *MM = [NSString stringWithFormat:@"%ld", [[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
-        NSString *yyyy = [NSString stringWithFormat:@"%ld", [[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
+        NSString *dd = [NSString stringWithFormat:@"%ld",(long)[[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]] day]];
+        NSString *MM = [NSString stringWithFormat:@"%ld", (long)[[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
+        NSString *yyyy = [NSString stringWithFormat:@"%ld", (long)[[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
         erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"%@.%@.%@ %@",dd,MM,yyyy, zeit]];
         erg = [self addDays:-heuteWochentag toDate:erg];
         erg = [self addDays:tag.intValue toDate:erg];
@@ -161,9 +161,9 @@
     else if ([woche isEqualToString:@"2.Wo"] && geradeWoche)
     {
         //nur zweite Woche
-        NSString *dd = [NSString stringWithFormat:@"%ld",[[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]] day]];
-        NSString *MM = [NSString stringWithFormat:@"%ld", [[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
-        NSString *yyyy = [NSString stringWithFormat:@"%ld", [[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
+        NSString *dd = [NSString stringWithFormat:@"%ld",(long)[[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]] day]];
+        NSString *MM = [NSString stringWithFormat:@"%ld", (long)[[[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:[NSDate date]] month]];
+        NSString *yyyy = [NSString stringWithFormat:@"%ld", (long)[[[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]] year]];
         erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"%@.%@.%@ %@",dd,MM,yyyy, zeit]];
         erg = [self addDays:-heuteWochentag toDate:erg];
         erg = [self addDays:tag.intValue toDate:erg];
