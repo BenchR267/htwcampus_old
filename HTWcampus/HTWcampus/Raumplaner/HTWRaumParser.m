@@ -173,7 +173,7 @@
     
     if(!erg) {
         erg = [bildeDatum dateFromString:[NSString stringWithFormat:@"01.01.1970 %@", zeit]];
-//        NSLog(@"'%@' '%@' '%@'", woche, tag, zeit);
+        NSLog(@"'%@' '%@' '%@'", woche, tag, zeit);
     }
     
     return erg;
