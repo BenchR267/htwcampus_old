@@ -223,6 +223,9 @@
             default:
                 break;
         }
+    }
+    
+    for (UIView *this in _scrollView.subviews) {
         if(this.tag == -3) [_scrollView bringSubviewToFront:this];
     }
 }
