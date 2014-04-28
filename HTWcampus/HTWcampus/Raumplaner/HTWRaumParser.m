@@ -61,7 +61,7 @@
             
             [_raum setObject:[self dateFromStringsWoche:_raum[@"woche"] andTag:_raum[@"tagNum"] andZeit:_raum[@"anfang"]] forKey:@"anfangDatum"];
             [_raum setObject:[self dateFromStringsWoche:_raum[@"woche"] andTag:_raum[@"tagNum"] andZeit:_raum[@"ende"]] forKey:@"endeDatum"];
-//            NSLog(@"anfang: %@\tende: %@", _raum[@"anfangDatum"], _raum[@"endeDatum"]);
+//            NSLog(@"raum: %@\tanfang: %@\tende: %@", _raum[@"raum"], _raum[@"anfangDatum"], _raum[@"endeDatum"]);
             
             if ((![self isBetweenDate:[NSDate date] earlyDate:_raum[@"anfangDatum"] andLateDate:_raum[@"endeDatum"]]) && [self isDate1:[NSDate date] onSameDayAsDate2:_raum[@"anfangDatum"]])
                  [_raeumeHeute addObject:_raum];
@@ -132,6 +132,7 @@
     NSDate *erg = [NSDate date];
     NSDateFormatter *bildeDatum = [[NSDateFormatter alloc] init];
     [bildeDatum setDateFormat:@"dd.MM.yyyy HH:mm"];
+    [bildeDatum setTimeZone:[NSTimeZone defaultTimeZone]];
     
     int heuteWochentag = [self weekdayFromDate:[NSDate date]];
     BOOL geradeWoche = [self getWeekNumberFromDate:[NSDate date]]%2==0?YES:NO;

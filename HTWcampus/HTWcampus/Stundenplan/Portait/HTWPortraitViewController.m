@@ -480,10 +480,24 @@
 {
     if (gesture.state == UIGestureRecognizerStateBegan) {
         HTWStundenplanButtonForLesson *buttonPressed = (HTWStundenplanButtonForLesson*)gesture.view;
-        _detailView.frame = CGRectMake(buttonPressed.frame.origin.x-buttonPressed.frame.size.width/2, buttonPressed.frame.origin.y-180*PixelPerMin, buttonPressed.frame.size.width*2,180*PixelPerMin);
+        
+        CGFloat x = buttonPressed.frame.origin.x-buttonPressed.frame.size.width/2;
+        CGFloat y = buttonPressed.frame.origin.y-180*PixelPerMin;
+        CGFloat width = buttonPressed.frame.size.width*2;
+        CGFloat height = 180*PixelPerMin;
+        
+        if (x + width > _scrollView.contentOffset.x + [UIScreen mainScreen].bounds.size.width)
+            x -= ((x + width) - ([UIScreen mainScreen].bounds.size.width + _scrollView.contentOffset.x));
+        else if (x < _scrollView.contentOffset.x) x = _scrollView.contentOffset.x;
+        if (y < 0) {
+            y = buttonPressed.frame.origin.y + buttonPressed.frame.size.height;
+        }
+        
+        
+        _detailView.frame = CGRectMake(x, y, width,height);
         _detailView.layer.cornerRadius = 10;
-        _detailView.backgroundColor = [UIColor redColor];
-        _detailView.alpha = 0.8;
+        _detailView.backgroundColor = htwColors.darkButtonBorder;
+        _detailView.alpha = 0.85;
         
         for (UIView *this in _detailView.subviews) {
             [this removeFromSuperview];
@@ -492,15 +506,17 @@
         UILabel *titel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _detailView.frame.size.width, _detailView.frame.size.height*4/5)];
         titel.text = buttonPressed.lesson.titel;
         titel.textAlignment = NSTextAlignmentCenter;
-        titel.font = [UIFont systemFontOfSize:20];
+        titel.font = [UIFont systemFontOfSize:17];
         titel.lineBreakMode = NSLineBreakByWordWrapping;
         titel.numberOfLines = 2;
+        titel.textColor = htwColors.darkTextColor;
         [_detailView addSubview:titel];
         
         UILabel *dozent = [[UILabel alloc] initWithFrame:CGRectMake(0, _detailView.frame.size.height*4/5-9, _detailView.frame.size.width, _detailView.frame.size.height*2/5)];
         dozent.text = buttonPressed.lesson.dozent;
         dozent.textAlignment = NSTextAlignmentCenter;
-        dozent.font = [UIFont systemFontOfSize:17];
+        dozent.font = [UIFont systemFontOfSize:15];
+        dozent.textColor = htwColors.darkTextColor;
         [_detailView addSubview:dozent];
         
         [_scrollView bringSubviewToFront:_detailView];
