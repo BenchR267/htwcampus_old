@@ -184,6 +184,8 @@
                 [raumNummer insertString:@" " atIndex:1];
             }
             
+            raumNummer = (NSMutableString*)[raumNummer uppercaseString];
+            
             for (Student *this in _zimmer) {
                 if ([this.matrnr isEqualToString:raumNummer]) {
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
