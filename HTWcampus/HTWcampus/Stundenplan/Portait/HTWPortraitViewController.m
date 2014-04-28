@@ -508,7 +508,7 @@
         titel.textAlignment = NSTextAlignmentCenter;
         titel.font = [UIFont systemFontOfSize:17];
         titel.lineBreakMode = NSLineBreakByWordWrapping;
-        titel.numberOfLines = 2;
+        titel.numberOfLines = 3;
         titel.textColor = htwColors.darkTextColor;
         [_detailView addSubview:titel];
         
