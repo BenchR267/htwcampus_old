@@ -378,7 +378,7 @@
         [_detailView addSubview:titel];
         
         UILabel *dozent = [[UILabel alloc] initWithFrame:CGRectMake(0, _detailView.frame.size.height*4/5-9, _detailView.frame.size.width, _detailView.frame.size.height*2/5)];
-        dozent.text = buttonPressed.lesson.dozent;
+        if(buttonPressed.lesson.dozent) dozent.text = [NSString stringWithFormat:@"Dozent: %@", buttonPressed.lesson.dozent];
         dozent.textAlignment = NSTextAlignmentCenter;
         dozent.font = [UIFont systemFontOfSize:12];
         dozent.textColor = htwColors.darkTextColor;
