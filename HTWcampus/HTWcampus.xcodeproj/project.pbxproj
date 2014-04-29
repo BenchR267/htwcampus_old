@@ -41,6 +41,7 @@
 		E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C6E190D3F34002AE150 /* HTWRaumParser.m */; };
 		E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C70190D3F34002AE150 /* HTWTabParser.m */; };
 		E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C74190D3FD1002AE150 /* HTWTestViewController.m */; };
+		E684DCDF190FDA06005DE0B3 /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E684DCDE190FDA06005DE0B3 /* HTWCSVExport.m */; };
 		E6FE12A119093D6700D56D52 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -111,6 +112,8 @@
 		E6379C70190D3F34002AE150 /* HTWTabParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTabParser.m; path = Raumplaner/HTWTabParser.m; sourceTree = "<group>"; };
 		E6379C73190D3FD1002AE150 /* HTWTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTestViewController.h; path = Raumplaner/HTWTestViewController.h; sourceTree = "<group>"; };
 		E6379C74190D3FD1002AE150 /* HTWTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTestViewController.m; path = Raumplaner/HTWTestViewController.m; sourceTree = "<group>"; };
+		E684DCDD190FDA06005DE0B3 /* HTWCSVExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVExport.h; path = "Stundenplan/CSV-Export/HTWCSVExport.h"; sourceTree = "<group>"; };
+		E684DCDE190FDA06005DE0B3 /* HTWCSVExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVExport.m; path = "Stundenplan/CSV-Export/HTWCSVExport.m"; sourceTree = "<group>"; };
 		E6FE12A019093D6700D56D52 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 				E61D87DB19082D9D0033D543 /* Landscape */,
 				E61D882419085B3E0033D543 /* Settings */,
 				E61D87D919082D920033D543 /* Model */,
+				E684DCDC190FD995005DE0B3 /* CSV-Export */,
 			);
 			name = Stundenplan;
 			sourceTree = "<group>";
@@ -287,6 +291,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E684DCDC190FD995005DE0B3 /* CSV-Export */ = {
+			isa = PBXGroup;
+			children = (
+				E684DCDD190FDA06005DE0B3 /* HTWCSVExport.h */,
+				E684DCDE190FDA06005DE0B3 /* HTWCSVExport.m */,
+			);
+			name = "CSV-Export";
+			sourceTree = "<group>";
+		};
 		E6FE12A21909880500D56D52 /* Raumplaner */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +421,7 @@
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
 				E61D883719085B4C0033D543 /* StundenplanSettingsTableViewController.m in Sources */,
 				E61D883319085B4C0033D543 /* HTWDatePickViewController.m in Sources */,
+				E684DCDF190FDA06005DE0B3 /* HTWCSVExport.m in Sources */,
 				E61D883619085B4C0033D543 /* StundenplanSettingsTableViewCell.m in Sources */,
 				E61D883519085B4C0033D543 /* HTWStundeAddTableViewController.m in Sources */,
 				E61D8820190859180033D543 /* HTWLandscapeViewController.m in Sources */,

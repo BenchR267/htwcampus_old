@@ -14,6 +14,7 @@
 #import "HTWStundenplanButtonForLesson.h"
 #import "HTWLandscapeViewController.h"
 #import "HTWColors.h"
+#import "HTWCSVExport.h"
 
 #define PixelPerMin 0.5
 
@@ -256,14 +257,41 @@
     }
     else if ([alertView.title isEqualToString:@"Exportieren"])
     {
-        if ([clickedButtonTitle isEqualToString:@"CSV"])
+        if ([clickedButtonTitle isEqualToString:@"CSV (Google Kalender)"])
         {
-#warning CSV-Export einbinden
-            UIAlertView *alert = [[UIAlertView alloc] init];
-            alert.title = @"CSV-Exportierung befindet sich gerade noch im Aufbau..";
-            [alert show];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:[NSEntityDescription entityForName:@"Stunde"
+                                           inManagedObjectContext:_context]];
+
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@)", Matrnr];
+            [request setPredicate:pred];
             
-            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:3];
+            // FetchRequest-Ergebnisse
+            NSArray *objects = [_context executeFetchRequest:request error:nil];
+            
+            
+            HTWCSVExport *csvExp = [[HTWCSVExport alloc] initWithArray:objects andMatrNr:Matrnr];
+            
+            NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", [csvExp getFileUrl]];
+            UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+            activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
+            
+            [self presentViewController:activityVC animated:YES completion:^{
+                [self doubleTap:_scrollView];
+            }];
+            
+            activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
+                if (completed) {
+                    UIAlertView *alert = [[UIAlertView alloc] init];
+                    alert.title = @"Stundenplan erfolgreich als CSV-Datei exportiert.";
+                    [alert show];
+                    
+                    [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+                }
+            };
+            
+            
+            
         }
         else if ([clickedButtonTitle isEqualToString:@"Bild"])
         {
@@ -292,7 +320,6 @@
             NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", image];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
-            activityVC.title = @"Stundenplan teilen.";
             
             activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
                 if ([activityType isEqualToString:UIActivityTypeSaveToCameraRoll] && completed) {
@@ -578,7 +605,7 @@
                                                     message:@"In welcher Form wollen Sie den Stundenplan exportieren oder teilen?"
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Bild", @"CSV", nil];
+                                          otherButtonTitles:@"Bild", @"CSV (Google Kalender)", nil];
     
     [alert show];
     
