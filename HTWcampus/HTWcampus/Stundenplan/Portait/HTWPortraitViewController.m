@@ -96,7 +96,7 @@
     isPortrait = YES;
     
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addSegue)];
-    [self.navigationItem setRightBarButtonItems:@[add, self.navigationItem.rightBarButtonItem]];
+    if(!_raumNummer) [self.navigationItem setRightBarButtonItems:@[add, self.navigationItem.rightBarButtonItem]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -275,7 +275,7 @@
             
             NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", [csvExp getFileUrl]];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
-            activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
+            activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
             
             [self presentViewController:activityVC animated:YES completion:^{
                 [self doubleTap:_scrollView];
@@ -311,7 +311,7 @@
             
             NSArray *itemsToShare = @[@"Mein Stundenplan, erstellt mit der iOS-App der HTW Dresden.", [csvExp getFileUrl]];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
-            activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
+            activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
             
             [self presentViewController:activityVC animated:YES completion:^{
                 [self doubleTap:_scrollView];

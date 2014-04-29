@@ -37,6 +37,7 @@
     [super viewDidLoad];
     htwColors = [[HTWColors alloc] init];
     
+    if(!_zimmer) _zimmer = [[NSArray alloc] init];
     [self updateZimmerArray];
     
 }
