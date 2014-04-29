@@ -162,28 +162,8 @@
             [self.scrollView addGestureRecognizer:tapRecognizer];
         }
     }
-    for (UIView *this in self.scrollView.subviews) {
-        if (this.tag == -3)
-        {
-            CGPoint origin;
-            origin.x = _scrollView.contentOffset.x+15;
-            origin.y = this.frame.origin.y;
-            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
-        }
-        else if (this.tag == 1) this.hidden = YES;
-        else if (this.tag == -4)
-        {
-            this.frame = CGRectMake(-_scrollView.contentSize.width, 0-300+_scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50+300);
-            [_scrollView bringSubviewToFront:this];
-        }
-        if (this.tag == -2) {
-            CGPoint origin;
-            origin.x = _scrollView.contentOffset.x;
-            origin.y = this.frame.origin.y;
-            this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
-            [_scrollView bringSubviewToFront:this];
-        }
-    }
+    
+    [self scrollViewDidScroll:_scrollView];
 }
 
 -(void)dealloc
@@ -206,7 +186,7 @@
         switch (this.tag) {
             case 1: this.hidden = YES; break;
             case -4:
-                this.frame = CGRectMake(-_scrollView.contentSize.width, 0-300+_scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50+300);
+                this.frame = CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50);
                 [_scrollView bringSubviewToFront:this];
                 break;
             case -2:
@@ -328,6 +308,7 @@
     }
     [self setUpZeitenView];
     
+    
 }
 
 -(void)reloadCellLabels
@@ -343,7 +324,7 @@
     NSMutableArray *labels = [[NSMutableArray alloc] init];
     
     for (int i=0; i < 7; i++) {
-        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+78+_scrollView.contentSize.width, 20+300, 108, 26)];
+        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+78+_scrollView.contentSize.width, 20, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
         this.font = [UIFont fontWithName:@"Helvetica" size:20];
         this.tag = -1;
@@ -360,11 +341,11 @@
         [labels addObject:this];
     }
     
-    UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, 0-300+_scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50+300)];
+    UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50)];
     
     UIImage *indicator = [UIImage imageNamed:@"indicator.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
-    indicatorView.frame = CGRectMake(78+_scrollView.contentSize.width, 47+300, 108, 7);
+    indicatorView.frame = CGRectMake(78+_scrollView.contentSize.width, 47, 108, 7);
     [heuteMorgenLabelsView addSubview:indicatorView];
     heuteMorgenLabelsView.tag = -4;
     
@@ -526,6 +507,53 @@
     if (gesture.state == UIGestureRecognizerStateEnded) {
         _detailView.hidden = YES;
     }
+}
+
+
+- (IBAction)shareTestButtonPressed:(id)sender {
+    
+    UIImage* image = nil;
+    
+    UIGraphicsBeginImageContext(_scrollView.contentSize);
+    {
+        CGPoint savedContentOffset = _scrollView.contentOffset;
+        CGRect savedFrame = _scrollView.frame;
+        
+        [self.scrollView setContentOffset:CGPointMake(0, -64) animated:NO];
+        _scrollView.frame = CGRectMake(0, 0, _scrollView.contentSize.width, _scrollView.contentSize.height);
+        
+        [_scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        _scrollView.contentOffset = savedContentOffset;
+        _scrollView.frame = savedFrame;
+    }
+    UIGraphicsEndImageContext();
+    
+    CGImageRef imgRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, image.size.width, 54 + 803 * PixelPerMin));
+	
+	image = [UIImage imageWithCGImage:imgRef];
+    
+    NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", image];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
+    activityVC.title = @"Stundenplan teilen.";
+    
+    activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
+        if ([activityType isEqualToString:UIActivityTypeSaveToCameraRoll] && completed) {
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            alert.title = @"Stundenplan erfolgreich exportiert.";
+            [alert show];
+            
+            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+            
+        }
+    };
+    
+    [self presentViewController:activityVC animated:YES completion:^{
+        [self doubleTap:_scrollView];
+    }];
+    
 }
 
 #pragma mark - Hilfsfunktionen

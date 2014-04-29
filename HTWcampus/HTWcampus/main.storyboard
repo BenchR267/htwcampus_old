@@ -55,6 +55,11 @@
                                 <segue destination="J7I-r8-4IZ" kind="push" identifier="settingsSegue" id="p3c-CU-Eym"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Share" id="h1j-Ex-Y9b">
+                            <connections>
+                                <action selector="shareTestButtonPressed:" destination="7hh-2p-6tI" id="8m3-H4-ccD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="43P-Fj-3SQ" id="bGX-XH-Mfq"/>
@@ -890,6 +895,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="Haus" width="30" height="30"/>
         <image name="Kalender" width="30" height="30"/>
         <image name="Settings" width="30" height="30"/>
+        <image name="Share" width="29" height="30"/>
         <image name="add" width="28" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
