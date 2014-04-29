@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HTWcampus/Stundenplan/Portait/HTWPortraitViewController.m"
-            timestampString = "420471334.882386"
+            timestampString = "420477970.262289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
+            startingLineNumber = "594"
+            endingLineNumber = "594"
             landmarkName = "-buttonIsPressed:"
             landmarkType = "5">
          </BreakpointContent>

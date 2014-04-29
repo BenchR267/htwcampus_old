@@ -8,17 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol HTWCSVExportDelegate <NSObject>
-
-@optional
--(void)HTWCSVExportError:(NSString*)errorMessage;
--(void)HTWCSVExportFinished:(NSString*)filepath;
-
-@end
-
 @interface HTWCSVExport : NSObject
 
-@property id <HTWCSVExportDelegate> delegate;
 @property (nonatomic, strong) NSString *MatrNr;
 
 -(id)initWithArray:(NSArray*)array andMatrNr:(NSString*)MatrNr;

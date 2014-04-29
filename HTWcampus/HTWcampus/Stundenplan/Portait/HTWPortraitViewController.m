@@ -15,6 +15,7 @@
 #import "HTWLandscapeViewController.h"
 #import "HTWColors.h"
 #import "HTWCSVExport.h"
+#import "HTWICSExport.h"
 
 #define PixelPerMin 0.5
 
@@ -292,6 +293,39 @@
             
             
             
+        }
+        else if([clickedButtonTitle isEqualToString:@"ICS (Mac, Windows, iPhone)"])
+        {
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:[NSEntityDescription entityForName:@"Stunde"
+                                           inManagedObjectContext:_context]];
+            
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@)", Matrnr];
+            [request setPredicate:pred];
+            
+            // FetchRequest-Ergebnisse
+            NSArray *objects = [_context executeFetchRequest:request error:nil];
+            
+            
+            HTWICSExport *csvExp = [[HTWICSExport alloc] initWithArray:objects andMatrNr:Matrnr];
+            
+            NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", [csvExp getFileUrl]];
+            UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+            activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
+            
+            [self presentViewController:activityVC animated:YES completion:^{
+                [self doubleTap:_scrollView];
+            }];
+            
+            activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
+                if (completed) {
+                    UIAlertView *alert = [[UIAlertView alloc] init];
+                    alert.title = @"Stundenplan erfolgreich als ICS-Datei exportiert.";
+                    [alert show];
+                    
+                    [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+                }
+            };
         }
         else if ([clickedButtonTitle isEqualToString:@"Bild"])
         {
@@ -605,7 +639,7 @@
                                                     message:@"In welcher Form wollen Sie den Stundenplan exportieren oder teilen?"
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Bild", @"CSV (Google Kalender)", nil];
+                                          otherButtonTitles:@"Bild", @"CSV (Google Kalender)", @"ICS (Mac, Windows, iPhone)", nil];
     
     [alert show];
     
