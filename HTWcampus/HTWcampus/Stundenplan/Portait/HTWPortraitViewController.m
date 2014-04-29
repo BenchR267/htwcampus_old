@@ -92,6 +92,9 @@
                name:UIDeviceOrientationDidChangeNotification
              object:nil];
     isPortrait = YES;
+    
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addSegue)];
+    [self.navigationItem setRightBarButtonItems:@[add, self.navigationItem.rightBarButtonItem]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -611,4 +614,8 @@
     }
 }
 
+-(void)addSegue
+{
+    [self performSegueWithIdentifier:@"add" sender:self];
+}
 @end
