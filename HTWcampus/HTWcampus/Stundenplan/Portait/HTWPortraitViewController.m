@@ -222,34 +222,93 @@
 {
     NSString *clickedButtonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if ([clickedButtonTitle isEqualToString:[self alertViewOkButtonTitle]])
+    if([alertView.title isEqualToString:@"Hallo"] || [alertView.title isEqualToString:@"Fehler"])
     {
-        if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
-            Matrnr = [alertView textFieldAtIndex:0].text;
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
-            
-            
-            _parser = nil;
-            
-            [self updateAngezeigteStunden];
-            
-            if ([_angezeigteStunden count] == 0) {
-                Matrnr = [defaults objectForKey:@"Matrikelnummer"];
-                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:Matrnr andRaum:NO];
-                [_parser setDelegate:self];
-                [defaults setObject:Matrnr forKey:@"altMatrikelnummer"];
-                [_parser parserStart];
-            }
-            else
-            {                
-                [self setUpInterface];
+        if ([clickedButtonTitle isEqualToString:[self alertViewOkButtonTitle]])
+        {
+            if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
+                Matrnr = [alertView textFieldAtIndex:0].text;
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
+                
+                
+                _parser = nil;
+                
+                [self updateAngezeigteStunden];
+                
+                if ([_angezeigteStunden count] == 0) {
+                    Matrnr = [defaults objectForKey:@"Matrikelnummer"];
+                    _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:Matrnr andRaum:NO];
+                    [_parser setDelegate:self];
+                    [defaults setObject:Matrnr forKey:@"altMatrikelnummer"];
+                    [_parser parserStart];
+                }
+                else
+                {                
+                    [self setUpInterface];
+                }
             }
         }
+        else if ([clickedButtonTitle isEqualToString:[self alertViewCancelButtonTitle]])
+        {
+            NSLog(@"AlertView wurde abgebrochen.");
+        }
     }
-    else if ([clickedButtonTitle isEqualToString:[self alertViewCancelButtonTitle]])
+    else if ([alertView.title isEqualToString:@"Exportieren"])
     {
-        NSLog(@"AlertView wurde abgebrochen.");
+        if ([clickedButtonTitle isEqualToString:@"CSV"])
+        {
+#warning CSV-Export einbinden
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            alert.title = @"CSV-Exportierung befindet sich gerade noch im Aufbau..";
+            [alert show];
+            
+            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:3];
+        }
+        else if ([clickedButtonTitle isEqualToString:@"Bild"])
+        {
+            UIImage* image = nil;
+            
+            UIGraphicsBeginImageContext(_scrollView.contentSize);
+            {
+                CGPoint savedContentOffset = _scrollView.contentOffset;
+                CGRect savedFrame = _scrollView.frame;
+                
+                [self.scrollView setContentOffset:CGPointMake(0, -64) animated:NO];
+                _scrollView.frame = CGRectMake(0, 0, _scrollView.contentSize.width, _scrollView.contentSize.height);
+                
+                [_scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+                image = UIGraphicsGetImageFromCurrentImageContext();
+                
+                _scrollView.contentOffset = savedContentOffset;
+                _scrollView.frame = savedFrame;
+            }
+            UIGraphicsEndImageContext();
+            
+            CGImageRef imgRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, image.size.width, 54 + 803 * PixelPerMin));
+            
+            image = [UIImage imageWithCGImage:imgRef];
+            
+            NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", image];
+            UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+            activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
+            activityVC.title = @"Stundenplan teilen.";
+            
+            activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
+                if ([activityType isEqualToString:UIActivityTypeSaveToCameraRoll] && completed) {
+                    UIAlertView *alert = [[UIAlertView alloc] init];
+                    alert.title = @"Stundenplan erfolgreich exportiert.";
+                    [alert show];
+                    
+                    [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+                    
+                }
+            };
+            
+            [self presentViewController:activityVC animated:YES completion:^{
+                [self doubleTap:_scrollView];
+            }];
+        }
     }
 }
 
@@ -515,47 +574,13 @@
 
 - (IBAction)shareTestButtonPressed:(id)sender {
     
-    UIImage* image = nil;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exportieren"
+                                                    message:@"In welcher Form wollen Sie den Stundenplan exportieren oder teilen?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Abbrechen"
+                                          otherButtonTitles:@"Bild", @"CSV", nil];
     
-    UIGraphicsBeginImageContext(_scrollView.contentSize);
-    {
-        CGPoint savedContentOffset = _scrollView.contentOffset;
-        CGRect savedFrame = _scrollView.frame;
-        
-        [self.scrollView setContentOffset:CGPointMake(0, -64) animated:NO];
-        _scrollView.frame = CGRectMake(0, 0, _scrollView.contentSize.width, _scrollView.contentSize.height);
-        
-        [_scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
-        image = UIGraphicsGetImageFromCurrentImageContext();
-        
-        _scrollView.contentOffset = savedContentOffset;
-        _scrollView.frame = savedFrame;
-    }
-    UIGraphicsEndImageContext();
-    
-    CGImageRef imgRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, image.size.width, 54 + 803 * PixelPerMin));
-	
-	image = [UIImage imageWithCGImage:imgRef];
-    
-    NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", image];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
-    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
-    activityVC.title = @"Stundenplan teilen.";
-    
-    activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
-        if ([activityType isEqualToString:UIActivityTypeSaveToCameraRoll] && completed) {
-            UIAlertView *alert = [[UIAlertView alloc] init];
-            alert.title = @"Stundenplan erfolgreich exportiert.";
-            [alert show];
-            
-            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
-            
-        }
-    };
-    
-    [self presentViewController:activityVC animated:YES completion:^{
-        [self doubleTap:_scrollView];
-    }];
+    [alert show];
     
 }
 
