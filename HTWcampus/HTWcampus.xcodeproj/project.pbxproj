@@ -43,14 +43,6 @@
 		E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C74190D3FD1002AE150 /* HTWTestViewController.m */; };
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
-		E6D2E5851910066300DCD9EF /* CGICalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E5761910066300DCD9EF /* CGICalendar.m */; };
-		E6D2E5861910066300DCD9EF /* CGICalendarComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E5781910066300DCD9EF /* CGICalendarComponent.m */; };
-		E6D2E5871910066300DCD9EF /* CGICalendarContentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E57A1910066300DCD9EF /* CGICalendarContentLine.m */; };
-		E6D2E5881910066300DCD9EF /* CGICalendarObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E57C1910066300DCD9EF /* CGICalendarObject.m */; };
-		E6D2E5891910066300DCD9EF /* CGICalendarParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E57E1910066300DCD9EF /* CGICalendarParameter.m */; };
-		E6D2E58A1910066300DCD9EF /* CGICalendarProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E5801910066300DCD9EF /* CGICalendarProperty.m */; };
-		E6D2E58B1910066300DCD9EF /* CGICalendarValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E5821910066300DCD9EF /* CGICalendarValue.m */; };
-		E6D2E58C1910066300DCD9EF /* NSDate+CGICalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E5841910066300DCD9EF /* NSDate+CGICalendar.m */; };
 		E6FE12A119093D6700D56D52 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -125,22 +117,6 @@
 		E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVExport.m; path = Stundenplan/Export/HTWCSVExport.m; sourceTree = "<group>"; };
 		E6D2E571190FF60400DCD9EF /* HTWICSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWICSExport.h; path = Stundenplan/Export/HTWICSExport.h; sourceTree = "<group>"; };
 		E6D2E572190FF60400DCD9EF /* HTWICSExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWICSExport.m; path = Stundenplan/Export/HTWICSExport.m; sourceTree = "<group>"; };
-		E6D2E5751910066300DCD9EF /* CGICalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGICalendar.h; path = Stundenplan/Export/iCalForObj4/CGICalendar.h; sourceTree = "<group>"; };
-		E6D2E5761910066300DCD9EF /* CGICalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGICalendar.m; path = Stundenplan/Export/iCalForObj4/CGICalendar.m; sourceTree = "<group>"; };
-		E6D2E5771910066300DCD9EF /* CGICalendarComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGICalendarComponent.h; path = Stundenplan/Export/iCalForObj4/CGICalendarComponent.h; sourceTree = "<group>"; };
-		E6D2E5781910066300DCD9EF /* CGICalendarComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGICalendarComponent.m; path = Stundenplan/Export/iCalForObj4/CGICalendarComponent.m; sourceTree = "<group>"; };
-		E6D2E5791910066300DCD9EF /* CGICalendarContentLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGICalendarContentLine.h; path = Stundenplan/Export/iCalForObj4/CGICalendarContentLine.h; sourceTree = "<group>"; };
-		E6D2E57A1910066300DCD9EF /* CGICalendarContentLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGICalendarContentLine.m; path = Stundenplan/Export/iCalForObj4/CGICalendarContentLine.m; sourceTree = "<group>"; };
-		E6D2E57B1910066300DCD9EF /* CGICalendarObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGICalendarObject.h; path = Stundenplan/Export/iCalForObj4/CGICalendarObject.h; sourceTree = "<group>"; };
-		E6D2E57C1910066300DCD9EF /* CGICalendarObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGICalendarObject.m; path = Stundenplan/Export/iCalForObj4/CGICalendarObject.m; sourceTree = "<group>"; };
-		E6D2E57D1910066300DCD9EF /* CGICalendarParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGICalendarParameter.h; path = Stundenplan/Export/iCalForObj4/CGICalendarParameter.h; sourceTree = "<group>"; };
-		E6D2E57E1910066300DCD9EF /* CGICalendarParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGICalendarParameter.m; path = Stundenplan/Export/iCalForObj4/CGICalendarParameter.m; sourceTree = "<group>"; };
-		E6D2E57F1910066300DCD9EF /* CGICalendarProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGICalendarProperty.h; path = Stundenplan/Export/iCalForObj4/CGICalendarProperty.h; sourceTree = "<group>"; };
-		E6D2E5801910066300DCD9EF /* CGICalendarProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGICalendarProperty.m; path = Stundenplan/Export/iCalForObj4/CGICalendarProperty.m; sourceTree = "<group>"; };
-		E6D2E5811910066300DCD9EF /* CGICalendarValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGICalendarValue.h; path = Stundenplan/Export/iCalForObj4/CGICalendarValue.h; sourceTree = "<group>"; };
-		E6D2E5821910066300DCD9EF /* CGICalendarValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGICalendarValue.m; path = Stundenplan/Export/iCalForObj4/CGICalendarValue.m; sourceTree = "<group>"; };
-		E6D2E5831910066300DCD9EF /* NSDate+CGICalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+CGICalendar.h"; path = "Stundenplan/Export/iCalForObj4/NSDate+CGICalendar.h"; sourceTree = "<group>"; };
-		E6D2E5841910066300DCD9EF /* NSDate+CGICalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+CGICalendar.m"; path = "Stundenplan/Export/iCalForObj4/NSDate+CGICalendar.m"; sourceTree = "<group>"; };
 		E6FE12A019093D6700D56D52 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
@@ -321,36 +297,12 @@
 		E684DCDC190FD995005DE0B3 /* Export */ = {
 			isa = PBXGroup;
 			children = (
-				E6D2E574191005F800DCD9EF /* iCalForObj4 */,
 				E6D2E56E190FF55C00DCD9EF /* HTWCSVExport.h */,
 				E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */,
 				E6D2E571190FF60400DCD9EF /* HTWICSExport.h */,
 				E6D2E572190FF60400DCD9EF /* HTWICSExport.m */,
 			);
 			name = Export;
-			sourceTree = "<group>";
-		};
-		E6D2E574191005F800DCD9EF /* iCalForObj4 */ = {
-			isa = PBXGroup;
-			children = (
-				E6D2E5751910066300DCD9EF /* CGICalendar.h */,
-				E6D2E5761910066300DCD9EF /* CGICalendar.m */,
-				E6D2E5771910066300DCD9EF /* CGICalendarComponent.h */,
-				E6D2E5781910066300DCD9EF /* CGICalendarComponent.m */,
-				E6D2E5791910066300DCD9EF /* CGICalendarContentLine.h */,
-				E6D2E57A1910066300DCD9EF /* CGICalendarContentLine.m */,
-				E6D2E57B1910066300DCD9EF /* CGICalendarObject.h */,
-				E6D2E57C1910066300DCD9EF /* CGICalendarObject.m */,
-				E6D2E57D1910066300DCD9EF /* CGICalendarParameter.h */,
-				E6D2E57E1910066300DCD9EF /* CGICalendarParameter.m */,
-				E6D2E57F1910066300DCD9EF /* CGICalendarProperty.h */,
-				E6D2E5801910066300DCD9EF /* CGICalendarProperty.m */,
-				E6D2E5811910066300DCD9EF /* CGICalendarValue.h */,
-				E6D2E5821910066300DCD9EF /* CGICalendarValue.m */,
-				E6D2E5831910066300DCD9EF /* NSDate+CGICalendar.h */,
-				E6D2E5841910066300DCD9EF /* NSDate+CGICalendar.m */,
-			);
-			name = iCalForObj4;
 			sourceTree = "<group>";
 		};
 		E6FE12A21909880500D56D52 /* Raumplaner */ = {
@@ -474,12 +426,7 @@
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
 				E61D883719085B4C0033D543 /* StundenplanSettingsTableViewController.m in Sources */,
 				E61D883319085B4C0033D543 /* HTWDatePickViewController.m in Sources */,
-				E6D2E5851910066300DCD9EF /* CGICalendar.m in Sources */,
-				E6D2E58C1910066300DCD9EF /* NSDate+CGICalendar.m in Sources */,
-				E6D2E5891910066300DCD9EF /* CGICalendarParameter.m in Sources */,
 				E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */,
-				E6D2E5871910066300DCD9EF /* CGICalendarContentLine.m in Sources */,
-				E6D2E5861910066300DCD9EF /* CGICalendarComponent.m in Sources */,
 				E61D883619085B4C0033D543 /* StundenplanSettingsTableViewCell.m in Sources */,
 				E61D883519085B4C0033D543 /* HTWStundeAddTableViewController.m in Sources */,
 				E61D8820190859180033D543 /* HTWLandscapeViewController.m in Sources */,
@@ -489,15 +436,12 @@
 				E61D88141908583C0033D543 /* HTWStundenplanButtonForLesson.m in Sources */,
 				E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
-				E6D2E5881910066300DCD9EF /* CGICalendarObject.m in Sources */,
 				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
-				E6D2E58B1910066300DCD9EF /* CGICalendarValue.m in Sources */,
 				E61D880B19082FF50033D543 /* Stunde.m in Sources */,
 				E61D887F1908705E0033D543 /* landscapeSegue.m in Sources */,
 				E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */,
 				E61D880819082FF40033D543 /* Student.m in Sources */,
 				E61D883419085B4C0033D543 /* HTWMatrikelnummernTableViewController.m in Sources */,
-				E6D2E58A1910066300DCD9EF /* CGICalendarProperty.m in Sources */,
 				E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */,
 				E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */,
 				E61D883819085B4C0033D543 /* StundenplanSettingsViewController.m in Sources */,

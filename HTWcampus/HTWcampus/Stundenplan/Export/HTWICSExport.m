@@ -8,7 +8,6 @@
 
 #import "HTWICSExport.h"
 #import "Stunde.h"
-#import "CGICalendar.h"
 
 @interface HTWICSExport ()
 
@@ -47,23 +46,23 @@
     NSMutableString *erg = [[NSMutableString alloc] init];
     NSDate *aktDatum = [NSDate date];
     
-    [erg appendString:[NSString stringWithFormat:@"BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//www.htw-dresden.de//iOS\nMETHOD:PUBLISH\n"]];
+    [erg appendString:[NSString stringWithFormat:@"BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//www.htw-dresden.de//iOS//DE\nMETHOD:PUBLISH\n"]];
     
     
     for (Stunde *this in _daten) {
-        NSString *titel = [this.titel stringByReplacingOccurrencesOfString:@"," withString:@"\\,"];
-        NSString *dozent = [this.dozent stringByReplacingOccurrencesOfString:@"," withString:@"\\,"];
+        NSString *titel = [this.titel stringByReplacingOccurrencesOfString:@"," withString:@"\\, "];
+        NSString *dozent = [this.dozent stringByReplacingOccurrencesOfString:@"," withString:@"\\, "];
         
         NSString *uuid = [[NSUUID UUID] UUIDString];
         
         [erg appendString:[NSString stringWithFormat:@"BEGIN:VEVENT\nUID:%@\n", uuid]];
         [erg appendString:[NSString stringWithFormat:@"DTSTART:%@T%@Z\n",[self nurTagFromDate:this.anfang], [self nurUhrzeigFromDate:this.anfang]]];
         [erg appendString:[NSString stringWithFormat:@"DTEND:%@T%@Z\n",[self nurTagFromDate:this.ende], [self nurUhrzeigFromDate:this.ende]]];
-        [erg appendString:[NSString stringWithFormat:@"DTSTAMP:%@T%@Z\nSEQUENCE:0\nSTATUS:CONFIRMED\n", [self nurTagFromDate:aktDatum], [self nurUhrzeigFromDate:aktDatum]]];
-        [erg appendString:[NSString stringWithFormat:@"SUMMARY:%@\nDESCRIPTION:%@\nLOCATION:%@\nCLASS:PUBLIC\nTRANSP:OPAQUE\nEND:VEVENT\n", titel, dozent, this.raum]];
+        [erg appendString:[NSString stringWithFormat:@"LAST-MODIFIED:%@T%@Z\nSEQUENCE:0\nSTATUS:CONFIRMED\n", [self nurTagFromDate:aktDatum], [self nurUhrzeigFromDate:aktDatum]]];
+        [erg appendString:[NSString stringWithFormat:@"SUMMARY:%@\nDESCRIPTION:%@\nLOCATION:%@\nEND:VEVENT\n", titel, dozent, this.raum]];
     }
     
-    [erg appendString:@"END:VCALENDER"];
+    [erg appendString:@"END:VCALENDAR"];
     
     NSData *ret = [erg dataUsingEncoding:NSUTF8StringEncoding];
     
