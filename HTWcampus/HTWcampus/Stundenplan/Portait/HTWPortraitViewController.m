@@ -309,7 +309,7 @@
             
             HTWICSExport *csvExp = [[HTWICSExport alloc] initWithArray:objects andMatrNr:Matrnr];
             
-            NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", [csvExp getFileUrl]];
+            NSArray *itemsToShare = @[@"Mein Stundenplan, erstellt mit der iOS-App der HTW Dresden.", [csvExp getFileUrl]];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
             
@@ -351,7 +351,7 @@
             
             image = [UIImage imageWithCGImage:imgRef];
             
-            NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", image];
+            NSArray *itemsToShare = @[@"Mein Stundenplan, erstellt mit der iOS-App der HTW Dresden.", image];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
             
