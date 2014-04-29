@@ -135,12 +135,6 @@ NSMutableData *receivedData;
     
     // Parser initialisieren
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:retData];
-//    if (!parser)
-//    {
-//        NSLog(@"Error with parser");
-//        [_delegate stundenplanParserError:@"Parser konnte nicht initialisiert werden. Bitte Internetverbindung überprüfungen und nochmal probieren."];
-//    }
-//    else NSLog(@"parser successfully initialised");
     
     [parser setDelegate:self];
     [parser parse];

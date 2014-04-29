@@ -184,7 +184,9 @@
                 [raumNummer insertString:@" " atIndex:1];
             }
             
-            raumNummer = (NSMutableString*)[raumNummer uppercaseString];
+//            raumNummer = (NSMutableString*)[raumNummer capitalizedString];
+            raumNummer = (NSMutableString*)[raumNummer stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[raumNummer substringToIndex:1] capitalizedString]];
+            
             
             for (Student *this in _zimmer) {
                 if ([this.matrnr isEqualToString:raumNummer]) {
@@ -249,9 +251,7 @@
     NSDateComponents* comp1 = [calendar components:unitFlags fromDate:date1];
     NSDateComponents* comp2 = [calendar components:unitFlags fromDate:date2];
     
-    return [comp1 day]   == [comp2 day] &&
-    [comp1 month] == [comp2 month] &&
-    [comp1 year]  == [comp2 year];
+    return [comp1 day] == [comp2 day] && [comp1 month] == [comp2 month] && [comp1 year] == [comp2 year];
 }
 
 -(void)updateZimmerArray

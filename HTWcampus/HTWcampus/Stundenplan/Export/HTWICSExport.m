@@ -12,6 +12,7 @@
 @interface HTWICSExport ()
 
 @property (nonatomic, strong) NSArray *daten;
+@property (nonatomic, strong) NSString *MatrNr;
 
 @end
 

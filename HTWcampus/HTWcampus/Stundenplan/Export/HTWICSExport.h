@@ -10,7 +10,6 @@
 
 @interface HTWICSExport : NSObject
 
-@property (nonatomic, strong) NSString *MatrNr;
 
 -(id)initWithArray:(NSArray*)array andMatrNr:(NSString*)MatrNr;
 -(NSURL*)getFileUrl;

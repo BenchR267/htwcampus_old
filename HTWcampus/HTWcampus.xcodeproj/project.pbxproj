@@ -189,10 +189,10 @@
 		E61D87DB19082D9D0033D543 /* Landscape */ = {
 			isa = PBXGroup;
 			children = (
-				E61D887D1908705E0033D543 /* landscapeSegue.h */,
-				E61D887E1908705E0033D543 /* landscapeSegue.m */,
 				E61D881D190859180033D543 /* HTWLandscapeViewController.h */,
 				E61D881E190859180033D543 /* HTWLandscapeViewController.m */,
+				E61D887D1908705E0033D543 /* landscapeSegue.h */,
+				E61D887E1908705E0033D543 /* landscapeSegue.m */,
 			);
 			name = Landscape;
 			sourceTree = "<group>";

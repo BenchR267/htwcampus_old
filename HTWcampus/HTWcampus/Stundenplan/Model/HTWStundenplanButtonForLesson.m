@@ -299,7 +299,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"X: %f Y: %f width: %f height: %f", x, y, width, height];
+    return [NSString stringWithFormat:@"X: %f Y: %f width: %f height: %f stunde: %@", x, y, width, height, lesson.kurzel];
 }
 
 
