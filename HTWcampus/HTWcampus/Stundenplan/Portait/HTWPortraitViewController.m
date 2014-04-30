@@ -273,7 +273,9 @@
             
             HTWCSVExport *csvExp = [[HTWCSVExport alloc] initWithArray:objects andMatrNr:Matrnr];
             
-            NSArray *itemsToShare = @[@"Stundenplan erstellt mit der iOS-App der HTW Dresden.", [csvExp getFileUrl]];
+            NSURL *fileURL = [csvExp getFileUrl];
+            
+            NSArray *itemsToShare = @[@"Mein Stundenplan erstellt mit der iOS-App der HTW Dresden.", fileURL];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
             
@@ -286,6 +288,10 @@
                     UIAlertView *alert = [[UIAlertView alloc] init];
                     alert.title = @"Stundenplan erfolgreich als CSV-Datei exportiert.";
                     [alert show];
+                    
+                    NSFileManager *manager = [[NSFileManager alloc] init];
+                    
+                    [manager removeItemAtPath:[fileURL absoluteString] error:nil];
                     
                     [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
                 }
@@ -309,7 +315,9 @@
             
             HTWICSExport *csvExp = [[HTWICSExport alloc] initWithArray:objects andMatrNr:Matrnr];
             
-            NSArray *itemsToShare = @[@"Mein Stundenplan, erstellt mit der iOS-App der HTW Dresden.", [csvExp getFileUrl]];
+            NSURL *fileURL = [csvExp getFileUrl];
+            
+            NSArray *itemsToShare = @[@"Mein Stundenplan, erstellt mit der iOS-App der HTW Dresden.", fileURL];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
             
@@ -322,6 +330,10 @@
                     UIAlertView *alert = [[UIAlertView alloc] init];
                     alert.title = @"Stundenplan erfolgreich als ICS-Datei exportiert.";
                     [alert show];
+                    
+                    NSFileManager *manager = [[NSFileManager alloc] init];
+                    
+                    [manager removeItemAtPath:[fileURL absoluteString] error:nil];
                     
                     [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
                 }
