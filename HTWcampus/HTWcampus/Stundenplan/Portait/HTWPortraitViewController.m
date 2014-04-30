@@ -168,7 +168,7 @@
         }
     }
     
-    [self scrollViewDidScroll:_scrollView];
+    [self orderViewsInScrollView:_scrollView];
 }
 
 -(void)dealloc
@@ -186,36 +186,7 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    for (UIView *this in _scrollView.subviews) {
-        CGPoint origin;
-        switch (this.tag) {
-            case 1: this.hidden = YES; break;
-            case -4:
-                this.frame = CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50);
-                [_scrollView bringSubviewToFront:this];
-                break;
-            case -2:
-                origin.x = _scrollView.contentOffset.x;
-                origin.y = this.frame.origin.y;
-                this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
-                [_scrollView bringSubviewToFront:this];
-                break;
-            case -3:
-                origin.x = _scrollView.contentOffset.x+15;
-                origin.y = this.frame.origin.y;
-                this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
-                break;
-            default:
-                break;
-        }
-    }
-    
-    for (UIView *this in _scrollView.subviews) {
-        if(this.tag == -3) {
-            [_scrollView bringSubviewToFront:this];
-            break;
-        }
-    }
+    [self orderViewsInScrollView:scrollView];
 }
 
 #pragma mark - Alert View
@@ -232,7 +203,6 @@
                 Matrnr = [alertView textFieldAtIndex:0].text;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
-                
                 
                 _parser = nil;
                 
@@ -251,10 +221,6 @@
                 }
             }
         }
-        else if ([clickedButtonTitle isEqualToString:[self alertViewCancelButtonTitle]])
-        {
-            NSLog(@"AlertView wurde abgebrochen.");
-        }
     }
     else if ([alertView.title isEqualToString:@"Exportieren"])
     {
@@ -264,8 +230,7 @@
             [request setEntity:[NSEntityDescription entityForName:@"Stunde"
                                            inManagedObjectContext:_context]];
 
-            NSPredicate *pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@)", Matrnr];
-            [request setPredicate:pred];
+            [request setPredicate:[NSPredicate predicateWithFormat:@"(student.matrnr = %@)", Matrnr]];
             
             // FetchRequest-Ergebnisse
             NSArray *objects = [_context executeFetchRequest:request error:nil];
@@ -275,7 +240,7 @@
             
             NSURL *fileURL = [csvExp getFileUrl];
             
-            NSArray *itemsToShare = @[@"Mein Stundenplan erstellt mit der iOS-App der HTW Dresden.", fileURL];
+            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",Matrnr], fileURL];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
             
@@ -317,7 +282,7 @@
             
             NSURL *fileURL = [csvExp getFileUrl];
             
-            NSArray *itemsToShare = @[@"Mein Stundenplan, erstellt mit der iOS-App der HTW Dresden.", fileURL];
+            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",Matrnr], fileURL];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
             
@@ -363,14 +328,14 @@
             
             image = [UIImage imageWithCGImage:imgRef];
             
-            NSArray *itemsToShare = @[@"Mein Stundenplan, erstellt mit der iOS-App der HTW Dresden.", image];
+            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",Matrnr], image];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
             
             activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
                 if ([activityType isEqualToString:UIActivityTypeSaveToCameraRoll] && completed) {
                     UIAlertView *alert = [[UIAlertView alloc] init];
-                    alert.title = @"Stundenplan erfolgreich exportiert.";
+                    alert.title = @"Stundenplan erfolgreich als Bild exportiert.";
                     [alert show];
                     
                     [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
@@ -684,6 +649,40 @@
     // FetchRequest-Ergebnisse
     _angezeigteStunden = [_context executeFetchRequest:request
                                                  error:nil];
+}
+
+-(void)orderViewsInScrollView:(UIScrollView*)scrollView
+{
+    for (UIView *this in scrollView.subviews) {
+        CGPoint origin;
+        switch (this.tag) {
+            case 1: this.hidden = YES; break;
+            case -4:
+                this.frame = CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50);
+                [scrollView bringSubviewToFront:this];
+                break;
+            case -2:
+                origin.x = scrollView.contentOffset.x;
+                origin.y = this.frame.origin.y;
+                this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
+                [scrollView bringSubviewToFront:this];
+                break;
+            case -3:
+                origin.x = scrollView.contentOffset.x+15;
+                origin.y = this.frame.origin.y;
+                this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    for (UIView *this in scrollView.subviews) {
+        if(this.tag == -3) {
+            [scrollView bringSubviewToFront:this];
+            break;
+        }
+    }
 }
 
 -(int)weekdayFromDate:(NSDate*)date
