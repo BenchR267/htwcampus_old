@@ -57,8 +57,8 @@
         NSString *uuid = [[NSUUID UUID] UUIDString];
         
         [erg appendString:[NSString stringWithFormat:@"BEGIN:VEVENT\r\nUID:%@\r\n", uuid]];
-        [erg appendString:[NSString stringWithFormat:@"DTSTART:%@T%@Z\r\n",[self nurTagFromDate:this.anfang], [self nurUhrzeigFromDate:this.anfang]]];
-        [erg appendString:[NSString stringWithFormat:@"DTEND:%@T%@Z\r\n",[self nurTagFromDate:this.ende], [self nurUhrzeigFromDate:this.ende]]];
+        [erg appendString:[NSString stringWithFormat:@"DTSTART;TZID=Europe/Berlin:%@T%@\r\n",[self nurTagFromDate:this.anfang], [self nurUhrzeigFromDate:this.anfang]]];
+        [erg appendString:[NSString stringWithFormat:@"DTEND;TZID=Europe/Berlin:%@T%@\r\n",[self nurTagFromDate:this.ende], [self nurUhrzeigFromDate:this.ende]]];
         [erg appendString:[NSString stringWithFormat:@"LAST-MODIFIED:%@T%@Z\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\n", [self nurTagFromDate:aktDatum], [self nurUhrzeigFromDate:aktDatum]]];
         [erg appendString:[NSString stringWithFormat:@"SUMMARY:%@\r\nDESCRIPTION:%@\r\nLOCATION:%@\r\nEND:VEVENT\r\n", titel, dozent, this.raum]];
     }
