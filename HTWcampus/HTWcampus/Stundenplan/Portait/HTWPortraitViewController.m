@@ -291,7 +291,7 @@
                     
                     NSFileManager *manager = [[NSFileManager alloc] init];
                     
-                    [manager removeItemAtPath:[fileURL absoluteString] error:nil];
+                    [manager removeItemAtPath:[fileURL path] error:nil];
                     
                     [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
                 }
@@ -333,7 +333,7 @@
                     
                     NSFileManager *manager = [[NSFileManager alloc] init];
                     
-                    [manager removeItemAtPath:[fileURL absoluteString] error:nil];
+                    [manager removeItemAtPath:[fileURL path] error:nil];
                     
                     [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
                 }
