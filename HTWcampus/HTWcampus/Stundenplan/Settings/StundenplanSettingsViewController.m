@@ -39,9 +39,6 @@
     
     htwColors = [[HTWColors alloc] init];
     
-    
-	// Do any additional setup after loading the view.
-    
     self.uebersichtButton.layer.cornerRadius = CornerRadius;
     self.matrikelnummernButton.layer.cornerRadius = CornerRadius;
 }
@@ -58,7 +55,6 @@
     
     _aktuelleMatrikelNummerLabel.text = [defaults objectForKey:@"Matrikelnummer"];
     
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:23/255.f green:43/255.f blue:54/255.f alpha:1.0];
     self.tabBarController.tabBar.barTintColor = htwColors.darkTabBarTint;
     [self.tabBarController.tabBar setSelectedImageTintColor:htwColors.darkTextColor];
     [self.tabBarController.tabBar setTintColor:htwColors.darkTextColor];
@@ -116,9 +112,7 @@
 }
 - (IBAction)designSegControlChanged:(UISegmentedControl *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (sender.selectedSegmentIndex == 0) {
-        [defaults setBool:YES forKey:@"hellesDesign"];
-    }
+    if (sender.selectedSegmentIndex == 0) [defaults setBool:YES forKey:@"hellesDesign"];
     else if (sender.selectedSegmentIndex == 1) [defaults setBool:NO forKey:@"hellesDesign"];
     [self viewDidLoad];
     [self viewWillAppear:YES];

@@ -427,7 +427,7 @@
         }
     }
     
-    [self reloadCellLabels];
+    [self reloadDaysLabelsAndBackground];
     
     for (Stunde *aktuell in self.angezeigteStunden) {
         if (!aktuell.anzeigen.boolValue) continue;
@@ -441,12 +441,12 @@
             [button addGestureRecognizer:longPressGR];
         }
     }
-    [self setUpZeitenView];
+    [self reloadZeitenViewAndClockLine];
     
     
 }
 
--(void)reloadCellLabels
+-(void)reloadDaysLabelsAndBackground
 {
     UIColor *schriftfarbe = htwColors.darkTextColor;
     
@@ -512,7 +512,7 @@
     
 }
 
--(void)setUpZeitenView
+-(void)reloadZeitenViewAndClockLine
 {
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
@@ -682,12 +682,13 @@
     [request setPredicate:pred];
     
     // FetchRequest-Ergebnisse
-    _angezeigteStunden = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
-                                                                                error:nil]];
+    _angezeigteStunden = [_context executeFetchRequest:request
+                                                 error:nil];
 }
 
 -(int)weekdayFromDate:(NSDate*)date
 {
+    // Montag : 0, Dienstag : 1, ....., Sonntag : 6
     int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
     if(weekday == -1) weekday=6;
     
