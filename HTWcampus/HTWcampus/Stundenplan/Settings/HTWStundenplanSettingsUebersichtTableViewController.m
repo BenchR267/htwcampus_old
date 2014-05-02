@@ -94,7 +94,8 @@
 		exit(-1);  // Fail
 	}
     
-    self.title = Matrnr;
+    if(![defaults boolForKey:@"Dozent"]) self.title = Matrnr;
+    else self.title = [self getNameOf:Matrnr];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -315,6 +316,20 @@
     NSError *saveError;
     [_context save:&saveError];
     if(saveError) NSLog(@"Saving changes to %@ failed: %@", onoff.ID, saveError);
+}
+
+#pragma mark - Hilfsfunktionen
+
+-(NSString*)getNameOf:(NSString*)matrnr
+{
+    NSManagedObjectContext *context = [HTWAppDelegate alloc].managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:context];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", matrnr];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    [request setPredicate:pred];
+    
+    return [(Student*)[context executeFetchRequest:request error:nil][0] name];
 }
 
 @end

@@ -108,6 +108,7 @@
             _name = [name substringToIndex:endRange.location];
             
             _student.name = _name;
+            _student.dozent = [NSNumber numberWithBool:YES];
             
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<form name=Testform method=post action=\\.\\.\\/plan\\/([^>]*)>" options:0 error:nil];
             NSTextCheckingResult *result = [regex firstMatchInString:html options:0 range:NSMakeRange(0, html.length)];
@@ -133,9 +134,11 @@
 -(void)HTWCSVParserFoundCharacters:(NSString *)characters withIndex:(int)index
 {
     NSError *error;
+    NSArray *kurzelTeile;
     switch (index) {
         case 0:
-            _stunde.kurzel = characters;
+            kurzelTeile = [characters componentsSeparatedByString:@"/"];
+            _stunde.kurzel = kurzelTeile[0];
             break;
         case 1:
             [_anfang appendString:characters];
@@ -143,7 +146,6 @@
             break;
         case 2:
             [_anfang appendString:characters];
-            NSLog(@"Anfang: %@", [self dateFromString:_anfang]);
             _stunde.anfang = [self dateFromString:_anfang];
             break;
         case 3:
@@ -154,10 +156,12 @@
             [_ende appendString:characters];
             _stunde.ende = [self dateFromString:_ende];
             break;
-        case 15:
+        case 16:
             _stunde.raum = characters;
             _stunde.bemerkungen = @"";
             _stunde.anzeigen = [NSNumber numberWithBool:YES];
+            _stunde.id = [NSString stringWithFormat:@"%@%d%@", _stunde.kurzel, [self weekdayFromDate:_stunde.anfang], [self uhrZeitFromDate:_stunde.anfang]];
+            _stunde.dozent = _name;
             [_student addStundenObject:_stunde];
 
             [_context save:&error];
@@ -181,10 +185,27 @@
     [_delegate HTWCSVConnectionFinished];
 }
 
+#pragma mark - Hilfsfunktionen
+
+-(int)weekdayFromDate:(NSDate*)date
+{
+    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
+    if(weekday == -1) weekday=6;
+    
+    return weekday;
+}
+
 -(NSDate*)dateFromString:(NSString*)date
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@" dd.MM.yyyy HH:mm:ss"];
+    [formatter setDateFormat:@"d.M.yyyy H:m:s"];
     return [formatter dateFromString:date];
+}
+
+-(NSString*)uhrZeitFromDate:(NSDate*)date
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"H:m"];
+    return [formatter stringFromDate:date];
 }
 @end

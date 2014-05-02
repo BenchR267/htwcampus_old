@@ -228,6 +228,7 @@
                 Matrnr = [alertView textFieldAtIndex:0].text;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
+                [defaults setBool:YES forKey:@"Dozent"];
                 
                 HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:Matrnr];
                 dozentParser.delegate = self;
@@ -248,12 +249,18 @@
             // FetchRequest-Ergebnisse
             NSArray *objects = [_context executeFetchRequest:request error:nil];
             
+            NSString *dateinamenErweiterung;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            if ([defaults boolForKey:@"Dozent"]) {
+                dateinamenErweiterung = [(Stunde*)objects[0] student].name;
+            }
+            else dateinamenErweiterung = [(Stunde*)objects[0] student].matrnr;
             
-            HTWCSVExport *csvExp = [[HTWCSVExport alloc] initWithArray:objects andMatrNr:Matrnr];
+            HTWCSVExport *csvExp = [[HTWCSVExport alloc] initWithArray:objects andMatrNr:dateinamenErweiterung];
             
             NSURL *fileURL = [csvExp getFileUrl];
             
-            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",Matrnr], fileURL];
+            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",dateinamenErweiterung], fileURL];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
             
@@ -291,11 +298,19 @@
             NSArray *objects = [_context executeFetchRequest:request error:nil];
             
             
-            HTWICSExport *csvExp = [[HTWICSExport alloc] initWithArray:objects andMatrNr:Matrnr];
+            NSString *dateinamenErweiterung;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            if ([defaults boolForKey:@"Dozent"]) {
+                dateinamenErweiterung = [(Stunde*)objects[0] student].name;
+            }
+            else dateinamenErweiterung = [(Stunde*)objects[0] student].matrnr;
+            
+            
+            HTWICSExport *csvExp = [[HTWICSExport alloc] initWithArray:objects andMatrNr:dateinamenErweiterung];
             
             NSURL *fileURL = [csvExp getFileUrl];
             
-            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",Matrnr], fileURL];
+            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",dateinamenErweiterung], fileURL];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
             
@@ -341,7 +356,14 @@
             
             image = [UIImage imageWithCGImage:imgRef];
             
-            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",Matrnr], image];
+            NSString *dateinamenErweiterung;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            if ([defaults boolForKey:@"Dozent"]) {
+                dateinamenErweiterung = [(Stunde*)_angezeigteStunden[0] student].name;
+            }
+            else dateinamenErweiterung = [(Stunde*)_angezeigteStunden[0] student].matrnr;
+            
+            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",dateinamenErweiterung], image];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
             
@@ -396,7 +418,7 @@
                                                         message:errorMessage
                                                        delegate:self
                                               cancelButtonTitle:[self alertViewCancelButtonTitle]
-                                              otherButtonTitles:[self alertViewOkButtonTitle], nil];
+                                              otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
     [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];    
     [alertView show];
 }

@@ -10,12 +10,13 @@
 
 #import "HTWAppDelegate.h"
 #import "HTWStundenplanParser.h"
+#import "HTWCSVConnection.h"
 #import "Student.h"
 
 #import "Stunde.h"
 #import "HTWColors.h"
 
-@interface HTWMatrikelnummernTableViewController () <NSFetchedResultsControllerDelegate, HTWStundenplanParserDelegate, UIAlertViewDelegate>
+@interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIAlertViewDelegate>
 {
     HTWAppDelegate *appdelegate;
     NSString *Matrnr;
@@ -76,7 +77,7 @@
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if([alertView alertViewStyle] == UIAlertViewStylePlainTextInput && [alertView.title isEqualToString:@"Neuen Stundenplan hinzufügen"])
     {
-        if ([buttonTitle isEqualToString:@"Ok"]) {
+        if ([buttonTitle isEqualToString:@"Student"]) {
             NSString *matrNr = [alertView textFieldAtIndex:0].text;
             _parser = nil;
             
@@ -111,13 +112,23 @@
             }
 
         }
+        else if ([buttonTitle isEqualToString:@"Dozent"]) {
+            if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
+                Matrnr = [alertView textFieldAtIndex:0].text;
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
+                
+                HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:Matrnr];
+                dozentParser.delegate = self;
+                [dozentParser startParser];
+            }
+        }
     }
     else if ([alertView.title isEqualToString:@"Stundenplan wiederherstellen"])
     {
         if([buttonTitle isEqualToString:@"Ok"])
         {
             NSIndexPath *path = [NSIndexPath indexPathForRow:alertView.tag inSection:0];
-            //    NSLog(@"Button gedrückt!!! %@", [(Student*)[fetchedResultsController objectAtIndexPath:path] matrnr]);
             
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
             spinner.frame = CGRectMake(0, 0, 50, 50);
@@ -125,9 +136,17 @@
             cell.accessoryView = spinner;
             [spinner startAnimating];
             
-            _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:[(Student*)_nummern[path.row] matrnr] andRaum:NO];
-            [_parser setDelegate:self];
-            [_parser parserStart];
+            if ([self.tableView cellForRowAtIndexPath:path].tag == 0) {
+                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:[(Student*)_nummern[path.row] matrnr] andRaum:NO];
+                [_parser setDelegate:self];
+                [_parser parserStart];
+            }
+            else {
+                HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:[(Student*)_nummern[path.row] matrnr]];
+                dozentParser.delegate = self;
+                [dozentParser startParser];
+            }
+            
         }
     }
 }
@@ -151,9 +170,16 @@
     
     Student *info = _nummern[indexPath.row];
     
+    if (info.dozent.boolValue == YES) {
+        cell.tag = 1;
+    }
+    else cell.tag = 0;
+    
 //    NSLog(@"Raum: %@", info.raum);
     
-    cell.textLabel.text = info.matrnr;
+    if(!info.dozent.boolValue) cell.textLabel.text = info.matrnr;
+    else cell.textLabel.text = info.name;
+    
     cell.textLabel.textColor = htwColors.darkTextColor;
     cell.backgroundColor = htwColors.darkCellBackground;
     
@@ -260,6 +286,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     Student *info = _nummern[indexPath.row];
+    [defaults setBool:info.dozent.boolValue forKey:@"Dozent"];
     [defaults setObject:info.matrnr forKey:@"Matrikelnummer"];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -271,7 +298,7 @@
                                                     message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe ein:"
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Ok", nil];
+                                          otherButtonTitles:@"Student", @"Dozent", nil];
     [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
     [alert show];
 }
@@ -285,8 +312,6 @@
                                           otherButtonTitles:@"Ok", nil];
     alert.tag = sender.tag;
     [alert show];
-    
-    
 }
 
 #pragma mark - StundenplanParser Delegate
@@ -332,6 +357,46 @@
     
 }
 
+-(void)HTWCSVConnectionFinished
+{
+    appdelegate = [[UIApplication sharedApplication] delegate];
+    _context = [appdelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
+    
+    _nummern = [_context executeFetchRequest:fetchRequest error:nil];
+    
+    [self.tableView reloadData];
+    for (int i=0; i<_nummern.count; i++) {
+        Student *aktuell = _nummern[i];
+        if ([aktuell.matrnr isEqualToString:_parser.Matrnr]) {
+            NSLog(@"und fertig..");
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
+            imageView.tag = i;
+            [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
+            imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [imageView setTintColor:[UIColor whiteColor]];
+            imageView.frame = CGRectMake(0, 0, 50, 50);
+            imageView.userInteractionEnabled = YES;
+            [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
+            cell.accessoryView = imageView;
+            
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            alert.title = @"Stundenplan erfolgreich heruntergeladen.";
+            [alert show];
+            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+            return;
+        }
+    }
+}
+
 -(void)HTWStundenplanParserError:(NSString *)errorMessage
 {
     UIAlertView *alert = [[UIAlertView alloc] init];
@@ -340,7 +405,5 @@
     [alert addButtonWithTitle:@"Ok"];
     [alert show];
 }
-
-
 
 @end

@@ -47,8 +47,11 @@
     
     for (int i = 1; i < lines.count; i++) {
         [_delegate HTWCSVParserFoundNewLine];
-        NSArray *parts = [lines[i] componentsSeparatedByString:@","];
-        for (int j = 0; j < 21; j++) {
+        NSString *kurzel = [lines[i] componentsSeparatedByString:@"\""][1];
+        kurzel = [kurzel stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        [_delegate HTWCSVParserFoundCharacters:kurzel withIndex:0];
+        NSArray *parts = [[lines[i] substringFromIndex:kurzel.length] componentsSeparatedByString:@","];
+        for (int j = 1; j < 21; j++) {
             NSString *erg = [parts[j] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             if([erg isEqualToString:@""]) erg = @" ";
             [_delegate HTWCSVParserFoundCharacters:erg withIndex:j];

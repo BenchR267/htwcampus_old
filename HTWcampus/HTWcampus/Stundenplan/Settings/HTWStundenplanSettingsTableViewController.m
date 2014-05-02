@@ -9,6 +9,8 @@
 #import "HTWStundenplanSettingsTableViewController.h"
 #import "HTWColors.h"
 #import "HTWStundenplanSettingsUebersichtTableViewController.h"
+#import "HTWAppDelegate.h"
+#import "Student.h"
 
 @interface HTWStundenplanSettingsTableViewController ()
 {
@@ -40,7 +42,8 @@
         [htwColors setLight];
     } else [htwColors setDark];
     
-    _matrikelnummernCell.detailTextLabel.text = [defaults objectForKey:@"Matrikelnummer"];
+    if(![defaults boolForKey:@"Dozent"]) _matrikelnummernCell.detailTextLabel.text = [defaults objectForKey:@"Matrikelnummer"];
+    else _matrikelnummernCell.detailTextLabel.text = [self getNameOf:[defaults objectForKey:@"Matrikelnummer"]];
     _markierSlider.value = [defaults floatForKey:@"markierSliderValue"];
     _sliderWert.text = [NSString stringWithFormat:@"%.0f min", self.markierSlider.value];
     
@@ -85,6 +88,20 @@
             sstvc.fetchedResultsController = nil;
         }
     }
+}
+
+#pragma mark - Hilfsfunktionen
+
+-(NSString*)getNameOf:(NSString*)matrnr
+{
+    NSManagedObjectContext *context = [HTWAppDelegate alloc].managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:context];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", matrnr];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    [request setPredicate:pred];
+    
+    return [(Student*)[context executeFetchRequest:request error:nil][0] name];
 }
 
 @end
