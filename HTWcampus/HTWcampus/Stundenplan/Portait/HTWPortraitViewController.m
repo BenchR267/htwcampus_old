@@ -16,10 +16,11 @@
 #import "HTWColors.h"
 #import "HTWCSVExport.h"
 #import "HTWICSExport.h"
+#import "HTWCSVConnection.h"
 
 #define PixelPerMin 0.5
 
-@interface HTWPortraitViewController () <HTWStundenplanParserDelegate, UIScrollViewDelegate>
+@interface HTWPortraitViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIScrollViewDelegate>
 {
     NSString *Matrnr; // Nur für Stundenplan Studenten
     BOOL isPortrait;
@@ -141,7 +142,7 @@
                                                             message:@"Bitte geben Sie Ihre Matrikelnummer oder Studiengruppe ein, damit der Stundenplan geladen werden kann."
                                                            delegate:self
                                                   cancelButtonTitle:[self alertViewCancelButtonTitle]
-                                                  otherButtonTitles:[self alertViewOkButtonTitle], nil];
+                                                  otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
         [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
         [alertView show];
     }
@@ -216,9 +217,21 @@
                     [_parser parserStart];
                 }
                 else
-                {                
+                {
                     [self setUpInterface];
                 }
+                }
+            }
+        
+        else if ([clickedButtonTitle isEqualToString:@"Dozent"]) {
+            if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
+                Matrnr = [alertView textFieldAtIndex:0].text;
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
+                
+                HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:Matrnr];
+                dozentParser.delegate = self;
+                [dozentParser startParser];
             }
         }
     }
@@ -356,7 +369,7 @@
 }
 -(NSString*)alertViewOkButtonTitle
 {
-    return @"Ok";
+    return @"Student";
 }
 
 #pragma mark - Stundenplan Parser Delegate
@@ -366,6 +379,15 @@
     [self updateAngezeigteStunden];
     
     [self setUpInterface];
+}
+
+-(void)HTWCSVConnectionFinished
+{
+    [self updateAngezeigteStunden];
+    
+    [self setUpInterface];
+    
+    NSLog(@"%lu", (unsigned long)_angezeigteStunden.count);
 }
 
 -(void)HTWStundenplanParserError:(NSString *)errorMessage
@@ -641,6 +663,7 @@
     [request setEntity:[NSEntityDescription entityForName:@"Stunde"
                                    inManagedObjectContext:_context]];
     NSPredicate *pred;
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@)", Matrnr];
     
     if(Matrnr) pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", Matrnr, today, theDayAfterTomorrow];
     else pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", _raumNummer, today, theDayAfterTomorrow];

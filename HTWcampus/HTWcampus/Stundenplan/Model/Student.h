@@ -2,7 +2,7 @@
 //  Student.h
 //  HTWcampus
 //
-//  Created by Benjamin Herzog on 23.04.14.
+//  Created by Benjamin Herzog on 02.05.14.
 //  Copyright (c) 2014 Benjamin Herzog. All rights reserved.
 //
 
@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSDate * letzteAktualisierung;
 @property (nonatomic, retain) NSString * matrnr;
 @property (nonatomic, retain) NSNumber * raum;
+@property (nonatomic, retain) NSNumber * dozent;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *stunden;
 @end
 

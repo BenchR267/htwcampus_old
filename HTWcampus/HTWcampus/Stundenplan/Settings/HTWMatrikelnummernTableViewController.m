@@ -332,6 +332,15 @@
     
 }
 
+-(void)HTWStundenplanParserError:(NSString *)errorMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] init];
+    alert.title = @"Fehler";
+    alert.message = errorMessage;
+    [alert addButtonWithTitle:@"Ok"];
+    [alert show];
+}
+
 
 
 @end
