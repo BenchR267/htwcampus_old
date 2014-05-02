@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Benjamin Herzog. All rights reserved.
 //
 
-#import "SwitchInStundenplanSettingsTableViewCell.h"
+#import "HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h"
 
-@implementation SwitchInStundenplanSettingsTableViewCell
+@implementation HTWSwitchInStundenplanSettingsUebersichtTableViewCell
 
 @end

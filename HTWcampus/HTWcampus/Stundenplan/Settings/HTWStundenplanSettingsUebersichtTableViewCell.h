@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SwitchInStundenplanSettingsTableViewCell.h"
+#import "HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h"
 
 
-@interface StundenplanSettingsTableViewCell : UITableViewCell
+@interface HTWStundenplanSettingsUebersichtTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet SwitchInStundenplanSettingsTableViewCell *cellSwitch;
+@property (weak, nonatomic) IBOutlet HTWSwitchInStundenplanSettingsUebersichtTableViewCell *cellSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *titelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
 

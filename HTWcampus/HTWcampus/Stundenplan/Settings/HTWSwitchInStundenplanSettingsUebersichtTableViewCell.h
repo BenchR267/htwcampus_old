@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SwitchInStundenplanSettingsTableViewCell : UISwitch
+@interface HTWSwitchInStundenplanSettingsUebersichtTableViewCell : UISwitch
 
 @property (nonatomic, strong) NSString *ID;
 

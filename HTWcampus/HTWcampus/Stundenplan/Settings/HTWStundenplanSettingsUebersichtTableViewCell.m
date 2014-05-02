@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Benjamin Herzog. All rights reserved.
 //
 
-#import "StundenplanSettingsTableViewCell.h"
+#import "HTWStundenplanSettingsUebersichtTableViewCell.h"
 
-@implementation StundenplanSettingsTableViewCell
+@implementation HTWStundenplanSettingsUebersichtTableViewCell
 
 
 

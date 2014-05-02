@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StundenplanSettingsTableViewController : UITableViewController
+@interface HTWStundenplanSettingsUebersichtTableViewController : UITableViewController
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 

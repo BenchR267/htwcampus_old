@@ -52,7 +52,7 @@
                         <barButtonItem key="leftBarButtonItem" image="Settings" id="rzC-X1-CYS">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="J7I-r8-4IZ" kind="push" identifier="settingsSegue" id="p3c-CU-Eym"/>
+                                <segue destination="nnZ-fM-8JQ" kind="push" identifier="settingsSegue" id="qi9-rZ-Od8"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Share" id="h1j-Ex-Y9b">
@@ -184,160 +184,131 @@
             </objects>
             <point key="canvasLocation" x="103" y="-2449"/>
         </scene>
-        <!--Stundenplan Settings View Controller - Einstellungen-->
-        <scene sceneID="8lM-94-6mh">
+        <!--Stundenplan Settings Table View Controller-->
+        <scene sceneID="KZT-gt-o1m">
             <objects>
-                <viewController id="J7I-r8-4IZ" customClass="StundenplanSettingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="whN-Dx-Vjl"/>
-                        <viewControllerLayoutGuide type="bottom" id="lFt-th-TNb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qby-HF-3fd">
+                <tableViewController id="nnZ-fM-8JQ" customClass="HTWStundenplanSettingsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0vO-Nn-lxV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyh-Dm-NJN">
-                                <rect key="frame" x="20" y="153" width="282" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1960784314" green="0.2274509804" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="xOu-lH-7PB"/>
-                                </constraints>
-                                <state key="normal" title="Stundenübersicht">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RLp-9f-OR6" kind="push" identifier="stundenOverview" id="aju-QD-3Xm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9P0-ue-Naz">
-                                <rect key="frame" x="20" y="72" width="282" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1960784314" green="0.2274509804" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="FJq-rc-KeJ"/>
-                                </constraints>
-                                <state key="normal" title="Stundenpläne">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="FAY-F5-R1p" kind="push" id="dao-vM-DgX"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Markierung vor Beginn der Stunde:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny1-8l-gvh">
-                                <rect key="frame" x="20" y="211" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="90" translatesAutoresizingMaskIntoConstraints="NO" id="60W-di-159">
-                                <rect key="frame" x="101" y="240" width="201" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.1960784314" green="0.2274509804" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="sliderValueChanged:" destination="J7I-r8-4IZ" eventType="valueChanged" id="p5X-1D-hIh"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQc-2f-0o7" userLabel="SliderWert">
-                                <rect key="frame" x="15" y="246" width="80" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="fCt-SJ-bTL"/>
-                                    <constraint firstAttribute="width" constant="80" id="ra0-nO-xhr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Ya-jB-Ogl">
-                                <rect key="frame" x="53" y="520" width="215" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="helles Design"/>
-                                    <segment title="dunkles Design"/>
-                                </segments>
-                                <color key="tintColor" red="0.1960784314" green="0.2274509804" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="designSegControlChanged:" destination="J7I-r8-4IZ" eventType="valueChanged" id="Enb-j8-LfG"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aktuell ausgewählt:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyr-cb-vgL">
-                                <rect key="frame" x="20" y="124" width="149" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fb5-Su-fqO">
-                                <rect key="frame" x="182" y="124" width="118" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="118" id="1nC-hx-3aM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="pQc-2f-0o7" firstAttribute="top" secondItem="ny1-8l-gvh" secondAttribute="bottom" constant="14" id="0jg-F5-mqF"/>
-                            <constraint firstItem="pQc-2f-0o7" firstAttribute="leading" secondItem="qby-HF-3fd" secondAttribute="leading" constant="15" id="6SI-DZ-Ymn"/>
-                            <constraint firstItem="9P0-ue-Naz" firstAttribute="top" secondItem="whN-Dx-Vjl" secondAttribute="bottom" constant="8" id="D0q-hB-5jg"/>
-                            <constraint firstAttribute="trailing" secondItem="9P0-ue-Naz" secondAttribute="trailing" constant="18" id="EMO-tg-IbA"/>
-                            <constraint firstItem="60W-di-159" firstAttribute="leading" secondItem="pQc-2f-0o7" secondAttribute="trailing" constant="8" symbolic="YES" id="FG7-Qd-fnM"/>
-                            <constraint firstItem="9P0-ue-Naz" firstAttribute="leading" secondItem="qby-HF-3fd" secondAttribute="leading" constant="20" symbolic="YES" id="HyQ-Bg-ykZ"/>
-                            <constraint firstItem="fb5-Su-fqO" firstAttribute="top" secondItem="9P0-ue-Naz" secondAttribute="bottom" constant="8" symbolic="YES" id="KjI-eA-Y3S"/>
-                            <constraint firstItem="60W-di-159" firstAttribute="top" secondItem="ny1-8l-gvh" secondAttribute="bottom" constant="8" symbolic="YES" id="Mau-8L-pck"/>
-                            <constraint firstAttribute="trailing" secondItem="fb5-Su-fqO" secondAttribute="trailing" constant="20" symbolic="YES" id="Mev-id-Q82"/>
-                            <constraint firstItem="Cyh-Dm-NJN" firstAttribute="leading" secondItem="Oyr-cb-vgL" secondAttribute="leading" id="Mm7-4q-dvI"/>
-                            <constraint firstItem="9P0-ue-Naz" firstAttribute="trailing" secondItem="Cyh-Dm-NJN" secondAttribute="trailing" id="Pbx-H2-jqo"/>
-                            <constraint firstItem="ny1-8l-gvh" firstAttribute="top" secondItem="Cyh-Dm-NJN" secondAttribute="bottom" constant="14" id="Q7O-Rb-jio"/>
-                            <constraint firstItem="ny1-8l-gvh" firstAttribute="trailing" secondItem="fb5-Su-fqO" secondAttribute="trailing" id="Udx-JN-eiD"/>
-                            <constraint firstItem="Cyh-Dm-NJN" firstAttribute="top" secondItem="Oyr-cb-vgL" secondAttribute="bottom" constant="8" symbolic="YES" id="X0e-GN-vRm"/>
-                            <constraint firstItem="fb5-Su-fqO" firstAttribute="baseline" secondItem="Oyr-cb-vgL" secondAttribute="baseline" id="daJ-HF-b0n"/>
-                            <constraint firstItem="5Ya-jB-Ogl" firstAttribute="centerX" secondItem="ny1-8l-gvh" secondAttribute="centerX" id="eDi-jS-Mg6"/>
-                            <constraint firstItem="9P0-ue-Naz" firstAttribute="leading" secondItem="Oyr-cb-vgL" secondAttribute="leading" id="mnA-hg-X8U"/>
-                            <constraint firstAttribute="bottom" secondItem="5Ya-jB-Ogl" secondAttribute="bottom" constant="20" symbolic="YES" id="ovw-M6-aVT"/>
-                            <constraint firstItem="Oyr-cb-vgL" firstAttribute="top" secondItem="9P0-ue-Naz" secondAttribute="bottom" constant="8" symbolic="YES" id="pNF-DC-Kkw"/>
-                            <constraint firstItem="60W-di-159" firstAttribute="trailing" secondItem="ny1-8l-gvh" secondAttribute="trailing" id="pdr-cL-YLV"/>
-                            <constraint firstItem="ny1-8l-gvh" firstAttribute="leading" secondItem="Cyh-Dm-NJN" secondAttribute="leading" id="vRv-Pn-7DC"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Einstellungen" id="fHT-DW-Dso"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Stundenplan" id="UPZ-wC-dju">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="dUn-8l-5Ro" detailTextLabel="x0v-AO-VQe" rowHeight="70" style="IBUITableViewCellStyleValue1" id="q6k-gO-nub">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q6k-gO-nub" id="Cf7-5D-6RN">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Stundenpläne" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dUn-8l-5Ro">
+                                                    <rect key="frame" x="15" y="24" width="107" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x0v-AO-VQe">
+                                                    <rect key="frame" x="241" y="24" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="FAY-F5-R1p" kind="push" id="Ewa-6R-wtQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="wRm-zc-wS4" rowHeight="70" style="IBUITableViewCellStyleDefault" id="kIP-7L-xIY">
+                                        <rect key="frame" x="0.0" y="156" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kIP-7L-xIY" id="4iL-NZ-cmD">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Stundenübersicht" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wRm-zc-wS4">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="69"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="RLp-9f-OR6" kind="push" identifier="stundenOverview" id="I12-iz-W8v"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Markierung vor Beginn der Stunde" id="21z-Jj-jyE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="5MF-uz-lzT">
+                                        <rect key="frame" x="0.0" y="248" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5MF-uz-lzT" id="Hmt-NY-Ihx">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vv3-Kg-RBk">
+                                                    <rect key="frame" x="9" y="10" width="96" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="90" translatesAutoresizingMaskIntoConstraints="NO" id="ury-VD-uDq">
+                                                    <rect key="frame" x="111" y="20" width="191" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.40000003579999999" green="0.78039222959999999" blue="0.92941182850000004" alpha="1" colorSpace="deviceRGB"/>
+                                                    <connections>
+                                                        <action selector="sliderValueChanged:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="1Ze-cj-Ss4"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="nnZ-fM-8JQ" id="xqa-QZ-cv0"/>
+                            <outlet property="delegate" destination="nnZ-fM-8JQ" id="MpS-e0-eJM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="JLa-Zf-oux"/>
                     <connections>
-                        <outlet property="aktuelleMatrikelNummerLabel" destination="fb5-Su-fqO" id="Im8-6Q-2gJ"/>
-                        <outlet property="designSegControl" destination="5Ya-jB-Ogl" id="G7f-2P-NHp"/>
-                        <outlet property="markierSlider" destination="60W-di-159" id="8dx-mH-dR4"/>
-                        <outlet property="matrikelnummernButton" destination="9P0-ue-Naz" id="0eb-b3-YQm"/>
-                        <outlet property="sliderWert" destination="pQc-2f-0o7" id="8JG-kM-J2z"/>
-                        <outlet property="uebersichtButton" destination="Cyh-Dm-NJN" id="y5G-uG-gvd"/>
+                        <outlet property="markierSlider" destination="ury-VD-uDq" id="EE9-Ni-0oL"/>
+                        <outlet property="markierungsCell" destination="5MF-uz-lzT" id="Dp3-rl-RYe"/>
+                        <outlet property="matrikelnummernCell" destination="q6k-gO-nub" id="zqE-Cq-XpF"/>
+                        <outlet property="sliderWert" destination="Vv3-Kg-RBk" id="fzM-jO-4Mu"/>
+                        <outlet property="uebersichtCell" destination="kIP-7L-xIY" id="Ows-gU-KjI"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g8R-9Z-m30" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YaR-XL-ywu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="563" y="-1796"/>
+            <point key="canvasLocation" x="844" y="-1765"/>
         </scene>
-        <!--Stundenplan Settings Table View Controller - Stundenübersicht-->
+        <!--Stundenplan Settings Uebersicht Table View Controller - Stundenübersicht-->
         <scene sceneID="Psp-BU-Qme">
             <objects>
-                <tableViewController id="RLp-9f-OR6" customClass="StundenplanSettingsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="RLp-9f-OR6" customClass="HTWStundenplanSettingsUebersichtTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="bQL-pC-xFN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="57" id="ynV-Ux-4Nf" customClass="StundenplanSettingsTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="57" id="ynV-Ux-4Nf" customClass="HTWStundenplanSettingsUebersichtTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="ynV-Ux-4Nf" id="wpq-9t-Fno">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azj-WC-xqg" customClass="SwitchInStundenplanSettingsTableViewCell">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azj-WC-xqg" customClass="HTWSwitchInStundenplanSettingsUebersichtTableViewCell">
                                             <rect key="frame" x="258" y="12" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="onTintColor" red="0.97647058819999999" green="0.60784313729999995" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1220,7 +1191,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AnV-56-qVk"/>
         <segue reference="jSq-mH-kOp"/>
+        <segue reference="AnV-56-qVk"/>
     </inferredMetricsTieBreakers>
 </document>

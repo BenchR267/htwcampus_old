@@ -9,13 +9,13 @@
 #import "HTWAppDelegate.h"
 #import "Student.h"
 
-#import "StundenplanSettingsTableViewController.h"
-#import "StundenplanSettingsTableViewCell.h"
+#import "HTWStundenplanSettingsUebersichtTableViewController.h"
+#import "HTWStundenplanSettingsUebersichtTableViewCell.h"
 #import "Stunde.h"
-#import "SwitchInStundenplanSettingsTableViewCell.h"
+#import "HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h"
 #import "HTWColors.h"
 
-@interface StundenplanSettingsTableViewController () <NSFetchedResultsControllerDelegate>
+@interface HTWStundenplanSettingsUebersichtTableViewController () <NSFetchedResultsControllerDelegate>
 {
     HTWAppDelegate *appdelegate;
     NSString *Matrnr;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation StundenplanSettingsTableViewController
+@implementation HTWStundenplanSettingsUebersichtTableViewController
 
 @synthesize fetchedResultsController;
 
@@ -94,7 +94,7 @@
 		exit(-1);  // Fail
 	}
     
-    self.title = [NSString stringWithFormat:@"%@ Stunden", Matrnr];
+    self.title = Matrnr;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,7 +109,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         
-        StundenplanSettingsTableViewCell *cell = (StundenplanSettingsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        HTWStundenplanSettingsUebersichtTableViewCell *cell = (HTWStundenplanSettingsUebersichtTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         NSLog(@"%@ wurde gelöscht.",cell.ID);
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -182,7 +182,7 @@
     return 1;
 }
 
-- (void)configureCell:(StundenplanSettingsTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(HTWStundenplanSettingsUebersichtTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Stunde *info = [fetchedResultsController objectAtIndexPath:indexPath];
     
     NSString *typ = [info.kurzel substringWithRange:NSMakeRange([info.kurzel length]-1, 1)];
@@ -239,7 +239,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    StundenplanSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    HTWStundenplanSettingsUebersichtTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     [self configureCell:cell atIndexPath:indexPath];
     
@@ -266,7 +266,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:(StundenplanSettingsTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(HTWStundenplanSettingsUebersichtTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -303,7 +303,7 @@
 
 - (IBAction)flip:(id)sender
 {
-    SwitchInStundenplanSettingsTableViewCell *onoff = (SwitchInStundenplanSettingsTableViewCell *) sender;
+    HTWSwitchInStundenplanSettingsUebersichtTableViewCell *onoff = (HTWSwitchInStundenplanSettingsUebersichtTableViewCell *) sender;
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stunde"

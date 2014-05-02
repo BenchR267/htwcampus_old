@@ -69,20 +69,7 @@
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (IBAction)addButtonPressed:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Neuen Stundenplan hinzufügen"
-                                                    message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe ein:"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Ok", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [alert show];
-}
+#pragma mark - AlertView Delegate
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -181,59 +168,11 @@
     [imageView setTintColor:[UIColor whiteColor]];
     imageView.frame = CGRectMake(0, 0, 50, 50);
     imageView.userInteractionEnabled = YES;
-    [imageView addTarget:self action:@selector(didTapStar:) forControlEvents:UIControlEventTouchUpInside];
+    [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
     cell.accessoryView = imageView;
     
     
     return cell;
-}
-
--(void)didTapStar:(UIButton *)sender
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Stundenplan wiederherstellen"
-                                                    message:@"Wenn Sie auf Ok tippen, werden alle momentanen Stunden incl aller Änderungen in der Datenbank gelöscht und durch das Original auf den HTW-Servern ersetzt. Sind Sie sicher?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Ok", nil];
-    alert.tag = sender.tag;
-    [alert show];
-    
-    
-}
-
--(void)HTWStundenplanParserFinished
-{
-    appdelegate = [[UIApplication sharedApplication] delegate];
-    _context = [appdelegate managedObjectContext];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
-    [fetchRequest setEntity:entity];
-    
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-    
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
-    
-    _nummern = [_context executeFetchRequest:fetchRequest error:nil];
-    
-    [self.tableView reloadData];
-    for (int i=0; i<_nummern.count; i++) {
-        Student *aktuell = _nummern[i];
-        if ([aktuell.matrnr isEqualToString:_parser.Matrnr]) {
-            NSLog(@"und fertig..");
-            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-            UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
-            imageView.tag = i;
-            [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
-            imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            [imageView setTintColor:[UIColor whiteColor]];
-            imageView.frame = CGRectMake(0, 0, 50, 50);
-            imageView.userInteractionEnabled = YES;
-            [imageView addTarget:self action:@selector(didTapStar:) forControlEvents:UIControlEventTouchUpInside];
-            cell.accessoryView = imageView;
-            return;
-        }
-    }
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -248,20 +187,6 @@
     return YES;
 }
 
-
-//// Override to support editing the table view.
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        [_context deleteObject:_nummern[indexPath.row]];
-//        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        NSLog(@"Etwas hinzugefügt");
-//    }   
-//}
-
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -275,7 +200,9 @@
         
         [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
         
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", [(Student*)_nummern[indexPath.row] matrnr]]];
+        NSString *zuLoeschendeNummer = [(Student*)_nummern[indexPath.row] matrnr];
+        
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", zuLoeschendeNummer]];
         
         NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
         for (Student *aktuell in tempArray) {
@@ -292,6 +219,12 @@
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
         
         _nummern = [_context executeFetchRequest:fetchRequest error:nil];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([zuLoeschendeNummer isEqualToString:[defaults objectForKey:@"Matrikelnummer"]])
+            [defaults setObject:[(Student*)_nummern[0] matrnr] forKey:@"Matrikelnummer"];
+        
+        
         
         [self.tableView reloadData];
         
@@ -323,11 +256,6 @@
     NSLog(@"%@", [(Student*)_nummern[indexPath.row] matrnr]);
 }
 
-
-
-
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -335,5 +263,75 @@
     [defaults setObject:info.matrnr forKey:@"Matrikelnummer"];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - IBAction
+
+- (IBAction)addButtonPressed:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Neuen Stundenplan hinzufügen"
+                                                    message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe ein:"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Abbrechen"
+                                          otherButtonTitles:@"Ok", nil];
+    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [alert show];
+}
+
+-(void)didTabReloadButton:(UIButton *)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Stundenplan wiederherstellen"
+                                                    message:@"Wenn Sie auf Ok tippen, werden alle momentanen Stunden incl aller Änderungen in der Datenbank gelöscht und durch das Original auf den HTW-Servern ersetzt. Sind Sie sicher?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Abbrechen"
+                                          otherButtonTitles:@"Ok", nil];
+    alert.tag = sender.tag;
+    [alert show];
+    
+    
+}
+
+#pragma mark - StundenplanParser Delegate
+
+-(void)HTWStundenplanParserFinished
+{
+    appdelegate = [[UIApplication sharedApplication] delegate];
+    _context = [appdelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
+    
+    _nummern = [_context executeFetchRequest:fetchRequest error:nil];
+    
+    [self.tableView reloadData];
+    for (int i=0; i<_nummern.count; i++) {
+        Student *aktuell = _nummern[i];
+        if ([aktuell.matrnr isEqualToString:_parser.Matrnr]) {
+            NSLog(@"und fertig..");
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
+            imageView.tag = i;
+            [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
+            imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [imageView setTintColor:[UIColor whiteColor]];
+            imageView.frame = CGRectMake(0, 0, 50, 50);
+            imageView.userInteractionEnabled = YES;
+            [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
+            cell.accessoryView = imageView;
+            
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            alert.title = @"Stundenplan erfolgreich heruntergeladen.";
+            [alert show];
+            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+            return;
+        }
+    }
+    
+}
+
+
 
 @end
