@@ -39,38 +39,7 @@
     _password = [password copy];
     _array = [[NSMutableArray alloc] init];
     _context = [[HTWAppDelegate alloc] managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Student"
-                                   inManagedObjectContext:_context]];
     
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.password];
-    [request setPredicate:pred];
-    
-    NSMutableArray *objects = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
-                                                                                     error:nil]];
-    
-    // Dürfte nur ein Ergebnis haben
-    for (Student *this in objects) {
-        for (Stunde *aktuell in this.stunden) {
-            [_context deleteObject:aktuell];
-        }
-    }
-    [_context save:nil];
-    
-    if ([objects count] != 0) {
-        _student = objects[0];
-    }
-    else {
-        _student = [NSEntityDescription
-                      insertNewObjectForEntityForName:@"Student"
-                      inManagedObjectContext:_context];
-        _student.matrnr = self.password;
-        _student.letzteAktualisierung = [NSDate date];
-        _student.raum = [NSNumber numberWithBool:NO];
-    }
-    
-    
-    [_context save:nil];
     
     return self;
 }
@@ -101,14 +70,17 @@
         else {
             NSString *html = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             
+            if ([html rangeOfString:@"Falsche Kennung"].length != 0) {
+                [_delegate HTWCSVConnectionError:@"Falsche Kennung"];
+                return;
+            }
+            
             NSRange startRange = [html rangeOfString:@"<b>"];
             NSString *name = [html substringFromIndex:startRange.location+3];
             
             NSRange endRange = [name rangeOfString:@"</b>"];
             _name = [name substringToIndex:endRange.location];
             
-            _student.name = _name;
-            _student.dozent = [NSNumber numberWithBool:YES];
             
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<form name=Testform method=post action=\\.\\.\\/plan\\/([^>]*)>" options:0 error:nil];
             NSTextCheckingResult *result = [regex firstMatchInString:html options:0 range:NSMakeRange(0, html.length)];
@@ -116,6 +88,42 @@
                 NSRange range = [result rangeAtIndex:1];
                 NSString *filename = [html substringWithRange:range];
                 NSString *fileURL = [NSString stringWithFormat:@"http://www2.htw-dresden.de/~rawa/cgi-bin/plan/%@", filename];
+                
+                NSFetchRequest *request = [[NSFetchRequest alloc] init];
+                [request setEntity:[NSEntityDescription entityForName:@"Student"
+                                               inManagedObjectContext:_context]];
+                
+                NSPredicate *pred =[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.password];
+                [request setPredicate:pred];
+                
+                NSMutableArray *objects = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
+                                                                                                 error:nil]];
+                
+                // Dürfte nur ein Ergebnis haben
+                for (Student *this in objects) {
+                    for (Stunde *aktuell in this.stunden) {
+                        [_context deleteObject:aktuell];
+                    }
+                }
+                [_context save:nil];
+                
+                if ([objects count] != 0) {
+                    _student = objects[0];
+                }
+                else {
+                    _student = [NSEntityDescription
+                                insertNewObjectForEntityForName:@"Student"
+                                inManagedObjectContext:_context];
+                    _student.matrnr = self.password;
+                    _student.letzteAktualisierung = [NSDate date];
+                    _student.raum = [NSNumber numberWithBool:NO];
+                }
+                
+                _student.name = _name;
+                _student.dozent = [NSNumber numberWithBool:YES];
+                
+                [_context save:nil];
+                
                 HTWCSVParser *parser = [[HTWCSVParser alloc] initWithURL:[NSURL URLWithString:fileURL]];
                 parser.delegate = self;
                 [parser startHTWCSVParser];

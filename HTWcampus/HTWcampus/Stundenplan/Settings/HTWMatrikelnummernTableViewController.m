@@ -75,7 +75,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if([alertView alertViewStyle] == UIAlertViewStylePlainTextInput && [alertView.title isEqualToString:@"Neuen Stundenplan hinzufügen"])
+    if([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput && [alertView.title isEqualToString:@"Neuen Stundenplan hinzufügen"])
     {
         if ([buttonTitle isEqualToString:@"Student"]) {
             NSString *matrNr = [alertView textFieldAtIndex:0].text;
@@ -113,12 +113,10 @@
 
         }
         else if ([buttonTitle isEqualToString:@"Dozent"]) {
-            if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
-                Matrnr = [alertView textFieldAtIndex:0].text;
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
+            if ([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput) {
+                NSString *matrNr = [alertView textFieldAtIndex:0].text;
                 
-                HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:Matrnr];
+                HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:matrNr];
                 dozentParser.delegate = self;
                 [dozentParser startParser];
             }
@@ -299,7 +297,7 @@
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
                                           otherButtonTitles:@"Student", @"Dozent", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [alert setAlertViewStyle:UIAlertViewStyleSecureTextInput];
     [alert show];
 }
 
@@ -359,6 +357,9 @@
 
 -(void)HTWCSVConnectionFinished
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:@"Matrikelnummer"];
+    
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
     
@@ -398,6 +399,15 @@
 }
 
 -(void)HTWStundenplanParserError:(NSString *)errorMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] init];
+    alert.title = @"Fehler";
+    alert.message = errorMessage;
+    [alert addButtonWithTitle:@"Ok"];
+    [alert show];
+}
+
+-(void)HTWCSVConnectionError:(NSString *)errorMessage
 {
     UIAlertView *alert = [[UIAlertView alloc] init];
     alert.title = @"Fehler";

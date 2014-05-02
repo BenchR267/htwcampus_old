@@ -143,7 +143,7 @@
                                                            delegate:self
                                                   cancelButtonTitle:[self alertViewCancelButtonTitle]
                                                   otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
-        [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];
         [alertView show];
     }
     else
@@ -200,7 +200,7 @@
     {
         if ([clickedButtonTitle isEqualToString:[self alertViewOkButtonTitle]])
         {
-            if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
+            if ([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput) {
                 Matrnr = [alertView textFieldAtIndex:0].text;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
@@ -224,7 +224,7 @@
             }
         
         else if ([clickedButtonTitle isEqualToString:@"Dozent"]) {
-            if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
+            if ([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput) {
                 Matrnr = [alertView textFieldAtIndex:0].text;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
@@ -419,7 +419,18 @@
                                                        delegate:self
                                               cancelButtonTitle:[self alertViewCancelButtonTitle]
                                               otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
-    [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];    
+    [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];    
+    [alertView show];
+}
+
+-(void)HTWCSVConnectionError:(NSString *)errorMessage
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                        message:errorMessage
+                                                       delegate:self
+                                              cancelButtonTitle:[self alertViewCancelButtonTitle]
+                                              otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
+    [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];
     [alertView show];
 }
 

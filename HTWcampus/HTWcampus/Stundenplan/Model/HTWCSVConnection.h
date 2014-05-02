@@ -12,6 +12,7 @@
 
 @optional
 -(void)HTWCSVConnectionFinished;
+-(void)HTWCSVConnectionError:(NSString*)errorMessage;
 
 @end
 
