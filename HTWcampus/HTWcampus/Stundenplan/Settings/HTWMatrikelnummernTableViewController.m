@@ -26,6 +26,7 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) HTWStundenplanParser *parser;
+@property (nonatomic, strong) HTWCSVConnection *dozentParser;
 @property (nonatomic, strong) NSArray *nummern;
 
 @end
@@ -115,10 +116,36 @@
         else if ([buttonTitle isEqualToString:@"Dozent"]) {
             if ([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput) {
                 NSString *matrNr = [alertView textFieldAtIndex:0].text;
+                _dozentParser = nil;
                 
-                HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:matrNr];
-                dozentParser.delegate = self;
-                [dozentParser startParser];
+                appdelegate = [[UIApplication sharedApplication] delegate];
+                _context = [appdelegate managedObjectContext];
+                
+                NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+                [fetchRequest setEntity:entity];
+                
+                [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+                
+                [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", matrNr]];
+                
+                NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
+                
+                if(tempArray.count == 0)
+                {
+                    _dozentParser = [[HTWCSVConnection alloc] initWithPassword:matrNr];
+                    _dozentParser.delegate = self;
+                    [_dozentParser startParser];
+                }
+                else
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nummer schon vorhanden"
+                                                                    message:@"Die Nummer ist in der Datenbank schon vorhanden, bitte tippen Sie stattdessen auf das Aktualisieren-Symbol."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Ok"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
             }
         }
     }
@@ -140,9 +167,9 @@
                 [_parser parserStart];
             }
             else {
-                HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:[(Student*)_nummern[path.row] matrnr]];
-                dozentParser.delegate = self;
-                [dozentParser startParser];
+                _dozentParser = [[HTWCSVConnection alloc] initWithPassword:[(Student*)_nummern[path.row] matrnr]];
+                _dozentParser.delegate = self;
+                [_dozentParser startParser];
             }
             
         }
@@ -293,7 +320,7 @@
 
 - (IBAction)addButtonPressed:(id)sender {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Neuen Stundenplan hinzufügen"
-                                                    message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe ein:"
+                                                    message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:"
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
                                           otherButtonTitles:@"Student", @"Dozent", nil];
@@ -316,6 +343,9 @@
 
 -(void)HTWStundenplanParserFinished
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_parser.Matrnr forKey:@"Matrikelnummer"];
+    
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
     
@@ -358,7 +388,7 @@
 -(void)HTWCSVConnectionFinished
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:nil forKey:@"Matrikelnummer"];
+    [defaults setObject:_dozentParser.password forKey:@"Matrikelnummer"];
     
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
@@ -376,7 +406,7 @@
     [self.tableView reloadData];
     for (int i=0; i<_nummern.count; i++) {
         Student *aktuell = _nummern[i];
-        if ([aktuell.matrnr isEqualToString:_parser.Matrnr]) {
+        if ([aktuell.matrnr isEqualToString:_dozentParser.password]) {
             NSLog(@"und fertig..");
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];

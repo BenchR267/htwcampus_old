@@ -139,7 +139,7 @@
     
     if (!Matrnr && !self.raumNummer) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hallo"
-                                                            message:@"Bitte geben Sie Ihre Matrikelnummer oder Studiengruppe ein, damit der Stundenplan geladen werden kann."
+                                                            message:@"Bitte geben Sie Ihre Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein, damit der Stundenplan geladen werden kann."
                                                            delegate:self
                                                   cancelButtonTitle:[self alertViewCancelButtonTitle]
                                                   otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
@@ -408,8 +408,6 @@
     [self updateAngezeigteStunden];
     
     [self setUpInterface];
-    
-    NSLog(@"%lu", (unsigned long)_angezeigteStunden.count);
 }
 
 -(void)HTWStundenplanParserError:(NSString *)errorMessage

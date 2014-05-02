@@ -17,7 +17,7 @@
 @interface HTWCSVConnection () <HTWCSVParserDelegate>
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *password;
+
 @property (nonatomic, strong) NSString *stringToParse;
 
 @property (nonatomic, strong) NSMutableArray *array;
@@ -36,7 +36,7 @@
 {
     self = [self init];
     
-    _password = [password copy];
+    _password = password;
     _array = [[NSMutableArray alloc] init];
     _context = [[HTWAppDelegate alloc] managedObjectContext];
     

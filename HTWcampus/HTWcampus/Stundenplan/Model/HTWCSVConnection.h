@@ -19,6 +19,7 @@
 @interface HTWCSVConnection : NSObject
 
 @property (nonatomic, strong) id <HTWCSVConnectionDelegate> delegate;
+@property (nonatomic, strong) NSString *password;
 
 -(id)initWithPassword:(NSString*)password;
 -(void)startParser;
