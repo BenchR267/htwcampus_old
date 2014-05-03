@@ -82,7 +82,7 @@
 
 - (IBAction)speichernButtonPressed:(UIBarButtonItem *)sender
 {
-    if ([_titelTextField.text isEqualToString:@""] || [_kurzelTextField.text isEqualToString:@""] || [_dozentTextField.text isEqualToString:@""] || [_raumTextField.text isEqualToString:@""] || [_wiederholungenTextField.text isEqualToString:@""] || _wiederholungenTextField.text.floatValue == 0 || anfang > ende) {
+    if ([_titelTextField.text isEqualToString:@""] || [_kurzelTextField.text isEqualToString:@""] || [_dozentTextField.text isEqualToString:@""] || [_raumTextField.text isEqualToString:@""] || [_wiederholungenTextField.text isEqualToString:@""] || _wiederholungenTextField.text.floatValue == 0 || [anfang compare:ende] == NSOrderedDescending) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Da ist wohl was schief gegangen"
                                                             message:@"Bitte alle Felder ausfüllen und achten Sie darauf, dass das Anfangsdatum vor dem Enddatum liegen muss."
                                                            delegate:self
