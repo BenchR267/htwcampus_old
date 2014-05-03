@@ -266,8 +266,12 @@
         _nummern = [_context executeFetchRequest:fetchRequest error:nil];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        if ([zuLoeschendeNummer isEqualToString:[defaults objectForKey:@"Matrikelnummer"]])
-            [defaults setObject:[(Student*)_nummern[0] matrnr] forKey:@"Matrikelnummer"];
+        if ([zuLoeschendeNummer isEqualToString:[defaults objectForKey:@"Matrikelnummer"]]) {
+            if(_nummern.count)
+                [defaults setObject:[(Student*)_nummern[0] matrnr] forKey:@"Matrikelnummer"];
+            else
+                [defaults setObject:nil forKey:@"Matrikelnummer"];
+        }
         
         
         
