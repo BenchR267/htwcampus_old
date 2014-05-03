@@ -61,7 +61,7 @@
     
     
     [fetchRequest setReturnsDistinctResults:YES];
-//    [fetchRequest setResultType:NSDictionaryResultType];
+
     [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:@"id"]];
     
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -139,7 +139,6 @@
         [htwColors setLight];
     } else [htwColors setDark];
     
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:23/255.f green:43/255.f blue:54/255.f alpha:1.0];
     self.tabBarController.tabBar.barTintColor = htwColors.darkTabBarTint;
     [self.tabBarController.tabBar setTintColor:htwColors.darkTextColor];
     [self.tabBarController.tabBar setSelectedImageTintColor:htwColors.darkTextColor];
@@ -243,8 +242,8 @@
     return cell;
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
     [self.tableView beginUpdates];
 }
 

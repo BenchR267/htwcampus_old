@@ -200,17 +200,11 @@
     }
     else cell.tag = 0;
     
-//    NSLog(@"Raum: %@", info.raum);
-    
     if(!info.dozent.boolValue) cell.textLabel.text = info.matrnr;
     else cell.textLabel.text = info.name;
     
     cell.textLabel.textColor = htwColors.darkTextColor;
     cell.backgroundColor = htwColors.darkCellBackground;
-    
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Reload"]];
-//    imageView.image = [imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    [imageView setTintColor:[UIColor redColor]];
     
     UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
     imageView.tag = indexPath.row;
@@ -280,31 +274,6 @@
         [self.tableView reloadData];
         
     }
-}
-
--(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
-    UITableView *tableV = [self tableView];
-    switch(type) {
-        case NSFetchedResultsChangeDelete:
-            [tableV deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
-{
-    [[self tableView] endUpdates];
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
-{
-    [[self tableView] beginUpdates];
-}
-
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%@", [(Student*)_nummern[indexPath.row] matrnr]);
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
