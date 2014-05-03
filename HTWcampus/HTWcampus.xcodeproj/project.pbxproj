@@ -8,6 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		6D7B451C1908150F00D99C9D /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D7B451B1908150F00D99C9D /* main.storyboard */; };
+		6D94E9DA191524B300872FC8 /* notenDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94E9D5191524B300872FC8 /* notenDetailViewController.m */; };
+		6D94E9DB191524B300872FC8 /* notenStartseiteHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94E9D7191524B300872FC8 /* notenStartseiteHTMLParser.m */; };
+		6D94E9DC191524B300872FC8 /* notenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94E9D9191524B300872FC8 /* notenViewController.m */; };
+		6D94EA3519152FDB00872FC8 /* CDataChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA1419152FDB00872FC8 /* CDataChunk.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3619152FDB00872FC8 /* Chunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA1619152FDB00872FC8 /* Chunk.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3719152FDB00872FC8 /* CommentChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA1819152FDB00872FC8 /* CommentChunk.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3819152FDB00872FC8 /* CSSPartMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA1A19152FDB00872FC8 /* CSSPartMatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3919152FDB00872FC8 /* CSSSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA1C19152FDB00872FC8 /* CSSSelector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3A19152FDB00872FC8 /* CSSSelectorMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA1E19152FDB00872FC8 /* CSSSelectorMatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3B19152FDB00872FC8 /* CSSSelectorPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA2019152FDB00872FC8 /* CSSSelectorPart.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3C19152FDB00872FC8 /* DoctypeChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA2219152FDB00872FC8 /* DoctypeChunk.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3D19152FDB00872FC8 /* DocumentRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA2419152FDB00872FC8 /* DocumentRoot.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3E19152FDB00872FC8 /* Element.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA2619152FDB00872FC8 /* Element.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA3F19152FDB00872FC8 /* ElementParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA2819152FDB00872FC8 /* ElementParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA4019152FDB00872FC8 /* EntityChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA2A19152FDB00872FC8 /* EntityChunk.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA4119152FDB00872FC8 /* NSString_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA2C19152FDB00872FC8 /* NSString_HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA4219152FDB00872FC8 /* ProcessingInstructionChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA2E19152FDB00872FC8 /* ProcessingInstructionChunk.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA4319152FDB00872FC8 /* TagChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA3019152FDB00872FC8 /* TagChunk.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA4419152FDB00872FC8 /* TxtChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA3219152FDB00872FC8 /* TxtChunk.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA4519152FDB00872FC8 /* URLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA3419152FDB00872FC8 /* URLParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6D94EA4D1915377E00872FC8 /* MensaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA481915377E00872FC8 /* MensaDetailViewController.m */; };
+		6D94EA4E1915377E00872FC8 /* mensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA4A1915377E00872FC8 /* mensaViewController.m */; };
+		6D94EA4F1915377E00872FC8 /* MensaXMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA4C1915377E00872FC8 /* MensaXMLParserDelegate.m */; };
+		6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA52191537BA00872FC8 /* UIImage+Resize.m */; };
+		6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA55191538E600872FC8 /* UIImage+Alpha.m */; };
+		6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */; };
 		E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
 		E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */; };
 		E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D8810190857F90033D543 /* HTWPortraitViewController.m */; };
@@ -61,6 +87,58 @@
 
 /* Begin PBXFileReference section */
 		6D7B451B1908150F00D99C9D /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
+		6D94E9D4191524B300872FC8 /* notenDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = notenDetailViewController.h; path = Noten/notenDetailViewController.h; sourceTree = "<group>"; };
+		6D94E9D5191524B300872FC8 /* notenDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = notenDetailViewController.m; path = Noten/notenDetailViewController.m; sourceTree = "<group>"; };
+		6D94E9D6191524B300872FC8 /* notenStartseiteHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = notenStartseiteHTMLParser.h; path = Noten/notenStartseiteHTMLParser.h; sourceTree = "<group>"; };
+		6D94E9D7191524B300872FC8 /* notenStartseiteHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = notenStartseiteHTMLParser.m; path = Noten/notenStartseiteHTMLParser.m; sourceTree = "<group>"; };
+		6D94E9D8191524B300872FC8 /* notenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = notenViewController.h; path = Noten/notenViewController.h; sourceTree = "<group>"; };
+		6D94E9D9191524B300872FC8 /* notenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = notenViewController.m; path = Noten/notenViewController.m; sourceTree = "<group>"; };
+		6D94EA1319152FDB00872FC8 /* CDataChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataChunk.h; path = Vendor/ElementParser/CDataChunk.h; sourceTree = "<group>"; };
+		6D94EA1419152FDB00872FC8 /* CDataChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataChunk.m; path = Vendor/ElementParser/CDataChunk.m; sourceTree = "<group>"; };
+		6D94EA1519152FDB00872FC8 /* Chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chunk.h; path = Vendor/ElementParser/Chunk.h; sourceTree = "<group>"; };
+		6D94EA1619152FDB00872FC8 /* Chunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Chunk.m; path = Vendor/ElementParser/Chunk.m; sourceTree = "<group>"; };
+		6D94EA1719152FDB00872FC8 /* CommentChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentChunk.h; path = Vendor/ElementParser/CommentChunk.h; sourceTree = "<group>"; };
+		6D94EA1819152FDB00872FC8 /* CommentChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentChunk.m; path = Vendor/ElementParser/CommentChunk.m; sourceTree = "<group>"; };
+		6D94EA1919152FDB00872FC8 /* CSSPartMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSPartMatcher.h; path = Vendor/ElementParser/CSSPartMatcher.h; sourceTree = "<group>"; };
+		6D94EA1A19152FDB00872FC8 /* CSSPartMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSPartMatcher.m; path = Vendor/ElementParser/CSSPartMatcher.m; sourceTree = "<group>"; };
+		6D94EA1B19152FDB00872FC8 /* CSSSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSSelector.h; path = Vendor/ElementParser/CSSSelector.h; sourceTree = "<group>"; };
+		6D94EA1C19152FDB00872FC8 /* CSSSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSSelector.m; path = Vendor/ElementParser/CSSSelector.m; sourceTree = "<group>"; };
+		6D94EA1D19152FDB00872FC8 /* CSSSelectorMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSSelectorMatcher.h; path = Vendor/ElementParser/CSSSelectorMatcher.h; sourceTree = "<group>"; };
+		6D94EA1E19152FDB00872FC8 /* CSSSelectorMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSSelectorMatcher.m; path = Vendor/ElementParser/CSSSelectorMatcher.m; sourceTree = "<group>"; };
+		6D94EA1F19152FDB00872FC8 /* CSSSelectorPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSSelectorPart.h; path = Vendor/ElementParser/CSSSelectorPart.h; sourceTree = "<group>"; };
+		6D94EA2019152FDB00872FC8 /* CSSSelectorPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSSelectorPart.m; path = Vendor/ElementParser/CSSSelectorPart.m; sourceTree = "<group>"; };
+		6D94EA2119152FDB00872FC8 /* DoctypeChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoctypeChunk.h; path = Vendor/ElementParser/DoctypeChunk.h; sourceTree = "<group>"; };
+		6D94EA2219152FDB00872FC8 /* DoctypeChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoctypeChunk.m; path = Vendor/ElementParser/DoctypeChunk.m; sourceTree = "<group>"; };
+		6D94EA2319152FDB00872FC8 /* DocumentRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentRoot.h; path = Vendor/ElementParser/DocumentRoot.h; sourceTree = "<group>"; };
+		6D94EA2419152FDB00872FC8 /* DocumentRoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentRoot.m; path = Vendor/ElementParser/DocumentRoot.m; sourceTree = "<group>"; };
+		6D94EA2519152FDB00872FC8 /* Element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Element.h; path = Vendor/ElementParser/Element.h; sourceTree = "<group>"; };
+		6D94EA2619152FDB00872FC8 /* Element.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Element.m; path = Vendor/ElementParser/Element.m; sourceTree = "<group>"; };
+		6D94EA2719152FDB00872FC8 /* ElementParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ElementParser.h; path = Vendor/ElementParser/ElementParser.h; sourceTree = "<group>"; };
+		6D94EA2819152FDB00872FC8 /* ElementParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ElementParser.m; path = Vendor/ElementParser/ElementParser.m; sourceTree = "<group>"; };
+		6D94EA2919152FDB00872FC8 /* EntityChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityChunk.h; path = Vendor/ElementParser/EntityChunk.h; sourceTree = "<group>"; };
+		6D94EA2A19152FDB00872FC8 /* EntityChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EntityChunk.m; path = Vendor/ElementParser/EntityChunk.m; sourceTree = "<group>"; };
+		6D94EA2B19152FDB00872FC8 /* NSString_HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSString_HTML.h; path = Vendor/ElementParser/NSString_HTML.h; sourceTree = "<group>"; };
+		6D94EA2C19152FDB00872FC8 /* NSString_HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSString_HTML.m; path = Vendor/ElementParser/NSString_HTML.m; sourceTree = "<group>"; };
+		6D94EA2D19152FDB00872FC8 /* ProcessingInstructionChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessingInstructionChunk.h; path = Vendor/ElementParser/ProcessingInstructionChunk.h; sourceTree = "<group>"; };
+		6D94EA2E19152FDB00872FC8 /* ProcessingInstructionChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessingInstructionChunk.m; path = Vendor/ElementParser/ProcessingInstructionChunk.m; sourceTree = "<group>"; };
+		6D94EA2F19152FDB00872FC8 /* TagChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagChunk.h; path = Vendor/ElementParser/TagChunk.h; sourceTree = "<group>"; };
+		6D94EA3019152FDB00872FC8 /* TagChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagChunk.m; path = Vendor/ElementParser/TagChunk.m; sourceTree = "<group>"; };
+		6D94EA3119152FDB00872FC8 /* TxtChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TxtChunk.h; path = Vendor/ElementParser/TxtChunk.h; sourceTree = "<group>"; };
+		6D94EA3219152FDB00872FC8 /* TxtChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TxtChunk.m; path = Vendor/ElementParser/TxtChunk.m; sourceTree = "<group>"; };
+		6D94EA3319152FDB00872FC8 /* URLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = URLParser.h; path = Vendor/ElementParser/URLParser.h; sourceTree = "<group>"; };
+		6D94EA3419152FDB00872FC8 /* URLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = URLParser.m; path = Vendor/ElementParser/URLParser.m; sourceTree = "<group>"; };
+		6D94EA471915377E00872FC8 /* MensaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MensaDetailViewController.h; path = Mensa/MensaDetailViewController.h; sourceTree = "<group>"; };
+		6D94EA481915377E00872FC8 /* MensaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MensaDetailViewController.m; path = Mensa/MensaDetailViewController.m; sourceTree = "<group>"; };
+		6D94EA491915377E00872FC8 /* mensaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mensaViewController.h; path = Mensa/mensaViewController.h; sourceTree = "<group>"; };
+		6D94EA4A1915377E00872FC8 /* mensaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = mensaViewController.m; path = Mensa/mensaViewController.m; sourceTree = "<group>"; };
+		6D94EA4B1915377E00872FC8 /* MensaXMLParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MensaXMLParserDelegate.h; path = Mensa/MensaXMLParserDelegate.h; sourceTree = "<group>"; };
+		6D94EA4C1915377E00872FC8 /* MensaXMLParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MensaXMLParserDelegate.m; path = Mensa/MensaXMLParserDelegate.m; sourceTree = "<group>"; };
+		6D94EA51191537BA00872FC8 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "Categories/UIImage+Resize.h"; sourceTree = "<group>"; };
+		6D94EA52191537BA00872FC8 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "Categories/UIImage+Resize.m"; sourceTree = "<group>"; };
+		6D94EA54191538E600872FC8 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "Categories/UIImage+Alpha.h"; sourceTree = "<group>"; };
+		6D94EA55191538E600872FC8 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "Categories/UIImage+Alpha.m"; sourceTree = "<group>"; };
+		6D94EA56191538E600872FC8 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "Categories/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "Categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HTWcampus.xcdatamodel; sourceTree = "<group>"; };
 		E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanParser.h; path = Stundenplan/Model/HTWStundenplanParser.h; sourceTree = "<group>"; };
 		E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanParser.m; path = Stundenplan/Model/HTWStundenplanParser.m; sourceTree = "<group>"; };
@@ -154,6 +232,94 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D94E995191521C900872FC8 /* Noten */ = {
+			isa = PBXGroup;
+			children = (
+				6D94E9D8191524B300872FC8 /* notenViewController.h */,
+				6D94E9D9191524B300872FC8 /* notenViewController.m */,
+				6D94E9D6191524B300872FC8 /* notenStartseiteHTMLParser.h */,
+				6D94E9D7191524B300872FC8 /* notenStartseiteHTMLParser.m */,
+				6D94E9D4191524B300872FC8 /* notenDetailViewController.h */,
+				6D94E9D5191524B300872FC8 /* notenDetailViewController.m */,
+			);
+			name = Noten;
+			sourceTree = "<group>";
+		};
+		6D94E99F1915242D00872FC8 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				6D94E9A01915243200872FC8 /* ElementParser */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		6D94E9A01915243200872FC8 /* ElementParser */ = {
+			isa = PBXGroup;
+			children = (
+				6D94EA1319152FDB00872FC8 /* CDataChunk.h */,
+				6D94EA1419152FDB00872FC8 /* CDataChunk.m */,
+				6D94EA1519152FDB00872FC8 /* Chunk.h */,
+				6D94EA1619152FDB00872FC8 /* Chunk.m */,
+				6D94EA1719152FDB00872FC8 /* CommentChunk.h */,
+				6D94EA1819152FDB00872FC8 /* CommentChunk.m */,
+				6D94EA1919152FDB00872FC8 /* CSSPartMatcher.h */,
+				6D94EA1A19152FDB00872FC8 /* CSSPartMatcher.m */,
+				6D94EA1B19152FDB00872FC8 /* CSSSelector.h */,
+				6D94EA1C19152FDB00872FC8 /* CSSSelector.m */,
+				6D94EA1D19152FDB00872FC8 /* CSSSelectorMatcher.h */,
+				6D94EA1E19152FDB00872FC8 /* CSSSelectorMatcher.m */,
+				6D94EA1F19152FDB00872FC8 /* CSSSelectorPart.h */,
+				6D94EA2019152FDB00872FC8 /* CSSSelectorPart.m */,
+				6D94EA2119152FDB00872FC8 /* DoctypeChunk.h */,
+				6D94EA2219152FDB00872FC8 /* DoctypeChunk.m */,
+				6D94EA2319152FDB00872FC8 /* DocumentRoot.h */,
+				6D94EA2419152FDB00872FC8 /* DocumentRoot.m */,
+				6D94EA2519152FDB00872FC8 /* Element.h */,
+				6D94EA2619152FDB00872FC8 /* Element.m */,
+				6D94EA2719152FDB00872FC8 /* ElementParser.h */,
+				6D94EA2819152FDB00872FC8 /* ElementParser.m */,
+				6D94EA2919152FDB00872FC8 /* EntityChunk.h */,
+				6D94EA2A19152FDB00872FC8 /* EntityChunk.m */,
+				6D94EA2B19152FDB00872FC8 /* NSString_HTML.h */,
+				6D94EA2C19152FDB00872FC8 /* NSString_HTML.m */,
+				6D94EA2D19152FDB00872FC8 /* ProcessingInstructionChunk.h */,
+				6D94EA2E19152FDB00872FC8 /* ProcessingInstructionChunk.m */,
+				6D94EA2F19152FDB00872FC8 /* TagChunk.h */,
+				6D94EA3019152FDB00872FC8 /* TagChunk.m */,
+				6D94EA3119152FDB00872FC8 /* TxtChunk.h */,
+				6D94EA3219152FDB00872FC8 /* TxtChunk.m */,
+				6D94EA3319152FDB00872FC8 /* URLParser.h */,
+				6D94EA3419152FDB00872FC8 /* URLParser.m */,
+			);
+			name = ElementParser;
+			sourceTree = "<group>";
+		};
+		6D94EA461915375800872FC8 /* Mensa */ = {
+			isa = PBXGroup;
+			children = (
+				6D94EA471915377E00872FC8 /* MensaDetailViewController.h */,
+				6D94EA481915377E00872FC8 /* MensaDetailViewController.m */,
+				6D94EA491915377E00872FC8 /* mensaViewController.h */,
+				6D94EA4A1915377E00872FC8 /* mensaViewController.m */,
+				6D94EA4B1915377E00872FC8 /* MensaXMLParserDelegate.h */,
+				6D94EA4C1915377E00872FC8 /* MensaXMLParserDelegate.m */,
+			);
+			name = Mensa;
+			sourceTree = "<group>";
+		};
+		6D94EA501915378E00872FC8 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6D94EA54191538E600872FC8 /* UIImage+Alpha.h */,
+				6D94EA55191538E600872FC8 /* UIImage+Alpha.m */,
+				6D94EA56191538E600872FC8 /* UIImage+RoundedCorner.h */,
+				6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */,
+				6D94EA51191537BA00872FC8 /* UIImage+Resize.h */,
+				6D94EA52191537BA00872FC8 /* UIImage+Resize.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		E61D87D819082D870033D543 /* Stundenplan */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,12 +428,16 @@
 		E63772CE1908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXGroup;
 			children = (
+				6D94EA501915378E00872FC8 /* Categories */,
+				6D94E99F1915242D00872FC8 /* Vendor */,
 				6D7B451B1908150F00D99C9D /* main.storyboard */,
 				E61D883A19085E380033D543 /* Images.xcassets */,
 				E61D8818190858D80033D543 /* HTWColors.h */,
 				E61D8819190858D80033D543 /* HTWColors.m */,
-				E61D87D819082D870033D543 /* Stundenplan */,
+				6D94EA461915375800872FC8 /* Mensa */,
 				E6FE12A21909880500D56D52 /* Raumplaner */,
+				E61D87D819082D870033D543 /* Stundenplan */,
+				6D94E995191521C900872FC8 /* Noten */,
 				E63772CF1908146300DEE8AB /* Supporting Files */,
 			);
 			path = HTWcampus;
@@ -431,32 +601,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D94EA4019152FDB00872FC8 /* EntityChunk.m in Sources */,
+				6D94EA3A19152FDB00872FC8 /* CSSSelectorMatcher.m in Sources */,
 				E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */,
 				E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */,
+				6D94EA4119152FDB00872FC8 /* NSString_HTML.m in Sources */,
 				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
+				6D94EA4319152FDB00872FC8 /* TagChunk.m in Sources */,
 				E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */,
+				6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */,
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
+				6D94EA4D1915377E00872FC8 /* MensaDetailViewController.m in Sources */,
 				E61D883719085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m in Sources */,
 				E61D883319085B4C0033D543 /* HTWDatePickViewController.m in Sources */,
 				E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */,
+				6D94EA3819152FDB00872FC8 /* CSSPartMatcher.m in Sources */,
 				E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				E61D883519085B4C0033D543 /* HTWStundeAddTableViewController.m in Sources */,
+				6D94E9DA191524B300872FC8 /* notenDetailViewController.m in Sources */,
+				6D94EA3B19152FDB00872FC8 /* CSSSelectorPart.m in Sources */,
+				6D94EA3519152FDB00872FC8 /* CDataChunk.m in Sources */,
+				6D94EA3619152FDB00872FC8 /* Chunk.m in Sources */,
+				6D94E9DC191524B300872FC8 /* notenViewController.m in Sources */,
+				6D94EA3F19152FDB00872FC8 /* ElementParser.m in Sources */,
 				E61D8820190859180033D543 /* HTWLandscapeViewController.m in Sources */,
+				6D94EA4219152FDB00872FC8 /* ProcessingInstructionChunk.m in Sources */,
+				6D94EA3E19152FDB00872FC8 /* Element.m in Sources */,
+				6D94EA3919152FDB00872FC8 /* CSSSelector.m in Sources */,
 				E61D883919085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m in Sources */,
+				6D94EA4419152FDB00872FC8 /* TxtChunk.m in Sources */,
 				E61D881A190858D80033D543 /* HTWColors.m in Sources */,
 				E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */,
 				E61D88141908583C0033D543 /* HTWStundenplanButtonForLesson.m in Sources */,
+				6D94EA4F1915377E00872FC8 /* MensaXMLParserDelegate.m in Sources */,
 				E62C48521914246F00788651 /* Student.m in Sources */,
+				6D94E9DB191524B300872FC8 /* notenStartseiteHTMLParser.m in Sources */,
+				6D94EA3719152FDB00872FC8 /* CommentChunk.m in Sources */,
 				E62C484F1914246F00788651 /* Stunde.m in Sources */,
+				6D94EA4E1915377E00872FC8 /* mensaViewController.m in Sources */,
 				E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */,
+				6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
 				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
 				E62C484B191422DE00788651 /* HTWCSVConnection.m in Sources */,
+				6D94EA4519152FDB00872FC8 /* URLParser.m in Sources */,
 				E61D887F1908705E0033D543 /* landscapeSegue.m in Sources */,
 				E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */,
 				E61D883419085B4C0033D543 /* HTWMatrikelnummernTableViewController.m in Sources */,
 				E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */,
+				6D94EA3C19152FDB00872FC8 /* DoctypeChunk.m in Sources */,
+				6D94EA3D19152FDB00872FC8 /* DocumentRoot.m in Sources */,
 				E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */,
+				6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +769,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
@@ -587,6 +784,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
@@ -600,6 +798,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTWcampus.app/HTWcampus";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -622,6 +821,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTWcampus.app/HTWcampus";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
