@@ -8,7 +8,7 @@
 
 #import "HTWStundeAddTableViewController.h"
 #import "HTWAppDelegate.h"
-#import "Student.h"
+#import "User.h"
 #import "Stunde.h"
 #import "HTWDatePickViewController.h"
 #import "HTWColors.h"
@@ -102,14 +102,14 @@
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     
-    [request setEntity:[NSEntityDescription entityForName:@"Student"
+    [request setEntity:[NSEntityDescription entityForName:@"User"
                                    inManagedObjectContext:_context]];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", [defaults objectForKey:@"Matrikelnummer"]];
     request.predicate = pred;
     
     NSArray *ret = [_context executeFetchRequest:request error:nil];
-    Student *dieserStudent;
+    User *dieserStudent;
     
     if (ret.count > 0) {
         dieserStudent = ret[0];

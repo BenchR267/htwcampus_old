@@ -7,7 +7,7 @@
 //
 
 #import "HTWAppDelegate.h"
-#import "Student.h"
+#import "User.h"
 
 #import "HTWStundenplanSettingsUebersichtTableViewController.h"
 #import "HTWStundenplanSettingsUebersichtTableViewCell.h"
@@ -322,13 +322,13 @@
 -(NSString*)getNameOf:(NSString*)matrnr
 {
     NSManagedObjectContext *context = [HTWAppDelegate alloc].managedObjectContext;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", matrnr];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
     [request setPredicate:pred];
     
-    return [(Student*)[context executeFetchRequest:request error:nil][0] name];
+    return [(User*)[context executeFetchRequest:request error:nil][0] name];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "HTWCSVConnection.h"
 #import "HTWCSVParser.h"
-#import "Student.h"
+#import "User.h"
 #import "Stunde.h"
 #import "HTWAppDelegate.h"
 
@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) Stunde *stunde;
-@property (nonatomic, strong) Student *student;
+@property (nonatomic, strong) User *student;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
 @property (nonatomic, strong) NSMutableString *anfang;
@@ -50,7 +50,6 @@
     // Request String für PHP-Argumente
     NSString *myRequestString = [NSString stringWithFormat:@"unix=%@&pressme=%@",_password,@"S+T+A+R+T"];
     
-    // NSData synchron füllen (wird im ViewController durch unterschiedliche Threads ansynchron)
     NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:kURL
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -61,7 +60,7 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
     // Set Request Body
     [request setHTTPBody: myRequestData];
-    [request setValue:@"4" forHTTPHeaderField:@"w1"];
+//    [request setValue:@"4" forHTTPHeaderField:@"w1"];
 
     
     // Connection mit dem oben definierten Request
@@ -90,7 +89,7 @@
                 NSString *fileURL = [NSString stringWithFormat:@"http://www2.htw-dresden.de/~rawa/cgi-bin/plan/%@", filename];
                 
                 NSFetchRequest *request = [[NSFetchRequest alloc] init];
-                [request setEntity:[NSEntityDescription entityForName:@"Student"
+                [request setEntity:[NSEntityDescription entityForName:@"User"
                                                inManagedObjectContext:_context]];
                 
                 NSPredicate *pred =[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.password];
@@ -100,7 +99,7 @@
                                                                                                  error:nil]];
                 
                 // Dürfte nur ein Ergebnis haben
-                for (Student *this in objects) {
+                for (User *this in objects) {
                     for (Stunde *aktuell in this.stunden) {
                         [_context deleteObject:aktuell];
                     }
@@ -112,7 +111,7 @@
                 }
                 else {
                     _student = [NSEntityDescription
-                                insertNewObjectForEntityForName:@"Student"
+                                insertNewObjectForEntityForName:@"User"
                                 inManagedObjectContext:_context];
                     _student.matrnr = self.password;
                     _student.letzteAktualisierung = [NSDate date];

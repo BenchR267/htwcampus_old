@@ -2,14 +2,14 @@
 //  Stunde.h
 //  HTWcampus
 //
-//  Created by Benjamin Herzog on 02.05.14.
+//  Created by Benjamin Herzog on 04.05.14.
 //  Copyright (c) 2014 Benjamin Herzog. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Student;
+@class User;
 
 @interface Stunde : NSManagedObject
 
@@ -22,6 +22,6 @@
 @property (nonatomic, retain) NSString * kurzel;
 @property (nonatomic, retain) NSString * raum;
 @property (nonatomic, retain) NSString * titel;
-@property (nonatomic, retain) Student *student;
+@property (nonatomic, retain) User *student;
 
 @end

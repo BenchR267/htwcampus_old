@@ -9,7 +9,7 @@
 #import "HTWRaumplanerTableViewController.h"
 #import "HTWStundenplanParser.h"
 #import "HTWAppDelegate.h"
-#import "Student.h"
+#import "User.h"
 #import "Stunde.h"
 #import "HTWPortraitViewController.h"
 #import "HTWColors.h"
@@ -81,7 +81,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    Student *info = _zimmer[indexPath.row];
+    User *info = _zimmer[indexPath.row];
     
     NSDate *naechsteZeit = [NSDate dateWithTimeIntervalSince1970:0];
     BOOL frei = true;
@@ -139,21 +139,21 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"Zimmer %@ wird gelöscht.", [(Student*)_zimmer[indexPath.row] matrnr]);
+        NSLog(@"Zimmer %@ wird gelöscht.", [(User*)_zimmer[indexPath.row] matrnr]);
         appdelegate = [[UIApplication sharedApplication] delegate];
         _context = [appdelegate managedObjectContext];
         
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
         [fetchRequest setEntity:entity];
         
         [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
         
         
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1) && (matrnr = %@)", [(Student*)_zimmer[indexPath.row] matrnr]]];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1) && (matrnr = %@)", [(User*)_zimmer[indexPath.row] matrnr]]];
         
         NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
-        for (Student *raum in tempArray) {
+        for (User *raum in tempArray) {
             [_context deleteObject:raum];
         }
         [_context save:nil];
@@ -189,7 +189,7 @@
             raumNummer = (NSMutableString*)[raumNummer stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[raumNummer substringToIndex:1] capitalizedString]];
             
             
-            for (Student *this in _zimmer) {
+            for (User *this in _zimmer) {
                 if ([this.matrnr isEqualToString:raumNummer]) {
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
                                                                     message:@"Dieser Raum ist schon in der Übersicht enthalten."
@@ -261,7 +261,7 @@
     _context = [appdelegate managedObjectContext];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
     [fetchRequest setEntity:entity];
     
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];

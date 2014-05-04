@@ -11,7 +11,7 @@
 #import "HTWAppDelegate.h"
 #import "HTWStundenplanParser.h"
 #import "HTWCSVConnection.h"
-#import "Student.h"
+#import "User.h"
 
 #import "Stunde.h"
 #import "HTWColors.h"
@@ -46,7 +46,7 @@
     _context = [appdelegate managedObjectContext];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
     [fetchRequest setEntity:entity];
     
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
@@ -78,7 +78,7 @@
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput && [alertView.title isEqualToString:@"Neuen Stundenplan hinzufügen"])
     {
-        if ([buttonTitle isEqualToString:@"Student"]) {
+        if ([buttonTitle isEqualToString:@"User"]) {
             NSString *matrNr = [alertView textFieldAtIndex:0].text;
             _parser = nil;
             
@@ -87,7 +87,7 @@
             _context = [appdelegate managedObjectContext];
             
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
             [fetchRequest setEntity:entity];
             
             [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
@@ -122,7 +122,7 @@
                 _context = [appdelegate managedObjectContext];
                 
                 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-                NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
                 [fetchRequest setEntity:entity];
                 
                 [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
@@ -162,12 +162,12 @@
             [spinner startAnimating];
             
             if ([self.tableView cellForRowAtIndexPath:path].tag == 0) {
-                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:[(Student*)_nummern[path.row] matrnr] andRaum:NO];
+                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:[(User*)_nummern[path.row] matrnr] andRaum:NO];
                 [_parser setDelegate:self];
                 [_parser parserStart];
             }
             else {
-                _dozentParser = [[HTWCSVConnection alloc] initWithPassword:[(Student*)_nummern[path.row] matrnr]];
+                _dozentParser = [[HTWCSVConnection alloc] initWithPassword:[(User*)_nummern[path.row] matrnr]];
                 _dozentParser.delegate = self;
                 [_dozentParser startParser];
             }
@@ -193,7 +193,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    Student *info = _nummern[indexPath.row];
+    User *info = _nummern[indexPath.row];
     
     if (info.dozent.boolValue == YES) {
         cell.tag = 1;
@@ -240,23 +240,23 @@
         _context = [appdelegate managedObjectContext];
         
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
         [fetchRequest setEntity:entity];
         
         [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
         
-        NSString *zuLoeschendeNummer = [(Student*)_nummern[indexPath.row] matrnr];
+        NSString *zuLoeschendeNummer = [(User*)_nummern[indexPath.row] matrnr];
         
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", zuLoeschendeNummer]];
         
         NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
-        for (Student *aktuell in tempArray) {
+        for (User *aktuell in tempArray) {
             [_context deleteObject:aktuell];
         }
         [_context save:nil];
         
         fetchRequest = [[NSFetchRequest alloc] init];
-        entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+        entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
         [fetchRequest setEntity:entity];
         
         [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
@@ -268,7 +268,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         if ([zuLoeschendeNummer isEqualToString:[defaults objectForKey:@"Matrikelnummer"]]) {
             if(_nummern.count)
-                [defaults setObject:[(Student*)_nummern[0] matrnr] forKey:@"Matrikelnummer"];
+                [defaults setObject:[(User*)_nummern[0] matrnr] forKey:@"Matrikelnummer"];
             else
                 [defaults setObject:nil forKey:@"Matrikelnummer"];
         }
@@ -283,7 +283,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    Student *info = _nummern[indexPath.row];
+    User *info = _nummern[indexPath.row];
     [defaults setBool:info.dozent.boolValue forKey:@"Dozent"];
     [defaults setObject:info.matrnr forKey:@"Matrikelnummer"];
     [self.navigationController popViewControllerAnimated:YES];
@@ -323,7 +323,7 @@
     _context = [appdelegate managedObjectContext];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
     [fetchRequest setEntity:entity];
     
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
@@ -334,7 +334,7 @@
     
     [self.tableView reloadData];
     for (int i=0; i<_nummern.count; i++) {
-        Student *aktuell = _nummern[i];
+        User *aktuell = _nummern[i];
         if ([aktuell.matrnr isEqualToString:_parser.Matrnr]) {
             NSLog(@"und fertig..");
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -367,7 +367,7 @@
     _context = [appdelegate managedObjectContext];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:_context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
     [fetchRequest setEntity:entity];
     
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
@@ -378,7 +378,7 @@
     
     [self.tableView reloadData];
     for (int i=0; i<_nummern.count; i++) {
-        Student *aktuell = _nummern[i];
+        User *aktuell = _nummern[i];
         if ([aktuell.matrnr isEqualToString:_dozentParser.password]) {
             NSLog(@"und fertig..");
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];

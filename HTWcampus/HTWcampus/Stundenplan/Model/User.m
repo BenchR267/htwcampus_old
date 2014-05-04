@@ -1,22 +1,22 @@
 //
-//  Student.m
+//  User.m
 //  HTWcampus
 //
-//  Created by Benjamin Herzog on 02.05.14.
+//  Created by Benjamin Herzog on 04.05.14.
 //  Copyright (c) 2014 Benjamin Herzog. All rights reserved.
 //
 
-#import "Student.h"
+#import "User.h"
 #import "Stunde.h"
 
 
-@implementation Student
+@implementation User
 
+@dynamic dozent;
 @dynamic letzteAktualisierung;
 @dynamic matrnr;
-@dynamic raum;
-@dynamic dozent;
 @dynamic name;
+@dynamic raum;
 @dynamic stunden;
 
 @end

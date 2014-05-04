@@ -10,7 +10,7 @@
 #import "HTWAppDelegate.h"
 #import "HTWStundenplanButtonForLesson.h"
 #import "Stunde.h"
-#import "Student.h"
+#import "User.h"
 #import "HTWColors.h"
 #import "HTWPortraitViewController.h"
 

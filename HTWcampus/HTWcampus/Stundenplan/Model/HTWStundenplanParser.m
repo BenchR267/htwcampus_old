@@ -9,7 +9,7 @@
 #import "HTWStundenplanParser.h"
 #import "HTWAppDelegate.h"
 #import "Stunde.h"
-#import "Student.h"
+#import "User.h"
 
 NSMutableData *receivedData;
 
@@ -31,7 +31,7 @@ NSMutableData *receivedData;
     
     HTWAppDelegate *appDelegate;
     
-    Student *newStudent;
+    User *newStudent;
     
     NSMutableString *titel;
     NSMutableString *kuerzel;
@@ -154,7 +154,7 @@ NSMutableData *receivedData;
         isData = YES;
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:[NSEntityDescription entityForName:@"Student"
+        [request setEntity:[NSEntityDescription entityForName:@"User"
                                        inManagedObjectContext:_context]];
         
         NSPredicate *pred =[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.Matrnr];
@@ -164,7 +164,7 @@ NSMutableData *receivedData;
                                                                                          error:nil]];
         
         // Dürfte nur ein Ergebnis haben
-        for (Student *student in objects) {
+        for (User *student in objects) {
             for (Stunde *aktuell in student.stunden) {
                 [_context deleteObject:aktuell];
             }
@@ -176,7 +176,7 @@ NSMutableData *receivedData;
         }
         else {
             newStudent = [NSEntityDescription
-                          insertNewObjectForEntityForName:@"Student"
+                          insertNewObjectForEntityForName:@"User"
                           inManagedObjectContext:_context];
             newStudent.matrnr = self.Matrnr;
             newStudent.letzteAktualisierung = [NSDate date];
@@ -292,12 +292,12 @@ NSMutableData *receivedData;
         isData = NO;
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:[NSEntityDescription entityForName:@"Student"
+        [request setEntity:[NSEntityDescription entityForName:@"User"
                                        inManagedObjectContext:_context]];
         
         [request setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.Matrnr]];
         
-        Student *matches;
+        User *matches;
         
         NSError *error;
         NSArray *objects = [_context executeFetchRequest:request
