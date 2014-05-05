@@ -76,7 +76,7 @@
 			parser.mode = ElementParserModeXML;
 	}
 	if ([connectionDelegate respondsToSelector:@selector(connection:didReceiveResponse:)])
-		[connectionDelegate connection:connection didReceiveResponse: response];
+		[(id <NSURLConnectionDataDelegate>)connectionDelegate connection:connection didReceiveResponse: response];
 	[pool release];
 }
 
@@ -86,7 +86,7 @@
 	self.lastError = error;
 	[connection cancel];
 	if ([connectionDelegate respondsToSelector:@selector(connection:didFailWithError:)])
-		[connectionDelegate connection:connection didFailWithError: error];
+		[(id <NSURLConnectionDataDelegate>)connectionDelegate connection:connection didFailWithError: error];
 	[pool release];
 }
 
@@ -111,7 +111,7 @@
 	[parser continueParsingString: moreSource];
 	[moreSource release];
 	if ([connectionDelegate respondsToSelector:@selector(connection:didReceiveData:)])
-		[connectionDelegate connection:connection didReceiveData: data];
+		[(id <NSURLConnectionDataDelegate>)connectionDelegate connection:connection didReceiveData: data];
 	[pool release];
 }
 
@@ -119,7 +119,7 @@
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	[parser finishParsing];
 	if ([connectionDelegate respondsToSelector:@selector(connectionDidFinishLoading:)])
-		[connectionDelegate connectionDidFinishLoading:connection];
+		[(id <NSURLConnectionDataDelegate>)connectionDelegate connectionDidFinishLoading:connection];
 	[pool release];
 }
 

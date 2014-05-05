@@ -126,7 +126,7 @@
 
 -(void)setAttributes:(NSDictionary*)dict{
 	[attributes release];
-	attributes = [dict retain];
+	attributes = (NSMutableDictionary*)[dict retain];
 }
 
 -(Element*)firstChild{

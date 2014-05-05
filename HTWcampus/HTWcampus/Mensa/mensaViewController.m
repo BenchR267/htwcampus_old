@@ -190,6 +190,7 @@
     int mealCount = 0;
     
     for (NSObject *meal in self.mensaXMLParserDelegate.allMeals) {
+        NSLog(@"%@", meal); // Damit die Warnung weg geht, alternativ kann man auch die Bedingung in der For-Schleife neu formulieren
         NSDictionary *tmpDict = [self.mensaXMLParserDelegate.allMeals objectAtIndex:mealCount];
 		
 		if ([allMealsOfOneMensa count] == 0)
