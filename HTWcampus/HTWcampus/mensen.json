@@ -1,0 +1,87 @@
+ [
+  {
+  "bild": "neuemensa.jpg",
+  "name": "Neue Mensa",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "altemensa.jpg",
+  "name": "Alte Mensa",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "reichenbachstrasse.jpg",
+  "name": "Mensa Reichenbachstraße",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "mensologie.jpg",
+  "name": "Mensologie",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "mensa-siedepunkt.jpg",
+  "name": "Mensa Siedepunkt",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "johannstadt.jpg",
+  "name": "Mensa Johannstadt",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "mensa-wueins.jpg",
+  "name": "Mensa WUeins",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "mensa-bruehl.jpg",
+  "name": "Mensa Brühl",
+  "ort": ""
+  },
+  {
+  "bild": "biomensa-uboot.jpg",
+  "name": "BioMensa U-Boot",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "tellerrandt.jpg",
+  "name": "Mensa TellerRandt",
+  "ort": "Tharandt"
+  },
+  {
+  "bild": "zittau.jpg",
+  "name": "Mensa Zittau",
+  "ort": "Zittau"
+  },
+  {
+  "bild": "stimmgabel.jpg",
+  "name": "Mensa Stimm-Gabel",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "palucca.jpg",
+  "name": "Mensa Palucca Hochschule",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "goerlitz.jpg",
+  "name": "Mensa Görlitz",
+  "ort": "Görlitz"
+  },
+  {
+  "bild": "zittauhausvii.jpg",
+  "name": "Mensa Haus VII",
+  "ort": "Zittau"
+  },
+  {
+  "bild": "mensasport.jpg",
+  "name": "Mensa Sport",
+  "ort": "Dresden"
+  },
+  {
+  "bild": "mensa-kreuzgymnasium.jpg",
+  "name": "Mensa Kreuzgymnasium",
+  "ort": "Dresden"
+  }
+  ]

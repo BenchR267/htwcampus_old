@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D753A351917A83700C6BAA1 /* mensen.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A341917A83700C6BAA1 /* mensen.json */; };
+		6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A371917A8C300C6BAA1 /* altemensa.jpg */; };
+		6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A381917A8C300C6BAA1 /* biomensa-uboot.jpg */; };
+		6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A391917A8C300C6BAA1 /* goerlitz.jpg */; };
+		6D753A4C1917A8C300C6BAA1 /* johannstadt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A3A1917A8C300C6BAA1 /* johannstadt.jpg */; };
+		6D753A4D1917A8C300C6BAA1 /* mensa-bruehl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A3B1917A8C300C6BAA1 /* mensa-bruehl.jpg */; };
+		6D753A4E1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A3C1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg */; };
+		6D753A4F1917A8C300C6BAA1 /* mensa-siedepunkt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A3D1917A8C300C6BAA1 /* mensa-siedepunkt.jpg */; };
+		6D753A501917A8C300C6BAA1 /* mensa-wueins.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A3E1917A8C300C6BAA1 /* mensa-wueins.jpg */; };
+		6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A3F1917A8C300C6BAA1 /* mensasport.jpg */; };
+		6D753A521917A8C300C6BAA1 /* mensologie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A401917A8C300C6BAA1 /* mensologie.jpg */; };
+		6D753A531917A8C300C6BAA1 /* neuemensa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A411917A8C300C6BAA1 /* neuemensa.jpg */; };
+		6D753A541917A8C300C6BAA1 /* noavailablemensaimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A421917A8C300C6BAA1 /* noavailablemensaimage.jpg */; };
+		6D753A551917A8C300C6BAA1 /* palucca.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A431917A8C300C6BAA1 /* palucca.jpg */; };
+		6D753A561917A8C300C6BAA1 /* pillnitz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A441917A8C300C6BAA1 /* pillnitz.jpg */; };
+		6D753A571917A8C300C6BAA1 /* reichenbachstrasse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A451917A8C300C6BAA1 /* reichenbachstrasse.jpg */; };
+		6D753A581917A8C300C6BAA1 /* stimmgabel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A461917A8C300C6BAA1 /* stimmgabel.jpg */; };
+		6D753A591917A8C300C6BAA1 /* tellerrandt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A471917A8C300C6BAA1 /* tellerrandt.jpg */; };
+		6D753A5A1917A8C300C6BAA1 /* uboot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A481917A8C300C6BAA1 /* uboot.jpg */; };
 		6D7B451C1908150F00D99C9D /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D7B451B1908150F00D99C9D /* main.storyboard */; };
 		6D94E9DA191524B300872FC8 /* notenDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94E9D5191524B300872FC8 /* notenDetailViewController.m */; };
 		6D94E9DB191524B300872FC8 /* notenStartseiteHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94E9D7191524B300872FC8 /* notenStartseiteHTMLParser.m */; };
@@ -86,6 +105,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D753A341917A83700C6BAA1 /* mensen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mensen.json; sourceTree = "<group>"; };
+		6D753A371917A8C300C6BAA1 /* altemensa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = altemensa.jpg; path = Mensa/Pictures/altemensa.jpg; sourceTree = "<group>"; };
+		6D753A381917A8C300C6BAA1 /* biomensa-uboot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "biomensa-uboot.jpg"; path = "Mensa/Pictures/biomensa-uboot.jpg"; sourceTree = "<group>"; };
+		6D753A391917A8C300C6BAA1 /* goerlitz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = goerlitz.jpg; path = Mensa/Pictures/goerlitz.jpg; sourceTree = "<group>"; };
+		6D753A3A1917A8C300C6BAA1 /* johannstadt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = johannstadt.jpg; path = Mensa/Pictures/johannstadt.jpg; sourceTree = "<group>"; };
+		6D753A3B1917A8C300C6BAA1 /* mensa-bruehl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "mensa-bruehl.jpg"; path = "Mensa/Pictures/mensa-bruehl.jpg"; sourceTree = "<group>"; };
+		6D753A3C1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "mensa-kreuzgymnasium.jpg"; path = "Mensa/Pictures/mensa-kreuzgymnasium.jpg"; sourceTree = "<group>"; };
+		6D753A3D1917A8C300C6BAA1 /* mensa-siedepunkt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "mensa-siedepunkt.jpg"; path = "Mensa/Pictures/mensa-siedepunkt.jpg"; sourceTree = "<group>"; };
+		6D753A3E1917A8C300C6BAA1 /* mensa-wueins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "mensa-wueins.jpg"; path = "Mensa/Pictures/mensa-wueins.jpg"; sourceTree = "<group>"; };
+		6D753A3F1917A8C300C6BAA1 /* mensasport.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mensasport.jpg; path = Mensa/Pictures/mensasport.jpg; sourceTree = "<group>"; };
+		6D753A401917A8C300C6BAA1 /* mensologie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mensologie.jpg; path = Mensa/Pictures/mensologie.jpg; sourceTree = "<group>"; };
+		6D753A411917A8C300C6BAA1 /* neuemensa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = neuemensa.jpg; path = Mensa/Pictures/neuemensa.jpg; sourceTree = "<group>"; };
+		6D753A421917A8C300C6BAA1 /* noavailablemensaimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = noavailablemensaimage.jpg; path = Mensa/Pictures/noavailablemensaimage.jpg; sourceTree = "<group>"; };
+		6D753A431917A8C300C6BAA1 /* palucca.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = palucca.jpg; path = Mensa/Pictures/palucca.jpg; sourceTree = "<group>"; };
+		6D753A441917A8C300C6BAA1 /* pillnitz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pillnitz.jpg; path = Mensa/Pictures/pillnitz.jpg; sourceTree = "<group>"; };
+		6D753A451917A8C300C6BAA1 /* reichenbachstrasse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = reichenbachstrasse.jpg; path = Mensa/Pictures/reichenbachstrasse.jpg; sourceTree = "<group>"; };
+		6D753A461917A8C300C6BAA1 /* stimmgabel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = stimmgabel.jpg; path = Mensa/Pictures/stimmgabel.jpg; sourceTree = "<group>"; };
+		6D753A471917A8C300C6BAA1 /* tellerrandt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tellerrandt.jpg; path = Mensa/Pictures/tellerrandt.jpg; sourceTree = "<group>"; };
+		6D753A481917A8C300C6BAA1 /* uboot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = uboot.jpg; path = Mensa/Pictures/uboot.jpg; sourceTree = "<group>"; };
 		6D7B451B1908150F00D99C9D /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
 		6D94E9D4191524B300872FC8 /* notenDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = notenDetailViewController.h; path = Noten/notenDetailViewController.h; sourceTree = "<group>"; };
 		6D94E9D5191524B300872FC8 /* notenDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = notenDetailViewController.m; path = Noten/notenDetailViewController.m; sourceTree = "<group>"; };
@@ -232,6 +270,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D753A361917A84500C6BAA1 /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				6D753A371917A8C300C6BAA1 /* altemensa.jpg */,
+				6D753A381917A8C300C6BAA1 /* biomensa-uboot.jpg */,
+				6D753A391917A8C300C6BAA1 /* goerlitz.jpg */,
+				6D753A3A1917A8C300C6BAA1 /* johannstadt.jpg */,
+				6D753A3B1917A8C300C6BAA1 /* mensa-bruehl.jpg */,
+				6D753A3C1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg */,
+				6D753A3D1917A8C300C6BAA1 /* mensa-siedepunkt.jpg */,
+				6D753A3E1917A8C300C6BAA1 /* mensa-wueins.jpg */,
+				6D753A3F1917A8C300C6BAA1 /* mensasport.jpg */,
+				6D753A401917A8C300C6BAA1 /* mensologie.jpg */,
+				6D753A411917A8C300C6BAA1 /* neuemensa.jpg */,
+				6D753A421917A8C300C6BAA1 /* noavailablemensaimage.jpg */,
+				6D753A431917A8C300C6BAA1 /* palucca.jpg */,
+				6D753A441917A8C300C6BAA1 /* pillnitz.jpg */,
+				6D753A451917A8C300C6BAA1 /* reichenbachstrasse.jpg */,
+				6D753A461917A8C300C6BAA1 /* stimmgabel.jpg */,
+				6D753A471917A8C300C6BAA1 /* tellerrandt.jpg */,
+				6D753A481917A8C300C6BAA1 /* uboot.jpg */,
+			);
+			name = Pictures;
+			sourceTree = "<group>";
+		};
 		6D94E995191521C900872FC8 /* Noten */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +360,7 @@
 		6D94EA461915375800872FC8 /* Mensa */ = {
 			isa = PBXGroup;
 			children = (
+				6D753A361917A84500C6BAA1 /* Pictures */,
 				6D94EA471915377E00872FC8 /* MensaDetailViewController.h */,
 				6D94EA481915377E00872FC8 /* MensaDetailViewController.m */,
 				6D94EA491915377E00872FC8 /* mensaViewController.h */,
@@ -446,6 +510,7 @@
 		E63772CF1908146300DEE8AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6D753A341917A83700C6BAA1 /* mensen.json */,
 				E63772D71908146300DEE8AB /* HTWAppDelegate.h */,
 				E63772D81908146300DEE8AB /* HTWAppDelegate.m */,
 				E63772D01908146300DEE8AB /* HTWcampus-Info.plist */,
@@ -579,9 +644,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D753A5A1917A8C300C6BAA1 /* uboot.jpg in Resources */,
+				6D753A4D1917A8C300C6BAA1 /* mensa-bruehl.jpg in Resources */,
+				6D753A541917A8C300C6BAA1 /* noavailablemensaimage.jpg in Resources */,
 				E61D883B19085E380033D543 /* Images.xcassets in Resources */,
+				6D753A561917A8C300C6BAA1 /* pillnitz.jpg in Resources */,
+				6D753A551917A8C300C6BAA1 /* palucca.jpg in Resources */,
+				6D753A351917A83700C6BAA1 /* mensen.json in Resources */,
+				6D753A4C1917A8C300C6BAA1 /* johannstadt.jpg in Resources */,
+				6D753A591917A8C300C6BAA1 /* tellerrandt.jpg in Resources */,
+				6D753A521917A8C300C6BAA1 /* mensologie.jpg in Resources */,
+				6D753A581917A8C300C6BAA1 /* stimmgabel.jpg in Resources */,
+				6D753A4F1917A8C300C6BAA1 /* mensa-siedepunkt.jpg in Resources */,
 				E6FE12A119093D6700D56D52 /* indicator.png in Resources */,
+				6D753A4E1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg in Resources */,
+				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,
+				6D753A501917A8C300C6BAA1 /* mensa-wueins.jpg in Resources */,
+				6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */,
+				6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */,
 				E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */,
+				6D753A531917A8C300C6BAA1 /* neuemensa.jpg in Resources */,
+				6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */,
+				6D753A571917A8C300C6BAA1 /* reichenbachstrasse.jpg in Resources */,
 				6D7B451C1908150F00D99C9D /* main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
