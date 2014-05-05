@@ -557,11 +557,11 @@
 		E63772CE1908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXGroup;
 			children = (
+				6D7B451B1908150F00D99C9D /* main.storyboard */,
 				6D753A621917C99900C6BAA1 /* Assets */,
 				6D753A5E1917C52800C6BAA1 /* Classes */,
 				6D94EA501915378E00872FC8 /* Categories */,
 				6D94E99F1915242D00872FC8 /* Vendor */,
-				6D7B451B1908150F00D99C9D /* main.storyboard */,
 				E61D883A19085E380033D543 /* Images.xcassets */,
 				E61D87D819082D870033D543 /* Stundenplan */,
 				E6FE12A21909880500D56D52 /* Raumplaner */,

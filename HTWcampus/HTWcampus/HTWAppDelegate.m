@@ -23,8 +23,9 @@
 //    [self.window makeKeyAndVisible];
     
     [[UITabBar appearance] setBarTintColor:[UIColor HTWBlueColor]];
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor HTWWhiteColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor HTWWhiteColor], NSForegroundColorAttributeName, nil]
+                                             forState:UIControlStateNormal];
     
     [UINavigationBar appearance].barStyle = UIBarStyleBlackTranslucent;
     [UINavigationBar appearance].barTintColor = [UIColor HTWBlueColor];

@@ -224,7 +224,7 @@
     raum.frame = CGRectMake(x+3, y+(height*0.6), width-6, height*0.4);
     raum.textColor = [UIColor HTWDarkGrayColor];
     
-    if([lesson.kurzel componentsSeparatedByString:@" "][1]) {
+    if([lesson.kurzel componentsSeparatedByString:@" "].count > 1) {
         typ.text = [lesson.kurzel componentsSeparatedByString:@" "][1];
         if(_portait) typ.font = [UIFont HTWBigBaseFont];
         else typ.font = [UIFont HTWSmallFont];
