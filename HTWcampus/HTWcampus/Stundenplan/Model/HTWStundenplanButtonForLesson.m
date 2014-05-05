@@ -9,6 +9,8 @@
 #import "HTWStundenplanButtonForLesson.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
+
 #define CornerRadius 5
 
 @interface HTWStundenplanButtonForLesson ()
@@ -23,14 +25,13 @@
 
 @property (nonatomic, strong) UILabel *kurzel;
 @property (nonatomic, strong) UILabel *raum;
-@property (nonatomic, strong) UILabel *anfang;
-@property (nonatomic, strong) UILabel *ende;
+@property (nonatomic, strong) UILabel *typ;
 
 @end
 
 @implementation HTWStundenplanButtonForLesson
 
-@synthesize lesson,kurzel,raum;
+@synthesize lesson,kurzel,raum,typ;
 
 #pragma mark - INIT
 
@@ -48,7 +49,7 @@
 -(void)setPortait:(BOOL)portait
 {
     if (portait) PixelPerMin = 0.5;
-    else PixelPerMin = 0.37;
+    else PixelPerMin = 0.35;
     _portait = portait;
 }
 
@@ -58,17 +59,9 @@
     
     if (lesson.anzeigen) {
         self.backgroundColor = [UIColor HTWBlueColor];
-        if(_portait) self.kurzel.font = [UIFont fontWithName:@"Verdana" size:18];
-        else self.kurzel.font = [UIFont fontWithName:@"Verdana" size:14];
-        self.kurzel.textColor = [UIColor HTWWhiteColor];
-        if(_portait) self.raum.font = [UIFont fontWithName:@"Verdana" size:10];
-        else self.raum.font = [UIFont fontWithName:@"Verdana" size:8];
-        self.raum.textColor = [UIColor HTWWhiteColor];
-        _anfang.textColor = [UIColor HTWWhiteColor];
-        _ende.textColor = [UIColor HTWWhiteColor];
-
-        
-        [[self layer] setBorderWidth:3.0f];
+        kurzel.textColor = [UIColor HTWWhiteColor];
+        raum.textColor = [UIColor HTWWhiteColor];
+        typ.textColor = [UIColor HTWWhiteColor];
     }
 }
 
@@ -103,37 +96,37 @@
         
         //Wenn die Stunde heute ist
         if ([self isSameDayWithDate1:lesson.anfang date2:today]) {
-            x = 78;
+            x = 60;
             y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[today dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:day2])
         {
-            x = 194;
+            x = 176;
             y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:day3])
         {
-            x = 310;
+            x = 292;
             y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day3 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:day4])
         {
-            x = 426;
+            x = 408;
             y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day4 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:day5])
         {
-            x = 542;
+            x = 524;
             y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day5 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:day6])
         {
-            x = 542+116;
+            x = 641;
             y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day6 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:day7])
         {
-            x = 542+116+116;
+            x = 756;
             y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day7 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
     }
@@ -160,52 +153,52 @@
         
         if ([self isSameDayWithDate1:lesson.anfang date2:montag]) {
             x = 1;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[montag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[montag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:dienstag])
         {
             x = 104;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dienstag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dienstag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:mittwoch])
         {
             x = 207;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[mittwoch dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[mittwoch dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else  if ([self isSameDayWithDate1:lesson.anfang date2:donnerstag])
         {
             x = 310;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[donnerstag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[donnerstag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else  if ([self isSameDayWithDate1:lesson.anfang date2:freitag])
         {
             x = 413;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[freitag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[freitag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else  if ([self isSameDayWithDate1:lesson.anfang date2:montag2])
         {
             x = 577;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[montag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[montag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else  if ([self isSameDayWithDate1:lesson.anfang date2:dienstag2])
         {
             x = 680;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dienstag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dienstag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else if ([self isSameDayWithDate1:lesson.anfang date2:mittwoch2])
         {
             x = 783;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[mittwoch2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[mittwoch2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else  if ([self isSameDayWithDate1:lesson.anfang date2:donnerstag2])
         {
             x = 886;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[donnerstag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[donnerstag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
         else  if ([self isSameDayWithDate1:lesson.anfang date2:freitag2])
         {
             x = 989;
-            y = 55 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[freitag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[freitag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
         }
     }
     self.frame = CGRectMake( x, y, width, height);
@@ -215,59 +208,35 @@
     
     if (!kurzel) kurzel = [[UILabel alloc] init];
     if (!raum) raum = [[UILabel alloc] init];
+    if (!typ) typ = [[UILabel alloc] init];
     
-    kurzel.text = lesson.kurzel;
-    if(_portait) kurzel.font = [UIFont systemFontOfSize:20];
-    else kurzel.font = [UIFont systemFontOfSize:16];
-    kurzel.textAlignment = NSTextAlignmentCenter;
-    kurzel.frame = CGRectMake(x, y, width, height*0.6);
+    kurzel.text = [lesson.kurzel componentsSeparatedByString:@" "][0];
+    if(_portait) kurzel.font = [UIFont HTWBigBaseFont];
+    else kurzel.font = [UIFont HTWBaseFont];
+    kurzel.textAlignment = NSTextAlignmentLeft;
+    kurzel.frame = CGRectMake(x+width*0.02f, y, width*0.98f, height*0.6);
     kurzel.textColor = [UIColor HTWDarkGrayColor];
     
     raum.text = lesson.raum;
-    if(_portait) raum.font = [UIFont systemFontOfSize:12];
-    else raum.font = [UIFont systemFontOfSize:10];
-    raum.textAlignment = NSTextAlignmentCenter;
+    if(_portait) raum.font = [UIFont HTWVerySmallFont];
+    else raum.font = [UIFont HTWSmallestFont];
+    raum.textAlignment = NSTextAlignmentLeft;
     raum.frame = CGRectMake(x+3, y+(height*0.6), width-6, height*0.4);
     raum.textColor = [UIColor HTWDarkGrayColor];
     
-    _anfang = [[UILabel alloc] initWithFrame:raum.frame];
-    _anfang.textAlignment = NSTextAlignmentLeft;
-    _anfang.textColor = [UIColor HTWDarkGrayColor];
-    NSDateFormatter *uhrzeit = [[NSDateFormatter alloc] init];
-    [uhrzeit setDateFormat:@"HH:mm"];
-    _anfang.text = [NSString stringWithFormat:@"%@",[uhrzeit stringFromDate:lesson.anfang]];
-    if (_portait) _anfang.font = [UIFont systemFontOfSize:10];
-    else _anfang.font = [UIFont systemFontOfSize:8];
-    
-    UIView *border;
-    if (![lesson.bemerkungen isEqualToString:@""] && lesson.bemerkungen != nil) {
-        border = [[UIView alloc] initWithFrame:CGRectMake(x+2, y+2, width-4, height-4)];
-        [border.layer setBorderColor:[UIColor redColor].CGColor];
-        [border.layer setBorderWidth:1.0f];
-        border.layer.cornerRadius = 3;
-        border.alpha = 0.7;
-        border.userInteractionEnabled = NO;
+    if([lesson.kurzel componentsSeparatedByString:@" "][1]) {
+        typ.text = [lesson.kurzel componentsSeparatedByString:@" "][1];
+        if(_portait) typ.font = [UIFont HTWBigBaseFont];
+        else typ.font = [UIFont HTWSmallFont];
+        typ.textAlignment = NSTextAlignmentRight;
+        typ.frame = CGRectMake(x+3, y+(height*0.5), width-6, height*0.4);
+        typ.textColor = [UIColor HTWDarkGrayColor];
+        [self addSubview:typ];
     }
-    
-    
-    _ende = [[UILabel alloc] initWithFrame:raum.frame];
-    _ende.textAlignment = NSTextAlignmentRight;
-    _ende.textColor = [UIColor HTWDarkGrayColor];
-    _ende.text = [NSString stringWithFormat:@"%@",[uhrzeit stringFromDate:lesson.ende]];
-    if (_portait) _ende.font = [UIFont systemFontOfSize:10];
-    else _ende.font = [UIFont systemFontOfSize:8];
  
     self.bounds = self.frame;
-    if(border != nil) [self addSubview:border];
-    [self addSubview:_anfang];
-    [self addSubview:_ende];
     [self addSubview:kurzel];
     [self addSubview:raum];
-    
-    
-    
-    [[self layer] setBorderWidth:2.0f];
-    [[self layer] setBorderColor:[UIColor HTWDarkBlueColor].CGColor];
 }
 
 #pragma mark - Hilfsfunktionen

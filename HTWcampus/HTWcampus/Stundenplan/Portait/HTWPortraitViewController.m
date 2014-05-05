@@ -17,6 +17,7 @@
 #import "HTWICSExport.h"
 #import "HTWCSVConnection.h"
 #import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
 
 #define PixelPerMin 0.5
 
@@ -103,7 +104,7 @@
     
     _settingsBarButtonItem.tintColor = [UIColor HTWWhiteColor];
     
-    _scrollView.contentSize = CGSizeMake(80+116*7, 520);
+    _scrollView.contentSize = CGSizeMake(80+116*7, 460);
     _scrollView.directionalLockEnabled = YES;
     _scrollView.delegate = self;
     
@@ -448,7 +449,6 @@
 
 -(void)reloadDaysLabelsAndBackground
 {
-    UIColor *schriftfarbe = [UIColor HTWWhiteColor];
     
     NSArray *wochentage = @[@"Montag",@"Dienstag",@"Mittwoch",@"Donnerstag",@"Freitag",@"Samstag",@"Sonntag"];
     
@@ -459,11 +459,11 @@
     NSMutableArray *labels = [[NSMutableArray alloc] init];
     
     for (int i=0; i < 7; i++) {
-        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+78+_scrollView.contentSize.width, 20, 108, 26)];
+        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+60+_scrollView.contentSize.width, 20, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
-        this.font = [UIFont fontWithName:@"Helvetica" size:20];
+        this.font = [UIFont HTWBaseFont];
         this.tag = -1;
-        this.textColor = schriftfarbe;
+        this.textColor = [UIColor HTWWhiteColor];
         
         this.text = wochentage[wochentagePointer];
         
@@ -480,7 +480,7 @@
     
     UIImage *indicator = [UIImage imageNamed:@"indicator.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
-    indicatorView.frame = CGRectMake(78+_scrollView.contentSize.width, 47, 108, 7);
+    indicatorView.frame = CGRectMake(60+_scrollView.contentSize.width, 47, 108, 7);
     [heuteMorgenLabelsView addSubview:indicatorView];
     heuteMorgenLabelsView.tag = -4;
     
@@ -502,29 +502,43 @@
     [nurTag setDateFormat:@"dd.MM.yyyy"];
     NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
     
-    NSMutableArray *stundenZeiten = [[NSMutableArray alloc] init];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:60*60*7]];
-    for (int i=0; i<17; i++) {
-        [stundenZeiten addObject:[(NSDate*)stundenZeiten[i] dateByAddingTimeInterval:60*60]];
-    }
-        
-    UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 63, _scrollView.contentSize.height+700)];
+    
+    UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 45, _scrollView.contentSize.height+700)];
     zeitenView.backgroundColor = [UIColor HTWDarkGrayColor];
     zeitenView.tag = -2;
     
-    NSDateFormatter *uhrzeit = [[NSDateFormatter alloc] init];
-    [uhrzeit setDateFormat:@"HH:mm"];
-    for (int i = 0; i < [stundenZeiten count]; i++) {
+    NSArray *vonStrings = @[@"07:30", @"09:20", @"11:10", @"13:10", @"15:00", @"16:50", @"18:30"];
+    NSArray *bisStrings = @[@"09:00", @"10:50", @"12:40", @"14:40", @"16:30", @"18:20", @"20:00"];
+    NSArray *stundenZeiten = @[[today dateByAddingTimeInterval:60*60*7+60*30],
+                               [today dateByAddingTimeInterval:60*60*9+60*20],
+                               [today dateByAddingTimeInterval:60*60*11+60*10],
+                               [today dateByAddingTimeInterval:60*60*13+60*10],
+                               [today dateByAddingTimeInterval:60*60*15+60*00],
+                               [today dateByAddingTimeInterval:60*60*16+60*50],
+                               [today dateByAddingTimeInterval:60*60*18+60*30] ];
+    
+    for (int i = 0; i < stundenZeiten.count; i++) {
         CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin + 350;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, y, 108, 20)];
-        label.text = [uhrzeit stringFromDate:stundenZeiten[i]];
-        label.textAlignment = NSTextAlignmentLeft;
-        label.textColor = [UIColor HTWWhiteColor];
-        label.font = [UIFont fontWithName:@"Helvetica" size:12];
+        UIView *vonBisLabel = [[UIView alloc] initWithFrame:CGRectMake(5, y, 30, 90 * PixelPerMin)];
+        UILabel *von = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, vonBisLabel.frame.size.width, vonBisLabel.frame.size.height/2)];
+        von.text = vonStrings[i];
+        von.font = [UIFont HTWVerySmallFont];
+        von.textColor = [UIColor HTWWhiteColor];
+        [vonBisLabel addSubview:von];
+        UILabel *bis = [[UILabel alloc] initWithFrame:CGRectMake(0, vonBisLabel.frame.size.height/2, vonBisLabel.frame.size.width, vonBisLabel.frame.size.height/2)];
+        bis.text = bisStrings[i];
+        bis.font = [UIFont HTWVerySmallFont];
+        bis.textColor = [UIColor HTWWhiteColor];
+        [vonBisLabel addSubview:bis];
         
+        UIView *strich = [[UIView alloc] initWithFrame:CGRectMake(vonBisLabel.frame.size.width*0.25, von.frame.size.height, vonBisLabel.frame.size.width/2, 1)];
+        strich.backgroundColor = [UIColor HTWWhiteColor];
+        [vonBisLabel addSubview:strich];
         
-        [zeitenView addSubview:label];
+        [zeitenView addSubview:vonBisLabel];
     }
+    
+    
     [self.scrollView addSubview:zeitenView];
     
     if ([[NSDate date] compare:[today dateByAddingTimeInterval:7*60*60+30*60]] == NSOrderedDescending &&
@@ -596,8 +610,8 @@
         
         _detailView.frame = CGRectMake(x, y, width,height);
         _detailView.layer.cornerRadius = 10;
-        _detailView.backgroundColor = [UIColor HTWDarkBlueColor];
-        _detailView.alpha = 0.85;
+        _detailView.backgroundColor = [UIColor HTWBlueColor];
+        _detailView.alpha = 0.9;
         
         for (UIView *this in _detailView.subviews) {
             [this removeFromSuperview];
@@ -606,7 +620,7 @@
         UILabel *titel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _detailView.frame.size.width, _detailView.frame.size.height*4/5)];
         titel.text = buttonPressed.lesson.titel;
         titel.textAlignment = NSTextAlignmentCenter;
-        titel.font = [UIFont systemFontOfSize:17];
+        titel.font = [UIFont HTWBaseFont];
         titel.lineBreakMode = NSLineBreakByWordWrapping;
         titel.numberOfLines = 3;
         titel.textColor = [UIColor HTWWhiteColor];
@@ -615,7 +629,7 @@
         UILabel *dozent = [[UILabel alloc] initWithFrame:CGRectMake(0, _detailView.frame.size.height*4/5-9, _detailView.frame.size.width, _detailView.frame.size.height*2/5)];
         if(buttonPressed.lesson.dozent) dozent.text = [NSString stringWithFormat:@"Dozent: %@", buttonPressed.lesson.dozent];
         dozent.textAlignment = NSTextAlignmentCenter;
-        dozent.font = [UIFont systemFontOfSize:15];
+        dozent.font = [UIFont HTWSmallFont];
         dozent.textColor = [UIColor HTWWhiteColor];
         [_detailView addSubview:dozent];
         

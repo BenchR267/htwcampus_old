@@ -38,6 +38,7 @@
     if(!_zimmer) _zimmer = [[NSArray alloc] init];
     [self updateZimmerArray];
     
+    self.clearsSelectionOnViewWillAppear = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -46,7 +47,6 @@
     
     self.tableView.backgroundView.backgroundColor = [UIColor HTWSandColor];
     
-    self.clearsSelectionOnViewWillAppear = YES;
 }
 
 #pragma mark - TableView Datasource

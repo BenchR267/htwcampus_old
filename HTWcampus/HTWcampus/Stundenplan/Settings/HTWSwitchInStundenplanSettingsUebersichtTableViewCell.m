@@ -7,7 +7,15 @@
 //
 
 #import "HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h"
+#import "UIColor+HTW.h"
 
 @implementation HTWSwitchInStundenplanSettingsUebersichtTableViewCell
+
+-(void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    self.thumbTintColor = [UIColor HTWWhiteColor];
+    self.onTintColor = [UIColor HTWBlueColor];
+}
 
 @end

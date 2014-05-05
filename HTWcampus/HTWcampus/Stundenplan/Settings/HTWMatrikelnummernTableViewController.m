@@ -233,7 +233,7 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"want to delete object at row %ld", (long)indexPath.row);
+        NSLog(@"want to delete object at row %ld (%@)", (long)indexPath.row, [(User*)_nummern[indexPath.row] matrnr]);
         appdelegate = [[UIApplication sharedApplication] delegate];
         _context = [appdelegate managedObjectContext];
         

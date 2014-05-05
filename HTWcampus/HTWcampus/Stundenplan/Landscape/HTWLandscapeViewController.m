@@ -13,8 +13,9 @@
 #import "User.h"
 #import "HTWPortraitViewController.h"
 #import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
 
-#define PixelPerMin 0.37
+#define PixelPerMin 0.35
 
 @interface HTWLandscapeViewController () <UIScrollViewDelegate>
 {
@@ -246,7 +247,7 @@
         label.text = [stringsTage objectAtIndex:j];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor HTWWhiteColor];
-        label.font = [UIFont fontWithName:@"Helvetica" size:16];
+        label.font = [UIFont HTWBaseFont];
         [heuteMorgenLabelsView addSubview:label];
     }
     [_scrollView addSubview:heuteMorgenLabelsView];
@@ -255,22 +256,35 @@
     [nurTag setDateFormat:@"dd.MM.yyyy"];
     NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
     
-    NSMutableArray *stundenZeiten = [[NSMutableArray alloc] init];
-    [stundenZeiten addObject:[today dateByAddingTimeInterval:60*60*7]];
-    for (int i=0; i<11; i++) {
-        [stundenZeiten addObject:[(NSDate*)stundenZeiten[i] dateByAddingTimeInterval:60*60]];
-    }
+    NSArray *vonStrings = @[@"07:30", @"09:20", @"11:10", @"13:10", @"15:00", @"16:50", @"18:30"];
+    NSArray *bisStrings = @[@"09:00", @"10:50", @"12:40", @"14:40", @"16:30", @"18:20", @"20:00"];
+    NSArray *stundenZeiten = @[[today dateByAddingTimeInterval:60*60*7+60*30],
+                               [today dateByAddingTimeInterval:60*60*9+60*20],
+                               [today dateByAddingTimeInterval:60*60*11+60*10],
+                               [today dateByAddingTimeInterval:60*60*13+60*10],
+                               [today dateByAddingTimeInterval:60*60*15+60*00],
+                               [today dateByAddingTimeInterval:60*60*16+60*50],
+                               [today dateByAddingTimeInterval:60*60*18+60*30] ];
     
-    NSDateFormatter *uhrzeit = [[NSDateFormatter alloc] init];
-    [uhrzeit setDateFormat:@"HH:mm"];
-    for (int i = 0; i < [stundenZeiten count]; i++) {
-        CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(22, y, 108, 20)];
-        label.text = [uhrzeit stringFromDate:stundenZeiten[i]];
-        label.textAlignment = NSTextAlignmentLeft;
-        label.font = [UIFont fontWithName:@"Helvetica" size:12];
-        label.textColor = [UIColor HTWWhiteColor];
-        [self.zeitenView addSubview:label];
+    for (int i = 0; i < stundenZeiten.count; i++) {
+        CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin ;
+        UIView *vonBisLabel = [[UIView alloc] initWithFrame:CGRectMake(5, y, 30, 90 * PixelPerMin)];
+        UILabel *von = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, vonBisLabel.frame.size.width, vonBisLabel.frame.size.height/2)];
+        von.text = vonStrings[i];
+        von.font = [UIFont HTWVerySmallFont];
+        von.textColor = [UIColor HTWWhiteColor];
+        [vonBisLabel addSubview:von];
+        UILabel *bis = [[UILabel alloc] initWithFrame:CGRectMake(0, vonBisLabel.frame.size.height/2, vonBisLabel.frame.size.width, vonBisLabel.frame.size.height/2)];
+        bis.text = bisStrings[i];
+        bis.font = [UIFont HTWVerySmallFont];
+        bis.textColor = [UIColor HTWWhiteColor];
+        [vonBisLabel addSubview:bis];
+        
+        UIView *strich = [[UIView alloc] initWithFrame:CGRectMake(vonBisLabel.frame.size.width*0.25, von.frame.size.height, vonBisLabel.frame.size.width/2, 1)];
+        strich.backgroundColor = [UIColor HTWWhiteColor];
+        [vonBisLabel addSubview:strich];
+        
+        [_zeitenView addSubview:vonBisLabel];
     }
 }
 
@@ -324,9 +338,9 @@
         HTWStundenplanButtonForLesson *buttonPressed = (HTWStundenplanButtonForLesson*)gesture.view;
         
         CGFloat x = buttonPressed.frame.origin.x-buttonPressed.frame.size.width/2;
-        CGFloat y = buttonPressed.frame.origin.y-180*PixelPerMin;
+        CGFloat y = buttonPressed.frame.origin.y-220*PixelPerMin;
         CGFloat width = buttonPressed.frame.size.width*2;
-        CGFloat height = 180*PixelPerMin;
+        CGFloat height = 220*PixelPerMin;
         
         if (x + width > _scrollView.contentOffset.x + [UIScreen mainScreen].bounds.size.height - _zeitenView.frame.size.width)
             x -= ((x + width) - ([UIScreen mainScreen].bounds.size.height - _zeitenView.frame.size.width + _scrollView.contentOffset.x));
@@ -337,8 +351,8 @@
         
         _detailView.frame = CGRectMake(x, y, width,height);
         _detailView.layer.cornerRadius = 10;
-        _detailView.backgroundColor = [UIColor HTWDarkBlueColor];
-        _detailView.alpha = 0.85;
+        _detailView.backgroundColor = [UIColor HTWBlueColor];
+        _detailView.alpha = 0.9;
         
         for (UIView *this in _detailView.subviews) {
             [this removeFromSuperview];
@@ -347,16 +361,16 @@
         UILabel *titel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _detailView.frame.size.width, _detailView.frame.size.height*4/5)];
         titel.text = buttonPressed.lesson.titel;
         titel.textAlignment = NSTextAlignmentCenter;
-        titel.font = [UIFont systemFontOfSize:13];
+        titel.font = [UIFont HTWSmallFont];
         titel.lineBreakMode = NSLineBreakByWordWrapping;
-        titel.numberOfLines = 2;
+        titel.numberOfLines = 3;
         titel.textColor = [UIColor HTWWhiteColor];
         [_detailView addSubview:titel];
         
         UILabel *dozent = [[UILabel alloc] initWithFrame:CGRectMake(0, _detailView.frame.size.height*4/5-9, _detailView.frame.size.width, _detailView.frame.size.height*2/5)];
         if(buttonPressed.lesson.dozent) dozent.text = [NSString stringWithFormat:@"Dozent: %@", buttonPressed.lesson.dozent];
         dozent.textAlignment = NSTextAlignmentCenter;
-        dozent.font = [UIFont systemFontOfSize:12];
+        dozent.font = [UIFont HTWVerySmallFont];
         dozent.textColor = [UIColor HTWWhiteColor];
         [_detailView addSubview:dozent];
         
