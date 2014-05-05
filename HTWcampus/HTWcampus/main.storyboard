@@ -301,16 +301,16 @@
         <scene sceneID="Psp-BU-Qme">
             <objects>
                 <tableViewController id="RLp-9f-OR6" customClass="HTWStundenplanSettingsUebersichtTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="bQL-pC-xFN">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="bQL-pC-xFN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="57" id="ynV-Ux-4Nf" customClass="HTWStundenplanSettingsUebersichtTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="57"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="82" id="ynV-Ux-4Nf" customClass="HTWStundenplanSettingsUebersichtTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="ynV-Ux-4Nf" id="wpq-9t-Fno">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azj-WC-xqg" customClass="HTWSwitchInStundenplanSettingsUebersichtTableViewCell">
@@ -320,14 +320,14 @@
                                             <color key="thumbTintColor" red="0.96862745098039216" green="0.95686274509803915" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                         </switch>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDP-7K-aed">
-                                            <rect key="frame" x="20" y="12" width="209" height="21"/>
+                                            <rect key="frame" x="20" y="5" width="209" height="49"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCi-Mw-GQk">
-                                            <rect key="frame" x="20" y="29" width="209" height="21"/>
+                                            <rect key="frame" x="20" y="62" width="209" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="highlightedColor"/>

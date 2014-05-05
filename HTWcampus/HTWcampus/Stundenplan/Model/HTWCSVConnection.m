@@ -169,6 +169,7 @@
             _stunde.anzeigen = [NSNumber numberWithBool:YES];
             _stunde.id = [NSString stringWithFormat:@"%@%d%@", _stunde.kurzel, [self weekdayFromDate:_stunde.anfang], [self uhrZeitFromDate:_stunde.anfang]];
             _stunde.dozent = _name;
+            _stunde.titel = [_stunde.kurzel componentsSeparatedByString:@" "][0];
             [_student addStundenObject:_stunde];
 
             [_context save:&error];

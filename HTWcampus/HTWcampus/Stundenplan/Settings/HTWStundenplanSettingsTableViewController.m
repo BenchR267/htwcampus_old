@@ -11,6 +11,7 @@
 #import "HTWAppDelegate.h"
 #import "User.h"
 #import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
 
 @interface HTWStundenplanSettingsTableViewController ()
 
@@ -46,13 +47,17 @@
     
     _matrikelnummernCell.backgroundColor = [UIColor HTWWhiteColor];
     _matrikelnummernCell.textLabel.textColor = [UIColor HTWDarkGrayColor];
+    _matrikelnummernCell.textLabel.font = [UIFont HTWBaseFont];
     _matrikelnummernCell.detailTextLabel.textColor = [UIColor HTWDarkGrayColor];
+    _matrikelnummernCell.detailTextLabel.font = [UIFont HTWBaseFont];
     
     _uebersichtCell.backgroundColor = [UIColor HTWWhiteColor];
     _uebersichtCell.textLabel.textColor = [UIColor HTWDarkGrayColor];
+    _uebersichtCell.textLabel.font = [UIFont HTWBaseFont];
     
     _markierungsCell.backgroundColor = [UIColor HTWWhiteColor];
     _sliderWert.textColor = [UIColor HTWDarkGrayColor];
+    _sliderWert.font = [UIFont HTWBaseFont];
 }
 
 #pragma mark - IBActions

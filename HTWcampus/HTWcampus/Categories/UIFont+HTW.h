@@ -12,6 +12,7 @@
 
 + (UIFont *)HTWBigBaseFont;
 + (UIFont *)HTWBaseFont;
++ (UIFont *)HTWMediumFont;
 + (UIFont *)HTWSmallFont;
 + (UIFont *)HTWVerySmallFont;
 + (UIFont *)HTWSmallestFont;

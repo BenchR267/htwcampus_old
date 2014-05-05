@@ -8,6 +8,7 @@
 
 #define FONT_SIZE_BIG 21.0
 #define FONT_SIZE_BASE 18.0
+#define FONT_SIZE_MEDIUM 16.0
 #define FONT_SIZE_SMALL 14.0
 #define FONT_SIZE_XS 12.0
 #define FONT_SIZE_XXS 10.0
@@ -22,6 +23,10 @@
 
 + (UIFont *)HTWBaseFont {
     return [UIFont fontWithName:@"PTSans-Regular" size:FONT_SIZE_BASE];
+}
+
++ (UIFont *)HTWMediumFont {
+    return [UIFont fontWithName:@"PTSans-Regular" size:FONT_SIZE_MEDIUM];
 }
 
 + (UIFont *)HTWSmallFont {

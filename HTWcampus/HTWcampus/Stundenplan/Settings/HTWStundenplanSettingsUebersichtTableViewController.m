@@ -14,6 +14,7 @@
 #import "Stunde.h"
 #import "HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h"
 #import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
 
 @interface HTWStundenplanSettingsUebersichtTableViewController () <NSFetchedResultsControllerDelegate>
 {
@@ -163,11 +164,16 @@
 - (void)configureCell:(HTWStundenplanSettingsUebersichtTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Stunde *info = [fetchedResultsController objectAtIndexPath:indexPath];
     
-    NSString *typ = [info.kurzel substringWithRange:NSMakeRange([info.kurzel length]-1, 1)];
+    NSString *typ;
+    if ([info.kurzel componentsSeparatedByString:@" "].count > 1) 
+        typ = [info.kurzel componentsSeparatedByString:@" "][1];
+    else typ = @" ";
     
     cell.titelLabel.text = [NSString stringWithFormat:@"%@ %@", typ, info.titel];
-    [cell.titelLabel setFont:[UIFont systemFontOfSize:12]];
+    [cell.titelLabel setFont:[UIFont HTWMediumFont]];
     cell.titelLabel.textColor = [UIColor HTWDarkGrayColor];
+    cell.titelLabel.numberOfLines = 2;
+    cell.titelLabel.lineBreakMode = NSLineBreakByCharWrapping;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm"];
@@ -204,6 +210,7 @@
     
     cell.subtitleLabel.text = wochentag;
     cell.subtitleLabel.textColor = [UIColor HTWDarkGrayColor];
+    cell.subtitleLabel.font = [UIFont HTWSmallestFont];
     
     [cell.cellSwitch setOn:info.anzeigen.boolValue];
     

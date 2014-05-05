@@ -15,6 +15,7 @@
 
 #import "Stunde.h"
 #import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
 
 @interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIAlertViewDelegate>
 {
@@ -202,6 +203,7 @@
     else cell.textLabel.text = info.name;
     
     cell.textLabel.textColor = [UIColor HTWDarkGrayColor];
+    cell.textLabel.font = [UIFont HTWBaseFont];
     cell.backgroundColor = [UIColor HTWWhiteColor];
     
     UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
