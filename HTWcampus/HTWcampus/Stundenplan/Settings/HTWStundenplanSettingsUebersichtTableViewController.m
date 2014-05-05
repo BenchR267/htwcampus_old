@@ -148,7 +148,8 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
     
-    self.view.backgroundColor = htwColors.darkViewBackground;
+    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
+
     
     Matrnr = [defaults objectForKey:@"Matrikelnummer"];
     
@@ -185,7 +186,7 @@
     
     cell.titelLabel.text = [NSString stringWithFormat:@"%@ %@", typ, info.titel];
     [cell.titelLabel setFont:[UIFont systemFontOfSize:12]];
-    cell.titelLabel.textColor = htwColors.darkTextColor;
+    cell.titelLabel.textColor = htwColors.darkCellText;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm"];
@@ -221,7 +222,7 @@
     }
     
     cell.subtitleLabel.text = wochentag;
-    cell.subtitleLabel.textColor = htwColors.darkTextColor;
+    cell.subtitleLabel.textColor = htwColors.darkCellText;
     
     [cell.cellSwitch setOn:info.anzeigen.boolValue];
     

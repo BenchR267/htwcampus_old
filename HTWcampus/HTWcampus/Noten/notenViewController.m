@@ -14,8 +14,12 @@
 
 #import "notenViewController.h"
 #import "notenDetailViewController.h"
+#import "HTWColors.h"
 
 @interface notenViewController ()
+{
+    HTWColors *htwColors;
+}
 @end
 
 @implementation notenViewController
@@ -44,9 +48,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    htwColors = [[HTWColors alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
+    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
+    
     [self.tableView reloadData];
     
     if (self.notenspiegel == nil) {
@@ -295,6 +305,8 @@
             cell.detailTextLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"note"];
             cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255/255.0 green:137/255.0 blue:44/255.0 alpha:1.0];
         }
+        cell.textLabel.textColor = htwColors.darkCellText;
+        cell.detailTextLabel.textColor = htwColors.darkCellText;
         
     }
     

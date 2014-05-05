@@ -14,8 +14,12 @@
 #import "MensaXMLParserDelegate.h"
 #import "MensaDetailViewController.h"
 #import "UIImage+Resize.h"
+#import "HTWColors.h"
 
 @interface mensaViewController ()
+{
+    HTWColors *htwColors;
+}
 @property (nonatomic, strong) NSXMLParser *xmlParser;
 @property (nonatomic, strong) MensaXMLParserDelegate *mensaXMLParserDelegate;
 @end
@@ -36,6 +40,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    htwColors = [[HTWColors alloc] init];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     mensaMeta = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -80,7 +87,14 @@
 
 
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    
+    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
+    _mensaDaySwitcher.tintColor = htwColors.darkTextColor;
     
 //    self.mensaLoadingIndicator.hidden = NO;
 //    self.mensaLoadingIndicator.hidesWhenStopped = YES;
@@ -320,6 +334,10 @@
 		[mensaSpinner startAnimating];
         [cell.contentView addSubview:mensaSpinner];
     }
+    
+    cell.textLabel.textColor = htwColors.darkCellText;
+    cell.detailTextLabel.textColor = htwColors.darkCellText;
+    
     return cell;
 }
 

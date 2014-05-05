@@ -13,16 +13,19 @@
 -(id)init
 {
     self = [super init];
-    _darkTabBarTint = [UIColor colorWithRed:27/255.f green:30/255.f blue:37/255.f alpha:0.5];
-    _darkNavigationBarTint = [UIColor colorWithRed:0/255.f green:0/255.f blue:0/255.f alpha:0.9];
+    _darkTabBarTint = [UIColor colorWithRed:58/255.f green:121/255.f blue:162/255.f alpha:0.5];
+    _darkNavigationBarTint = [UIColor colorWithRed:58/255.f green:121/255.f blue:162/255.f alpha:0.9];
     _darkNavigationBarStyle = UIBarStyleBlackTranslucent;
-    _darkViewBackground = [UIColor colorWithRed:135/255.f green:135/255.f blue:135/255.f alpha:1];
-    _darkZeitenAndButtonBackground = [UIColor colorWithRed:37/255.f green:44/255.f blue:54/255.f alpha:1];
-    _darkCellBackground = [UIColor colorWithRed:37/255.f green:44/255.f blue:54/255.f alpha:1];
-    _darkStricheStundenplan = [UIColor colorWithRed:50/255.f green:58/255.f blue:77/255.f alpha:0.4];
-    _darkButtonIsNow = [UIColor colorWithRed:45/255.f green:112/255.f blue:120/255.f alpha:1];
+    _darkViewBackground = [UIColor colorWithRed:247/255.f green:244/255.f blue:239/255.f alpha:0.6];
+    _darkZeitenBackground = [UIColor colorWithRed:115/255.f green:113/255.f blue:111/255.f alpha:1];
+    _darkButtonBackground = [UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1];
+    _darkButtonText = [UIColor colorWithRed:115/255.f green:113/255.f blue:111/255.f alpha:1];
+    _darkCellBackground = [UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1];
+    _darkCellText = _darkButtonText;
+    _darkStricheStundenplan = [UIColor colorWithRed:247/255.f green:244/255.f blue:239/255.f alpha:0.4];
+    _darkButtonIsNow = [UIColor colorWithRed:58/255.f green:121/255.f blue:162/255.f alpha:1];
     _darkButtonBorder = [UIColor colorWithRed:65/255.f green:104/255.f blue:111/255.f alpha:1.0f];
-    _darkButtonBorderIsNow = [UIColor colorWithRed:67/255.f green:191/255.f blue:181/255.f alpha:1.0f];
+    _darkButtonBorderIsNow = [UIColor colorWithRed:42/255.f green:84/255.f blue:111/255.f alpha:1.0f];
     _darkTextColor = [UIColor whiteColor];
     return self;
 }
@@ -33,7 +36,9 @@
     _darkNavigationBarTint = [UIColor colorWithRed:44/255.f green:62/255.f blue:80/255.f alpha:1];
     _darkNavigationBarStyle = UIBarStyleDefault;
     _darkViewBackground = [UIColor colorWithRed:236/255.f green:240/255.f blue:241/255.f alpha:1];
-    _darkZeitenAndButtonBackground = [UIColor colorWithRed:54/255.f green:149/255.f blue:196/255.f alpha:0.4];
+    _darkZeitenBackground = [UIColor colorWithRed:54/255.f green:149/255.f blue:196/255.f alpha:0.4];
+    _darkButtonBackground = [UIColor colorWithRed:54/255.f green:149/255.f blue:196/255.f alpha:0.4];
+    _darkButtonText = [UIColor colorWithRed:115/255.f green:113/255.f blue:111/255.f alpha:1];
     _darkCellBackground = [UIColor colorWithRed:236/255.f green:240/255.f blue:241/255.f alpha:1];
     _darkStricheStundenplan = [UIColor colorWithRed:149/255.f green:165/255.f blue:166/255.f alpha:0.4];
     _darkButtonIsNow = [UIColor colorWithRed:102/255.f green:120/255.f blue:250/255.f alpha:0.7];
@@ -43,16 +48,19 @@
 }
 -(void)setDark
 {
-    _darkTabBarTint = [UIColor colorWithRed:27/255.f green:30/255.f blue:37/255.f alpha:0.5];
-    _darkNavigationBarTint = [UIColor colorWithRed:0/255.f green:0/255.f blue:0/255.f alpha:0.9];
+    _darkTabBarTint = [UIColor colorWithRed:58/255.f green:121/255.f blue:162/255.f alpha:0.5];
+    _darkNavigationBarTint = [UIColor colorWithRed:58/255.f green:121/255.f blue:162/255.f alpha:0.9];
     _darkNavigationBarStyle = UIBarStyleBlackTranslucent;
-    _darkViewBackground = [UIColor colorWithRed:135/255.f green:135/255.f blue:135/255.f alpha:1];
-    _darkZeitenAndButtonBackground = [UIColor colorWithRed:37/255.f green:44/255.f blue:54/255.f alpha:1];
-    _darkCellBackground = [UIColor colorWithRed:37/255.f green:44/255.f blue:54/255.f alpha:1];
-    _darkStricheStundenplan = [UIColor colorWithRed:50/255.f green:58/255.f blue:77/255.f alpha:0.4];
-    _darkButtonIsNow = [UIColor colorWithRed:45/255.f green:112/255.f blue:120/255.f alpha:1];
+    _darkViewBackground = [UIColor colorWithRed:247/255.f green:244/255.f blue:239/255.f alpha:0.6];
+    _darkZeitenBackground = [UIColor colorWithRed:115/255.f green:113/255.f blue:111/255.f alpha:1];
+    _darkButtonBackground = [UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1];
+    _darkButtonText = [UIColor colorWithRed:115/255.f green:113/255.f blue:111/255.f alpha:1];
+    _darkCellBackground = [UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1];
+    _darkCellText = _darkButtonText;
+    _darkStricheStundenplan = [UIColor colorWithRed:247/255.f green:244/255.f blue:239/255.f alpha:0.4];
+    _darkButtonIsNow = [UIColor colorWithRed:58/255.f green:121/255.f blue:162/255.f alpha:1];
     _darkButtonBorder = [UIColor colorWithRed:65/255.f green:104/255.f blue:111/255.f alpha:1.0f];
-    _darkButtonBorderIsNow = [UIColor colorWithRed:67/255.f green:191/255.f blue:181/255.f alpha:1.0f];
+    _darkButtonBorderIsNow = [UIColor colorWithRed:42/255.f green:84/255.f blue:111/255.f alpha:1.0f];
     _darkTextColor = [UIColor whiteColor];
 }
 

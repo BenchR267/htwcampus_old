@@ -57,17 +57,17 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
     
-    self.view.backgroundColor = htwColors.darkViewBackground;
+    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
     
     self.matrikelnummernCell.backgroundColor = htwColors.darkCellBackground;
-    self.matrikelnummernCell.textLabel.textColor = htwColors.darkTextColor;
+    self.matrikelnummernCell.textLabel.textColor = htwColors.darkCellText;
     self.matrikelnummernCell.detailTextLabel.textColor = htwColors.darkTextColor;
     
     self.uebersichtCell.backgroundColor = htwColors.darkCellBackground;
-    self.uebersichtCell.textLabel.textColor = htwColors.darkTextColor;
+    self.uebersichtCell.textLabel.textColor = htwColors.darkCellText;
     
     self.markierungsCell.backgroundColor = htwColors.darkCellBackground;
-    _sliderWert.textColor = htwColors.darkTextColor;
+    _sliderWert.textColor = htwColors.darkCellText;
 }
 
 #pragma mark - IBActions

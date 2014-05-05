@@ -112,7 +112,7 @@
     [_scrollView addSubview:_detailView];
     
     self.scrollView.backgroundColor = htwColors.darkViewBackground;
-    self.zeitenView.backgroundColor = htwColors.darkZeitenAndButtonBackground;
+    self.zeitenView.backgroundColor = htwColors.darkZeitenBackground;
     
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
@@ -245,7 +245,7 @@
     
     
     
-    heuteMorgenLabelsView.backgroundColor = htwColors.darkZeitenAndButtonBackground;
+    heuteMorgenLabelsView.backgroundColor = htwColors.darkZeitenBackground;
     heuteMorgenLabelsView.tag = -1;
     
     for (int i = 0; i < 10; i++) {

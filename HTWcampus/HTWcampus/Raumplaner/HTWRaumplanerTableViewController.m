@@ -60,7 +60,9 @@
     self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
     self.navigationController.navigationBar.tintColor = htwColors.darkTextColor;
     
-    self.view.backgroundColor = htwColors.darkViewBackground;
+    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
+    
+    self.clearsSelectionOnViewWillAppear = YES;
     
     [self.tableView reloadData];
 }
@@ -116,15 +118,15 @@
         cell.detailTextLabel.text = @"heute frei";
     }
     
-    
     cell.textLabel.text = info.matrnr;
+    cell.textLabel.textColor = htwColors.darkCellText;
     
-    cell.textLabel.textColor = htwColors.darkTextColor;
-    cell.detailTextLabel.textColor = htwColors.darkTextColor;
+    if (frei) {
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:58/255.f green:121/255.f blue:162/255.f alpha:1];
+    }
+    else cell.detailTextLabel.textColor = [UIColor colorWithRed:205/255.f green:111/255.f blue:93/255.f alpha:1];
     
     cell.backgroundColor = htwColors.darkCellBackground;
-    
-    cell.selected = NO;
     
     return cell;
 }

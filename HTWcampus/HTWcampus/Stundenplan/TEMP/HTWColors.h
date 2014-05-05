@@ -14,8 +14,11 @@
 @property (nonatomic) UIBarStyle darkNavigationBarStyle;
 @property (nonatomic, strong) UIColor *darkNavigationBarTint;
 @property (nonatomic, strong) UIColor *darkViewBackground;
-@property (nonatomic, strong) UIColor *darkZeitenAndButtonBackground;
+@property (nonatomic, strong) UIColor *darkZeitenBackground;
+@property (nonatomic, strong) UIColor *darkButtonBackground;
+@property (nonatomic, strong) UIColor *darkButtonText;
 @property (nonatomic, strong) UIColor *darkCellBackground;
+@property (nonatomic, strong) UIColor *darkCellText;
 @property (nonatomic, strong) UIColor *darkButtonIsNow;
 @property (nonatomic, strong) UIColor *darkButtonBorder;
 @property (nonatomic, strong) UIColor *darkButtonBorderIsNow;

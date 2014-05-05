@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) UILabel *kurzel;
 @property (nonatomic, strong) UILabel *raum;
+@property (nonatomic, strong) UILabel *anfang;
+@property (nonatomic, strong) UILabel *ende;
 
 @end
 
@@ -71,6 +73,9 @@
         if(_portait) self.raum.font = [UIFont fontWithName:@"Verdana" size:10];
         else self.raum.font = [UIFont fontWithName:@"Verdana" size:8];
         self.raum.textColor = htwColors.darkTextColor;
+        _anfang.textColor = htwColors.darkTextColor;
+        _ende.textColor = htwColors.darkTextColor;
+
         
         [[self layer] setBorderWidth:3.0f];
         [[self layer] setBorderColor:htwColors.darkButtonBorderIsNow.CGColor];
@@ -215,7 +220,7 @@
     }
     self.frame = CGRectMake( x, y, width, height);
     
-    self.backgroundColor = htwColors.darkZeitenAndButtonBackground;
+    self.backgroundColor = htwColors.darkButtonBackground;
     self.layer.cornerRadius = CornerRadius;
     
     if (!kurzel) kurzel = [[UILabel alloc] init];
@@ -226,23 +231,23 @@
     else kurzel.font = [UIFont systemFontOfSize:16];
     kurzel.textAlignment = NSTextAlignmentCenter;
     kurzel.frame = CGRectMake(x, y, width, height*0.6);
-    kurzel.textColor = htwColors.darkTextColor;
+    kurzel.textColor = htwColors.darkButtonText;
     
     raum.text = lesson.raum;
     if(_portait) raum.font = [UIFont systemFontOfSize:12];
     else raum.font = [UIFont systemFontOfSize:10];
     raum.textAlignment = NSTextAlignmentCenter;
     raum.frame = CGRectMake(x+3, y+(height*0.6), width-6, height*0.4);
-    raum.textColor = htwColors.darkTextColor;
+    raum.textColor = htwColors.darkButtonText;
     
-    UILabel *anfang = [[UILabel alloc] initWithFrame:raum.frame];
-    anfang.textAlignment = NSTextAlignmentLeft;
-    anfang.textColor = htwColors.darkTextColor;
+    _anfang = [[UILabel alloc] initWithFrame:raum.frame];
+    _anfang.textAlignment = NSTextAlignmentLeft;
+    _anfang.textColor = htwColors.darkButtonText;
     NSDateFormatter *uhrzeit = [[NSDateFormatter alloc] init];
     [uhrzeit setDateFormat:@"HH:mm"];
-    anfang.text = [NSString stringWithFormat:@"%@",[uhrzeit stringFromDate:lesson.anfang]];
-    if (_portait) anfang.font = [UIFont systemFontOfSize:10];
-    else anfang.font = [UIFont systemFontOfSize:8];
+    _anfang.text = [NSString stringWithFormat:@"%@",[uhrzeit stringFromDate:lesson.anfang]];
+    if (_portait) _anfang.font = [UIFont systemFontOfSize:10];
+    else _anfang.font = [UIFont systemFontOfSize:8];
     
     UIView *border;
     if (![lesson.bemerkungen isEqualToString:@""] && lesson.bemerkungen != nil) {
@@ -255,17 +260,17 @@
     }
     
     
-    UILabel *ende = [[UILabel alloc] initWithFrame:raum.frame];
-    ende.textAlignment = NSTextAlignmentRight;
-    ende.textColor = htwColors.darkTextColor;
-    ende.text = [NSString stringWithFormat:@"%@",[uhrzeit stringFromDate:lesson.ende]];
-    if (_portait) ende.font = [UIFont systemFontOfSize:10];
-    else ende.font = [UIFont systemFontOfSize:8];
+    _ende = [[UILabel alloc] initWithFrame:raum.frame];
+    _ende.textAlignment = NSTextAlignmentRight;
+    _ende.textColor = htwColors.darkButtonText;
+    _ende.text = [NSString stringWithFormat:@"%@",[uhrzeit stringFromDate:lesson.ende]];
+    if (_portait) _ende.font = [UIFont systemFontOfSize:10];
+    else _ende.font = [UIFont systemFontOfSize:8];
  
     self.bounds = self.frame;
     if(border != nil) [self addSubview:border];
-    [self addSubview:anfang];
-    [self addSubview:ende];
+    [self addSubview:_anfang];
+    [self addSubview:_ende];
     [self addSubview:kurzel];
     [self addSubview:raum];
     

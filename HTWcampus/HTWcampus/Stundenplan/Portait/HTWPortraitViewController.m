@@ -504,7 +504,7 @@
     
     
     
-    heuteMorgenLabelsView.backgroundColor = htwColors.darkZeitenAndButtonBackground;
+    heuteMorgenLabelsView.backgroundColor = htwColors.darkZeitenBackground;
     
     for (UILabel *this in labels) {
         [heuteMorgenLabelsView addSubview:this];
@@ -543,7 +543,7 @@
     }
         
     UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 63, _scrollView.contentSize.height+700)];
-    zeitenView.backgroundColor = htwColors.darkZeitenAndButtonBackground;
+    zeitenView.backgroundColor = htwColors.darkZeitenBackground;
     zeitenView.tag = -2;
     
     NSDateFormatter *uhrzeit = [[NSDateFormatter alloc] init];

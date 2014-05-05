@@ -53,6 +53,7 @@
     _endeCell.detailTextLabel.text = [datum stringFromDate:ende];
     
     htwColors = [[HTWColors alloc] init];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -77,7 +78,8 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
     
-    self.view.backgroundColor = htwColors.darkViewBackground;
+    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
+
 }
 
 - (IBAction)speichernButtonPressed:(UIBarButtonItem *)sender

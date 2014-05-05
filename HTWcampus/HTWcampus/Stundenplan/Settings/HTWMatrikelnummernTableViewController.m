@@ -67,7 +67,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.view.backgroundColor = htwColors.darkViewBackground;
+    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
+
     
 }
 
@@ -203,7 +204,7 @@
     if(!info.dozent.boolValue) cell.textLabel.text = info.matrnr;
     else cell.textLabel.text = info.name;
     
-    cell.textLabel.textColor = htwColors.darkTextColor;
+    cell.textLabel.textColor = htwColors.darkCellText;
     cell.backgroundColor = htwColors.darkCellBackground;
     
     UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
