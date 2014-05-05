@@ -61,7 +61,7 @@
     
     self.matrikelnummernCell.backgroundColor = htwColors.darkCellBackground;
     self.matrikelnummernCell.textLabel.textColor = htwColors.darkCellText;
-    self.matrikelnummernCell.detailTextLabel.textColor = htwColors.darkTextColor;
+    self.matrikelnummernCell.detailTextLabel.textColor = htwColors.darkCellText;
     
     self.uebersichtCell.backgroundColor = htwColors.darkCellBackground;
     self.uebersichtCell.textLabel.textColor = htwColors.darkCellText;
