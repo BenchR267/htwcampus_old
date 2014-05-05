@@ -169,7 +169,7 @@
 		E62C4848191422DE00788651 /* HTWCSVConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVConnection.m; path = Stundenplan/Model/HTWCSVConnection.m; sourceTree = "<group>"; };
 		E62C4849191422DE00788651 /* HTWCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVParser.h; path = Stundenplan/Model/HTWCSVParser.h; sourceTree = "<group>"; };
 		E62C484A191422DE00788651 /* HTWCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVParser.m; path = Stundenplan/Model/HTWCSVParser.m; sourceTree = "<group>"; };
-		E63772C31908146300DEE8AB /* HTWcampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTWcampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63772C31908146300DEE8AB /* HTWcampus Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTWcampus Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772C61908146300DEE8AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E63772C81908146300DEE8AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E63772CA1908146300DEE8AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -407,7 +407,7 @@
 		E63772C41908146300DEE8AB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E63772C31908146300DEE8AB /* HTWcampus.app */,
+				E63772C31908146300DEE8AB /* HTWcampus Debug.app */,
 				E63772E31908146300DEE8AB /* HTWcampusTests.xctest */,
 			);
 			name = Products;
@@ -517,7 +517,7 @@
 			);
 			name = HTWcampus;
 			productName = HTWcampus;
-			productReference = E63772C31908146300DEE8AB /* HTWcampus.app */;
+			productReference = E63772C31908146300DEE8AB /* HTWcampus Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E63772E21908146300DEE8AB /* HTWcampusTests */ = {
@@ -775,7 +775,7 @@
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME) Debug";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
