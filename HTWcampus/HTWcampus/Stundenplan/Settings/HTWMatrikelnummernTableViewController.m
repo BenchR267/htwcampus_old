@@ -158,6 +158,7 @@
             
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
             spinner.frame = CGRectMake(0, 0, 50, 50);
+            spinner.color = htwColors.darkCellText;
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
             cell.accessoryView = spinner;
             [spinner startAnimating];
@@ -211,7 +212,7 @@
     imageView.tag = indexPath.row;
     [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
     imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [imageView setTintColor:[UIColor whiteColor]];
+    [imageView setTintColor:htwColors.darkCellText];
     imageView.frame = CGRectMake(0, 0, 50, 50);
     imageView.userInteractionEnabled = YES;
     [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
