@@ -461,7 +461,7 @@
     for (int i=0; i < 7; i++) {
         UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+60+_scrollView.contentSize.width, 20, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
-        this.font = [UIFont HTWBaseFont];
+        this.font = [UIFont HTWBigBaseFont];
         this.tag = -1;
         this.textColor = [UIColor HTWWhiteColor];
         
@@ -713,6 +713,10 @@
     
     for (UIView *this in scrollView.subviews) {
         if(this.tag == -3) {
+            [scrollView bringSubviewToFront:this];
+            break;
+        }
+        if(this.tag == -4) {
             [scrollView bringSubviewToFront:this];
             break;
         }

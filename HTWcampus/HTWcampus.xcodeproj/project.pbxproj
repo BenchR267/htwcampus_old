@@ -99,8 +99,9 @@
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
 		E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DF7E0619137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m */; };
-		E6FE12A119093D6700D56D52 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator.png */; };
+		E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator-red.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
+		E6FE97F619183742004C6596 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE97F519183742004C6596 /* indicator.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,9 +260,10 @@
 		E6D2E572190FF60400DCD9EF /* HTWICSExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWICSExport.m; path = Stundenplan/Export/HTWICSExport.m; sourceTree = "<group>"; };
 		E6DF7E0519137F1200DDC69C /* HTWStundenplanSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanSettingsTableViewController.h; path = Stundenplan/Settings/HTWStundenplanSettingsTableViewController.h; sourceTree = "<group>"; };
 		E6DF7E0619137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanSettingsTableViewController.m; path = Stundenplan/Settings/HTWStundenplanSettingsTableViewController.m; sourceTree = "<group>"; };
-		E6FE12A019093D6700D56D52 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
+		E6FE12A019093D6700D56D52 /* indicator-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator-red.png"; path = "Stundenplan/Portait/indicator-red.png"; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
+		E6FE97F519183742004C6596 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,7 +488,8 @@
 			children = (
 				E61D880F190857F90033D543 /* HTWPortraitViewController.h */,
 				E61D8810190857F90033D543 /* HTWPortraitViewController.m */,
-				E6FE12A019093D6700D56D52 /* indicator.png */,
+				E6FE12A019093D6700D56D52 /* indicator-red.png */,
+				E6FE97F519183742004C6596 /* indicator.png */,
 			);
 			name = Portait;
 			sourceTree = "<group>";
@@ -724,7 +727,7 @@
 				6D753A521917A8C300C6BAA1 /* mensologie.jpg in Resources */,
 				6D753A581917A8C300C6BAA1 /* stimmgabel.jpg in Resources */,
 				6D753A4F1917A8C300C6BAA1 /* mensa-siedepunkt.jpg in Resources */,
-				E6FE12A119093D6700D56D52 /* indicator.png in Resources */,
+				E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */,
 				6D753A4E1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg in Resources */,
 				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,
 				6D753A781917F20800C6BAA1 /* hausvii.jpg in Resources */,
@@ -733,6 +736,7 @@
 				6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */,
 				6D753A761917F1D000C6BAA1 /* zittau.jpg in Resources */,
 				6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */,
+				E6FE97F619183742004C6596 /* indicator.png in Resources */,
 				E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */,
 				6D753A531917A8C300C6BAA1 /* neuemensa.jpg in Resources */,
 				6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */,
