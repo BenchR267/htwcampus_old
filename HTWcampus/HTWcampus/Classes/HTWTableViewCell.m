@@ -7,6 +7,8 @@
 //
 
 #import "HTWTableViewCell.h"
+#import "UIFont+HTW.h"
+#import "UIColor+HTW.h"
 
 @implementation HTWTableViewCell
 
@@ -17,6 +19,15 @@
         // Initialization code
     }
     return self;
+}
+
+-(void)drawRect:(CGRect)rect {
+    _mainLabel.font = _secondaryLabel.font = [UIFont HTWBaseFont];
+    _mensaPreisLabel.font = [UIFont HTWVerySmallFont];
+    
+    _mainLabel.textColor = [UIColor HTWTextColor];
+    _secondaryLabel.textColor = [UIColor HTWBlueColor];
+    _mensaPreisLabel.textColor = [UIColor HTWBlueColor];
 }
 
 - (void)awakeFromNib

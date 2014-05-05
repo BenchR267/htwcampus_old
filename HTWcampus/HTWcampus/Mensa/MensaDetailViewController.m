@@ -85,14 +85,7 @@
     [mealPriceLabel setText:mealPrice];
     
     [mealNameLabel sizeToFit];
-    [mealNameLabel setNumberOfLines:0];
-    
-    cell.mensaName.textColor = [UIColor HTWTextColor];
-    cell.mensaName.font = [UIFont HTWTableViewCellFont];
-    
-    cell.mensaPreisLabel.textColor = [UIColor HTWBlueColor];
-    cell.mensaPreisLabel.font = [UIFont HTWVerySmallFont];
-    
+    [mealNameLabel setNumberOfLines:0];    
     return cell;
 }
 

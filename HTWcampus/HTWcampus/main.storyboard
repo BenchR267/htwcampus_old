@@ -466,7 +466,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="pruefungsfachZelle" textLabel="0mh-0t-guA" detailTextLabel="xTn-S4-iYE" style="IBUITableViewCellStyleValue1" id="5OP-AO-ZG5">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="pruefungsfachZelle" textLabel="0mh-0t-guA" detailTextLabel="xTn-S4-iYE" style="IBUITableViewCellStyleValue1" id="5OP-AO-ZG5" customClass="HTWTableViewCell">
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5OP-AO-ZG5" id="ylv-o1-A2b">
@@ -490,6 +490,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="mainLabel" destination="0mh-0t-guA" id="eaB-Mq-GEZ"/>
+                                    <outlet property="secondaryLabel" destination="xTn-S4-iYE" id="W9L-ee-WBZ"/>
                                     <segue destination="SwZ-K8-8T3" kind="push" identifier="showFachDetails" id="mL7-nA-Vxy"/>
                                 </connections>
                             </tableViewCell>
@@ -522,7 +524,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fachDetailZelle" textLabel="3OJ-BG-LDA" detailTextLabel="Je6-Cx-F7n" style="IBUITableViewCellStyleValue1" id="Jos-Ri-Ijg">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fachDetailZelle" textLabel="3OJ-BG-LDA" detailTextLabel="Je6-Cx-F7n" style="IBUITableViewCellStyleValue1" id="Jos-Ri-Ijg" customClass="HTWTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jos-Ri-Ijg" id="pbg-ls-uZ4">
@@ -545,6 +547,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mainLabel" destination="3OJ-BG-LDA" id="hF4-Zz-sPm"/>
+                                    <outlet property="secondaryLabel" destination="Je6-Cx-F7n" id="G0s-yg-XEE"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1059,8 +1065,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="mensaName" destination="X71-HA-bpN" id="nMK-kL-hIg"/>
-                                    <outlet property="openingsLabel" destination="ubd-f1-6NP" id="pyr-w2-4RU"/>
+                                    <outlet property="mainLabel" destination="X71-HA-bpN" id="XyM-Nh-mdU"/>
+                                    <outlet property="mensaPreisLabel" destination="ubd-f1-6NP" id="mar-qC-yyJ"/>
                                     <segue destination="OCM-Yn-UrX" kind="push" identifier="mensaMeals" id="Thg-sq-CD9"/>
                                 </connections>
                             </tableViewCell>
@@ -1137,7 +1143,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="mensaName" destination="sWF-na-0Aq" id="eu5-Qk-xMV"/>
+                                    <outlet property="mainLabel" destination="sWF-na-0Aq" id="VN7-y5-glK"/>
                                     <outlet property="mensaPreisLabel" destination="FMd-oE-r4D" id="d4C-sd-guU"/>
                                 </connections>
                             </tableViewCell>

@@ -16,7 +16,6 @@
 #import "UIImage+Resize.h"
 #import "UIColor+HTW.h"
 #import "HTWTableViewCell.h"
-#import "UIFont+HTW.h"
 
 @interface mensaViewController ()
 
@@ -325,12 +324,6 @@
         //Add mensa image
         UIImage *currentMensaImage = [UIImage imageNamed:[self getMensaImageNameForName:currentMensaName]];
         cell.imageView.image = [currentMensaImage thumbnailImage:128 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationDefault];
-        
-        cell.mensaName.textColor = [UIColor HTWTextColor];
-        cell.mensaName.font = [UIFont HTWTableViewCellFont];
-        
-        cell.openingsLabel.textColor = [UIColor HTWBlueColor];
-        cell.openingsLabel.font = [UIFont HTWVerySmallFont];
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier forIndexPath:indexPath];

@@ -49,6 +49,7 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBar.barTintColor = [UIColor HTWBlueColor];
     self.navigationController.navigationBarHidden = NO;
+    self.tableView.backgroundColor = [UIColor HTWSandColor];
     
     [self.tableView reloadData];
     
@@ -291,15 +292,11 @@
         if (indexPath.section == 0) {
             cell.textLabel.text = @"Notendurchschnitt";
             cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%.2f", notendurchschnitt];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:35];
         }
         else {
             cell.textLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"name"];
             cell.detailTextLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"note"];
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255/255.0 green:137/255.0 blue:44/255.0 alpha:1.0];
         }
-        cell.textLabel.textColor = [UIColor HTWTextColor];
-        cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
     }
     
     if (!self.notenspiegel) {
