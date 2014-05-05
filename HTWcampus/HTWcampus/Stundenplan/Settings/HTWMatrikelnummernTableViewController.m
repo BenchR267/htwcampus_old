@@ -79,7 +79,7 @@
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput && [alertView.title isEqualToString:@"Neuen Stundenplan hinzufügen"])
     {
-        if ([buttonTitle isEqualToString:@"User"]) {
+        if ([buttonTitle isEqualToString:@"Student"]) {
             NSString *matrNr = [alertView textFieldAtIndex:0].text;
             _parser = nil;
             
@@ -344,7 +344,7 @@
             imageView.tag = i;
             [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
             imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            [imageView setTintColor:[UIColor whiteColor]];
+            [imageView setTintColor:htwColors.darkCellText];
             imageView.frame = CGRectMake(0, 0, 50, 50);
             imageView.userInteractionEnabled = YES;
             [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -388,7 +388,7 @@
             imageView.tag = i;
             [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
             imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            [imageView setTintColor:[UIColor whiteColor]];
+            [imageView setTintColor:htwColors.darkCellText];
             imageView.frame = CGRectMake(0, 0, 50, 50);
             imageView.userInteractionEnabled = YES;
             [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
