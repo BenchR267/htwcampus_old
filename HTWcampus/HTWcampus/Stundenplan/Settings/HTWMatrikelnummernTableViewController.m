@@ -14,14 +14,12 @@
 #import "User.h"
 
 #import "Stunde.h"
-#import "HTWColors.h"
+#import "UIColor+HTW.h"
 
 @interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIAlertViewDelegate>
 {
     HTWAppDelegate *appdelegate;
     NSString *Matrnr;
-    
-    HTWColors *htwColors;
 }
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -55,8 +53,6 @@
     
     _nummern = [_context executeFetchRequest:fetchRequest error:nil];
     
-    htwColors = [[HTWColors alloc] init];
-    
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = YES;
     
@@ -67,7 +63,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
+    self.tableView.backgroundView.backgroundColor = [UIColor HTWSandColor];
 
     
 }
@@ -158,7 +154,7 @@
             
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
             spinner.frame = CGRectMake(0, 0, 50, 50);
-            spinner.color = htwColors.darkCellText;
+            spinner.color = [UIColor HTWDarkGrayColor];
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
             cell.accessoryView = spinner;
             [spinner startAnimating];
@@ -205,14 +201,14 @@
     if(!info.dozent.boolValue) cell.textLabel.text = info.matrnr;
     else cell.textLabel.text = info.name;
     
-    cell.textLabel.textColor = htwColors.darkCellText;
-    cell.backgroundColor = htwColors.darkCellBackground;
+    cell.textLabel.textColor = [UIColor HTWDarkGrayColor];
+    cell.backgroundColor = [UIColor HTWWhiteColor];
     
     UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
     imageView.tag = indexPath.row;
     [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
     imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [imageView setTintColor:htwColors.darkCellText];
+    [imageView setTintColor:[UIColor HTWDarkGrayColor]];
     imageView.frame = CGRectMake(0, 0, 50, 50);
     imageView.userInteractionEnabled = YES;
     [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -344,7 +340,7 @@
             imageView.tag = i;
             [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
             imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            [imageView setTintColor:htwColors.darkCellText];
+            [imageView setTintColor:[UIColor HTWDarkGrayColor]];
             imageView.frame = CGRectMake(0, 0, 50, 50);
             imageView.userInteractionEnabled = YES;
             [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -388,7 +384,7 @@
             imageView.tag = i;
             [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
             imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            [imageView setTintColor:htwColors.darkCellText];
+            [imageView setTintColor:[UIColor HTWDarkGrayColor]];
             imageView.frame = CGRectMake(0, 0, 50, 50);
             imageView.userInteractionEnabled = YES;
             [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];

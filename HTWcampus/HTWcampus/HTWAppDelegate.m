@@ -7,6 +7,7 @@
 //
 
 #import "HTWAppDelegate.h"
+#import "UIColor+HTW.h"
 
 @implementation HTWAppDelegate
 
@@ -20,6 +21,15 @@
 //    // Override point for customization after application launch.
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
+    
+    [[UITabBar appearance] setBarTintColor:[UIColor HTWBlueColor]];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+    
+    [UINavigationBar appearance].barStyle = UIBarStyleBlackTranslucent;
+    [UINavigationBar appearance].barTintColor = [UIColor HTWBlueColor];
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    
     return YES;
 }
 

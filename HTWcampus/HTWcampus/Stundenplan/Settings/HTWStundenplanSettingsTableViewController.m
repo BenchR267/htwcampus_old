@@ -7,15 +7,12 @@
 //
 
 #import "HTWStundenplanSettingsTableViewController.h"
-#import "HTWColors.h"
 #import "HTWStundenplanSettingsUebersichtTableViewController.h"
 #import "HTWAppDelegate.h"
 #import "User.h"
+#import "UIColor+HTW.h"
 
 @interface HTWStundenplanSettingsTableViewController ()
-{
-    HTWColors *htwColors;
-}
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *matrikelnummernCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *uebersichtCell;
@@ -30,7 +27,6 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    htwColors = [[HTWColors alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -38,36 +34,25 @@
     [super viewWillAppear:animated];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:@"hellesDesign"]) {
-        [htwColors setLight];
-    } else [htwColors setDark];
     
     if(![defaults boolForKey:@"Dozent"]) _matrikelnummernCell.detailTextLabel.text = [defaults objectForKey:@"Matrikelnummer"];
     else _matrikelnummernCell.detailTextLabel.text = [self getNameOf:[defaults objectForKey:@"Matrikelnummer"]];
     _markierSlider.value = [defaults floatForKey:@"markierSliderValue"];
     _sliderWert.text = [NSString stringWithFormat:@"%.0f min", self.markierSlider.value];
     
-    //    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:23/255.f green:43/255.f blue:54/255.f alpha:1.0];
-    self.tabBarController.tabBar.barTintColor = htwColors.darkTabBarTint;
-    [self.tabBarController.tabBar setTintColor:htwColors.darkTextColor];
-    [self.tabBarController.tabBar setSelectedImageTintColor:htwColors.darkTextColor];
-    
-    
-    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
     
-    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
+    self.tableView.backgroundView.backgroundColor = [UIColor HTWSandColor];
     
-    self.matrikelnummernCell.backgroundColor = htwColors.darkCellBackground;
-    self.matrikelnummernCell.textLabel.textColor = htwColors.darkCellText;
-    self.matrikelnummernCell.detailTextLabel.textColor = htwColors.darkCellText;
+    _matrikelnummernCell.backgroundColor = [UIColor HTWWhiteColor];
+    _matrikelnummernCell.textLabel.textColor = [UIColor HTWDarkGrayColor];
+    _matrikelnummernCell.detailTextLabel.textColor = [UIColor HTWDarkGrayColor];
     
-    self.uebersichtCell.backgroundColor = htwColors.darkCellBackground;
-    self.uebersichtCell.textLabel.textColor = htwColors.darkCellText;
+    _uebersichtCell.backgroundColor = [UIColor HTWWhiteColor];
+    _uebersichtCell.textLabel.textColor = [UIColor HTWDarkGrayColor];
     
-    self.markierungsCell.backgroundColor = htwColors.darkCellBackground;
-    _sliderWert.textColor = htwColors.darkCellText;
+    _markierungsCell.backgroundColor = [UIColor HTWWhiteColor];
+    _sliderWert.textColor = [UIColor HTWDarkGrayColor];
 }
 
 #pragma mark - IBActions

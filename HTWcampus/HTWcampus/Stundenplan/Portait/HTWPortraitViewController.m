@@ -13,10 +13,10 @@
 #import "Stunde.h"
 #import "HTWStundenplanButtonForLesson.h"
 #import "HTWLandscapeViewController.h"
-#import "HTWColors.h"
 #import "HTWCSVExport.h"
 #import "HTWICSExport.h"
 #import "HTWCSVConnection.h"
+#import "UIColor+HTW.h"
 
 #define PixelPerMin 0.5
 
@@ -26,11 +26,8 @@
     BOOL isPortrait;
     
     HTWAppDelegate *appdelegate;
-    
-    HTWColors *htwColors;
 }
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) HTWStundenplanParser *parser;
 @property (nonatomic, strong) NSArray *angezeigteStunden;
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -86,8 +83,6 @@
 
 -(void)viewDidLoad
 {
-    htwColors = [[HTWColors alloc] init];
-    
     UIDevice *device = [UIDevice currentDevice];
     
     [device beginGeneratingDeviceOrientationNotifications];
@@ -105,11 +100,8 @@
     [super viewWillAppear:animated];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:@"hellesDesign"]) {
-        [htwColors setLight];
-    } else [htwColors setDark];
     
-    _settingsBarButtonItem.tintColor = htwColors.darkTextColor;
+    _settingsBarButtonItem.tintColor = [UIColor HTWWhiteColor];
     
     _scrollView.contentSize = CGSizeMake(80+116*7, 520);
     _scrollView.directionalLockEnabled = YES;
@@ -119,17 +111,9 @@
     _detailView.tag = 1;
     [_scrollView addSubview:_detailView];
     
-    self.tabBarController.tabBar.barTintColor = htwColors.darkTabBarTint;
-    [self.tabBarController.tabBar setTintColor:htwColors.darkTextColor];
-    [self.tabBarController.tabBar setSelectedImageTintColor:htwColors.darkTextColor];
-    
     
     self.navigationController.navigationBarHidden = NO;
-    
-    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
-    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
-    self.navigationController.navigationBar.tintColor = htwColors.darkTextColor;
-    self.scrollView.backgroundColor = htwColors.darkViewBackground;
+    self.scrollView.backgroundColor = [UIColor HTWSandColor];
     
     if(!self.raumNummer) Matrnr = [defaults objectForKey:@"Matrikelnummer"];
     else self.title = self.raumNummer;
@@ -153,10 +137,10 @@
         
         if ([_angezeigteStunden count] == 0) {
             Matrnr = [defaults objectForKey:@"Matrikelnummer"];
-            _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:Matrnr andRaum:NO];
-            [_parser setDelegate:self];
+            HTWStundenplanParser *parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:Matrnr andRaum:NO];
+            [parser setDelegate:self];
             [defaults setObject:Matrnr forKey:@"altMatrikelnummer"];
-            [_parser parserStart];
+            [parser parserStart];
         }
         else
         {
@@ -205,16 +189,14 @@
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
                 
-                _parser = nil;
-                
                 [self updateAngezeigteStunden];
                 
                 if ([_angezeigteStunden count] == 0) {
                     Matrnr = [defaults objectForKey:@"Matrikelnummer"];
-                    _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:Matrnr andRaum:NO];
-                    [_parser setDelegate:self];
+                    HTWStundenplanParser *parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:Matrnr andRaum:NO];
+                    [parser setDelegate:self];
                     [defaults setObject:Matrnr forKey:@"altMatrikelnummer"];
-                    [_parser parserStart];
+                    [parser parserStart];
                 }
                 else
                 {
@@ -466,7 +448,7 @@
 
 -(void)reloadDaysLabelsAndBackground
 {
-    UIColor *schriftfarbe = htwColors.darkTextColor;
+    UIColor *schriftfarbe = [UIColor HTWWhiteColor];
     
     NSArray *wochentage = @[@"Montag",@"Dienstag",@"Mittwoch",@"Donnerstag",@"Freitag",@"Samstag",@"Sonntag"];
     
@@ -504,28 +486,12 @@
     
     
     
-    heuteMorgenLabelsView.backgroundColor = htwColors.darkZeitenBackground;
+    heuteMorgenLabelsView.backgroundColor = [UIColor HTWDarkGrayColor];
     
     for (UILabel *this in labels) {
         [heuteMorgenLabelsView addSubview:this];
     }
     [_scrollView addSubview:heuteMorgenLabelsView];
-    
-    ;
-    
-    BOOL abwechselnd = YES;
-    CGFloat yStreifen = 54 + 30 * PixelPerMin;
-    for (int i=0; i<20; i++) {
-        if (abwechselnd) {
-            UIView *strich1 = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, yStreifen, self.scrollView.contentSize.width*3, 60*PixelPerMin)];
-            strich1.backgroundColor = htwColors.darkStricheStundenplan;
-            strich1.tag = -1;
-            
-            [self.scrollView addSubview:strich1];
-        }
-        yStreifen += 60 * PixelPerMin;
-        abwechselnd = !abwechselnd;
-    }
     
     
 }
@@ -543,7 +509,7 @@
     }
         
     UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 63, _scrollView.contentSize.height+700)];
-    zeitenView.backgroundColor = htwColors.darkZeitenBackground;
+    zeitenView.backgroundColor = [UIColor HTWDarkGrayColor];
     zeitenView.tag = -2;
     
     NSDateFormatter *uhrzeit = [[NSDateFormatter alloc] init];
@@ -553,7 +519,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, y, 108, 20)];
         label.text = [uhrzeit stringFromDate:stundenZeiten[i]];
         label.textAlignment = NSTextAlignmentLeft;
-        label.textColor = htwColors.darkTextColor;
+        label.textColor = [UIColor HTWWhiteColor];
         label.font = [UIFont fontWithName:@"Helvetica" size:12];
         
         
@@ -630,7 +596,7 @@
         
         _detailView.frame = CGRectMake(x, y, width,height);
         _detailView.layer.cornerRadius = 10;
-        _detailView.backgroundColor = htwColors.darkButtonBorder;
+        _detailView.backgroundColor = [UIColor HTWDarkBlueColor];
         _detailView.alpha = 0.85;
         
         for (UIView *this in _detailView.subviews) {
@@ -643,14 +609,14 @@
         titel.font = [UIFont systemFontOfSize:17];
         titel.lineBreakMode = NSLineBreakByWordWrapping;
         titel.numberOfLines = 3;
-        titel.textColor = htwColors.darkTextColor;
+        titel.textColor = [UIColor HTWWhiteColor];
         [_detailView addSubview:titel];
         
         UILabel *dozent = [[UILabel alloc] initWithFrame:CGRectMake(0, _detailView.frame.size.height*4/5-9, _detailView.frame.size.width, _detailView.frame.size.height*2/5)];
         if(buttonPressed.lesson.dozent) dozent.text = [NSString stringWithFormat:@"Dozent: %@", buttonPressed.lesson.dozent];
         dozent.textAlignment = NSTextAlignmentCenter;
         dozent.font = [UIFont systemFontOfSize:15];
-        dozent.textColor = htwColors.darkTextColor;
+        dozent.textColor = [UIColor HTWWhiteColor];
         [_detailView addSubview:dozent];
         
         [_scrollView bringSubviewToFront:_detailView];

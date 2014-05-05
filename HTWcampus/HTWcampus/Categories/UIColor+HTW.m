@@ -35,6 +35,10 @@
     return [UIColor colorWithRed:255/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor *) HTWDarkBlueColor {
+    return [UIColor colorWithRed:65/255.f green:104/255.f blue:111/255.f alpha:1.0f];
+}
+
 #pragma mark Context
 
 + (UIColor *) HTWBackgroundColor {

@@ -12,12 +12,11 @@
 #import "User.h"
 #import "Stunde.h"
 #import "HTWPortraitViewController.h"
-#import "HTWColors.h"
+#import "UIColor+HTW.h"
 
 @interface HTWRaumplanerTableViewController() <UIAlertViewDelegate, HTWStundenplanParserDelegate, NSFetchedResultsControllerDelegate>
 {
     HTWAppDelegate *appdelegate;
-    HTWColors *htwColors;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addBarButtonItem;
@@ -35,7 +34,6 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    htwColors = [[HTWColors alloc] init];
     
     if(!_zimmer) _zimmer = [[NSArray alloc] init];
     [self updateZimmerArray];
@@ -44,27 +42,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:@"hellesDesign"]) {
-        [htwColors setLight];
-    } else [htwColors setDark];
-    
-    self.tabBarController.tabBar.barTintColor = htwColors.darkTabBarTint;
-    [self.tabBarController.tabBar setTintColor:htwColors.darkTextColor];
-    [self.tabBarController.tabBar setSelectedImageTintColor:htwColors.darkTextColor];
-    
-    
     self.navigationController.navigationBarHidden = NO;
     
-    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
-    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
-    self.navigationController.navigationBar.tintColor = htwColors.darkTextColor;
-    
-    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
+    self.tableView.backgroundView.backgroundColor = [UIColor HTWSandColor];
     
     self.clearsSelectionOnViewWillAppear = YES;
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - TableView Datasource
@@ -119,14 +101,14 @@
     }
     
     cell.textLabel.text = info.matrnr;
-    cell.textLabel.textColor = htwColors.darkCellText;
+    cell.textLabel.textColor = [UIColor HTWDarkGrayColor];
     
     if (frei) {
         cell.detailTextLabel.textColor = [UIColor colorWithRed:58/255.f green:121/255.f blue:162/255.f alpha:1];
     }
     else cell.detailTextLabel.textColor = [UIColor colorWithRed:205/255.f green:111/255.f blue:93/255.f alpha:1];
     
-    cell.backgroundColor = htwColors.darkCellBackground;
+    cell.backgroundColor = [UIColor HTWWhiteColor];
     
     return cell;
 }

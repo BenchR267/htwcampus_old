@@ -13,14 +13,12 @@
 #import "HTWStundenplanSettingsUebersichtTableViewCell.h"
 #import "Stunde.h"
 #import "HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h"
-#import "HTWColors.h"
+#import "UIColor+HTW.h"
 
 @interface HTWStundenplanSettingsUebersichtTableViewController () <NSFetchedResultsControllerDelegate>
 {
     HTWAppDelegate *appdelegate;
     NSString *Matrnr;
-    
-    HTWColors *htwColors;
 }
 
 @property (nonatomic, strong) NSArray *array;
@@ -80,10 +78,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    htwColors = [[HTWColors alloc] init];
-    
-    
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     Matrnr = [defaults objectForKey:@"Matrikelnummer"];
     
@@ -135,20 +129,7 @@
     [super viewWillAppear:animated];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:@"hellesDesign"]) {
-        [htwColors setLight];
-    } else [htwColors setDark];
-    
-    self.tabBarController.tabBar.barTintColor = htwColors.darkTabBarTint;
-    [self.tabBarController.tabBar setTintColor:htwColors.darkTextColor];
-    [self.tabBarController.tabBar setSelectedImageTintColor:htwColors.darkTextColor];
-    
-    
-    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
-    
-    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
 
     
     Matrnr = [defaults objectForKey:@"Matrikelnummer"];
@@ -186,7 +167,7 @@
     
     cell.titelLabel.text = [NSString stringWithFormat:@"%@ %@", typ, info.titel];
     [cell.titelLabel setFont:[UIFont systemFontOfSize:12]];
-    cell.titelLabel.textColor = htwColors.darkCellText;
+    cell.titelLabel.textColor = [UIColor HTWDarkGrayColor];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm"];
@@ -222,7 +203,7 @@
     }
     
     cell.subtitleLabel.text = wochentag;
-    cell.subtitleLabel.textColor = htwColors.darkCellText;
+    cell.subtitleLabel.textColor = [UIColor HTWDarkGrayColor];
     
     [cell.cellSwitch setOn:info.anzeigen.boolValue];
     
@@ -230,7 +211,7 @@
     [cell.cellSwitch setID:info.id];
     cell.ID = info.id;
     
-    cell.backgroundColor = htwColors.darkCellBackground;
+    cell.backgroundColor = [UIColor HTWWhiteColor];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

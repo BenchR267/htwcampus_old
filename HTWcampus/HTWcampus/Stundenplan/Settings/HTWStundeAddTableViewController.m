@@ -11,7 +11,6 @@
 #import "User.h"
 #import "Stunde.h"
 #import "HTWDatePickViewController.h"
-#import "HTWColors.h"
 
 @interface HTWStundeAddTableViewController () <UIAlertViewDelegate, HTWDatePickViewControllerDelegate, UITextFieldDelegate>
 {
@@ -19,8 +18,6 @@
     
     NSDate *anfang;
     NSDate *ende;
-    
-    HTWColors *htwColors;
 }
 @property (weak, nonatomic) IBOutlet UITextField *titelTextField;
 @property (weak, nonatomic) IBOutlet UITextField *kurzelTextField;
@@ -51,34 +48,13 @@
     _anfangCell.detailTextLabel.text = [datum stringFromDate:anfang];
     
     _endeCell.detailTextLabel.text = [datum stringFromDate:ende];
-    
-    htwColors = [[HTWColors alloc] init];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSDateFormatter *datum = [[NSDateFormatter alloc] init];
-    [datum setDateFormat:@"dd.MM.yyyy HH:mm"];
 
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:@"hellesDesign"]) {
-        [htwColors setLight];
-    } else [htwColors setDark];
-    
-    //    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:23/255.f green:43/255.f blue:54/255.f alpha:1.0];
-    self.tabBarController.tabBar.barTintColor = htwColors.darkTabBarTint;
-    [self.tabBarController.tabBar setTintColor:htwColors.darkTextColor];
-    [self.tabBarController.tabBar setSelectedImageTintColor:htwColors.darkTextColor];
-    
-    
-    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
-    
-    self.tableView.backgroundView.backgroundColor = htwColors.darkViewBackground;
 
 }
 

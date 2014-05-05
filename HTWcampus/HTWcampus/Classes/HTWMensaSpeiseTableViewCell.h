@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HTWTableViewCell : UITableViewCell
+@interface HTWMensaSpeiseTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *secondaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mensaPreisLabel;

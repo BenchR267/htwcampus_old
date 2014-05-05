@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Benjamin Herzog. All rights reserved.
 //
 
-#import "HTWTableViewCell.h"
+#import "HTWMensaSpeiseTableViewCell.h"
 #import "UIFont+HTW.h"
 #import "UIColor+HTW.h"
 
-@implementation HTWTableViewCell
+@implementation HTWMensaSpeiseTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

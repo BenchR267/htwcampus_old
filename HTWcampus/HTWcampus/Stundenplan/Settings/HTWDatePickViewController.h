@@ -17,7 +17,7 @@
 
 @interface HTWDatePickViewController : UIViewController
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) id <HTWDatePickViewControllerDelegate> delegate;
 @property BOOL anfang;
 @property (nonatomic, strong) NSDate *date;
 

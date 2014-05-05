@@ -7,7 +7,7 @@
 //
 
 #import "MensaDetailViewController.h"
-#import "HTWTableViewCell.h"
+#import "HTWMensaSpeiseTableViewCell.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
@@ -68,7 +68,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Meal";
-    HTWTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    HTWMensaSpeiseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     UILabel *mealNameLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *mealPriceLabel = (UILabel *)[cell viewWithTag:2];

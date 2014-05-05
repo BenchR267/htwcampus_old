@@ -35,7 +35,7 @@
     NSError *error = nil;
     [[self getCSVString] writeToURL:fileUrl atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) {
-        NSLog(@"Error while writing to File: %@", [error localizedDescription]);
+        NSLog(@"Error while writing to File %@: %@", fileUrl.absoluteString, [error localizedDescription]);
     }
     
     return fileUrl;

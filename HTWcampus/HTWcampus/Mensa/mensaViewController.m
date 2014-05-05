@@ -15,7 +15,7 @@
 #import "MensaDetailViewController.h"
 #import "UIImage+Resize.h"
 #import "UIColor+HTW.h"
-#import "HTWTableViewCell.h"
+#import "HTWMensaSpeiseTableViewCell.h"
 
 @interface mensaViewController ()
 
@@ -307,9 +307,9 @@
     static NSString *CellIdentifier = @"Mensa";
     static NSString *LoadingCellIdentifier = @"MensaLoading";
     
-    HTWTableViewCell *cell;
+    HTWMensaSpeiseTableViewCell *cell;
     if (!isLoading) {
-        cell = (HTWTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        cell = (HTWMensaSpeiseTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         NSString *currentMensaName;
         
         if (mensaDay == 0) {

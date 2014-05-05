@@ -8,7 +8,7 @@
 
 #import "HTWStundenplanButtonForLesson.h"
 #import <QuartzCore/QuartzCore.h>
-#import "HTWColors.h"
+#import "UIColor+HTW.h"
 #define CornerRadius 5
 
 @interface HTWStundenplanButtonForLesson ()
@@ -19,8 +19,6 @@
     CGFloat y;
     
     float PixelPerMin;
-    
-    HTWColors *htwColors;
 }
 
 @property (nonatomic, strong) UILabel *kurzel;
@@ -39,13 +37,6 @@
 -(id)initWithLesson:(Stunde *)lessonForButton andPortait:(BOOL)portaitForButton
 {
     self = [super init];
-    htwColors = [[HTWColors alloc] init];
-    
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:@"hellesDesign"]) {
-        [htwColors setLight];
-    } else [htwColors setDark];
     
     [self setPortait:portaitForButton];
     [self setLesson:lessonForButton];
@@ -66,19 +57,18 @@
     _now = now;
     
     if (lesson.anzeigen) {
-        self.backgroundColor = htwColors.darkButtonIsNow;
+        self.backgroundColor = [UIColor HTWBlueColor];
         if(_portait) self.kurzel.font = [UIFont fontWithName:@"Verdana" size:18];
         else self.kurzel.font = [UIFont fontWithName:@"Verdana" size:14];
-        self.kurzel.textColor = htwColors.darkTextColor;
+        self.kurzel.textColor = [UIColor HTWWhiteColor];
         if(_portait) self.raum.font = [UIFont fontWithName:@"Verdana" size:10];
         else self.raum.font = [UIFont fontWithName:@"Verdana" size:8];
-        self.raum.textColor = htwColors.darkTextColor;
-        _anfang.textColor = htwColors.darkTextColor;
-        _ende.textColor = htwColors.darkTextColor;
+        self.raum.textColor = [UIColor HTWWhiteColor];
+        _anfang.textColor = [UIColor HTWWhiteColor];
+        _ende.textColor = [UIColor HTWWhiteColor];
 
         
         [[self layer] setBorderWidth:3.0f];
-        [[self layer] setBorderColor:htwColors.darkButtonBorderIsNow.CGColor];
     }
 }
 
@@ -220,7 +210,7 @@
     }
     self.frame = CGRectMake( x, y, width, height);
     
-    self.backgroundColor = htwColors.darkButtonBackground;
+    self.backgroundColor = [UIColor HTWWhiteColor];
     self.layer.cornerRadius = CornerRadius;
     
     if (!kurzel) kurzel = [[UILabel alloc] init];
@@ -231,18 +221,18 @@
     else kurzel.font = [UIFont systemFontOfSize:16];
     kurzel.textAlignment = NSTextAlignmentCenter;
     kurzel.frame = CGRectMake(x, y, width, height*0.6);
-    kurzel.textColor = htwColors.darkButtonText;
+    kurzel.textColor = [UIColor HTWDarkGrayColor];
     
     raum.text = lesson.raum;
     if(_portait) raum.font = [UIFont systemFontOfSize:12];
     else raum.font = [UIFont systemFontOfSize:10];
     raum.textAlignment = NSTextAlignmentCenter;
     raum.frame = CGRectMake(x+3, y+(height*0.6), width-6, height*0.4);
-    raum.textColor = htwColors.darkButtonText;
+    raum.textColor = [UIColor HTWDarkGrayColor];
     
     _anfang = [[UILabel alloc] initWithFrame:raum.frame];
     _anfang.textAlignment = NSTextAlignmentLeft;
-    _anfang.textColor = htwColors.darkButtonText;
+    _anfang.textColor = [UIColor HTWDarkGrayColor];
     NSDateFormatter *uhrzeit = [[NSDateFormatter alloc] init];
     [uhrzeit setDateFormat:@"HH:mm"];
     _anfang.text = [NSString stringWithFormat:@"%@",[uhrzeit stringFromDate:lesson.anfang]];
@@ -262,7 +252,7 @@
     
     _ende = [[UILabel alloc] initWithFrame:raum.frame];
     _ende.textAlignment = NSTextAlignmentRight;
-    _ende.textColor = htwColors.darkButtonText;
+    _ende.textColor = [UIColor HTWDarkGrayColor];
     _ende.text = [NSString stringWithFormat:@"%@",[uhrzeit stringFromDate:lesson.ende]];
     if (_portait) _ende.font = [UIFont systemFontOfSize:10];
     else _ende.font = [UIFont systemFontOfSize:8];
@@ -277,7 +267,7 @@
     
     
     [[self layer] setBorderWidth:2.0f];
-    [[self layer] setBorderColor:htwColors.darkButtonBorder.CGColor];
+    [[self layer] setBorderColor:[UIColor HTWDarkBlueColor].CGColor];
 }
 
 #pragma mark - Hilfsfunktionen

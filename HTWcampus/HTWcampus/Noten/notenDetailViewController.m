@@ -7,12 +7,9 @@
 //
 
 #import "notenDetailViewController.h"
-#import "HTWColors.h"
+#import "UIColor+HTW.h"
 
 @interface notenDetailViewController ()
-{
-    HTWColors *htwColors;
-}
 
 @end
 
@@ -38,17 +35,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    htwColors = [[HTWColors alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
 }
 
 #pragma mark - Table view data source
@@ -108,9 +100,9 @@
             break;
     }
     cell.textLabel.text = text;
-    cell.textLabel.textColor = htwColors.darkCellText;
+    cell.textLabel.textColor = [UIColor HTWDarkGrayColor];
     cell.detailTextLabel.text = detailedText;
-    cell.detailTextLabel.textColor = htwColors.darkNavigationBarTint;
+    cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
 //    [cell.detailTextLabel setTextColor:[[UIColor alloc] initWithRed:255/255.0 green:137/255.0 blue:44/255.0 alpha:1.0]];
     
     return cell;
