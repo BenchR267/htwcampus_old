@@ -7,6 +7,9 @@
 //
 
 #import "MensaDetailViewController.h"
+#import "HTWTableViewCell.h"
+#import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
 
 @interface MensaDetailViewController ()
 
@@ -65,7 +68,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Meal";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    HTWTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     UILabel *mealNameLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *mealPriceLabel = (UILabel *)[cell viewWithTag:2];
@@ -83,6 +86,12 @@
     
     [mealNameLabel sizeToFit];
     [mealNameLabel setNumberOfLines:0];
+    
+    cell.mensaName.textColor = [UIColor HTWTextColor];
+    cell.mensaName.font = [UIFont HTWTableViewCellFont];
+    
+    cell.mensaPreisLabel.textColor = [UIColor HTWBlueColor];
+    cell.mensaPreisLabel.font = [UIFont HTWVerySmallFont];
     
     return cell;
 }

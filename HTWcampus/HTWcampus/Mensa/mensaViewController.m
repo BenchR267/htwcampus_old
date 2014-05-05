@@ -14,12 +14,12 @@
 #import "MensaXMLParserDelegate.h"
 #import "MensaDetailViewController.h"
 #import "UIImage+Resize.h"
-#import "HTWColors.h"
+#import "UIColor+HTW.h"
+#import "HTWTableViewCell.h"
+#import "UIFont+HTW.h"
 
 @interface mensaViewController ()
-{
-    HTWColors *htwColors;
-}
+
 @property (nonatomic, strong) NSXMLParser *xmlParser;
 @property (nonatomic, strong) MensaXMLParserDelegate *mensaXMLParserDelegate;
 @end
@@ -41,8 +41,6 @@
 {
     [super viewDidLoad];
     
-    htwColors = [[HTWColors alloc] init];
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     mensaMeta = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -60,7 +58,7 @@
                  @"stimmgabel.jpg", @"Mensa Stimm-Gabel",
                  @"palucca.jpg", @"Mensa Palucca Hochschule",
                  @"goerlitz.jpg", @"Mensa Görlitz",
-                 @"zittauhausvii.jpg", @"Mensa Haus VII",
+                 @"hausvii.jpg", @"Mensa Haus VII",
                  @"mensasport.jpg", @"Mensa Sport",
                  @"mensa-kreuzgymnasium.jpg", @"Mensa Kreuzgymnasium", nil];
     
@@ -91,10 +89,11 @@
 {
     
     
-    self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
+    //self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.barTintColor = htwColors.darkNavigationBarTint;
-    _mensaDaySwitcher.tintColor = htwColors.darkTextColor;
+    self.tableView.backgroundColor = [UIColor HTWSandColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor HTWBlueColor];
+    _mensaDaySwitcher.tintColor = [UIColor HTWWhiteColor];
     
 //    self.mensaLoadingIndicator.hidden = NO;
 //    self.mensaLoadingIndicator.hidesWhenStopped = YES;
@@ -308,9 +307,9 @@
     static NSString *CellIdentifier = @"Mensa";
     static NSString *LoadingCellIdentifier = @"MensaLoading";
     
-    UITableViewCell *cell;
+    HTWTableViewCell *cell;
     if (!isLoading) {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        cell = (HTWTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         NSString *currentMensaName;
         
         if (mensaDay == 0) {
@@ -326,6 +325,12 @@
         //Add mensa image
         UIImage *currentMensaImage = [UIImage imageNamed:[self getMensaImageNameForName:currentMensaName]];
         cell.imageView.image = [currentMensaImage thumbnailImage:128 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationDefault];
+        
+        cell.mensaName.textColor = [UIColor HTWTextColor];
+        cell.mensaName.font = [UIFont HTWTableViewCellFont];
+        
+        cell.openingsLabel.textColor = [UIColor HTWBlueColor];
+        cell.openingsLabel.font = [UIFont HTWVerySmallFont];
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier forIndexPath:indexPath];
@@ -334,9 +339,6 @@
 		[mensaSpinner startAnimating];
         [cell.contentView addSubview:mensaSpinner];
     }
-    
-    cell.textLabel.textColor = htwColors.darkCellText;
-    cell.detailTextLabel.textColor = htwColors.darkCellText;
     
     return cell;
 }
