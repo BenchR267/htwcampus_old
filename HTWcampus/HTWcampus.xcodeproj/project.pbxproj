@@ -63,6 +63,7 @@
 		6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA52191537BA00872FC8 /* UIImage+Resize.m */; };
 		6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA55191538E600872FC8 /* UIImage+Alpha.m */; };
 		6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */; };
+		E61191D21918C330005114A9 /* HTWMensaWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61191D11918C330005114A9 /* HTWMensaWebViewController.m */; };
 		E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
 		E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */; };
 		E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D8810190857F90033D543 /* HTWPortraitViewController.m */; };
@@ -200,6 +201,8 @@
 		6D94EA55191538E600872FC8 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "Categories/UIImage+Alpha.m"; sourceTree = "<group>"; };
 		6D94EA56191538E600872FC8 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "Categories/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "Categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		E61191D01918C330005114A9 /* HTWMensaWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaWebViewController.h; path = Mensa/HTWMensaWebViewController.h; sourceTree = "<group>"; };
+		E61191D11918C330005114A9 /* HTWMensaWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaWebViewController.m; path = Mensa/HTWMensaWebViewController.m; sourceTree = "<group>"; };
 		E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HTWcampus.xcdatamodel; sourceTree = "<group>"; };
 		E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanParser.h; path = Stundenplan/Model/HTWStundenplanParser.h; sourceTree = "<group>"; };
 		E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanParser.m; path = Stundenplan/Model/HTWStundenplanParser.m; sourceTree = "<group>"; };
@@ -426,10 +429,12 @@
 			isa = PBXGroup;
 			children = (
 				6D753A361917A84500C6BAA1 /* Pictures */,
-				6D94EA471915377E00872FC8 /* MensaDetailViewController.h */,
-				6D94EA481915377E00872FC8 /* MensaDetailViewController.m */,
 				6D94EA491915377E00872FC8 /* mensaViewController.h */,
 				6D94EA4A1915377E00872FC8 /* mensaViewController.m */,
+				6D94EA471915377E00872FC8 /* MensaDetailViewController.h */,
+				6D94EA481915377E00872FC8 /* MensaDetailViewController.m */,
+				E61191D01918C330005114A9 /* HTWMensaWebViewController.h */,
+				E61191D11918C330005114A9 /* HTWMensaWebViewController.m */,
 				6D94EA4B1915377E00872FC8 /* MensaXMLParserDelegate.h */,
 				6D94EA4C1915377E00872FC8 /* MensaXMLParserDelegate.m */,
 			);
@@ -766,6 +771,7 @@
 				E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */,
 				E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */,
 				6D94EA4119152FDB00872FC8 /* NSString_HTML.m in Sources */,
+				E61191D21918C330005114A9 /* HTWMensaWebViewController.m in Sources */,
 				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
 				6D94EA4319152FDB00872FC8 /* TagChunk.m in Sources */,
 				E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */,

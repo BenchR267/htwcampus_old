@@ -109,6 +109,11 @@
         [self.currentMeal setObject:mensaName forKey:@"mensa"];
     }
     
+    if ([elementName isEqualToString:@"link"]) {
+        NSString *link = self.aktuellerInhalt;
+        [self.currentMeal setObject:link forKey:@"link"];
+    }
+    
     self.aktuellesElement = nil;
 }
 
