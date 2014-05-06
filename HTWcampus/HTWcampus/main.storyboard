@@ -737,13 +737,36 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoeschenCell" textLabel="Ztg-sC-fao" style="IBUITableViewCellStyleDefault" id="YwB-cx-tsg">
+                                <rect key="frame" x="0.0" y="163" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YwB-cx-tsg" id="ZJs-2i-IOP">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ztg-sC-fao">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="ErJ-Y0-Bwe" id="YZE-Gf-Pb2"/>
                             <outlet property="delegate" destination="ErJ-Y0-Bwe" id="WkW-wp-ibc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2Qe-uz-CtZ"/>
+                    <navigationItem key="navigationItem" id="2Qe-uz-CtZ">
+                        <barButtonItem key="rightBarButtonItem" title="Ausblenden" id="KFB-uK-jCu">
+                            <connections>
+                                <action selector="stundeAusblendenPressed:" destination="ErJ-Y0-Bwe" id="3X4-aV-NUH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaR-yK-8TW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
