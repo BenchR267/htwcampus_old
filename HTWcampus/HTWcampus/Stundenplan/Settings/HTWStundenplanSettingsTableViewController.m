@@ -63,6 +63,7 @@
 #pragma mark - IBActions
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {
+    [_markierSlider setValue:(int)(sender.value/5)*5];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setFloat:_markierSlider.value forKey:@"markierSliderValue"];
     _sliderWert.text = [NSString stringWithFormat:@"%.0f min", _markierSlider.value];

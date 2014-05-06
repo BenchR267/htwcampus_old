@@ -271,7 +271,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" red="0.40000003579999999" green="0.78039222959999999" blue="0.92941182850000004" alpha="1" colorSpace="deviceRGB"/>
                                                     <connections>
-                                                        <action selector="sliderValueChanged:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="1Ze-cj-Ss4"/>
+                                                        <action selector="sliderValueChanged:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="8jj-dM-HmB"/>
                                                     </connections>
                                                 </slider>
                                             </subviews>
@@ -296,7 +296,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YaR-XL-ywu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="-1765"/>
+            <point key="canvasLocation" x="859" y="-1765"/>
         </scene>
         <!--Stundenplan Settings Uebersicht Table View Controller - Stundenübersicht-->
         <scene sceneID="Psp-BU-Qme">
