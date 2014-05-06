@@ -16,8 +16,10 @@
 #import "HTWCSVExport.h"
 #import "HTWICSExport.h"
 #import "HTWCSVConnection.h"
+#import "HTWStundenplanEditDetailTableViewController.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
+#import "UIImage+Resize.h"
 
 #define PixelPerMin 0.5
 
@@ -321,7 +323,7 @@
             
             CGSize sizeForRendering;
             sizeForRendering.width = _scrollView.contentSize.width;
-            sizeForRendering.height = self.view.frame.size.height  - [UINavigationBar appearance].frame.size.height;
+            sizeForRendering.height = self.view.frame.size.height;
             
             UIGraphicsBeginImageContextWithOptions(sizeForRendering, YES, 0.0);
             {
@@ -339,9 +341,7 @@
             }
             UIGraphicsEndImageContext();
             
-            CGImageRef imgRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, image.size.width * 2, 54 + 810 * 2 * PixelPerMin));
-            
-            UIImage *sendImage = [UIImage imageWithCGImage:imgRef];
+            UIImage *sendImage = [image croppedImage:CGRectMake(0, 0, image.size.width, 54+800*PixelPerMin)];
             
             NSString *dateinamenErweiterung;
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -444,6 +444,9 @@
             longPressGR.minimumPressDuration = 0.1;
             longPressGR.allowableMovement = 0;
             [button addGestureRecognizer:longPressGR];
+//            UILongPressGestureRecognizer *longPressGREdit = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressedForEdit:)];
+//            longPressGREdit.minimumPressDuration = 0.5;
+//            [button addGestureRecognizer:longPressGREdit];
         }
     }
     [self reloadZeitenViewAndClockLine];
@@ -523,23 +526,23 @@
     
     for (int i = 0; i < stundenZeiten.count; i++) {
         CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin + 350;
-        UIView *vonBisLabel = [[UIView alloc] initWithFrame:CGRectMake(5, y, 30, 90 * PixelPerMin)];
-        UILabel *von = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, vonBisLabel.frame.size.width, vonBisLabel.frame.size.height/2)];
+        UIView *vonBisView = [[UIView alloc] initWithFrame:CGRectMake(5, y, 30, 90 * PixelPerMin)];
+        UILabel *von = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, vonBisView.frame.size.width, vonBisView.frame.size.height/2)];
         von.text = vonStrings[i];
         von.font = [UIFont HTWVerySmallFont];
         von.textColor = [UIColor HTWWhiteColor];
-        [vonBisLabel addSubview:von];
-        UILabel *bis = [[UILabel alloc] initWithFrame:CGRectMake(0, vonBisLabel.frame.size.height/2, vonBisLabel.frame.size.width, vonBisLabel.frame.size.height/2)];
+        [vonBisView addSubview:von];
+        UILabel *bis = [[UILabel alloc] initWithFrame:CGRectMake(0, vonBisView.frame.size.height/2, vonBisView.frame.size.width, vonBisView.frame.size.height/2)];
         bis.text = bisStrings[i];
         bis.font = [UIFont HTWVerySmallFont];
         bis.textColor = [UIColor HTWWhiteColor];
-        [vonBisLabel addSubview:bis];
+        [vonBisView addSubview:bis];
         
-        UIView *strich = [[UIView alloc] initWithFrame:CGRectMake(vonBisLabel.frame.size.width*0.25, von.frame.size.height, vonBisLabel.frame.size.width/2, 1)];
+        UIView *strich = [[UIView alloc] initWithFrame:CGRectMake(vonBisView.frame.size.width*0.25, von.frame.size.height, vonBisView.frame.size.width/2, 1)];
         strich.backgroundColor = [UIColor HTWWhiteColor];
-        [vonBisLabel addSubview:strich];
+        [vonBisView addSubview:strich];
         
-        [zeitenView addSubview:vonBisLabel];
+        [zeitenView addSubview:vonBisView];
     }
     
     
@@ -646,6 +649,10 @@
     }
 }
 
+-(IBAction)buttonIsPressedForEdit:(UILongPressGestureRecognizer*)sender
+{
+    [self performSegueWithIdentifier:@"showEditDetail" sender:sender.view];
+}
 
 - (IBAction)shareTestButtonPressed:(id)sender {
     
@@ -720,6 +727,9 @@
             [scrollView bringSubviewToFront:this];
             break;
         }
+    }
+    
+    for (UIView *this in scrollView.subviews) {
         if(this.tag == -4) {
             [scrollView bringSubviewToFront:this];
             break;
@@ -751,6 +761,12 @@
             [segue.destinationViewController setMatrnr:self.raumNummer];
             [(HTWLandscapeViewController*)segue.destinationViewController setRaum:YES];
         }
+    }
+    else if ([segue.identifier isEqualToString:@"showEditDetail"])
+    {
+        HTWStundenplanEditDetailTableViewController *dest = (HTWStundenplanEditDetailTableViewController*)segue.destinationViewController;
+        HTWStundenplanButtonForLesson *button = (HTWStundenplanButtonForLesson*)sender;
+        dest.stunde = button.lesson;
     }
 }
 

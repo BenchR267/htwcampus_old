@@ -71,6 +71,7 @@
                         <outlet property="settingsBarButtonItem" destination="rzC-X1-CYS" id="FVt-zC-Xbn"/>
                         <segue destination="3ET-sn-wAx" kind="custom" identifier="switchToLandscape" customClass="landscapeSegue" id="jdK-3b-YiY"/>
                         <segue destination="8D1-C6-AGY" kind="push" identifier="add" id="LHK-25-Aud"/>
+                        <segue destination="ErJ-Y0-Bwe" kind="push" identifier="showEditDetail" id="AxC-5o-l1i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K9e-kS-iga" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -703,6 +704,51 @@
             </objects>
             <point key="canvasLocation" x="2608" y="270"/>
         </scene>
+        <!--Stundenplan Edit Detail Table View Controller-->
+        <scene sceneID="8ty-yT-N3y">
+            <objects>
+                <tableViewController id="ErJ-Y0-Bwe" customClass="HTWStundenplanEditDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AUu-cN-A7s">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2xm-HD-ruC" detailTextLabel="7Bw-ff-26J" style="IBUITableViewCellStyleValue1" id="XqY-HO-KLG">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XqY-HO-KLG" id="sFn-pD-PbJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2xm-HD-ruC">
+                                            <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Bw-ff-26J">
+                                            <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ErJ-Y0-Bwe" id="YZE-Gf-Pb2"/>
+                            <outlet property="delegate" destination="ErJ-Y0-Bwe" id="WkW-wp-ibc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="2Qe-uz-CtZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HaR-yK-8TW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2390" y="-620"/>
+        </scene>
         <!--Stunde Add Table View Controller - Stunde hinzufügen-->
         <scene sceneID="ezs-jd-ryS">
             <objects>
@@ -952,7 +998,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7cL-o7-m1H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2206" y="-1027"/>
+            <point key="canvasLocation" x="2390" y="-1331"/>
         </scene>
         <!--Date Pick View Controller-->
         <scene sceneID="uUO-Ig-4Yn">
@@ -1014,7 +1060,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUF-gq-ro4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2725" y="-1027"/>
+            <point key="canvasLocation" x="2909" y="-1331"/>
         </scene>
         <!--Navigation Controller - Mensa-->
         <scene sceneID="Iof-OO-tOb">
@@ -1531,7 +1577,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PWY-tb-6TC"/>
         <segue reference="lzQ-JO-6lk"/>
+        <segue reference="AnV-56-qVk"/>
     </inferredMetricsTieBreakers>
 </document>

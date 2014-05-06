@@ -411,7 +411,7 @@ static inline int moveBufferToIndex(CFStringInlineBuffer *buffer, CFIndex index)
 					interior = (int)lenThruRespectingQuotes(&buffer, index + tagLen + 1, ">") + tagLen - 1;
 					if (interior > 0){
 						tag.tagName = createStringFromBuffer(&buffer, index + 1, tagLen);
-						[tag.tagName release];
+//						[tag.tagName release];
 						chunk = tag;
 						len = interior + 2;
 					}

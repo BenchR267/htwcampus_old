@@ -64,6 +64,7 @@
 		6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA55191538E600872FC8 /* UIImage+Alpha.m */; };
 		6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */; };
 		E61191D21918C330005114A9 /* HTWMensaWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61191D11918C330005114A9 /* HTWMensaWebViewController.m */; };
+		E61C4C7519193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61C4C7419193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m */; };
 		E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
 		E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */; };
 		E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D8810190857F90033D543 /* HTWPortraitViewController.m */; };
@@ -203,6 +204,8 @@
 		6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "Categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		E61191D01918C330005114A9 /* HTWMensaWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaWebViewController.h; path = Mensa/HTWMensaWebViewController.h; sourceTree = "<group>"; };
 		E61191D11918C330005114A9 /* HTWMensaWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaWebViewController.m; path = Mensa/HTWMensaWebViewController.m; sourceTree = "<group>"; };
+		E61C4C7319193AA400560C91 /* HTWStundenplanEditDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanEditDetailTableViewController.h; path = Stundenplan/Portait/HTWStundenplanEditDetailTableViewController.h; sourceTree = "<group>"; };
+		E61C4C7419193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanEditDetailTableViewController.m; path = Stundenplan/Portait/HTWStundenplanEditDetailTableViewController.m; sourceTree = "<group>"; };
 		E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HTWcampus.xcdatamodel; sourceTree = "<group>"; };
 		E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanParser.h; path = Stundenplan/Model/HTWStundenplanParser.h; sourceTree = "<group>"; };
 		E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanParser.m; path = Stundenplan/Model/HTWStundenplanParser.m; sourceTree = "<group>"; };
@@ -493,6 +496,8 @@
 			children = (
 				E61D880F190857F90033D543 /* HTWPortraitViewController.h */,
 				E61D8810190857F90033D543 /* HTWPortraitViewController.m */,
+				E61C4C7319193AA400560C91 /* HTWStundenplanEditDetailTableViewController.h */,
+				E61C4C7419193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m */,
 				E6FE12A019093D6700D56D52 /* indicator-red.png */,
 				E6FE97F519183742004C6596 /* indicator.png */,
 			);
@@ -812,6 +817,7 @@
 				E62C484B191422DE00788651 /* HTWCSVConnection.m in Sources */,
 				E67D2533191620FA009D7634 /* Stunde.m in Sources */,
 				6D94EA4519152FDB00872FC8 /* URLParser.m in Sources */,
+				E61C4C7519193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m in Sources */,
 				E61D887F1908705E0033D543 /* landscapeSegue.m in Sources */,
 				E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */,
 				E61D883419085B4C0033D543 /* HTWMatrikelnummernTableViewController.m in Sources */,
