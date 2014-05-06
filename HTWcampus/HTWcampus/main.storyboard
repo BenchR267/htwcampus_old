@@ -401,7 +401,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Raumplaner" id="Fn6-tV-g3r">
-                        <barButtonItem key="leftBarButtonItem" title="TEST" id="NlH-sK-DY5">
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="TEST" id="NlH-sK-DY5">
                             <connections>
                                 <segue destination="18J-fd-H3h" kind="push" id="RTB-Y1-tsy"/>
                             </connections>
