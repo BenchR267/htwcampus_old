@@ -104,7 +104,7 @@
     
     _settingsBarButtonItem.tintColor = [UIColor HTWWhiteColor];
     
-    _scrollView.contentSize = CGSizeMake(80+116*7, 460);
+    _scrollView.contentSize = CGSizeMake(60+116*7, 459 + [UINavigationBar appearance].frame.size.height);
     _scrollView.directionalLockEnabled = YES;
     _scrollView.delegate = self;
     
@@ -319,13 +319,17 @@
         {
             UIImage* image = nil;
             
-            UIGraphicsBeginImageContext(_scrollView.contentSize);
+            CGSize sizeForRendering;
+            sizeForRendering.width = _scrollView.contentSize.width;
+            sizeForRendering.height = self.view.frame.size.height  - [UINavigationBar appearance].frame.size.height;
+            
+            UIGraphicsBeginImageContextWithOptions(sizeForRendering, YES, 0.0);
             {
                 CGPoint savedContentOffset = _scrollView.contentOffset;
                 CGRect savedFrame = _scrollView.frame;
                 
                 [self.scrollView setContentOffset:CGPointMake(0, -64) animated:NO];
-                _scrollView.frame = CGRectMake(0, 0, _scrollView.contentSize.width, _scrollView.contentSize.height);
+                _scrollView.frame = CGRectMake(0, 0, _scrollView.contentSize.width, sizeForRendering.height);
                 
                 [_scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
                 image = UIGraphicsGetImageFromCurrentImageContext();
@@ -335,9 +339,9 @@
             }
             UIGraphicsEndImageContext();
             
-            CGImageRef imgRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, image.size.width, 54 + 803 * PixelPerMin));
+            CGImageRef imgRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, image.size.width * 2, 54 + 810 * 2 * PixelPerMin));
             
-            image = [UIImage imageWithCGImage:imgRef];
+            UIImage *sendImage = [UIImage imageWithCGImage:imgRef];
             
             NSString *dateinamenErweiterung;
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -346,7 +350,7 @@
             }
             else dateinamenErweiterung = [(Stunde*)_angezeigteStunden[0] student].matrnr;
             
-            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",dateinamenErweiterung], image];
+            NSArray *itemsToShare = @[[NSString stringWithFormat:@"Mein Stundenplan (%@), erstellt mit der iOS-App der HTW Dresden.",dateinamenErweiterung], sendImage];
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact];
             
