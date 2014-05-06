@@ -55,13 +55,11 @@
     
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"titel" ascending:YES]]];
     
-    [fetchRequest setFetchBatchSize:20];
     
     
-    
-    [fetchRequest setReturnsDistinctResults:YES];
-
-    [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:@"id"]];
+//    [fetchRequest setReturnsDistinctResults:YES];
+//
+//    [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:@"id"]];
     
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                                   managedObjectContext:_context
@@ -229,6 +227,11 @@
     [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 82;
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
