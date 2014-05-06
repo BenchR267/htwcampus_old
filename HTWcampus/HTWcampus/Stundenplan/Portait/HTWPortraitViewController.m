@@ -22,6 +22,8 @@
 #import "UIImage+Resize.h"
 
 #define PixelPerMin 0.5
+#define ALERT_EINGEBEN 0
+#define ALERT_EXPORT 1
 
 @interface HTWPortraitViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIScrollViewDelegate>
 {
@@ -129,8 +131,9 @@
                                                             message:@"Bitte geben Sie Ihre Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein, damit der Stundenplan geladen werden kann."
                                                            delegate:self
                                                   cancelButtonTitle:[self alertViewCancelButtonTitle]
-                                                  otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
+                                                  otherButtonTitles:[self alertViewOkButtonTitle], nil];
         [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];
+        alertView.tag = ALERT_EINGEBEN;
         [alertView show];
     }
     else
@@ -183,11 +186,13 @@
 {
     NSString *clickedButtonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if([alertView.title isEqualToString:@"Hallo"] || [alertView.title isEqualToString:@"Fehler"])
+    if(alertView.tag == ALERT_EINGEBEN)
     {
         if ([clickedButtonTitle isEqualToString:[self alertViewOkButtonTitle]])
         {
-            if ([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput) {
+            NSString *eingegeben = [alertView textFieldAtIndex:0].text;
+            if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
+                
                 Matrnr = [alertView textFieldAtIndex:0].text;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
@@ -205,11 +210,9 @@
                 {
                     [self setUpInterface];
                 }
-                }
             }
         
-        else if ([clickedButtonTitle isEqualToString:@"Dozent"]) {
-            if ([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput) {
+        else {
                 Matrnr = [alertView textFieldAtIndex:0].text;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
@@ -218,10 +221,10 @@
                 HTWCSVConnection *dozentParser = [[HTWCSVConnection alloc] initWithPassword:Matrnr];
                 dozentParser.delegate = self;
                 [dozentParser startParser];
-            }
         }
     }
-    else if ([alertView.title isEqualToString:@"Exportieren"])
+    }
+    else if (alertView.tag == ALERT_EXPORT)
     {
         if ([clickedButtonTitle isEqualToString:@"CSV (Google Kalender)"])
         {
@@ -378,7 +381,7 @@
 }
 -(NSString*)alertViewOkButtonTitle
 {
-    return @"Student";
+    return @"Ok";
 }
 
 #pragma mark - Stundenplan Parser Delegate
@@ -403,8 +406,9 @@
                                                         message:errorMessage
                                                        delegate:self
                                               cancelButtonTitle:[self alertViewCancelButtonTitle]
-                                              otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
-    [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];    
+                                              otherButtonTitles:[self alertViewOkButtonTitle], nil];
+    [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];
+    alertView.tag = ALERT_EINGEBEN;
     [alertView show];
 }
 
@@ -416,6 +420,7 @@
                                               cancelButtonTitle:[self alertViewCancelButtonTitle]
                                               otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
     [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];
+    alertView.tag = ALERT_EINGEBEN;
     [alertView show];
 }
 
@@ -661,7 +666,7 @@
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
                                           otherButtonTitles:@"Bild", @"CSV (Google Kalender)", @"ICS (Mac, Windows, iPhone)", nil];
-    
+    alert.tag = ALERT_EXPORT;
     [alert show];
     
 }
@@ -744,6 +749,35 @@
     if(weekday == -1) weekday=6;
     
     return weekday;
+}
+
+-(BOOL)isMatrikelnummer:(NSString*)string
+{
+    if (string.length != 5) return NO;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\d{5}" options:0 error:nil];
+    NSTextCheckingResult *result = [regex firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
+    if (result) {
+        return YES;
+    }
+    else return NO;
+}
+
+-(BOOL)isStudiengruppe:(NSString*)string
+{
+    NSArray *array = [string componentsSeparatedByString:@"/"];
+    if (array.count != 3) return NO;
+    else
+    {
+        for (NSString *this in array) {
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\d{2,}" options:0 error:nil];
+            NSTextCheckingResult *result = [regex firstMatchInString:this options:0 range:NSMakeRange(0, this.length)];
+            if (result) {
+                return YES;
+            }
+            else return NO;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - Navigation

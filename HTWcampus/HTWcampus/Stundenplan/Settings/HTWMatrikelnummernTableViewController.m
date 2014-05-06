@@ -17,6 +17,10 @@
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
+#define ALERT_EINGEBEN 0
+#define ALERT_FEHLER 1
+#define ALERT_WARNUNG 2
+
 @interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIAlertViewDelegate>
 {
     HTWAppDelegate *appdelegate;
@@ -40,6 +44,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Stundenpläne";
     
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
@@ -74,12 +80,15 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput && [alertView.title isEqualToString:@"Neuen Stundenplan hinzufügen"])
+    if(alertView.tag == ALERT_EINGEBEN)
     {
-        if ([buttonTitle isEqualToString:@"Student"]) {
-            NSString *matrNr = [alertView textFieldAtIndex:0].text;
+        NSString *eingegeben = [alertView textFieldAtIndex:0].text;
+        if ([buttonTitle isEqualToString:@"Ok"]) {
+            if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
+            
             _parser = nil;
             
+            NSString *matrNr = [eingegeben copy];
             
             appdelegate = [[UIApplication sharedApplication] delegate];
             _context = [appdelegate managedObjectContext];
@@ -109,10 +118,8 @@
                                                       otherButtonTitles:nil];
                 [alert show];
             }
-
-        }
-        else if ([buttonTitle isEqualToString:@"Dozent"]) {
-            if ([alertView alertViewStyle] == UIAlertViewStyleSecureTextInput) {
+            }
+        else {
                 NSString *matrNr = [alertView textFieldAtIndex:0].text;
                 _dozentParser = nil;
                 
@@ -144,7 +151,7 @@
                                                           otherButtonTitles:nil];
                     [alert show];
                 }
-            }
+        }
         }
     }
     else if ([alertView.title isEqualToString:@"Stundenplan wiederherstellen"])
@@ -296,12 +303,13 @@
 #pragma mark - IBAction
 
 - (IBAction)addButtonPressed:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Neuen Stundenplan hinzufügen"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Neuer Stundenplan"
                                                     message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:"
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Student", @"Dozent", nil];
+                                          otherButtonTitles:@"Ok", nil];
     [alert setAlertViewStyle:UIAlertViewStyleSecureTextInput];
+    alert.tag = ALERT_EINGEBEN;
     [alert show];
 }
 
@@ -411,6 +419,7 @@
     alert.title = @"Fehler";
     alert.message = errorMessage;
     [alert addButtonWithTitle:@"Ok"];
+    alert.tag = ALERT_FEHLER;
     [alert show];
 }
 
@@ -420,7 +429,39 @@
     alert.title = @"Fehler";
     alert.message = errorMessage;
     [alert addButtonWithTitle:@"Ok"];
+    alert.tag = ALERT_FEHLER;
     [alert show];
+}
+
+#pragma mark - Hilfsfunktionen
+
+-(BOOL)isMatrikelnummer:(NSString*)string
+{
+    if (string.length != 5) return NO;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\d{5}" options:0 error:nil];
+    NSTextCheckingResult *result = [regex firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
+    if (result) {
+        return YES;
+    }
+    else return NO;
+}
+
+-(BOOL)isStudiengruppe:(NSString*)string
+{
+    NSArray *array = [string componentsSeparatedByString:@"/"];
+    if (array.count != 3) return NO;
+    else
+    {
+        for (NSString *this in array) {
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\d{2,}" options:0 error:nil];
+            NSTextCheckingResult *result = [regex firstMatchInString:this options:0 range:NSMakeRange(0, this.length)];
+            if (result) {
+                return YES;
+            }
+            else return NO;
+        }
+    }
+    return NO;
 }
 
 @end

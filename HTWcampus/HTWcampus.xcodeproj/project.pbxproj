@@ -73,7 +73,6 @@
 		E61D8820190859180033D543 /* HTWLandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D881E190859180033D543 /* HTWLandscapeViewController.m */; };
 		E61D883319085B4C0033D543 /* HTWDatePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D882619085B4C0033D543 /* HTWDatePickViewController.m */; };
 		E61D883419085B4C0033D543 /* HTWMatrikelnummernTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D882819085B4C0033D543 /* HTWMatrikelnummernTableViewController.m */; };
-		E61D883519085B4C0033D543 /* HTWStundeAddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D882A19085B4C0033D543 /* HTWStundeAddTableViewController.m */; };
 		E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D882C19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m */; };
 		E61D883719085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D882E19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m */; };
 		E61D883919085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D883219085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m */; };
@@ -222,8 +221,6 @@
 		E61D882619085B4C0033D543 /* HTWDatePickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWDatePickViewController.m; path = Stundenplan/Settings/HTWDatePickViewController.m; sourceTree = "<group>"; };
 		E61D882719085B4C0033D543 /* HTWMatrikelnummernTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMatrikelnummernTableViewController.h; path = Stundenplan/Settings/HTWMatrikelnummernTableViewController.h; sourceTree = "<group>"; };
 		E61D882819085B4C0033D543 /* HTWMatrikelnummernTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMatrikelnummernTableViewController.m; path = Stundenplan/Settings/HTWMatrikelnummernTableViewController.m; sourceTree = "<group>"; };
-		E61D882919085B4C0033D543 /* HTWStundeAddTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundeAddTableViewController.h; path = Stundenplan/Settings/HTWStundeAddTableViewController.h; sourceTree = "<group>"; };
-		E61D882A19085B4C0033D543 /* HTWStundeAddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundeAddTableViewController.m; path = Stundenplan/Settings/HTWStundeAddTableViewController.m; sourceTree = "<group>"; };
 		E61D882B19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanSettingsUebersichtTableViewCell.h; path = Stundenplan/Settings/HTWStundenplanSettingsUebersichtTableViewCell.h; sourceTree = "<group>"; };
 		E61D882C19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanSettingsUebersichtTableViewCell.m; path = Stundenplan/Settings/HTWStundenplanSettingsUebersichtTableViewCell.m; sourceTree = "<group>"; };
 		E61D882D19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanSettingsUebersichtTableViewController.h; path = Stundenplan/Settings/HTWStundenplanSettingsUebersichtTableViewController.h; sourceTree = "<group>"; };
@@ -503,6 +500,8 @@
 				E61C4C7419193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m */,
 				E61C34BB19198BE500EBEBDD /* HTWStundenplanAddTableViewController.h */,
 				E61C34BC19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m */,
+				E61D882519085B4C0033D543 /* HTWDatePickViewController.h */,
+				E61D882619085B4C0033D543 /* HTWDatePickViewController.m */,
 				E6FE12A019093D6700D56D52 /* indicator-red.png */,
 				E6FE97F519183742004C6596 /* indicator.png */,
 			);
@@ -533,10 +532,6 @@
 				E61D882C19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m */,
 				E61D883119085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h */,
 				E61D883219085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m */,
-				E61D882919085B4C0033D543 /* HTWStundeAddTableViewController.h */,
-				E61D882A19085B4C0033D543 /* HTWStundeAddTableViewController.m */,
-				E61D882519085B4C0033D543 /* HTWDatePickViewController.h */,
-				E61D882619085B4C0033D543 /* HTWDatePickViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -795,7 +790,6 @@
 				6D753A741917CC1100C6BAA1 /* UIFont+HTW.m in Sources */,
 				E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D753A611917C54B00C6BAA1 /* HTWMensaSpeiseTableViewCell.m in Sources */,
-				E61D883519085B4C0033D543 /* HTWStundeAddTableViewController.m in Sources */,
 				6D94E9DA191524B300872FC8 /* notenDetailViewController.m in Sources */,
 				6D94EA3B19152FDB00872FC8 /* CSSSelectorPart.m in Sources */,
 				6D94EA3519152FDB00872FC8 /* CDataChunk.m in Sources */,

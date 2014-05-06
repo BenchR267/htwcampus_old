@@ -38,6 +38,9 @@
     _kurzel = @"";
     _raum = @"";
     _dozent = @"";
+    self.title = @"Neue Stunde hinzufügen";
+    
+    self.navigationItem.backBarButtonItem.title = @"Bestätigen";
 }
 
 -(void)viewWillAppear:(BOOL)animated
