@@ -191,6 +191,7 @@
         if ([clickedButtonTitle isEqualToString:[self alertViewOkButtonTitle]])
         {
             NSString *eingegeben = [alertView textFieldAtIndex:0].text;
+            if(eingegeben.length == 0) return;
             if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
                 
                 Matrnr = [alertView textFieldAtIndex:0].text;

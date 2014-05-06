@@ -83,6 +83,7 @@
     if(alertView.tag == ALERT_EINGEBEN)
     {
         NSString *eingegeben = [alertView textFieldAtIndex:0].text;
+        if (eingegeben.length == 0) return;
         if ([buttonTitle isEqualToString:@"Ok"]) {
             if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
             
