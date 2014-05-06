@@ -7,8 +7,17 @@
 //
 
 #import "HTWStundenplanEditDetailTableViewController.h"
+#import "UIFont+HTW.h"
+#import "UIColor+HTW.h"
 
 @implementation HTWStundenplanEditDetailTableViewController
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.view.backgroundColor = [UIColor HTWBackgroundColor];
+    self.title = _stunde.kurzel;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -20,9 +29,24 @@
     return 1;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 0: return 82;
+        default: return 50;
+    }
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    cell.textLabel.font = [UIFont HTWTableViewCellFont];
+    cell.textLabel.textColor = [UIColor HTWTextColor];
+    cell.detailTextLabel.font = [UIFont HTWTableViewCellFont];
+    cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
+    cell.detailTextLabel.numberOfLines = 3;
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     switch (indexPath.row) {
         case 0:
@@ -64,7 +88,7 @@
 -(NSString *)stringFromDate:(NSDate*)date
 {
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
-    [dateF setDateFormat:@"dd.MM HH:mm"];
+    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
     return [dateF stringFromDate:date];
 }
 

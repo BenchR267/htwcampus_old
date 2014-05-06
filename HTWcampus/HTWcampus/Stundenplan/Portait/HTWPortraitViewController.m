@@ -444,9 +444,9 @@
             longPressGR.minimumPressDuration = 0.1;
             longPressGR.allowableMovement = 0;
             [button addGestureRecognizer:longPressGR];
-//            UILongPressGestureRecognizer *longPressGREdit = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressedForEdit:)];
-//            longPressGREdit.minimumPressDuration = 0.5;
-//            [button addGestureRecognizer:longPressGREdit];
+            UITapGestureRecognizer *tapGREdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressedForEdit:)];
+            tapGREdit.numberOfTapsRequired = 2;
+            [button addGestureRecognizer:tapGREdit];
         }
     }
     [self reloadZeitenViewAndClockLine];
