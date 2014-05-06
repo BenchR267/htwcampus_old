@@ -118,9 +118,9 @@ static NSSet* HTML_TAGS_THAT_SHOULD_BE_EMPTY;
 }
 
 -(void)parseMoreWithPartial:(BOOL)partial{
-	int index = lastChunk ? NSMaxRange(lastChunk.range) : 0;
+	int index = lastChunk ? (int)NSMaxRange(lastChunk.range) : 0;
 	NSString* source = [root source];
-	root.contentsLength = [source length];
+	root.contentsLength = (int)[source length];
 	[NSString parseHTML: source delegate: self selector: @selector(buildElementTreeWithChunk:context:) context: self index: &index partial: partial];
 }
 
@@ -145,7 +145,7 @@ static NSSet* HTML_TAGS_THAT_SHOULD_BE_EMPTY;
 // nil is a valid value... closed first open tag
 -(void)closeElementWithTag:(TagChunk*) tag{
 	int depthIndex;
-	for (depthIndex = [tagStack count] - 1; depthIndex > 0; depthIndex--){
+	for (depthIndex = (int)[tagStack count] - 1; depthIndex > 0; depthIndex--){
 		// crawl up stack to find matching element
 		Element* stackElement = [tagStack objectAtIndex: depthIndex];
 		if (!tag || [tag closesTag: stackElement])
@@ -157,9 +157,9 @@ static NSSet* HTML_TAGS_THAT_SHOULD_BE_EMPTY;
 		while ([tagStack count] > depthIndex){//int ii=[tagStack count] - 1; ii >= depth; ii--
 			closedElement = [tagStack lastObject];
 			closedElement.contentsLength = 
-				(tag == nil) ? lastChunk.range.location - NSMaxRange(closedElement.range) : 
+				(tag == nil) ? (int)lastChunk.range.location - (int)NSMaxRange(closedElement.range) :
 				(tag == closedElement) ? 0 : 
-				tag.range.location - NSMaxRange(closedElement.range);
+				(int)tag.range.location - (int)NSMaxRange(closedElement.range);
 			if(!tag && closedElement.contentsLength == 0)
 				[self warning: ElementParserGeneralError description:@"Contents may not be right" chunk: closedElement];
 //			NSLog(@"Close %@", [closedElement description]);
@@ -187,7 +187,7 @@ static NSSet* HTML_TAGS_THAT_SHOULD_BE_EMPTY;
 }
 
 -(void)closeAllTags{
-	for (int i = [tagStack count] - 1; i >= 0; i--){
+	for (int i = (int)[tagStack count] - 1; i >= 0; i--){
 		Element* stackElement = [tagStack objectAtIndex: i];
 		if (i > 0)
 			[self warning: ElementParserTagNotClosedError description:@"document left tag open" chunk: stackElement];
@@ -200,7 +200,7 @@ static NSSet* HTML_TAGS_THAT_SHOULD_BE_EMPTY;
 }
 
 -(void)warning:(int)code description:(NSString*)description chunk: (Chunk*)chunk{
-	NSLog(@"WARN [index: %i]: %@\n%@", chunk.range.location, description, [chunk description]);
+	NSLog(@"WARN [index: %i]: %@\n%@", (int)chunk.range.location, description, [chunk description]);
 	/* subclasses should do this work if they want to do something with the warnings
 	NSMutableDictionary* info = [NSMutableDictionary dictionaryWithCapacity: 2];
 	if (description)

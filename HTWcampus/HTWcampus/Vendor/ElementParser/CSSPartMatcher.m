@@ -99,7 +99,7 @@
 }
 
 -(NSString*)description{
-	return [NSString stringWithFormat: @"%@ matched %@ -- %i matchersForNextPart", [[self matchedPart] description], [matchedElement description], (matchersForNextPart) ? [matchersForNextPart count] : 0];
+	return [NSString stringWithFormat: @"%@ matched %@ -- %i matchersForNextPart", [[self matchedPart] description], [matchedElement description], (matchersForNextPart) ? (int)[matchersForNextPart count] : 0];
 }
 
 @end

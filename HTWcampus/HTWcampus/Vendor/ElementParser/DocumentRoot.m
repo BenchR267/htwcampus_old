@@ -29,7 +29,7 @@
 
 -(id)initWithString: (NSString*)aSource range:(NSRange)aRange{
 	self = [super initWithString: aSource range:aRange tagName: @"DOCUMENT ROOT"];
-	self.contentsLength = [aSource length];
+	self.contentsLength = (int)[aSource length];
 	return self;
 }
 

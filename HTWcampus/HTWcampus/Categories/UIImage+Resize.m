@@ -86,7 +86,7 @@
             break;
             
         default:
-            [NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %d", contentMode];
+            [NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %ld", (long)contentMode];
     }
     
     CGSize newSize = CGSizeMake(self.size.width * ratio, self.size.height * ratio);
@@ -120,7 +120,7 @@
                                                 8, /* bits per channel */
                                                 (newRect.size.width * 4), /* 4 channels per pixel * numPixels/row */
                                                 colorSpace,
-                                                kCGImageAlphaPremultipliedLast
+                                                (CGBitmapInfo)kCGImageAlphaPremultipliedLast
                                                 );
     CGColorSpaceRelease(colorSpace);
 	

@@ -164,7 +164,7 @@
 			NSMutableArray *tdContent = [self getClearCellContent: tdText];
 			
 			NSMutableDictionary *firstCell = [tdContent objectAtIndex:0];
-            NSString *blocknr = [[NSString alloc] initWithFormat:@"%i", rowCount+1];
+            NSString *blocknr = [[NSString alloc] initWithFormat:@"%i", (int)rowCount+1];
 			[firstCell setObject:time forKey:@"time"];
             [firstCell setObject:blocknr forKey:@"blocknr"];
 			[[daysWo objectAtIndex:cellCount - 1] addObject:firstCell];
@@ -328,7 +328,7 @@
 	NSRange range = [theString rangeOfString:search options: NSCaseInsensitiveSearch];
 	
 	if (range.length > 0) {
-		return range.location;
+		return (int)range.location;
 	}
 	return -1;
 	

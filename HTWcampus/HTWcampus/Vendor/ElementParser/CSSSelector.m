@@ -32,6 +32,7 @@
 
 
 -(id)initWithString:(NSString*)string{
+    self = [self init];
 	CFStringInlineBuffer buffer;
 	CFRange range = CFRangeMake(0, [string length]);
 	CFStringInitInlineBuffer((CFStringRef)string, &buffer, range);
@@ -77,7 +78,7 @@
 }
  
 -(int)countOfParts{
-	return ([chain count] + 1) / 2;
+	return ((int)[chain count] + 1) / 2;
 }
 -(CSSSelectorPart*)partAtIndex:(int)index{
 	return [chain objectAtIndex: index * 2];

@@ -129,7 +129,7 @@
 
 -(NSDate*)dateFromStringsWoche:(NSString *)woche andTag:(NSString*)tag andZeit:(NSString*)zeit
 {
-    NSDate *erg = [NSDate date];
+    NSDate *erg;
     NSDateFormatter *bildeDatum = [[NSDateFormatter alloc] init];
     [bildeDatum setDateFormat:@"dd.MM.yyyy HH:mm"];
     [bildeDatum setTimeZone:[NSTimeZone defaultTimeZone]];

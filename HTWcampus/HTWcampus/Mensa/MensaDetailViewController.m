@@ -30,7 +30,7 @@
     if (_availableMeals != nil) {
         self.title = [[_availableMeals objectAtIndex:0] valueForKey:@"mensa"];
     }
-    NSLog(@"%i Essen gefunden", [_availableMeals count]);
+    NSLog(@"%lu Essen gefunden", (unsigned long)[_availableMeals count]);
 }
 
 - (void)didReceiveMemoryWarning

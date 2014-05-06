@@ -35,12 +35,13 @@
 	CFStringInitInlineBuffer((CFStringRef)string, &buffer, range);
 	CFIndex i = 0;
 	self = [self initWithIndex: &i inBuffer: &buffer];
-	*index = i;
+	*index = (int)i;
 	return self;
 	
 }
 
 -(id)initWithIndex:(CFIndex*) index inBuffer:(CFStringInlineBuffer*)buffer{
+    self = [self init];
 	unichar c;
 	CFIndex len;
 	c = skipWhitespace(buffer, index);
