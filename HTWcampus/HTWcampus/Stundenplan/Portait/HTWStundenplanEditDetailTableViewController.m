@@ -25,7 +25,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.view.backgroundColor = [UIColor HTWBackgroundColor];
+    self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
     self.title = _stunde.kurzel;
     _textfield = [[UITextField alloc] init];
 }

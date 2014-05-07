@@ -15,6 +15,7 @@
 #import "notenViewController.h"
 #import "notenDetailViewController.h"
 #import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
 
 @implementation notenViewController
 
@@ -45,26 +46,33 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    self.navigationController.navigationBar.barTintColor = [UIColor HTWBlueColor];
-    self.navigationController.navigationBarHidden = NO;
     self.tableView.backgroundColor = [UIColor HTWSandColor];
+    UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Reload"]
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(reloadNotenspiegel:)];
     
-    [self.tableView reloadData];
+    self.navigationItem.rightBarButtonItem = refresh;
     
     if (self.notenspiegel == nil) {
-        //Ask for user login data
-        [self showLoginPopup];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        username = [defaults objectForKey:@"LoginNoten"];
+        password = [defaults objectForKey:@"PasswortNoten"];
+        if (username && password) [self loadNoten];
+        else //Ask for user login data
+            [self showLoginPopup];
     }
 }
 
 - (IBAction)reloadNotenspiegel:(id)sender {
-    username = password = nil;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    username = [defaults objectForKey:@"LoginNoten"];
+    password = [defaults objectForKey:@"PasswortNoten"];
     notendurchschnitt = 0.0;
     self.notenspiegel = nil;
     [self.tableView reloadData];
-    [self showLoginPopup];
+    if(!username || !password) [self showLoginPopup];
+    else [self loadNoten];
 }
 
 - (void) showLoginPopup {
@@ -291,11 +299,20 @@
     if ([self.notenspiegel count] > 0) {
         if (indexPath.section == 0) {
             cell.textLabel.text = @"Notendurchschnitt";
+            cell.textLabel.font = [UIFont HTWTableViewCellFont];
+            cell.textLabel.textColor = [UIColor HTWTextColor];
             cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%.2f", notendurchschnitt];
+            cell.detailTextLabel.font = [UIFont HTWBigBaseFont];
+            cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
         }
         else {
             cell.textLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"name"];
+            cell.textLabel.font = [UIFont HTWBaseFont];
+            cell.textLabel.textColor = [UIColor HTWTextColor];
             cell.detailTextLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"note"];
+            cell.detailTextLabel.font = [UIFont HTWMediumFont];
+            cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
+            
         }
     }
     

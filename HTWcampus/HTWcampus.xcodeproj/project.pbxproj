@@ -101,6 +101,7 @@
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
 		E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DF7E0619137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m */; };
+		E6EBD38F191A8E3000720962 /* HTWNotenSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */; };
 		E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator-red.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
 		E6FE97F619183742004C6596 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE97F519183742004C6596 /* indicator.png */; };
@@ -266,6 +267,8 @@
 		E6D2E572190FF60400DCD9EF /* HTWICSExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWICSExport.m; path = Stundenplan/Export/HTWICSExport.m; sourceTree = "<group>"; };
 		E6DF7E0519137F1200DDC69C /* HTWStundenplanSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanSettingsTableViewController.h; path = Stundenplan/Settings/HTWStundenplanSettingsTableViewController.h; sourceTree = "<group>"; };
 		E6DF7E0619137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanSettingsTableViewController.m; path = Stundenplan/Settings/HTWStundenplanSettingsTableViewController.m; sourceTree = "<group>"; };
+		E6EBD38D191A8E3000720962 /* HTWNotenSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNotenSettingsTableViewController.h; path = Noten/HTWNotenSettingsTableViewController.h; sourceTree = "<group>"; };
+		E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNotenSettingsTableViewController.m; path = Noten/HTWNotenSettingsTableViewController.m; sourceTree = "<group>"; };
 		E6FE12A019093D6700D56D52 /* indicator-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator-red.png"; path = "Stundenplan/Portait/indicator-red.png"; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
@@ -375,6 +378,8 @@
 				6D94E9D7191524B300872FC8 /* notenStartseiteHTMLParser.m */,
 				6D94E9D4191524B300872FC8 /* notenDetailViewController.h */,
 				6D94E9D5191524B300872FC8 /* notenDetailViewController.m */,
+				E6EBD38D191A8E3000720962 /* HTWNotenSettingsTableViewController.h */,
+				E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */,
 			);
 			name = Noten;
 			sourceTree = "<group>";
@@ -793,6 +798,7 @@
 				6D94E9DA191524B300872FC8 /* notenDetailViewController.m in Sources */,
 				6D94EA3B19152FDB00872FC8 /* CSSSelectorPart.m in Sources */,
 				6D94EA3519152FDB00872FC8 /* CDataChunk.m in Sources */,
+				E6EBD38F191A8E3000720962 /* HTWNotenSettingsTableViewController.m in Sources */,
 				6D94EA3619152FDB00872FC8 /* Chunk.m in Sources */,
 				6D94E9DC191524B300872FC8 /* notenViewController.m in Sources */,
 				6D94EA3F19152FDB00872FC8 /* ElementParser.m in Sources */,
