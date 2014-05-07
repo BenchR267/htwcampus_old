@@ -375,6 +375,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_dozentParser.password forKey:@"Matrikelnummer"];
+    [defaults setBool:YES forKey:@"Dozent"];
     
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
