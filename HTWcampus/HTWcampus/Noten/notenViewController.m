@@ -14,6 +14,7 @@
 
 #import "notenViewController.h"
 #import "notenDetailViewController.h"
+#import "HTWAppDelegate.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
@@ -94,6 +95,7 @@
     isLoading = true;
     [self.tableView reloadData];
     
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
         if ([data length]>0 && error == nil)
         {
@@ -132,6 +134,7 @@
                                 self.notenspiegel = [startseiteParser parseNotenspiegelFromString:notenspiegelHtmlResultAsString];
                                 isLoading = false;
                                 notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
+                                [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
                                 [self.tableView reloadData];
                             }
                             else if ([data length] == 0 && error == nil)
@@ -140,6 +143,7 @@
                             }
                             else if (error != nil){
                                 NSLog(@"Fehler beim Laden der Notenseite. Error: %@", error);
+                                [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
                             }
                         }];
                     }
@@ -157,6 +161,7 @@
                 }
                 else if (error != nil){
                     NSLog(@"HISQIS Login Request Page nicht erreichbar. Error: %@", error);
+                    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
                 }
             }];
 
@@ -168,6 +173,7 @@
         }
         else if (error != nil){
             NSLog(@"Fehler beim Laden der Noten. Error: %@", error);
+            [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
         }
     }];
 }

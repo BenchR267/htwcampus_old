@@ -87,6 +87,7 @@ NSMutableData *receivedData;
     
     response = [[NSMutableString alloc] init];
     
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     // Connection mit dem oben definierten Request
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
@@ -110,6 +111,7 @@ NSMutableData *receivedData;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
     // Wenn eins dieser Strings in dem HTML-File vorkommt, ist die Nummer falsch oder es gibt keine Daten dazu
     if (([response rangeOfString:@"Stundenplan im csv-Format erstellen"].length != 0) || [response rangeOfString:@"Es wurden keine Daten gefunden."].length != 0) {
         if(!_boolRaum) [_delegate HTWStundenplanParserError:@"Falsche Matrikelnummer oder Studiengruppe. Bitte erneut eingeben."];

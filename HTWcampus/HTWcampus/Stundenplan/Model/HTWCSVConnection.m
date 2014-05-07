@@ -62,7 +62,7 @@
     [request setHTTPBody: myRequestData];
 //    [request setValue:@"4" forHTTPHeaderField:@"w1"];
 
-    
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     // Connection mit dem oben definierten Request
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (connectionError) NSLog(@"ERROR: %@", [connectionError localizedDescription]);
@@ -125,6 +125,7 @@
                 
                 HTWCSVParser *parser = [[HTWCSVParser alloc] initWithURL:[NSURL URLWithString:fileURL]];
                 parser.delegate = self;
+                [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
                 [parser startHTWCSVParser];
             }
         }

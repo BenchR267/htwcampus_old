@@ -18,5 +18,6 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 
 @end

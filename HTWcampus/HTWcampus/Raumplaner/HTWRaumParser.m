@@ -8,6 +8,7 @@
 
 #import "HTWRaumParser.h"
 #import "HTWTabParser.h"
+#import "HTWAppDelegate.h"
 
 #define kURL @"http://www2.htw-dresden.de/~rawa/cgi-bin/plan/plan_quelle_app.txt"
 
@@ -29,7 +30,9 @@
 {
     [self dateFromStringsWoche:@"wö" andTag:@"2" andZeit:@""];
     
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     NSString *string = [NSString stringWithContentsOfURL:[NSURL URLWithString:kURL] encoding:NSASCIIStringEncoding error:nil];
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
     HTWTabParser *parser = [[HTWTabParser alloc] initWithContent:string];
     parser.delegate = self;
     _raeume = [[NSMutableArray alloc] init];

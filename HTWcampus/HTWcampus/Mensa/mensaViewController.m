@@ -13,6 +13,7 @@
 #import "mensaViewController.h"
 #import "MensaXMLParserDelegate.h"
 #import "MensaDetailViewController.h"
+#import "HTWAppDelegate.h"
 #import "UIImage+Resize.h"
 #import "UIColor+HTW.h"
 #import "HTWMensaSpeiseTableViewCell.h"
@@ -117,6 +118,8 @@
     NSURLRequest *requestTomorrow = [NSURLRequest requestWithURL:RSSUrlTomorrow];
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
     
+    
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:requestToday queue:queue completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
         if ([data length]>0 && error == nil)
         {
@@ -153,6 +156,7 @@
                     alert.alertViewStyle = UIAlertViewStyleDefault;
                     [alert show];
                 }
+                [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
             }];
             
             //check if both days have been parsed
