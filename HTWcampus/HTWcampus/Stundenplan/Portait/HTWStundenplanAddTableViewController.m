@@ -75,6 +75,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     cell.textLabel.font = [UIFont HTWTableViewCellFont];
@@ -98,7 +99,8 @@
             cell.detailTextLabel.text = _raum;
             break;
         case 3:
-            cell.textLabel.text = @"Dozent";
+            if(![defaults boolForKey:@"Dozent"]) cell.textLabel.text = @"Dozent";
+            else cell.textLabel.text = @"Studiengang";
             cell.detailTextLabel.text = _dozent;
             break;
         case 4:

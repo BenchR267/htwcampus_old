@@ -146,6 +146,7 @@
         case 0:
             kurzelTeile = [characters componentsSeparatedByString:@"/"];
             _stunde.kurzel = kurzelTeile[0];
+            if(kurzelTeile.count > 1) _stunde.dozent = kurzelTeile[1];
             break;
         case 1:
             [_anfang appendString:characters];
@@ -168,7 +169,6 @@
             _stunde.bemerkungen = @"";
             _stunde.anzeigen = [NSNumber numberWithBool:YES];
             _stunde.id = [NSString stringWithFormat:@"%@%d%@", _stunde.kurzel, [self weekdayFromDate:_stunde.anfang], [self uhrZeitFromDate:_stunde.anfang]];
-            _stunde.dozent = _name;
             _stunde.titel = [_stunde.kurzel componentsSeparatedByString:@" "][0];
             [_student addStundenObject:_stunde];
 

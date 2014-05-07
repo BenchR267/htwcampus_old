@@ -82,7 +82,8 @@
                 cell.detailTextLabel.text = _stunde.raum;
                 break;
             case 3:
-                cell.textLabel.text = @"Dozent";
+                if(!_stunde.student.dozent) cell.textLabel.text = @"Dozent";
+                else cell.textLabel.text = @"Studiengang";
                 cell.detailTextLabel.text = _stunde.dozent;
                 break;
             case 4:

@@ -17,9 +17,9 @@
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
-#define ALERT_EINGEBEN 0
-#define ALERT_FEHLER 1
-#define ALERT_WARNUNG 2
+#define ALERT_EINGEBEN 110
+#define ALERT_FEHLER 111
+#define ALERT_WARNUNG 112
 
 @interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIAlertViewDelegate>
 {
