@@ -4,6 +4,7 @@
 
 - Stundenplan
 - Raumplaner
+- Prüfungsplaner
 
 ## Konstantin
 
