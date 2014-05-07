@@ -16,6 +16,7 @@
 #import "UIFont+HTW.h"
 
 #define PixelPerMin 0.35
+#define ANZAHLTAGE 10
 
 @interface HTWLandscapeViewController () <UIScrollViewDelegate>
 {
@@ -223,7 +224,7 @@
 
 -(void)loadLabels
 {
-    float xWerteTage[10] = {0.0,103.0,206.0,309.0,412.0,576.0,679.0,782.0,885.0,988.0};
+//    float xWerteTage[10] = {0.0,103.0,206.0,309.0,412.0,576.0,679.0,782.0,885.0,988.0};
     CGFloat yWertTage = 24;
     NSArray *stringsTage = [NSArray arrayWithObjects:@"Montag", @"Dienstag", @"Mittwoch", @"Donnerstag", @"Freitag", nil];
     
@@ -239,11 +240,14 @@
     heuteMorgenLabelsView.backgroundColor = [UIColor HTWDarkGrayColor];
     heuteMorgenLabelsView.tag = -1;
     
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < ANZAHLTAGE; i++) {
         int j = i;
         if (i > 4) j = i-5;
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(xWerteTage[i]+350, yWertTage, 90, 21)];
+        CGFloat x = 1+i*103;
+        if(i > 4) x += 61;
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x+350, yWertTage, 90, 21)];
         label.text = [stringsTage objectAtIndex:j];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor HTWWhiteColor];

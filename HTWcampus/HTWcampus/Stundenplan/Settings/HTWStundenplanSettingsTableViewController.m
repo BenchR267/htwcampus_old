@@ -18,8 +18,11 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *matrikelnummernCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *uebersichtCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *markierungsCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *tageInPortraitCell;
 @property (weak, nonatomic) IBOutlet UISlider *markierSlider;
+@property (weak, nonatomic) IBOutlet UISlider *tageInPortraitSlider;
 @property (weak, nonatomic) IBOutlet UILabel *sliderWert;
+@property (weak, nonatomic) IBOutlet UILabel *tageInPortraitLabel;
 
 @end
 
@@ -39,7 +42,9 @@
     if(![defaults boolForKey:@"Dozent"]) _matrikelnummernCell.detailTextLabel.text = [defaults objectForKey:@"Matrikelnummer"];
     else _matrikelnummernCell.detailTextLabel.text = [self getNameOf:[defaults objectForKey:@"Matrikelnummer"]];
     _markierSlider.value = [defaults floatForKey:@"markierSliderValue"];
-    _sliderWert.text = [NSString stringWithFormat:@"%.0f min", self.markierSlider.value];
+    _tageInPortraitSlider.value = (float)[defaults integerForKey:@"tageInPortrait"];
+    _sliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
+    _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Portrait", _tageInPortraitSlider.value];
     
     self.navigationController.navigationBarHidden = NO;
     
@@ -58,15 +63,33 @@
     _markierungsCell.backgroundColor = [UIColor HTWWhiteColor];
     _sliderWert.textColor = [UIColor HTWDarkGrayColor];
     _sliderWert.font = [UIFont HTWBaseFont];
+    _sliderWert.numberOfLines = 2;
+    _sliderWert.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    _tageInPortraitSlider.backgroundColor = [UIColor HTWWhiteColor];
+    _tageInPortraitLabel.textColor = [UIColor HTWDarkGrayColor];
+    _tageInPortraitLabel.font = [UIFont HTWBaseFont];
+    _tageInPortraitLabel.numberOfLines = 2;
+    _tageInPortraitLabel.lineBreakMode = NSLineBreakByWordWrapping;
 }
 
 #pragma mark - IBActions
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {
-    [_markierSlider setValue:(int)(sender.value/5)*5];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setFloat:_markierSlider.value forKey:@"markierSliderValue"];
-    _sliderWert.text = [NSString stringWithFormat:@"%.0f min", _markierSlider.value];
+    if (sender.tag == 0) {
+        [_markierSlider setValue:(int)(sender.value/5)*5];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setFloat:_markierSlider.value forKey:@"markierSliderValue"];
+        _sliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
+    }
+}
+- (IBAction)tageInPortraitSliderChangedValue:(UISlider *)sender {
+    if (sender.tag == 1) {
+        [_tageInPortraitSlider setValue:(int)sender.value];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:(int)_tageInPortraitSlider.value forKey:@"tageInPortrait"];
+        _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Portrait", _tageInPortraitSlider.value];
+    }
 }
 
 #pragma mark - Navigation

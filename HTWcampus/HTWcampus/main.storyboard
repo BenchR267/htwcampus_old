@@ -305,7 +305,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Markierung vor Beginn der Stunde" id="21z-Jj-jyE">
+                            <tableViewSection headerTitle="Ansicht" id="21z-Jj-jyE">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="5MF-uz-lzT">
                                         <rect key="frame" x="0.0" y="307" width="320" height="70"/>
@@ -332,6 +332,32 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="LYa-dE-Ign">
+                                        <rect key="frame" x="0.0" y="377" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LYa-dE-Ign" id="6AM-pE-rB9">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhP-is-gCO">
+                                                    <rect key="frame" x="9" y="10" width="96" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7" minValue="2" maxValue="14" translatesAutoresizingMaskIntoConstraints="NO" id="1Ee-AA-Id3">
+                                                    <rect key="frame" x="111" y="20" width="191" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.40000003579999999" green="0.78039222959999999" blue="0.92941182850000004" alpha="1" colorSpace="deviceRGB"/>
+                                                    <connections>
+                                                        <action selector="sliderValueChanged:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="PEm-bl-Lf8"/>
+                                                        <action selector="tageInPortraitSliderChangedValue:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="PHA-Cj-2Aq"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -346,6 +372,9 @@
                         <outlet property="markierungsCell" destination="5MF-uz-lzT" id="Dp3-rl-RYe"/>
                         <outlet property="matrikelnummernCell" destination="q6k-gO-nub" id="zqE-Cq-XpF"/>
                         <outlet property="sliderWert" destination="Vv3-Kg-RBk" id="fzM-jO-4Mu"/>
+                        <outlet property="tageInPortraitCell" destination="LYa-dE-Ign" id="IJJ-1F-Rsm"/>
+                        <outlet property="tageInPortraitLabel" destination="fhP-is-gCO" id="qml-Ym-tHf"/>
+                        <outlet property="tageInPortraitSlider" destination="1Ee-AA-Id3" id="Fpr-hN-LJK"/>
                         <outlet property="uebersichtCell" destination="kIP-7L-xIY" id="Ows-gU-KjI"/>
                     </connections>
                 </tableViewController>

@@ -105,10 +105,11 @@
     [super viewWillAppear:animated];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults integerForKey:@"tageInPortrait"] < 2) [defaults setInteger:2 forKey:@"tageInPortrait"];
     
     _settingsBarButtonItem.tintColor = [UIColor HTWWhiteColor];
     
-    _scrollView.contentSize = CGSizeMake(60+116*7, 459 + [UINavigationBar appearance].frame.size.height);
+    _scrollView.contentSize = CGSizeMake(60+116*[defaults integerForKey:@"tageInPortrait"], 459 + [UINavigationBar appearance].frame.size.height);
     _scrollView.directionalLockEnabled = YES;
     _scrollView.delegate = self;
     
@@ -470,8 +471,9 @@
     int wochentagePointer = weekday;
     
     NSMutableArray *labels = [[NSMutableArray alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    for (int i=0; i < 7; i++) {
+    for (int i=0; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
         UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+60+_scrollView.contentSize.width, 20, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
         this.font = [UIFont HTWBigBaseFont];
@@ -679,8 +681,9 @@
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
-    dayComponent.day = 7;
+    dayComponent.day = [defaults integerForKey:@"tageInPortrait"];
     
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     

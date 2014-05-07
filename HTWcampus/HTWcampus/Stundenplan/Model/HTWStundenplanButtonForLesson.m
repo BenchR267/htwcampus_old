@@ -12,6 +12,7 @@
 #import "UIFont+HTW.h"
 
 #define CornerRadius 5
+#define ANZAHLTAGE_LANDSCAPE 10
 
 @interface HTWStundenplanButtonForLesson ()
 {
@@ -76,7 +77,6 @@
     
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
-    [nurTag setTimeZone:[NSTimeZone defaultTimeZone]];
     
     
     if(_portait){
@@ -87,47 +87,18 @@
         
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
         
-        NSDate *day2 = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
-        NSDate *day3 = [theCalendar dateByAddingComponents:dayComponent toDate:day2 options:0];
-        NSDate *day4 = [theCalendar dateByAddingComponents:dayComponent toDate:day3 options:0];
-        NSDate *day5 = [theCalendar dateByAddingComponents:dayComponent toDate:day4 options:0];
-        NSDate *day6 = [theCalendar dateByAddingComponents:dayComponent toDate:day5 options:0];
-        NSDate *day7 = [theCalendar dateByAddingComponents:dayComponent toDate:day6 options:0];
-        
-        //Wenn die Stunde heute ist
-        if ([self isSameDayWithDate1:lesson.anfang date2:today]) {
-            x = 60;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[today dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *tage = [[NSMutableArray alloc] init];
+        [tage addObject:today];
+        for (int i = 1; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
+            [tage addObject:[theCalendar dateByAddingComponents:dayComponent toDate:tage[i-1] options:0]];
         }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:day2])
-        {
-            x = 176;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:day3])
-        {
-            x = 292;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day3 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:day4])
-        {
-            x = 408;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day4 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:day5])
-        {
-            x = 524;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day5 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:day6])
-        {
-            x = 641;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day6 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:day7])
-        {
-            x = 756;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[day7 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+        for (int i = 0; i < tage.count; i++) {
+            if ([self isSameDayWithDate1:lesson.anfang date2:tage[i]]) {
+                x = 60+i*116;
+                y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[tage[i] dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+                break;
+            }
         }
     }
     else {
@@ -135,71 +106,34 @@
         int weekday = [self weekdayFromDate:[NSDate date]];
         
         NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
-        dayComponent.day = 7;
+        dayComponent.day = 1;
+        NSDateComponents *threeDaysComponent = [[NSDateComponents alloc] init];
+        threeDaysComponent.day = 3;
         
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
         
         NSDate *montag = [[nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]] dateByAddingTimeInterval:(-60*60*24*weekday) ];
-        NSDate *dienstag = [montag dateByAddingTimeInterval:60*60*24];
-        NSDate *mittwoch = [dienstag dateByAddingTimeInterval:60*60*24];
-        NSDate *donnerstag = [mittwoch dateByAddingTimeInterval:60*60*24];
-        NSDate *freitag = [donnerstag dateByAddingTimeInterval:60*60*24];
         
-        NSDate *montag2 = [theCalendar dateByAddingComponents:dayComponent toDate:montag options:0];
-        NSDate *dienstag2 = [montag2 dateByAddingTimeInterval:60*60*24];
-        NSDate *mittwoch2 = [dienstag2 dateByAddingTimeInterval:60*60*24];
-        NSDate *donnerstag2 = [mittwoch2 dateByAddingTimeInterval:60*60*24];
-        NSDate *freitag2 = [donnerstag2 dateByAddingTimeInterval:60*60*24];
+        NSMutableArray *tage = [[NSMutableArray alloc] init];
+        [tage addObject:montag];
         
-        if ([self isSameDayWithDate1:lesson.anfang date2:montag]) {
-            x = 1;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[montag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+        int zaehler = 0;
+        for (int i = 1; i < ANZAHLTAGE_LANDSCAPE; i++) {
+            if(zaehler < 4) [tage addObject:[theCalendar dateByAddingComponents:dayComponent toDate:tage[i-1] options:0]];
+            else [tage addObject:[theCalendar dateByAddingComponents:threeDaysComponent toDate:tage[i-1] options:0]];
+            
+            zaehler++;
+            if (zaehler > 4) zaehler = 0;
         }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:dienstag])
-        {
-            x = 104;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dienstag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+        for (int i = 0; i < tage.count; i++) {
+            if ([self isSameDayWithDate1:lesson.anfang date2:tage[i]]) {
+                x = 1+i*103;
+                if(i > 4) x += 61;
+                y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[tage[i] dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+                break;
+            }
         }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:mittwoch])
-        {
-            x = 207;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[mittwoch dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else  if ([self isSameDayWithDate1:lesson.anfang date2:donnerstag])
-        {
-            x = 310;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[donnerstag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else  if ([self isSameDayWithDate1:lesson.anfang date2:freitag])
-        {
-            x = 413;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[freitag dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else  if ([self isSameDayWithDate1:lesson.anfang date2:montag2])
-        {
-            x = 577;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[montag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else  if ([self isSameDayWithDate1:lesson.anfang date2:dienstag2])
-        {
-            x = 680;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[dienstag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else if ([self isSameDayWithDate1:lesson.anfang date2:mittwoch2])
-        {
-            x = 783;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[mittwoch2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else  if ([self isSameDayWithDate1:lesson.anfang date2:donnerstag2])
-        {
-            x = 886;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[donnerstag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
-        else  if ([self isSameDayWithDate1:lesson.anfang date2:freitag2])
-        {
-            x = 989;
-            y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[freitag2 dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
-        }
+
     }
     self.frame = CGRectMake( x, y, width, height);
     
