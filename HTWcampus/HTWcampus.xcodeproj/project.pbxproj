@@ -100,7 +100,6 @@
 		E67D2533191620FA009D7634 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D2532191620FA009D7634 /* Stunde.m */; };
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
-		E6D6A8B5191B89AA00FD75F0 /* NSArray+HTWSemester.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D6A8B4191B89AA00FD75F0 /* NSArray+HTWSemester.m */; };
 		E6D6A8B8191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */; };
 		E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DF7E0619137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m */; };
 		E6EBD38F191A8E3000720962 /* HTWNotenSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */; };
@@ -267,8 +266,6 @@
 		E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVExport.m; path = Stundenplan/Export/HTWCSVExport.m; sourceTree = "<group>"; };
 		E6D2E571190FF60400DCD9EF /* HTWICSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWICSExport.h; path = Stundenplan/Export/HTWICSExport.h; sourceTree = "<group>"; };
 		E6D2E572190FF60400DCD9EF /* HTWICSExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWICSExport.m; path = Stundenplan/Export/HTWICSExport.m; sourceTree = "<group>"; };
-		E6D6A8B3191B89AA00FD75F0 /* NSArray+HTWSemester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+HTWSemester.h"; path = "Noten/NSArray+HTWSemester.h"; sourceTree = "<group>"; };
-		E6D6A8B4191B89AA00FD75F0 /* NSArray+HTWSemester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+HTWSemester.m"; path = "Noten/NSArray+HTWSemester.m"; sourceTree = "<group>"; };
 		E6D6A8B6191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMatrikelnummernEditTableViewController.h; path = Stundenplan/Settings/HTWMatrikelnummernEditTableViewController.h; sourceTree = "<group>"; };
 		E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMatrikelnummernEditTableViewController.m; path = Stundenplan/Settings/HTWMatrikelnummernEditTableViewController.m; sourceTree = "<group>"; };
 		E6DF7E0519137F1200DDC69C /* HTWStundenplanSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanSettingsTableViewController.h; path = Stundenplan/Settings/HTWStundenplanSettingsTableViewController.h; sourceTree = "<group>"; };
@@ -386,8 +383,6 @@
 				6D94E9D5191524B300872FC8 /* notenDetailViewController.m */,
 				E6EBD38D191A8E3000720962 /* HTWNotenSettingsTableViewController.h */,
 				E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */,
-				E6D6A8B3191B89AA00FD75F0 /* NSArray+HTWSemester.h */,
-				E6D6A8B4191B89AA00FD75F0 /* NSArray+HTWSemester.m */,
 			);
 			name = Noten;
 			sourceTree = "<group>";
@@ -806,7 +801,6 @@
 				6D753A741917CC1100C6BAA1 /* UIFont+HTW.m in Sources */,
 				E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D753A611917C54B00C6BAA1 /* HTWMensaSpeiseTableViewCell.m in Sources */,
-				E6D6A8B5191B89AA00FD75F0 /* NSArray+HTWSemester.m in Sources */,
 				6D94E9DA191524B300872FC8 /* notenDetailViewController.m in Sources */,
 				6D94EA3B19152FDB00872FC8 /* CSSSelectorPart.m in Sources */,
 				6D94EA3519152FDB00872FC8 /* CDataChunk.m in Sources */,

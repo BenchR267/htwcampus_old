@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HTWcampus/Noten/notenViewController.m"
-            timestampString = "421238081.713287"
+            timestampString = "421248963.563661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "-calculateAverageGradeFromNotenspiegel:"
             landmarkType = "5">
          </BreakpointContent>

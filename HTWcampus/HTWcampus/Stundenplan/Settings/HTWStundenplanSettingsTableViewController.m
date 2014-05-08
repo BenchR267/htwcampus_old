@@ -54,7 +54,7 @@
     
     User *this = nummern[0];
     if(this.name) _matrikelnummernCell.detailTextLabel.text = this.name;
-    else _matrikelnummernCell.textLabel.text = this.matrnr;
+    else _matrikelnummernCell.detailTextLabel.text = this.matrnr;
     
     
     _markierSlider.value = [defaults floatForKey:@"markierSliderValue"];

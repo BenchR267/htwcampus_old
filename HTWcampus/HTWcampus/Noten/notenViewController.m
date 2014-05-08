@@ -18,7 +18,6 @@
 #import "HTWAppDelegate.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
-#import "NSArray+HTWSemester.h"
 
 @implementation notenViewController
 
