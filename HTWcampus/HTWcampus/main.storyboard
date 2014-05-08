@@ -7,7 +7,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="5OS-Ti-sZu">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="286-Hk-2SQ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" definesPresentationContext="YES" id="286-Hk-2SQ" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="9E3-3B-S4u">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -1335,6 +1335,81 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Etg-dW-nMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2525" y="-2437"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="zL6-zC-KRX">
+            <objects>
+                <viewController storyboardIdentifier="HTWPageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wuw-yN-yl5" customClass="HTWPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sTf-Bx-ybi"/>
+                        <viewControllerLayoutGuide type="bottom" id="3ls-U7-GNh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dWg-Dq-Vpq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6oe-8f-vUe">
+                                <rect key="frame" x="114" y="530" width="93" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Überspringen">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="skip:" destination="Wuw-yN-yl5" eventType="touchUpInside" id="OmH-YL-izG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="skipButton" destination="6oe-8f-vUe" id="kom-58-o1w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2KV-rd-8Wp" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1960" y="396"/>
+        </scene>
+        <!--Page Content View Controller-->
+        <scene sceneID="dKi-sm-MRc">
+            <objects>
+                <viewController storyboardIdentifier="HTWPageContentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ekM-hq-MKf" customClass="HTWPageContentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sHb-tP-EzS"/>
+                        <viewControllerLayoutGuide type="bottom" id="z7N-Wp-GtL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dK8-YJ-YTB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6K-xG-mJP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqB-Z5-dyE">
+                                <rect key="frame" x="29" y="32" width="263" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="q6K-xG-mJP" id="ooA-2Y-0RZ"/>
+                        <outlet property="titleLabel" destination="wqB-Z5-dyE" id="DtN-xf-P9Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1SV-7k-hCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1393" y="639"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="SXe-Cg-NU5">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="M4w-VD-lmA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B1X-m7-4BG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1393" y="-28"/>
         </scene>
     </scenes>
     <resources>

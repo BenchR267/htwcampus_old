@@ -98,6 +98,14 @@
 		E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C74190D3FD1002AE150 /* HTWTestViewController.m */; };
 		E67D2530191620F9009D7634 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D252F191620F9009D7634 /* User.m */; };
 		E67D2533191620FA009D7634 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D2532191620FA009D7634 /* Stunde.m */; };
+		E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */; };
+		E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */; };
+		E6B771EF191C370200E9A2A5 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771E9191C370200E9A2A5 /* page1.png */; };
+		E6B771F0191C370200E9A2A5 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EA191C370200E9A2A5 /* page2.png */; };
+		E6B771F1191C370200E9A2A5 /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EB191C370200E9A2A5 /* page3.png */; };
+		E6B771F2191C370200E9A2A5 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EC191C370200E9A2A5 /* page4.png */; };
+		E6B771F3191C370200E9A2A5 /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771ED191C370200E9A2A5 /* page5.png */; };
+		E6B771F4191C370200E9A2A5 /* page6.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EE191C370200E9A2A5 /* page6.png */; };
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
 		E6D6A8B8191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */; };
@@ -262,6 +270,16 @@
 		E67D252F191620F9009D7634 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Stundenplan/Model/User.m; sourceTree = "<group>"; };
 		E67D2531191620FA009D7634 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
 		E67D2532191620FA009D7634 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
+		E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageContentViewController.h; path = PageViewFirstLaunch/HTWPageContentViewController.h; sourceTree = "<group>"; };
+		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; };
+		E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageViewController.h; path = PageViewFirstLaunch/HTWPageViewController.h; sourceTree = "<group>"; };
+		E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageViewController.m; path = PageViewFirstLaunch/HTWPageViewController.m; sourceTree = "<group>"; };
+		E6B771E9191C370200E9A2A5 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page1.png; path = PageViewFirstLaunch/Bilder/page1.png; sourceTree = "<group>"; };
+		E6B771EA191C370200E9A2A5 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
+		E6B771EB191C370200E9A2A5 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page3.png; path = PageViewFirstLaunch/Bilder/page3.png; sourceTree = "<group>"; };
+		E6B771EC191C370200E9A2A5 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page4.png; path = PageViewFirstLaunch/Bilder/page4.png; sourceTree = "<group>"; };
+		E6B771ED191C370200E9A2A5 /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page5.png; path = PageViewFirstLaunch/Bilder/page5.png; sourceTree = "<group>"; };
+		E6B771EE191C370200E9A2A5 /* page6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page6.png; path = PageViewFirstLaunch/Bilder/page6.png; sourceTree = "<group>"; };
 		E6D2E56E190FF55C00DCD9EF /* HTWCSVExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVExport.h; path = Stundenplan/Export/HTWCSVExport.h; sourceTree = "<group>"; };
 		E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVExport.m; path = Stundenplan/Export/HTWCSVExport.m; sourceTree = "<group>"; };
 		E6D2E571190FF60400DCD9EF /* HTWICSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWICSExport.h; path = Stundenplan/Export/HTWICSExport.h; sourceTree = "<group>"; };
@@ -580,6 +598,7 @@
 		E63772CE1908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXGroup;
 			children = (
+				E6B771E1191C36D700E9A2A5 /* FirstLaunch */,
 				6D7B451B1908150F00D99C9D /* main.storyboard */,
 				6D753A621917C99900C6BAA1 /* Assets */,
 				6D753A5E1917C52800C6BAA1 /* Classes */,
@@ -635,6 +654,31 @@
 				E6D2E572190FF60400DCD9EF /* HTWICSExport.m */,
 			);
 			name = Export;
+			sourceTree = "<group>";
+		};
+		E6B771E1191C36D700E9A2A5 /* FirstLaunch */ = {
+			isa = PBXGroup;
+			children = (
+				E6B771E8191C36E600E9A2A5 /* Bilder */,
+				E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */,
+				E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */,
+				E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */,
+				E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */,
+			);
+			name = FirstLaunch;
+			sourceTree = "<group>";
+		};
+		E6B771E8191C36E600E9A2A5 /* Bilder */ = {
+			isa = PBXGroup;
+			children = (
+				E6B771E9191C370200E9A2A5 /* page1.png */,
+				E6B771EA191C370200E9A2A5 /* page2.png */,
+				E6B771EB191C370200E9A2A5 /* page3.png */,
+				E6B771EC191C370200E9A2A5 /* page4.png */,
+				E6B771ED191C370200E9A2A5 /* page5.png */,
+				E6B771EE191C370200E9A2A5 /* page6.png */,
+			);
+			name = Bilder;
 			sourceTree = "<group>";
 		};
 		E6FE12A21909880500D56D52 /* Raumplaner */ = {
@@ -733,6 +777,7 @@
 			files = (
 				6D753A6E1917C9B500C6BAA1 /* PT_Sans-Web-Bold.ttf in Resources */,
 				6D753A711917C9B500C6BAA1 /* PT_Sans-Web-Regular.ttf in Resources */,
+				E6B771F0191C370200E9A2A5 /* page2.png in Resources */,
 				6D753A5A1917A8C300C6BAA1 /* uboot.jpg in Resources */,
 				6D753A4D1917A8C300C6BAA1 /* mensa-bruehl.jpg in Resources */,
 				6D753A541917A8C300C6BAA1 /* noavailablemensaimage.jpg in Resources */,
@@ -740,8 +785,11 @@
 				6D753A561917A8C300C6BAA1 /* pillnitz.jpg in Resources */,
 				6D753A551917A8C300C6BAA1 /* palucca.jpg in Resources */,
 				6D753A6F1917C9B500C6BAA1 /* PT_Sans-Web-BoldItalic.ttf in Resources */,
+				E6B771F2191C370200E9A2A5 /* page4.png in Resources */,
 				6D753A701917C9B500C6BAA1 /* PT_Sans-Web-Italic.ttf in Resources */,
+				E6B771EF191C370200E9A2A5 /* page1.png in Resources */,
 				6D753A6D1917C9B500C6BAA1 /* OFL.txt in Resources */,
+				E6B771F3191C370200E9A2A5 /* page5.png in Resources */,
 				6D753A4C1917A8C300C6BAA1 /* johannstadt.jpg in Resources */,
 				6D753A591917A8C300C6BAA1 /* tellerrandt.jpg in Resources */,
 				6D753A521917A8C300C6BAA1 /* mensologie.jpg in Resources */,
@@ -751,10 +799,12 @@
 				6D753A4E1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg in Resources */,
 				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,
 				6D753A781917F20800C6BAA1 /* hausvii.jpg in Resources */,
+				E6B771F1191C370200E9A2A5 /* page3.png in Resources */,
 				6D753A501917A8C300C6BAA1 /* mensa-wueins.jpg in Resources */,
 				6D753A641917C9A600C6BAA1 /* mensen.json in Resources */,
 				6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */,
 				6D753A761917F1D000C6BAA1 /* zittau.jpg in Resources */,
+				E6B771F4191C370200E9A2A5 /* page6.png in Resources */,
 				6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */,
 				E6FE97F619183742004C6596 /* indicator.png in Resources */,
 				E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */,
@@ -781,6 +831,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E67D2530191620F9009D7634 /* User.m in Sources */,
+				E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */,
 				6D94EA4019152FDB00872FC8 /* EntityChunk.m in Sources */,
 				6D94EA3A19152FDB00872FC8 /* CSSSelectorMatcher.m in Sources */,
 				E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */,
@@ -799,6 +850,7 @@
 				E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */,
 				6D94EA3819152FDB00872FC8 /* CSSPartMatcher.m in Sources */,
 				6D753A741917CC1100C6BAA1 /* UIFont+HTW.m in Sources */,
+				E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */,
 				E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D753A611917C54B00C6BAA1 /* HTWMensaSpeiseTableViewCell.m in Sources */,
 				6D94E9DA191524B300872FC8 /* notenDetailViewController.m in Sources */,

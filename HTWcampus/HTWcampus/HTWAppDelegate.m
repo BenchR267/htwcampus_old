@@ -7,6 +7,7 @@
 //
 
 #import "HTWAppDelegate.h"
+#import "HTWPageViewController.h"
 #import "UIColor+HTW.h"
 
 @implementation HTWAppDelegate
@@ -17,10 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
     
     [[UITabBar appearance] setBarTintColor:[UIColor HTWBlueColor]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor HTWWhiteColor]];
@@ -30,6 +31,13 @@
     [UINavigationBar appearance].barStyle = UIBarStyleBlackTranslucent;
     [UINavigationBar appearance].barTintColor = [UIColor HTWBlueColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
+        HTWPageViewController *vc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateViewControllerWithIdentifier:@"HTWPageViewController"];
+        [self.window setRootViewController:vc];
+    }
     
     return YES;
 }
