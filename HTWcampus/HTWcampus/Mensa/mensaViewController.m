@@ -298,7 +298,7 @@
         }
         else {
             NSLog(@"Zeige MORGIGEN Speiseplan");
-            return [[self allMensasOfTomorrow] count];
+            return [[self allMensasOfTomorrow] count]/2;
         }
     }
     else
@@ -319,7 +319,7 @@
             currentMensaName = [[[[self allMensasOfToday] objectAtIndex:indexPath.row] objectAtIndex:0] valueForKey:@"mensa"];
         }
         else {
-            currentMensaName = [[[[self allMensasOfTomorrow] objectAtIndex:indexPath.row] objectAtIndex:0] valueForKey:@"mensa"];
+            currentMensaName = [[[[self allMensasOfTomorrow] objectAtIndex:indexPath.row+self.allMensasOfToday.count] objectAtIndex:0] valueForKey:@"mensa"];
         }
     
         [cell.textLabel setText:currentMensaName];
@@ -348,7 +348,7 @@
             mensaDetailController.availableMeals = [[self allMensasOfToday] objectAtIndex:selectedRowIndex.row];
         }
         else {
-            mensaDetailController.availableMeals = [[self allMensasOfTomorrow] objectAtIndex:selectedRowIndex.row];
+            mensaDetailController.availableMeals = [[self allMensasOfTomorrow] objectAtIndex:selectedRowIndex.row+self.allMensasOfToday.count];
         }
     }
 }
