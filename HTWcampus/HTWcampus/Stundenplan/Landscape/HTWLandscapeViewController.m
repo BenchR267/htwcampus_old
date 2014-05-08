@@ -338,8 +338,12 @@
 
 -(IBAction)buttonIsPressed:(UILongPressGestureRecognizer*)gesture
 {
+    HTWStundenplanButtonForLesson *buttonPressed = (HTWStundenplanButtonForLesson*)gesture.view;
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        HTWStundenplanButtonForLesson *buttonPressed = (HTWStundenplanButtonForLesson*)gesture.view;
+        buttonPressed.backgroundColor = [UIColor HTWBlueColor];
+        for (UIView *this in buttonPressed.subviews) {
+            if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWWhiteColor]];
+        }
         
         CGFloat x = buttonPressed.frame.origin.x-buttonPressed.frame.size.width/2;
         CGFloat y = buttonPressed.frame.origin.y-220*PixelPerMin;
@@ -383,8 +387,13 @@
         
         _detailView.hidden = NO;
     }
-    else if (gesture.state == UIGestureRecognizerStateEnded)
+    else if (gesture.state == UIGestureRecognizerStateEnded){
         _detailView.hidden = YES;
+        buttonPressed.backgroundColor = [UIColor HTWWhiteColor];
+        for (UIView *this in buttonPressed.subviews) {
+            if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWDarkGrayColor]];
+        }
+    }
 }
 
 #pragma mark - Hilfsfunktionen
