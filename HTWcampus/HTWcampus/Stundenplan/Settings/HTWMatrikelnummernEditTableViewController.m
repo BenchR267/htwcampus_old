@@ -106,6 +106,21 @@
             [sender addSubview:_textfield];
             [_textfield becomeFirstResponder];
     }
+    else if (indexPath.row == 1)
+    {
+        [_textfield resignFirstResponder];
+        _textfield.hidden = YES;
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (_user.dozent.boolValue && [cell.detailTextLabel.text characterAtIndex:0] == '*') {
+            cell.detailTextLabel.text = _user.matrnr;
+        }
+        else if (_user.dozent.boolValue) {
+            NSMutableString *string = [[NSMutableString alloc] init];
+            for(int i=0; i<_user.matrnr.length; i++) [string appendString:@"*"];
+            cell.detailTextLabel.text = string;
+        }
+        
+    }
 }
 
 #pragma mark - TextField Delegate
