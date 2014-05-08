@@ -39,8 +39,24 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if(![defaults boolForKey:@"Dozent"]) _matrikelnummernCell.detailTextLabel.text = [defaults objectForKey:@"Matrikelnummer"];
-    else _matrikelnummernCell.detailTextLabel.text = [self getNameOf:[defaults objectForKey:@"Matrikelnummer"]];
+    HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appdelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(matrnr == %@)", [defaults objectForKey:@"Matrikelnummer"]]];
+    
+    NSArray *nummern = [context executeFetchRequest:fetchRequest error:nil];
+    
+    User *this = nummern[0];
+    if(this.name) _matrikelnummernCell.detailTextLabel.text = this.name;
+    else _matrikelnummernCell.textLabel.text = this.matrnr;
+    
+    
     _markierSlider.value = [defaults floatForKey:@"markierSliderValue"];
     _tageInPortraitSlider.value = (float)[defaults integerForKey:@"tageInPortrait"];
     _sliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
@@ -53,7 +69,7 @@
     _matrikelnummernCell.backgroundColor = [UIColor HTWWhiteColor];
     _matrikelnummernCell.textLabel.textColor = [UIColor HTWDarkGrayColor];
     _matrikelnummernCell.textLabel.font = [UIFont HTWBaseFont];
-    _matrikelnummernCell.detailTextLabel.textColor = [UIColor HTWDarkGrayColor];
+    _matrikelnummernCell.detailTextLabel.textColor = [UIColor HTWBlueColor];
     _matrikelnummernCell.detailTextLabel.font = [UIFont HTWBaseFont];
     
     _uebersichtCell.backgroundColor = [UIColor HTWWhiteColor];

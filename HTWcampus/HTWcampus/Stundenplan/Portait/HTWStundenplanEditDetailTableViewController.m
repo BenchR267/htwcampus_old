@@ -163,7 +163,7 @@
 
 #pragma mark - TextField Delegate
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+-(void)textFieldDidEndEditing:(UITextField *)textField
 {
     HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appdelegate managedObjectContext];
@@ -201,6 +201,11 @@
     [textField removeFromSuperview];
     self.title = _stunde.kurzel;
     [self.tableView reloadData];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
     return YES;
 }
 

@@ -12,6 +12,7 @@
 #import "HTWStundenplanParser.h"
 #import "HTWCSVConnection.h"
 #import "User.h"
+#import "HTWMatrikelnummernEditTableViewController.h"
 
 #import "Stunde.h"
 #import "UIColor+HTW.h"
@@ -73,7 +74,7 @@
     [super viewWillAppear:animated];
     self.tableView.backgroundView.backgroundColor = [UIColor HTWSandColor];
 
-    
+    [self.tableView reloadData];
 }
 
 #pragma mark - AlertView Delegate
@@ -184,6 +185,24 @@
     }
 }
 
+#pragma mark - UIGestureRecognizer
+
+-(IBAction)cellPressedForPop:(UITapGestureRecognizer*)gesture
+{
+    UITableViewCell *senderCell = (UITableViewCell*)gesture.view;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    User *info = _nummern[[self.tableView indexPathForCell:senderCell].row];
+    [defaults setBool:info.dozent.boolValue forKey:@"Dozent"];
+    [defaults setObject:info.matrnr forKey:@"Matrikelnummer"];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)cellPressedForEdit:(UILongPressGestureRecognizer*)gesture
+{
+    UITableViewCell *senderCell = (UITableViewCell*)gesture.view;
+    [self performSegueWithIdentifier:@"editUser" sender:senderCell];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -208,7 +227,7 @@
     }
     else cell.tag = 0;
     
-    if(!info.dozent.boolValue) cell.textLabel.text = info.matrnr;
+    if(!info.name) cell.textLabel.text = info.matrnr;
     else cell.textLabel.text = info.name;
     
     cell.textLabel.textColor = [UIColor HTWDarkGrayColor];
@@ -225,6 +244,15 @@
     [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
     cell.accessoryView = imageView;
     
+    UISwipeGestureRecognizer *longGR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellPressedForEdit:)];
+    longGR.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [cell addGestureRecognizer:longGR];
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellPressedForPop:)];
+    tapGR.numberOfTapsRequired = 1;
+    
+    [cell addGestureRecognizer:tapGR];
     
     return cell;
 }
@@ -295,11 +323,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    User *info = _nummern[indexPath.row];
-    [defaults setBool:info.dozent.boolValue forKey:@"Dozent"];
-    [defaults setObject:info.matrnr forKey:@"Matrikelnummer"];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - IBAction
@@ -465,6 +488,18 @@
         }
     }
     return NO;
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"editUser"]) {
+        UITableViewCell *senderCell = (UITableViewCell*)sender;
+        User *info = _nummern[[self.tableView indexPathForCell:senderCell].row];
+        HTWMatrikelnummernEditTableViewController *dest = segue.destinationViewController;
+        dest.user = info;
+    }
 }
 
 @end
