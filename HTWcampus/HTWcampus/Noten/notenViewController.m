@@ -9,6 +9,7 @@
 #define LOGINMODAL_TAG 1
 #define LOGIN_ERROR_TAG 2
 #define LOGIN_VALIDATION_ERROR_TAG 3
+#define ALERT_SAVE_LOGIN 4
 
 #define HISQIS_LOGGEDIN_STARTPAGE @"https://wwwqis.htw-dresden.de/qisserver/rds?state=user&type=0&category=menu.browse&breadCrumbSource=&startpage=portal.vm"
 
@@ -189,6 +190,18 @@
                 NSLog(@"%@ %@", [[alertView textFieldAtIndex:0] text], [[alertView textFieldAtIndex:0] text]);
                 username = [[alertView textFieldAtIndex:0] text];
                 password = [[alertView textFieldAtIndex:1] text];
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                if(![defaults boolForKey:@"NotenLoginNieSpeichern"])
+                {
+                    UIAlertView *saveAlert = [[UIAlertView alloc] init];
+                    saveAlert.message = @"Soll der Login gespeichert werden?";
+                    [saveAlert addButtonWithTitle:@"Ja"];
+                    [saveAlert addButtonWithTitle:@"Nein"];
+                    [saveAlert addButtonWithTitle:@"Nein, nicht mehr fragen"];
+                    saveAlert.tag = ALERT_SAVE_LOGIN;
+                    saveAlert.delegate = self;
+                    [saveAlert show];
+                }
                 [self loadNoten];
             }
             else {
@@ -201,13 +214,28 @@
         }
     }
     
-    if (alertView.tag == LOGIN_ERROR_TAG) {
+    else if (alertView.tag == LOGIN_ERROR_TAG) {
         //Try again
         [self showLoginPopup];
     }
     
-    if (alertView.tag == LOGIN_VALIDATION_ERROR_TAG) {
+    else if (alertView.tag == LOGIN_VALIDATION_ERROR_TAG) {
         [self showLoginPopup];
+    }
+    
+    else if (alertView.tag == ALERT_SAVE_LOGIN)
+    {
+        NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+        if ([buttonTitle isEqualToString:@"Ja"]) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:username forKey:@"LoginNoten"];
+            [defaults setObject:password forKey:@"PasswortNoten"];
+        }
+        else if ([buttonTitle isEqualToString:@"Nein, nicht mehr fragen"])
+        {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setBool:YES forKey:@"NotenLoginNieSpeichern"];
+        }
     }
 }
 
