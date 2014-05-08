@@ -674,7 +674,6 @@
                                           otherButtonTitles:@"Bild", @"CSV (Google Kalender)", @"ICS (Mac, Windows, iPhone)", nil];
     alert.tag = ALERT_EXPORT;
     [alert show];
-    
 }
 
 #pragma mark - Hilfsfunktionen

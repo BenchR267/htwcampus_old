@@ -9,10 +9,13 @@
 #import "HTWStundenplanEditDetailTableViewController.h"
 #import "HTWAppDelegate.h"
 #import "User.h"
+#import "HTWCSVExport.h"
+#import "HTWICSExport.h"
 #import "UIFont+HTW.h"
 #import "UIColor+HTW.h"
 
 #define ALERT_CONFIRMATION 0
+#define ALERT_EXPORT 1
 
 @interface HTWStundenplanEditDetailTableViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -21,6 +24,15 @@
 @end
 
 @implementation HTWStundenplanEditDetailTableViewController
+
+#pragma mark - ViewController Lifecycle
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"] style:UIBarButtonItemStylePlain target:self action:@selector(shareButtonPressed:)];
+    self.navigationItem.rightBarButtonItems = @[self.navigationItem.rightBarButtonItem, shareButton];
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -234,6 +246,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(IBAction)shareButtonPressed:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exportieren"
+                                                    message:@"In welcher Form wollen Sie die Stunde exportieren oder teilen?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Abbrechen"
+                                          otherButtonTitles:@"CSV (Google Kalender)", @"ICS (Mac, Windows, iPhone)", nil];
+    alert.tag = ALERT_EXPORT;
+    [alert show];
+}
+
 
 #pragma mark - UIAlertView Delegate
 
@@ -241,23 +264,91 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if ([buttonTitle isEqualToString:@"Ja"]) {
-        HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
-        NSManagedObjectContext *context = [appdelegate managedObjectContext];
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
-        [fetchRequest setPredicate:pred];
-        
-        NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
-        
-        for (Stunde *this in objects) {
-            [context deleteObject:this];
+    if (alertView.tag == ALERT_CONFIRMATION) {
+        if ([buttonTitle isEqualToString:@"Ja"]) {
+            HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+            NSManagedObjectContext *context = [appdelegate managedObjectContext];
+            
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
+            [fetchRequest setPredicate:pred];
+            
+            NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
+            
+            for (Stunde *this in objects) {
+                [context deleteObject:this];
+            }
+            
+            [context save:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }
-        
-        [context save:nil];
-        [self.navigationController popViewControllerAnimated:YES];
     }
+    else if (alertView.tag == ALERT_EXPORT)
+    {
+            if ([buttonTitle isEqualToString:@"CSV (Google Kalender)"])
+            {
+                NSString *dateiNamenErweiterung;
+                if(_stunde.student.dozent.boolValue) dateiNamenErweiterung = _stunde.student.name;
+                else dateiNamenErweiterung = _stunde.student.matrnr;
+                
+                HTWCSVExport *csvExp = [[HTWCSVExport alloc] initWithArray:@[_stunde] andMatrNr:dateiNamenErweiterung];
+                
+                NSURL *fileURL = [csvExp getFileUrl];
+                
+                NSArray *itemsToShare = @[[NSString stringWithFormat:@"Lehrveranstaltung %@, erstellt mit der iOS-App der HTW Dresden.",_stunde.titel], fileURL];
+                UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+                activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
+                
+                [self presentViewController:activityVC animated:YES completion:^{}];
+                
+                activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
+                    if (completed) {
+                        UIAlertView *alert = [[UIAlertView alloc] init];
+                        alert.title = @"Stunde erfolgreich als CSV-Datei exportiert.";
+                        [alert show];
+                        
+                        NSFileManager *manager = [[NSFileManager alloc] init];
+                        
+                        [manager removeItemAtPath:[fileURL path] error:nil];
+                        
+                        [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+                    }
+                };
+                
+                
+                
+            }
+            else if([buttonTitle isEqualToString:@"ICS (Mac, Windows, iPhone)"])
+            {
+                NSString *dateiNamenErweiterung;
+                if(_stunde.student.dozent.boolValue) dateiNamenErweiterung = _stunde.student.name;
+                else dateiNamenErweiterung = _stunde.student.matrnr;
+                
+                HTWICSExport *csvExp = [[HTWICSExport alloc] initWithArray:@[_stunde] andMatrNr:dateiNamenErweiterung];
+                
+                NSURL *fileURL = [csvExp getFileUrl];
+                
+                NSArray *itemsToShare = @[[NSString stringWithFormat:@"Lehrveranstaltung %@, erstellt mit der iOS-App der HTW Dresden.",_stunde.titel], fileURL];
+                UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+                activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeCopyToPasteboard];
+                
+                [self presentViewController:activityVC animated:YES completion:^{}];
+                
+                activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
+                    if (completed) {
+                        UIAlertView *alert = [[UIAlertView alloc] init];
+                        alert.title = @"Stundenplan erfolgreich als ICS-Datei exportiert.";
+                        [alert show];
+                        
+                        NSFileManager *manager = [[NSFileManager alloc] init];
+                        
+                        [manager removeItemAtPath:[fileURL path] error:nil];
+                        
+                        [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+                    }
+                };
+            }
+        }
 }
 
 #pragma mark - Hilfsfunktionen

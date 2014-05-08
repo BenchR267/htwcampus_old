@@ -913,7 +913,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="2Qe-uz-CtZ">
-                        <barButtonItem key="rightBarButtonItem" title="Ausblenden" id="KFB-uK-jCu">
+                        <barButtonItem key="rightBarButtonItem" image="Minus" id="KFB-uK-jCu">
                             <connections>
                                 <action selector="stundeAusblendenPressed:" destination="ErJ-Y0-Bwe" id="3X4-aV-NUH"/>
                             </connections>
@@ -1293,6 +1293,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="Haus" width="30" height="30"/>
         <image name="Kalender" width="30" height="30"/>
         <image name="Mensa" width="30" height="30"/>
+        <image name="Minus" width="29" height="30"/>
         <image name="Noten" width="29" height="30"/>
         <image name="Settings" width="30" height="30"/>
         <image name="Share" width="29" height="30"/>
