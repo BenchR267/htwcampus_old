@@ -39,14 +39,7 @@
     [self updateZimmerArray];
     
     self.clearsSelectionOnViewWillAppear = YES;
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.navigationBarHidden = NO;
-    
-    self.tableView.backgroundView.backgroundColor = [UIColor HTWSandColor];
-    
+    self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
 }
 
 #pragma mark - TableView Datasource

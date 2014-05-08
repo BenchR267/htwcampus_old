@@ -103,6 +103,7 @@
     cell.textLabel.textColor = [UIColor HTWDarkGrayColor];
     cell.detailTextLabel.text = detailedText;
     cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
 //    [cell.detailTextLabel setTextColor:[[UIColor alloc] initWithRed:255/255.0 green:137/255.0 blue:44/255.0 alpha:1.0]];
     
     return cell;

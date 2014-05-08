@@ -48,7 +48,7 @@
     
     self.navigationController.navigationBarHidden = NO;
     
-    self.tableView.backgroundView.backgroundColor = [UIColor HTWSandColor];
+    self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
     
     _matrikelnummernCell.backgroundColor = [UIColor HTWWhiteColor];
     _matrikelnummernCell.textLabel.textColor = [UIColor HTWDarkGrayColor];

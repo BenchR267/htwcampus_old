@@ -89,6 +89,8 @@
     
     if(![defaults boolForKey:@"Dozent"]) self.title = Matrnr;
     else self.title = [self getNameOf:Matrnr];
+    
+    self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

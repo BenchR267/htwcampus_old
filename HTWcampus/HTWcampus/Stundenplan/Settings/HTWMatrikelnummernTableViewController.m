@@ -46,6 +46,7 @@
     [super viewDidLoad];
     
     self.title = @"Stundenpläne";
+    self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
     
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];

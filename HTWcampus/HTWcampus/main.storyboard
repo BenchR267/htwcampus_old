@@ -530,7 +530,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="notendurchschnittZelle" textLabel="xBZ-IU-fEx" detailTextLabel="14c-j3-Jq9" style="IBUITableViewCellStyleValue1" id="est-7L-F9d">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="notendurchschnittZelle" textLabel="xBZ-IU-fEx" detailTextLabel="14c-j3-Jq9" style="IBUITableViewCellStyleValue1" id="est-7L-F9d">
                                 <rect key="frame" x="0.0" y="119" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="est-7L-F9d" id="viA-TR-X84">
@@ -554,7 +554,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="pruefungsfachZelle" textLabel="0mh-0t-guA" detailTextLabel="xTn-S4-iYE" style="IBUITableViewCellStyleValue1" id="5OP-AO-ZG5" customClass="HTWMensaSpeiseTableViewCell">
+                            <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="pruefungsfachZelle" textLabel="0mh-0t-guA" detailTextLabel="xTn-S4-iYE" style="IBUITableViewCellStyleValue1" id="5OP-AO-ZG5" customClass="HTWMensaSpeiseTableViewCell">
                                 <rect key="frame" x="0.0" y="163" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5OP-AO-ZG5" id="ylv-o1-A2b">
@@ -583,7 +583,7 @@
                                     <segue destination="SwZ-K8-8T3" kind="push" identifier="showFachDetails" id="mL7-nA-Vxy"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="spinnerZelle" id="Obs-as-PXn">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="spinnerZelle" id="Obs-as-PXn">
                                 <rect key="frame" x="0.0" y="207" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Obs-as-PXn" id="IQ7-xk-C8E">

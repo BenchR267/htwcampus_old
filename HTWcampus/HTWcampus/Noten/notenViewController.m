@@ -18,6 +18,7 @@
 #import "HTWAppDelegate.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
+#import "NSArray+HTWSemester.h"
 
 @implementation notenViewController
 
@@ -132,7 +133,24 @@
                             {
                                 NSString *notenspiegelHtmlResultAsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                 self.notenspiegel = [[NSArray alloc] init];
-                                self.notenspiegel = [startseiteParser parseNotenspiegelFromString:notenspiegelHtmlResultAsString];
+                                NSMutableArray *sortedNotenspiegel = [NSMutableArray arrayWithArray:[startseiteParser parseNotenspiegelFromString:notenspiegelHtmlResultAsString]];
+                                self.notenspiegel = [sortedNotenspiegel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                                    NSString *semester = [[obj2 objectAtIndex:0] objectForKey:@"semester"];
+                                    NSString *jahr;
+                                    if([semester componentsSeparatedByString:@" "].count > 1)
+                                        jahr = [semester componentsSeparatedByString:@" "][1];
+                                    else jahr = @" ";
+                                    NSComparisonResult result;
+                                    if([(NSString*)[obj1[0] objectForKey:@"semester"] componentsSeparatedByString:@" "].count > 1)
+                                        result = [(NSString*)[(NSString*)[obj1[0] objectForKey:@"semester"] componentsSeparatedByString:@" "][1] compare:jahr options:NSNumericSearch];
+                                    else result = NSOrderedSame;
+                                    switch(result)
+                                    {
+                                        case NSOrderedAscending: return NSOrderedDescending;
+                                        case NSOrderedDescending: return NSOrderedAscending;
+                                        default: return NSOrderedSame;
+                                    }
+                                }];
                                 isLoading = false;
                                 notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
                                 [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
@@ -303,7 +321,7 @@
     if (indexPath.section == 0 && [self.notenspiegel count]>0) {
         return 88;
     }
-    return 44;
+    return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -333,19 +351,20 @@
     if ([self.notenspiegel count] > 0) {
         if (indexPath.section == 0) {
             cell.textLabel.text = @"Notendurchschnitt";
-            cell.textLabel.font = [UIFont HTWTableViewCellFont];
+            cell.textLabel.font = [UIFont HTWBigBaseFont];
             cell.textLabel.textColor = [UIColor HTWTextColor];
-            cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%.2f", notendurchschnitt];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", notendurchschnitt];
             cell.detailTextLabel.font = [UIFont HTWBigBaseFont];
             cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
         }
         else {
             cell.textLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"name"];
-            cell.textLabel.font = [UIFont HTWBaseFont];
+            cell.textLabel.font = [UIFont HTWTableViewCellFont];
             cell.textLabel.textColor = [UIColor HTWTextColor];
-            cell.detailTextLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"note"];
             cell.detailTextLabel.font = [UIFont HTWMediumFont];
             cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
+            cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            cell.detailTextLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"note"];
             
         }
     }
@@ -400,6 +419,9 @@
     return YES;
 }
 */
+
+#pragma mark - Hilfsfunktionen
+
 
 
 #pragma mark - Navigation
