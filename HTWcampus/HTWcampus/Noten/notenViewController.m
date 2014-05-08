@@ -269,8 +269,12 @@
     
     for (NSArray *semester in notenspiegel) {
         for (NSDictionary *fach in semester) {
-            if (!([[fach objectForKey:@"note"] isEqualToString:@""] || [[fach objectForKey:@"credits"] isEqualToString:@""])) {
-                tempSumme += [[fach objectForKey:@"note"] floatValue] * [[fach objectForKey:@"credits"] floatValue];
+            if(!([(NSString*)[fach objectForKey:@"note"] isEqualToString:@""] || [(NSString*)[fach objectForKey:@"credits"] isEqualToString:@""]))
+            {
+                NSMutableString *note = [NSMutableString stringWithString:[fach objectForKey:@"note"]];
+                [note replaceOccurrencesOfString:@"," withString:@"." options:NSCaseInsensitiveSearch range:NSMakeRange(0, note.length)];
+                
+                tempSumme += [note floatValue] * [[fach objectForKey:@"credits"] floatValue];
                 creditsSum += [[fach objectForKey:@"credits"] floatValue];
             }
         }
