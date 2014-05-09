@@ -356,6 +356,9 @@
         if (indexPath.section == 0) {
             cell.textLabel.text = @"Notendurchschnitt";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", notendurchschnitt];
+            cell.textLabel.font = cell.detailTextLabel.font = [UIFont HTWLargeFont];
+            cell.textLabel.textColor = [UIColor HTWTextColor];
+            cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
         }
         else {
             cell.textLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"name"];
