@@ -35,6 +35,7 @@
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
     {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
+        [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
         HTWPageViewController *vc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateViewControllerWithIdentifier:@"HTWPageViewController"];
         [self.window setRootViewController:vc];
     }
