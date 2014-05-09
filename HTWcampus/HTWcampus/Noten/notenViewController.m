@@ -346,7 +346,8 @@
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLoading forIndexPath:indexPath];
         UIActivityIndicatorView *mensaSpinner;
         mensaSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        mensaSpinner.center = CGPointMake(160,22);
+        mensaSpinner.center = CGPointMake((int)cell.frame.size.width/2,
+                                          (int)cell.frame.size.height/2);
         [mensaSpinner startAnimating];
         [cell.contentView addSubview:mensaSpinner];
     }
@@ -354,18 +355,10 @@
     if ([self.notenspiegel count] > 0) {
         if (indexPath.section == 0) {
             cell.textLabel.text = @"Notendurchschnitt";
-            cell.textLabel.font = [UIFont HTWBigBaseFont];
-            cell.textLabel.textColor = [UIColor HTWTextColor];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", notendurchschnitt];
-            cell.detailTextLabel.font = [UIFont HTWBigBaseFont];
-            cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
         }
         else {
             cell.textLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"name"];
-            cell.textLabel.font = [UIFont HTWTableViewCellFont];
-            cell.textLabel.textColor = [UIColor HTWTextColor];
-            cell.detailTextLabel.font = [UIFont HTWMediumFont];
-            cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
             cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.detailTextLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"note"];
             

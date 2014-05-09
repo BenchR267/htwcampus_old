@@ -118,7 +118,7 @@
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"LoeschenCell"];
         cell.textLabel.text = @"Stunde löschen";
-        cell.textLabel.font = [UIFont HTWBigBaseFont];
+        cell.textLabel.font = [UIFont HTWLargeFont];
         cell.textLabel.textColor = [UIColor HTWWhiteColor];
         cell.backgroundColor = [UIColor HTWRedColor];
         UILongPressGestureRecognizer *longGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self

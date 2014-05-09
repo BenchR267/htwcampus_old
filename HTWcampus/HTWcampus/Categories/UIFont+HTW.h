@@ -10,12 +10,23 @@
 
 @interface UIFont (HTW)
 
-+ (UIFont *)HTWBigBaseFont;
++ (UIFont *)HTWLargeFont;
 + (UIFont *)HTWBaseFont;
 + (UIFont *)HTWMediumFont;
 + (UIFont *)HTWSmallFont;
 + (UIFont *)HTWVerySmallFont;
 + (UIFont *)HTWSmallestFont;
+
++ (UIFont *)HTWSmallBoldFont;
++ (UIFont *)HTWBaseBoldFont;
++ (UIFont *)HTWLargeBoldFont;
+
++ (UIFont *)HTWSmallItalicFont;
++ (UIFont *)HTWBaseItalicFont;
++ (UIFont *)HTWLargeItalicFont;
+
++ (UIFont *)HTWSmallItalicBoldFont;
+
 + (UIFont *)HTWTableViewCellFont;
 
 @end

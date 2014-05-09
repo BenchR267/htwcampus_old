@@ -78,7 +78,7 @@
         cell.textLabel.text = @"Login löschen";
         cell.backgroundColor = [UIColor HTWRedColor];
         cell.textLabel.textColor = [UIColor HTWWhiteColor];
-        cell.textLabel.font = [UIFont HTWBigBaseFont];
+        cell.textLabel.font = [UIFont HTWLargeFont];
         UILongPressGestureRecognizer *longGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(loeschenCellPressed:)];
         longGR.minimumPressDuration = 0.01;
         [cell addGestureRecognizer:longGR];

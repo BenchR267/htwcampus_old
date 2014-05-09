@@ -491,7 +491,7 @@
     for (int i=0; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
         UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+60+_scrollView.contentSize.width, 20, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
-        this.font = [UIFont HTWBigBaseFont];
+        this.font = [UIFont HTWLargeFont];
         this.tag = -1;
         this.textColor = [UIColor HTWWhiteColor];
         
