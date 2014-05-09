@@ -661,9 +661,17 @@
     }
     if (gesture.state == UIGestureRecognizerStateEnded) {
         _detailView.hidden = YES;
-        buttonPressed.backgroundColor = [UIColor HTWWhiteColor];
-        for (UIView *this in buttonPressed.subviews) {
-            if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWDarkGrayColor]];
+        
+        if ([[NSDate date] compare:[buttonPressed.lesson.anfang dateByAddingTimeInterval:-([[NSUserDefaults standardUserDefaults] floatForKey:@"markierSliderValue"]*60)]] == NSOrderedDescending &&
+            [[NSDate date] compare:buttonPressed.lesson.ende] == NSOrderedAscending) {
+            [buttonPressed setNow:YES];
+        }
+        else {
+            buttonPressed.backgroundColor = [UIColor HTWWhiteColor];
+        
+            for (UIView *this in buttonPressed.subviews) {
+                if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWDarkGrayColor]];
+            }
         }
     }
 }
