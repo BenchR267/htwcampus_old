@@ -14,6 +14,7 @@
 @interface HTWMensaDetailTableViewController ()
 
 @property (nonatomic, strong) NSDictionary *zusatzInfos;
+@property (nonatomic, strong) UITextView *textView;
 
 @end
 
@@ -39,12 +40,19 @@
     if (indexPath.section == 0) return 190;
     else if (indexPath.section == 1)
     {
-        if(indexPath.row == 1 && [_speise[@"price"] isEqualToString:@""]) return 220;
+        if(indexPath.row == 1 && [_speise[@"price"] isEqualToString:@""]) return [self heightForCellWithTextView:indexPath];
         if(indexPath.row == 2)
-            return 220;
-        else return 80;
+            return [self heightForCellWithTextView:indexPath];
+        else return 90;
     }
     return 0;
+}
+
+-(CGFloat)heightForCellWithTextView:(NSIndexPath*)indexPath
+{
+    NSLog(@"%f", [_textView.text sizeWithAttributes:@{NSFontAttributeName: [UIFont HTWSmallFont]}].height*[_zusatzInfos[@"speiseDetails"] count]);
+    if(_textView.text) return [_textView.text sizeWithAttributes:@{NSFontAttributeName: [UIFont HTWSmallFont]}].height*[_zusatzInfos[@"speiseDetails"] count] + 25;
+    else return 10;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -72,9 +80,13 @@
     if(indexPath.section == 0)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.frame];
-        if(_zusatzInfos[@"Bild"]) imageView.image = _zusatzInfos[@"Bild"];
-        else imageView.image = [UIImage imageNamed:@"noimage.png"];
+        UIImage *image;
+        if(_zusatzInfos[@"Bild"]) image = _zusatzInfos[@"Bild"];
+        else image = [UIImage imageNamed:@"noimage.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(cell.contentView.center.x, cell.contentView.center.y, image.size.width, image.size.height)];
+        imageView.center = cell.contentView.center;
+        imageView.bounds = cell.contentView.bounds;
+        imageView.image = image;
         [cell.contentView addSubview:imageView];
     }
     else
@@ -82,17 +94,21 @@
         if((indexPath.row == 2 && ![_speise[@"price"] isEqualToString:@""]) || ((indexPath.row == 1) && [_speise[@"price"] isEqualToString:@""]))
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
-            UITextView *textView = [[UITextView alloc] initWithFrame:cell.contentView.frame];
+            _textView = [[UITextView alloc] initWithFrame:cell.contentView.frame];
+            NSMutableString *string = [NSMutableString new];
             for (NSString *this in _zusatzInfos[@"speiseDetails"]) {
-                NSMutableString *string = [NSMutableString stringWithString:textView.text];
                 [string appendFormat:@"   - %@\n", this];
-                textView.text = string;
             }
-            textView.editable = NO;
-            textView.userInteractionEnabled = NO;
-            textView.font = [UIFont HTWSmallFont];
-            textView.textColor = [UIColor HTWTextColor];
-            [cell addSubview:textView];
+            _textView.frame = CGRectMake(_textView.frame.origin.x, _textView.frame.origin.y, _textView.frame.size.width,
+                                         [@"A" sizeWithAttributes:@{NSFontAttributeName: [UIFont HTWSmallFont]}].height*[_zusatzInfos[@"speiseDetails"] count] + 25);
+            _textView.text = string;
+            _textView.editable = NO;
+            _textView.userInteractionEnabled = NO;
+            _textView.font = [UIFont HTWSmallFont];
+            _textView.textColor = [UIColor HTWTextColor];
+            [cell addSubview:_textView];
+            cell.frame = _textView.frame;
+            CGSizeMake(cell.frame.size.width, _textView.contentSize.height);
         }
         else
         {
@@ -105,7 +121,7 @@
             {
                 cell.textLabel.text = _speise[@"price"];
             }
-            cell.textLabel.numberOfLines = 2;
+            cell.textLabel.numberOfLines = 3;
             cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         }
     }

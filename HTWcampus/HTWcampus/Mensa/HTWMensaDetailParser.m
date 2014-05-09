@@ -7,6 +7,7 @@
 //
 
 #import "HTWMensaDetailParser.h"
+#import "HTWAppDelegate.h"
 
 @interface HTWMensaDetailParser () <NSXMLParserDelegate>
 {
@@ -41,6 +42,7 @@
 {
     completition = handler;
 
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:_url] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSRange startRange = [html rangeOfString:@"<div id=\"spalterechtsnebenmenue\">"];
@@ -53,6 +55,7 @@
         _parser = [[NSXMLParser alloc] initWithData:[dataAfterHtml dataUsingEncoding:NSUTF8StringEncoding]];
         _parser.delegate = self;
         [_parser parse];
+        [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
     }];
     
     
