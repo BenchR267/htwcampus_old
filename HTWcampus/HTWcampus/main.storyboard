@@ -1115,7 +1115,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <segment title="Morgen"/>
                             </segments>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="N0i-7u-foD">
+                        <barButtonItem key="rightBarButtonItem" image="Reload" id="N0i-7u-foD">
                             <color key="tintColor" red="0.96862745100000003" green="0.95686274510000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="refreshMensa:" destination="r3D-yI-oQF" id="SZc-2L-wpR"/>
@@ -1434,6 +1434,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="Mensa" width="30" height="30"/>
         <image name="Minus" width="29" height="30"/>
         <image name="Noten" width="29" height="30"/>
+        <image name="Reload" width="24" height="28"/>
         <image name="Settings" width="30" height="30"/>
         <image name="Share" width="29" height="30"/>
         <image name="add" width="28" height="28"/>

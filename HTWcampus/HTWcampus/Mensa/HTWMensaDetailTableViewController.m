@@ -24,7 +24,7 @@
 {
     [super viewDidLoad];
     HTWMensaDetailParser *parser = [[HTWMensaDetailParser alloc] initWithURL:[NSURL URLWithString:_speise[@"link"]]];
-    [parser parseWithCompletetionHandler:^(NSDictionary *dic, NSString *errorMessage) {
+    [parser parseInQueue:[NSOperationQueue mainQueue] WithCompletetionHandler:^(NSDictionary *dic, NSString *errorMessage) {
         _zusatzInfos = dic;
         [self.tableView reloadData];
     }];
@@ -50,7 +50,7 @@
 
 -(CGFloat)heightForCellWithTextView:(NSIndexPath*)indexPath
 {
-    NSLog(@"%f", [_textView.text sizeWithAttributes:@{NSFontAttributeName: [UIFont HTWSmallFont]}].height*[_zusatzInfos[@"speiseDetails"] count]);
+//    NSLog(@"%f", [_textView.text sizeWithAttributes:@{NSFontAttributeName: [UIFont HTWSmallFont]}].height*[_zusatzInfos[@"speiseDetails"] count]);
     if(_textView.text) return [_textView.text sizeWithAttributes:@{NSFontAttributeName: [UIFont HTWSmallFont]}].height*[_zusatzInfos[@"speiseDetails"] count] + 25;
     else return 10;
 }

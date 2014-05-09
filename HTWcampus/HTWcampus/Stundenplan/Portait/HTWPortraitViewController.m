@@ -43,6 +43,7 @@
 
 @end
 
+
 @implementation HTWPortraitViewController
 
 #pragma mark - Interface Orientation
@@ -104,6 +105,7 @@
 {
     [super viewWillAppear:animated];
     
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if([defaults integerForKey:@"tageInPortrait"] < 2) [defaults setInteger:2 forKey:@"tageInPortrait"];
     
@@ -112,6 +114,8 @@
     _scrollView.contentSize = CGSizeMake(60+116*[defaults integerForKey:@"tageInPortrait"], 459 + [UINavigationBar appearance].frame.size.height);
     _scrollView.directionalLockEnabled = YES;
     _scrollView.delegate = self;
+    [self reloadDaysLabelsAndBackground];
+    [self reloadZeitenViewAndClockLine];
     
     _detailView = [[UIView alloc] init];
     _detailView.tag = 1;
@@ -162,6 +166,7 @@
     
     [self orderViewsInScrollView:_scrollView];
 }
+
 
 -(void)dealloc
 {
@@ -238,6 +243,11 @@
             
             // FetchRequest-Ergebnisse
             NSArray *objects = [_context executeFetchRequest:request error:nil];
+            if(objects.count == 0)
+            {
+                NSLog(@"Es wurde nichts zum CSV-Exportieren gefunden.");
+                return;
+            }
             
             NSString *dateinamenErweiterung;
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -286,6 +296,11 @@
             
             // FetchRequest-Ergebnisse
             NSArray *objects = [_context executeFetchRequest:request error:nil];
+            if(objects.count == 0)
+            {
+                NSLog(@"Es wurde nichts zum ICS-Exportieren gefunden.");
+                return;
+            }
             
             
             NSString *dateinamenErweiterung;

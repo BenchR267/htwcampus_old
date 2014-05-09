@@ -38,12 +38,12 @@
     return self;
 }
 
--(void)parseWithCompletetionHandler:(void(^)(NSDictionary *dic, NSString *errorMessage))handler
+-(void)parseInQueue:(NSOperationQueue*)queue WithCompletetionHandler:(void(^)(NSDictionary *dic, NSString *errorMessage))handler
 {
     completition = handler;
 
     [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:_url] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:_url] queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSRange startRange = [html rangeOfString:@"<div id=\"spalterechtsnebenmenue\">"];
         NSMutableString *dataAfterHtml = [NSMutableString stringWithString:[html substringFromIndex:startRange.location]];
@@ -54,7 +54,9 @@
         
         _parser = [[NSXMLParser alloc] initWithData:[dataAfterHtml dataUsingEncoding:NSUTF8StringEncoding]];
         _parser.delegate = self;
-        [_parser parse];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [_parser parse];
+        });
         [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
     }];
     
@@ -116,7 +118,9 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                UIImage *image = [UIImage imageWithData:data];
                                if(image) [_infos setObject:image forKey:@"Bild"];
-                               completition(_infos,nil);
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   completition(_infos,nil);
+                               });
                            }];
 }
 

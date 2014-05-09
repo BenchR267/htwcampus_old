@@ -52,7 +52,8 @@
     
     NSArray *nummern = [context executeFetchRequest:fetchRequest error:nil];
     
-    User *this = nummern[0];
+    User *this;
+    if(nummern.count >= 1) this = nummern[0];
     if(this.name) _matrikelnummernCell.detailTextLabel.text = this.name;
     else _matrikelnummernCell.detailTextLabel.text = this.matrnr;
     
