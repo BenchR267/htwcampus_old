@@ -39,9 +39,9 @@
     if (indexPath.section == 0) return 190;
     else if (indexPath.section == 1)
     {
-        if(indexPath.row == 1 && [_speise[@"price"] isEqualToString:@""]) return 200;
+        if(indexPath.row == 1 && [_speise[@"price"] isEqualToString:@""]) return 220;
         if(indexPath.row == 2)
-            return 200;
+            return 220;
         else return 80;
     }
     return 0;
