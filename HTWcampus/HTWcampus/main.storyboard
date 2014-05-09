@@ -1176,48 +1176,64 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </tableView>
                     <navigationItem key="navigationItem" id="FHa-0a-in6"/>
                     <connections>
-                        <segue destination="hQZ-7K-K7U" kind="push" identifier="showLink" id="W69-v2-xuz"/>
+                        <segue destination="BVD-JR-71c" kind="push" identifier="showLink" id="ECY-ML-Ire"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKl-ep-JPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2179" y="2988"/>
         </scene>
-        <!--Mensa Web View Controller-->
-        <scene sceneID="2V3-Rv-xTD">
+        <!--Mensa Detail Table View Controller-->
+        <scene sceneID="HKH-fg-nw4">
             <objects>
-                <viewController id="hQZ-7K-K7U" customClass="HTWMensaWebViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qpp-pH-f6L"/>
-                        <viewControllerLayoutGuide type="bottom" id="tTw-Nv-ijM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CUI-am-XTL">
+                <tableViewController id="BVD-JR-71c" customClass="HTWMensaDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="zTp-oX-aBZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUv-4N-6DB">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="TMz-AV-v9J">
-                        <barButtonItem key="rightBarButtonItem" image="openInSafari" id="Pse-p5-18V">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="imageCell" rowHeight="175" id="8he-qT-WEb">
+                                <rect key="frame" x="0.0" y="119" width="320" height="175"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8he-qT-WEb" id="pm8-Pf-VYn">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="pgr-QH-ocU" style="IBUITableViewCellStyleDefault" id="lJ9-Y2-4I9">
+                                <rect key="frame" x="0.0" y="294" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lJ9-Y2-4I9" id="WAa-51-Esz">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pgr-QH-ocU">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BVD-JR-71c" id="0Xd-z5-dL8"/>
+                            <outlet property="delegate" destination="BVD-JR-71c" id="jNo-4y-V4N"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Cjy-Xg-aki">
+                        <barButtonItem key="rightBarButtonItem" image="openInSafari" id="EJf-5E-uv2">
                             <connections>
-                                <action selector="openSafariPressed:" destination="hQZ-7K-K7U" id="y1e-I6-gXj"/>
+                                <action selector="openInSafariPressed:" destination="BVD-JR-71c" id="3cQ-Ei-tC7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="webView" destination="kUv-4N-6DB" id="MuI-1n-M5j"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="azj-2L-cyE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZIE-3U-9Rq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2713" y="2988"/>
+            <point key="canvasLocation" x="2624" y="2988"/>
         </scene>
         <!--Stundenplan Add Table View Controller-->
         <scene sceneID="eEP-kq-sti">

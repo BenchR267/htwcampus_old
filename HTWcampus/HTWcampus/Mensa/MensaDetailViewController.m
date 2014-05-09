@@ -8,7 +8,7 @@
 
 #import "MensaDetailViewController.h"
 #import "HTWMensaSpeiseTableViewCell.h"
-#import "HTWMensaWebViewController.h"
+#import "HTWMensaDetailTableViewController.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
@@ -97,9 +97,8 @@
 {
     if ([segue.identifier isEqualToString:@"showLink"]) {
         NSIndexPath *path = (NSIndexPath*)sender;
-        HTWMensaWebViewController *dest = segue.destinationViewController;
-        dest.detailURL = [NSURL URLWithString:[[_availableMeals objectAtIndex:path.row] valueForKey:@"link"]];
-        dest.titleString = [[_availableMeals objectAtIndex:path.row] valueForKey:@"desc"];
+        HTWMensaDetailTableViewController *dest = segue.destinationViewController;
+        dest.speise = [_availableMeals objectAtIndex:path.row];
     }
 }
 

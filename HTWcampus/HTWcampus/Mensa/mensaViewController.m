@@ -298,7 +298,7 @@
         }
         else {
             NSLog(@"Zeige MORGIGEN Speiseplan");
-            return [[self allMensasOfTomorrow] count]/2;
+            return [[self allMensasOfTomorrow] count];
         }
     }
     else
@@ -319,7 +319,7 @@
             currentMensaName = [[[[self allMensasOfToday] objectAtIndex:indexPath.row] objectAtIndex:0] valueForKey:@"mensa"];
         }
         else {
-            currentMensaName = [[[[self allMensasOfTomorrow] objectAtIndex:indexPath.row+self.allMensasOfToday.count] objectAtIndex:0] valueForKey:@"mensa"];
+            currentMensaName = [[[[self allMensasOfTomorrow] objectAtIndex:indexPath.row] objectAtIndex:0] valueForKey:@"mensa"];
         }
     
         [cell.textLabel setText:currentMensaName];
