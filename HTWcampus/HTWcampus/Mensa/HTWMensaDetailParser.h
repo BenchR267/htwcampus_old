@@ -11,6 +11,6 @@
 @interface HTWMensaDetailParser : NSObject
 
 -(id)initWithURL:(NSURL*)url;
--(void)parseWithCompletetionHandler:(void(^)(NSDictionary *dic, NSString *errorMessage))handler;
+-(void)parseInQueue:(NSOperationQueue*)queue WithCompletetionHandler:(void(^)(NSDictionary *dic, NSString *errorMessage))handler;
 
 @end

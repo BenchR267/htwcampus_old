@@ -144,7 +144,7 @@ NSMutableData *receivedData;
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [_delegate HTWStundenplanParserError:@"Fehler mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."];
+    if(_delegate) [_delegate HTWStundenplanParserError:@"Fehler mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."];
 }
 
 #pragma mark - Parser delegate methods
@@ -316,8 +316,8 @@ NSMutableData *receivedData;
             NSLog(@"Neuer Datensatz:\tKennung: %@\tLetzte Aktualisierung: %@\tRaum:%@", matches.matrnr, matches.letzteAktualisierung, _boolRaum?@"ja":@"nein");
             NSLog(@"Es wurden %lu Datensätze gefunden. (Alles außer 1 ist falsch.)", (unsigned long)[objects count]);
             
-        }        
-        [_delegate HTWStundenplanParserFinished];
+        }
+        if(_delegate) [_delegate HTWStundenplanParserFinished];
         
         return;
     }
