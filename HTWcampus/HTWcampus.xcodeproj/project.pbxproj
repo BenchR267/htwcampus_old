@@ -753,7 +753,7 @@
 				ORGANIZATIONNAME = "Benjamin Herzog";
 				TargetAttributes = {
 					E63772C21908146300DEE8AB = {
-						DevelopmentTeam = 3E4PGPNR47;
+						DevelopmentTeam = Q8ZZ4R39MN;
 					};
 					E63772E21908146300DEE8AB = {
 						TestTargetID = E63772C21908146300DEE8AB;
@@ -1018,11 +1018,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME) Debug";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1034,11 +1036,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

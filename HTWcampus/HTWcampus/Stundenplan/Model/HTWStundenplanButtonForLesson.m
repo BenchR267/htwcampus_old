@@ -145,7 +145,7 @@
     if (!typ) typ = [[UILabel alloc] init];
     
     kurzel.text = [lesson.kurzel componentsSeparatedByString:@" "][0];
-    if(_portait) kurzel.font = [UIFont HTWBigBaseFont];
+    if(_portait) kurzel.font = [UIFont HTWLargeFont];
     else kurzel.font = [UIFont HTWBaseFont];
     kurzel.textAlignment = NSTextAlignmentLeft;
     kurzel.frame = CGRectMake(x+width*0.02f, y, width*0.98f, height*0.6);
@@ -160,7 +160,7 @@
     
     if([lesson.kurzel componentsSeparatedByString:@" "].count > 1) {
         typ.text = [lesson.kurzel componentsSeparatedByString:@" "][1];
-        if(_portait) typ.font = [UIFont HTWBigBaseFont];
+        if(_portait) typ.font = [UIFont HTWLargeFont];
         else typ.font = [UIFont HTWSmallFont];
         typ.textAlignment = NSTextAlignmentRight;
         typ.frame = CGRectMake(x+3, y+(height*0.5), width-6, height*0.4);
