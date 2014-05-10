@@ -24,6 +24,7 @@
 #define PixelPerMin 0.5
 #define ALERT_EINGEBEN 0
 #define ALERT_EXPORT 1
+#define DEPTH_FOR_PARALLAX 15
 
 @interface HTWPortraitViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIScrollViewDelegate>
 {
@@ -469,6 +470,7 @@
             UITapGestureRecognizer *tapGREdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressedForEdit:)];
             tapGREdit.numberOfTapsRequired = 2;
             [button addGestureRecognizer:tapGREdit];
+            [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
         }
     }
     [self reloadZeitenViewAndClockLine];
@@ -494,6 +496,7 @@
         this.font = [UIFont HTWLargeFont];
         this.tag = -1;
         this.textColor = [UIColor HTWWhiteColor];
+        [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
         
         this.text = wochentage[wochentagePointer];
         
@@ -565,6 +568,8 @@
         strich.backgroundColor = [UIColor HTWWhiteColor];
         [vonBisView addSubview:strich];
         
+        [self registerEffectForView:vonBisView depth:DEPTH_FOR_PARALLAX];
+        
         [zeitenView addSubview:vonBisView];
     }
     
@@ -592,6 +597,8 @@
         lineView.backgroundColor = linieUndClock;
         lineView.alpha = 0.6;
         lineView.tag = -3;
+        [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
+        [self registerEffectForView:clockView depth:DEPTH_FOR_PARALLAX];
         [self.scrollView addSubview:lineView];
         [self.scrollView addSubview:clockView];
         [_scrollView bringSubviewToFront:lineView];
@@ -777,6 +784,25 @@
             break;
         }
     }
+}
+
+- (void)registerEffectForView:(UIView *)aView depth:(CGFloat)depth;
+{
+	UIInterpolatingMotionEffect *effectX;
+	UIInterpolatingMotionEffect *effectY;
+    effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"
+                                                              type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    effectY = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
+                                                              type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+	
+	
+	effectX.maximumRelativeValue = @(depth);
+	effectX.minimumRelativeValue = @(-depth);
+	effectY.maximumRelativeValue = @(depth);
+	effectY.minimumRelativeValue = @(-depth);
+	
+	[aView addMotionEffect:effectX];
+	[aView addMotionEffect:effectY];
 }
 
 -(int)weekdayFromDate:(NSDate*)date
