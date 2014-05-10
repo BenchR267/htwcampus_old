@@ -465,6 +465,7 @@
         shadow.backgroundColor = [UIColor HTWGrayColor];
         shadow.alpha = 0.3;
         shadow.layer.cornerRadius = button.layer.cornerRadius;
+        shadow.tag = -1;
         [self.scrollView addSubview:shadow];
         [self.scrollView addSubview:button];
         if (Matrnr){
