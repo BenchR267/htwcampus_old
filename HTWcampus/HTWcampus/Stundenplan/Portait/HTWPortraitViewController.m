@@ -461,6 +461,11 @@
         if (!aktuell.anzeigen.boolValue) continue;
         HTWStundenplanButtonForLesson *button = [[HTWStundenplanButtonForLesson alloc] initWithLesson:aktuell andPortait:YES];
         button.tag = -1;
+        UIView *shadow = [[UIView alloc] initWithFrame:button.frame];
+        shadow.backgroundColor = [UIColor HTWGrayColor];
+        shadow.alpha = 0.3;
+        shadow.layer.cornerRadius = button.layer.cornerRadius;
+        [self.scrollView addSubview:shadow];
         [self.scrollView addSubview:button];
         if (Matrnr){
             UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
@@ -470,8 +475,8 @@
             UITapGestureRecognizer *tapGREdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressedForEdit:)];
             tapGREdit.numberOfTapsRequired = 2;
             [button addGestureRecognizer:tapGREdit];
-            [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
         }
+        [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
     }
     [self reloadZeitenViewAndClockLine];
     
