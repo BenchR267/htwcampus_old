@@ -24,7 +24,7 @@
 #define PixelPerMin 0.5
 #define ALERT_EINGEBEN 0
 #define ALERT_EXPORT 1
-#define DEPTH_FOR_PARALLAX 15
+#define DEPTH_FOR_PARALLAX 10
 
 @interface HTWPortraitViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIScrollViewDelegate>
 {
@@ -794,6 +794,7 @@
 
 - (void)registerEffectForView:(UIView *)aView depth:(CGFloat)depth;
 {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) return;
 	UIInterpolatingMotionEffect *effectX;
 	UIInterpolatingMotionEffect *effectY;
     effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"

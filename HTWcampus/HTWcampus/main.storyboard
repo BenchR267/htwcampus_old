@@ -406,6 +406,30 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="sQ3-8d-S5f">
+                                        <rect key="frame" x="0.0" y="447" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sQ3-8d-S5f" id="Bod-W5-kt0">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Parallax-Effekt in Portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txc-NF-0pM">
+                                                    <rect key="frame" x="9" y="10" width="191" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r8W-gi-iTH">
+                                                    <rect key="frame" x="251" y="19" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="parallaxSwitchChanged:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="aZC-qm-CWe"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -419,6 +443,9 @@
                         <outlet property="markierSlider" destination="ury-VD-uDq" id="EE9-Ni-0oL"/>
                         <outlet property="markierungsCell" destination="5MF-uz-lzT" id="Dp3-rl-RYe"/>
                         <outlet property="matrikelnummernCell" destination="q6k-gO-nub" id="zqE-Cq-XpF"/>
+                        <outlet property="parallaxCell" destination="sQ3-8d-S5f" id="6uY-Wd-HdK"/>
+                        <outlet property="parallaxLabel" destination="txc-NF-0pM" id="78W-2Q-h0a"/>
+                        <outlet property="parallaxSwitch" destination="r8W-gi-iTH" id="YZ5-4s-hzU"/>
                         <outlet property="sliderWert" destination="Vv3-Kg-RBk" id="fzM-jO-4Mu"/>
                         <outlet property="tageInPortraitCell" destination="LYa-dE-Ign" id="IJJ-1F-Rsm"/>
                         <outlet property="tageInPortraitLabel" destination="fhP-is-gCO" id="qml-Ym-tHf"/>

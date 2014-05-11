@@ -19,10 +19,13 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *uebersichtCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *markierungsCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *tageInPortraitCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *parallaxCell;
 @property (weak, nonatomic) IBOutlet UISlider *markierSlider;
 @property (weak, nonatomic) IBOutlet UISlider *tageInPortraitSlider;
 @property (weak, nonatomic) IBOutlet UILabel *sliderWert;
 @property (weak, nonatomic) IBOutlet UILabel *tageInPortraitLabel;
+@property (weak, nonatomic) IBOutlet UILabel *parallaxLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *parallaxSwitch;
 
 @end
 
@@ -77,6 +80,17 @@
     _uebersichtCell.textLabel.textColor = [UIColor HTWDarkGrayColor];
     _uebersichtCell.textLabel.font = [UIFont HTWBaseFont];
     
+    _parallaxCell.backgroundColor = [UIColor HTWWhiteColor];
+    
+    _parallaxLabel.font = [UIFont HTWBaseFont];
+    _parallaxLabel.textColor = [UIColor HTWDarkGrayColor];
+    _parallaxLabel.numberOfLines = 2;
+    _parallaxLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _parallaxSwitch.thumbTintColor = [UIColor HTWWhiteColor];
+    _parallaxSwitch.onTintColor = [UIColor HTWBlueColor];
+    
+    [_parallaxSwitch setOn:[defaults boolForKey:@"parallax"]];
+    
     _markierungsCell.backgroundColor = [UIColor HTWWhiteColor];
     _sliderWert.textColor = [UIColor HTWDarkGrayColor];
     _sliderWert.font = [UIFont HTWBaseFont];
@@ -107,6 +121,10 @@
         [defaults setInteger:(int)_tageInPortraitSlider.value forKey:@"tageInPortrait"];
         _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Portrait", _tageInPortraitSlider.value];
     }
+}
+- (IBAction)parallaxSwitchChanged:(id)sender {
+    UISwitch *switchS = (UISwitch*)sender;
+    [[NSUserDefaults standardUserDefaults] setBool:switchS.isOn forKey:@"parallax"];
 }
 
 #pragma mark - Navigation

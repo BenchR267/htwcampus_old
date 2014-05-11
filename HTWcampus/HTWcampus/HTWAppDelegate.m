@@ -36,6 +36,7 @@
     {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
         [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"parallax"];
         HTWPageViewController *vc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateViewControllerWithIdentifier:@"HTWPageViewController"];
         [self.window setRootViewController:vc];
     }
