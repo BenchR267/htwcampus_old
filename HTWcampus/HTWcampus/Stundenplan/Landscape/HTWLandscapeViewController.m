@@ -17,7 +17,7 @@
 
 #define PixelPerMin 0.35
 #define ANZAHLTAGE 10
-#define DEPTH_FOR_PARALLAX 10
+#define DEPTH_FOR_PARALLAX 8
 
 @interface HTWLandscapeViewController () <UIScrollViewDelegate>
 {
@@ -244,7 +244,6 @@
     UIImage *indicator = [UIImage imageNamed:@"indicator.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
     indicatorView.frame = CGRectMake([self getScrollX]+350, 24+18, 90, 7);
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:indicatorView depth:DEPTH_FOR_PARALLAX];
     [heuteMorgenLabelsView addSubview:indicatorView];
     
     
