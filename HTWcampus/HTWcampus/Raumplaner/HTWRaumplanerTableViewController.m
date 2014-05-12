@@ -14,7 +14,7 @@
 #import "HTWPortraitViewController.h"
 #import "UIColor+HTW.h"
 
-@interface HTWRaumplanerTableViewController() <UIAlertViewDelegate, HTWStundenplanParserDelegate, NSFetchedResultsControllerDelegate>
+@interface HTWRaumplanerTableViewController() <UIAlertViewDelegate, HTWStundenplanParserDelegate>
 {
     HTWAppDelegate *appdelegate;
 }

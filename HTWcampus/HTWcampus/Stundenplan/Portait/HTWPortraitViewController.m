@@ -139,7 +139,7 @@
                                                            delegate:self
                                                   cancelButtonTitle:[self alertViewCancelButtonTitle]
                                                   otherButtonTitles:[self alertViewOkButtonTitle], nil];
-        [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];
+        [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
         alertView.tag = ALERT_EINGEBEN;
         [alertView show];
     }
@@ -426,7 +426,7 @@
                                                        delegate:self
                                               cancelButtonTitle:[self alertViewCancelButtonTitle]
                                               otherButtonTitles:[self alertViewOkButtonTitle], nil];
-    [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];
+    [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
     alertView.tag = ALERT_EINGEBEN;
     [alertView show];
 }
@@ -438,7 +438,7 @@
                                                        delegate:self
                                               cancelButtonTitle:[self alertViewCancelButtonTitle]
                                               otherButtonTitles:[self alertViewOkButtonTitle], @"Dozent", nil];
-    [alertView setAlertViewStyle:UIAlertViewStyleSecureTextInput];
+    [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
     alertView.tag = ALERT_EINGEBEN;
     [alertView show];
 }

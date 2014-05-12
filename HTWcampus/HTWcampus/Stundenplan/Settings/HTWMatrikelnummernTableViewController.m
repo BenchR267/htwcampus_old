@@ -333,7 +333,7 @@
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
                                           otherButtonTitles:@"Ok", nil];
-    [alert setAlertViewStyle:UIAlertViewStyleSecureTextInput];
+    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
     alert.tag = ALERT_EINGEBEN;
     [alert show];
 }
