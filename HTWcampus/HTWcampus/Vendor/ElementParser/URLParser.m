@@ -107,7 +107,7 @@
 		unichar c = *(charPtr + data.length - less);
 		NSLog(@"Partial string received storing %i bytes, first char=%i", less, c);
 		self.partialStringData = [[NSMutableData alloc] initWithBytes: charPtr + (data.length - less) length: less];
-		[partialStringData release]; // setter has retained it
+		//[partialStringData release]; // setter has retained it
 	}
 	[parser continueParsingString: moreSource];
 	[moreSource release];

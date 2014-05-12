@@ -477,7 +477,7 @@
             tapGREdit.numberOfTapsRequired = 2;
             [button addGestureRecognizer:tapGREdit];
         }
-        [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
     }
     [self reloadZeitenViewAndClockLine];
     
@@ -502,7 +502,7 @@
         this.font = [UIFont HTWLargeFont];
         this.tag = -1;
         this.textColor = [UIColor HTWWhiteColor];
-        [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
         
         this.text = wochentage[wochentagePointer];
         
@@ -574,7 +574,7 @@
         strich.backgroundColor = [UIColor HTWWhiteColor];
         [vonBisView addSubview:strich];
         
-        [self registerEffectForView:vonBisView depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:vonBisView depth:DEPTH_FOR_PARALLAX];
         
         [zeitenView addSubview:vonBisView];
     }
@@ -603,8 +603,8 @@
         lineView.backgroundColor = linieUndClock;
         lineView.alpha = 0.6;
         lineView.tag = -3;
-        [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
-        [self registerEffectForView:clockView depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:clockView depth:DEPTH_FOR_PARALLAX];
         [self.scrollView addSubview:lineView];
         [self.scrollView addSubview:clockView];
         [_scrollView bringSubviewToFront:lineView];

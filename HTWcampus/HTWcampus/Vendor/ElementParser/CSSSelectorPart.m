@@ -67,6 +67,7 @@
 		else if (c == '['){
 			(*index)++;
 			c = skipWhitespace(buffer, index);
+            NSLog(@"%hu", c);
 			len = lenToken(buffer, *index);
 			assert(len);
 			self.attrName = createStringFromBuffer(buffer, *index, len);

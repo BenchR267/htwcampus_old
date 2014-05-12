@@ -17,6 +17,7 @@
 
 #define PixelPerMin 0.35
 #define ANZAHLTAGE 10
+#define DEPTH_FOR_PARALLAX 10
 
 @interface HTWLandscapeViewController () <UIScrollViewDelegate>
 {
@@ -185,11 +186,14 @@
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, y, self.zeitenView.bounds.size.width, 1)];
         lineView.backgroundColor = linieUndClock;
         lineView.tag = -1;
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:clockView depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
         [self.zeitenView addSubview:clockView];
         [self.zeitenView addSubview:lineView];
         UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(-350, y, self.scrollView.contentSize.width+350-10, 1)];
         lineView2.backgroundColor = linieUndClock;
         lineView2.tag = -1;
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView2 depth:DEPTH_FOR_PARALLAX];
         [self.scrollView addSubview:lineView2];
     }
     
@@ -210,7 +214,14 @@
             [[NSDate date] compare:button.lesson.ende] == NSOrderedAscending) {
             [button setNow:YES];
         }
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
         
+        UIView *shadow = [[UIView alloc] initWithFrame:button.frame];
+        shadow.layer.cornerRadius = button.layer.cornerRadius;
+        shadow.backgroundColor = [UIColor HTWGrayColor];
+        shadow.alpha = 0.3;
+        shadow.tag = -1;
+        [self.scrollView addSubview:shadow];
         [self.scrollView addSubview:button];
     }
 //    self.scrollView.bounds = self.scrollView.frame;
@@ -233,6 +244,7 @@
     UIImage *indicator = [UIImage imageNamed:@"indicator.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
     indicatorView.frame = CGRectMake([self getScrollX]+350, 24+18, 90, 7);
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:indicatorView depth:DEPTH_FOR_PARALLAX];
     [heuteMorgenLabelsView addSubview:indicatorView];
     
     
@@ -252,6 +264,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor HTWWhiteColor];
         label.font = [UIFont HTWBaseFont];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:label depth:DEPTH_FOR_PARALLAX];
         [heuteMorgenLabelsView addSubview:label];
     }
     [_scrollView addSubview:heuteMorgenLabelsView];
@@ -287,6 +300,7 @@
         UIView *strich = [[UIView alloc] initWithFrame:CGRectMake(vonBisLabel.frame.size.width*0.25, von.frame.size.height, vonBisLabel.frame.size.width/2, 1)];
         strich.backgroundColor = [UIColor HTWWhiteColor];
         [vonBisLabel addSubview:strich];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:vonBisLabel depth:DEPTH_FOR_PARALLAX];
         
         [_zeitenView addSubview:vonBisLabel];
     }
@@ -404,6 +418,26 @@
     if(weekday == -1) weekday=6;
     
     return weekday;
+}
+
+- (void)registerEffectForView:(UIView *)aView depth:(CGFloat)depth;
+{
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) return;
+	UIInterpolatingMotionEffect *effectX;
+	UIInterpolatingMotionEffect *effectY;
+    effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"
+                                                              type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    effectY = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
+                                                              type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+	
+	
+	effectX.maximumRelativeValue = @(depth);
+	effectX.minimumRelativeValue = @(-depth);
+	effectY.maximumRelativeValue = @(depth);
+	effectY.minimumRelativeValue = @(-depth);
+	
+	[aView addMotionEffect:effectX];
+	[aView addMotionEffect:effectY];
 }
 
 @end
