@@ -100,6 +100,9 @@
 		E6642B1F191D15AF0003FF5A /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = E6642B1E191D15AF0003FF5A /* noimage.png */; };
 		E67D2530191620F9009D7634 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D252F191620F9009D7634 /* User.m */; };
 		E67D2533191620FA009D7634 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D2532191620FA009D7634 /* Stunde.m */; };
+		E6966E7C1921359B00EFB998 /* HTWPruefungsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E791921359B00EFB998 /* HTWPruefungsParser.m */; };
+		E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */; };
+		E6966E831921473900EFB998 /* HTWPruefungsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */; };
 		E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */; };
 		E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */; };
 		E6B771EF191C370200E9A2A5 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771E9191C370200E9A2A5 /* page1.png */; };
@@ -275,6 +278,12 @@
 		E67D252F191620F9009D7634 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Stundenplan/Model/User.m; sourceTree = "<group>"; };
 		E67D2531191620FA009D7634 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
 		E67D2532191620FA009D7634 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
+		E6966E781921359B00EFB998 /* HTWPruefungsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsParser.h; path = "Prüfungsplaner/HTWPruefungsParser.h"; sourceTree = "<group>"; };
+		E6966E791921359B00EFB998 /* HTWPruefungsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsParser.m; path = "Prüfungsplaner/HTWPruefungsParser.m"; sourceTree = "<group>"; };
+		E6966E7E19213ABC00EFB998 /* HTWPruefungsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsTableViewController.h; path = "Prüfungsplaner/HTWPruefungsTableViewController.h"; sourceTree = "<group>"; };
+		E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsTableViewController.m; path = "Prüfungsplaner/HTWPruefungsTableViewController.m"; sourceTree = "<group>"; };
+		E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsDetailTableViewController.h; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.h"; sourceTree = "<group>"; };
+		E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsDetailTableViewController.m; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.m"; sourceTree = "<group>"; };
 		E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageContentViewController.h; path = PageViewFirstLaunch/HTWPageContentViewController.h; sourceTree = "<group>"; };
 		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; };
 		E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageViewController.h; path = PageViewFirstLaunch/HTWPageViewController.h; sourceTree = "<group>"; };
@@ -617,6 +626,7 @@
 				E6FE12A21909880500D56D52 /* Raumplaner */,
 				6D94E995191521C900872FC8 /* Noten */,
 				6D94EA461915375800872FC8 /* Mensa */,
+				E6966E771921358500EFB998 /* Prüfungsplaner */,
 				E63772CF1908146300DEE8AB /* Supporting Files */,
 			);
 			path = HTWcampus;
@@ -662,6 +672,19 @@
 				E6D2E572190FF60400DCD9EF /* HTWICSExport.m */,
 			);
 			name = Export;
+			sourceTree = "<group>";
+		};
+		E6966E771921358500EFB998 /* Prüfungsplaner */ = {
+			isa = PBXGroup;
+			children = (
+				E6966E781921359B00EFB998 /* HTWPruefungsParser.h */,
+				E6966E791921359B00EFB998 /* HTWPruefungsParser.m */,
+				E6966E7E19213ABC00EFB998 /* HTWPruefungsTableViewController.h */,
+				E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */,
+				E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */,
+				E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */,
+			);
+			name = "Prüfungsplaner";
 			sourceTree = "<group>";
 		};
 		E6B771E1191C36D700E9A2A5 /* FirstLaunch */ = {
@@ -883,7 +906,9 @@
 				6D94EA3719152FDB00872FC8 /* CommentChunk.m in Sources */,
 				E61C34BD19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m in Sources */,
 				6D753A5D1917BBED00C6BAA1 /* UIColor+HTW.m in Sources */,
+				E6966E7C1921359B00EFB998 /* HTWPruefungsParser.m in Sources */,
 				6D94EA4E1915377E00872FC8 /* mensaViewController.m in Sources */,
+				E6966E831921473900EFB998 /* HTWPruefungsDetailTableViewController.m in Sources */,
 				E61D8811190857F90033D543 /* HTWPortraitViewController.m in Sources */,
 				6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
@@ -900,6 +925,7 @@
 				6D94EA3D19152FDB00872FC8 /* DocumentRoot.m in Sources */,
 				E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */,
 				6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */,
+				E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
