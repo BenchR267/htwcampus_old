@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSURL *pruefungsSeitenURL;
 
 -(id)initWithURL:(NSURL*)url andImmaJahr:(NSString*)jahr andStudienGruppe:(NSString*)gruppe andBDM:(NSString*)BDM;
+-(id)initWithURL:(NSURL*)url andDozent:(NSString*)edozent;
 -(void)startWithCompletetionHandler:(void(^)(NSArray *erg, NSString *errorMessage))handler;
 
 @end

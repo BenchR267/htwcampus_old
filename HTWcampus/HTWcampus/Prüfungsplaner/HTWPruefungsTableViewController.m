@@ -10,11 +10,16 @@
 #import "HTWPruefungsParser.h"
 #import "HTWPruefungsDetailTableViewController.h"
 #import "HTWNeueStudiengruppe.h"
+#import "HTWDozentEingebenTableViewController.h"
+#import "HTWAppDelegate.h"
+#import "User.h"
 
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
-@interface HTWPruefungsTableViewController () <HTWNeueStudiengruppeDelegate>
+#define kURL [NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/pr_abfrage.php"]
+
+@interface HTWPruefungsTableViewController () <HTWNeueStudiengruppeDelegate, HTWNeuerDozentDelegate>
 
 @property (nonatomic, strong) NSArray *pruefungsArray;
 
@@ -39,11 +44,21 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if(!([defaults objectForKey:@"pruefungJahr"] && [defaults objectForKey:@"pruefungGruppe"] && [defaults objectForKey:@"pruefungTyp"]))
+    if(!([defaults objectForKey:@"pruefungJahr"] && [defaults objectForKey:@"pruefungGruppe"] && [defaults objectForKey:@"pruefungTyp"]) && ![self isDozent])
         [self performSegueWithIdentifier:@"modalEingeben" sender:self];
+    else if (![defaults objectForKey:@"pruefungDozent"] && [self isDozent]) {
+        [self performSegueWithIdentifier:@"modalDozentEingeben" sender:self];
+    }
     
     
-    HTWPruefungsParser *parser = [[HTWPruefungsParser alloc] initWithURL:[NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/pr_abfrage.php"] andImmaJahr:[defaults objectForKey:@"pruefungJahr"] andStudienGruppe:[defaults objectForKey:@"pruefungGruppe"] andBDM:[defaults objectForKey:@"pruefungTyp"]];
+    HTWPruefungsParser *parser;
+    if (![self isDozent])
+        parser = [[HTWPruefungsParser alloc] initWithURL:kURL andImmaJahr:[defaults objectForKey:@"pruefungJahr"] andStudienGruppe:[defaults objectForKey:@"pruefungGruppe"] andBDM:[defaults objectForKey:@"pruefungTyp"]];
+    else parser = [[HTWPruefungsParser alloc] initWithURL:kURL andDozent:[defaults objectForKey:@"pruefungDozent"]];
+
+    
+    
+    
     [parser startWithCompletetionHandler:^(NSArray *erg, NSString *errorMessage) {
         if(errorMessage) { NSLog(@"ERROR: %@", errorMessage); return;}
         self.pruefungsArray = [NSArray arrayWithArray:erg];
@@ -114,7 +129,7 @@
         if ([segue.destinationViewController isKindOfClass:[HTWPruefungsDetailTableViewController class]]) {
             HTWPruefungsDetailTableViewController *pdtvc = (HTWPruefungsDetailTableViewController*)segue.destinationViewController;
             UITableViewCell *senderCell = (UITableViewCell *)sender;
-            int row = [self.tableView indexPathForCell:senderCell].row;
+            long row = [self.tableView indexPathForCell:senderCell].row;
             pdtvc.pruefung = _pruefungsArray[row+1];
         }
     }
@@ -122,18 +137,48 @@
     {
         [(HTWNeueStudiengruppe*)segue.destinationViewController setDelegate:self];
     }
+    else if ([segue.identifier isEqualToString:@"modalDozentEingeben"])
+    {
+        [(HTWDozentEingebenTableViewController*)segue.destinationViewController setDelegate:self];
+    }
 }
 
 -(void)neueStudienGruppeEingegeben
 {
     [self loadData];
 }
+
+-(void)neuerDozentEingegeben
+{
+    [self loadData];
+}
+
 - (IBAction)refreshButtonPressed:(id)sender {
     [self loadData];
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
-    [self performSegueWithIdentifier:@"modalEingeben" sender:self];
+    if(![self isDozent])
+        [self performSegueWithIdentifier:@"modalEingeben" sender:self];
+    else [self performSegueWithIdentifier:@"modalDozentEingeben" sender:self];
+}
+
+#pragma mark - Hilfsfunktionen
+
+-(BOOL)isDozent
+{
+    NSManagedObjectContext *context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"Matrikelnummer"]];
+    request.predicate = pred;
+    NSArray *objects = [context executeFetchRequest:request error:nil];
+    if(objects.count > 0)
+    {
+        User *info = objects[0];
+        if(info.dozent.boolValue) return YES;
+        else return NO;
+    }
+    return NO;
 }
 
 @end

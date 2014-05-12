@@ -17,6 +17,10 @@
     NSString* gruppe;
     NSString *BDM;
     
+    NSString* dozent;
+    
+    BOOL dozentB;
+    
     int nummerTR;
     int nummerTD;
     BOOL isInTD;
@@ -43,6 +47,39 @@
         jahr = ejahr;
         gruppe = egruppe;
         BDM = eBDM;
+        dozentB = NO;
+        
+        _pruefungenArray = [[NSMutableArray alloc] init];
+        _pruefungDic = [[NSMutableDictionary alloc] init];
+        
+        _keys = @[@"Fakultät",@"Studiengang",@"Jahr/Semester",@"Abschluss",@"Studienrichtung",@"Modul",@"Art",@"Tag",@"Zeit",@"Raum",@"Prüfender",@"Nächste WD"];
+    }
+    return self;
+}
+
+-(id)initWithURL:(NSURL*)url andDozent:(NSString*)edozent
+{
+    if(self = [self init])
+    {
+        self.pruefungsSeitenURL = url;
+        if(edozent){
+            NSMutableString *dozentUmlaut = [NSMutableString stringWithString:edozent];
+            [dozentUmlaut replaceOccurrencesOfString:@"ü"
+                                          withString:@"%FC"
+                                             options:NSCaseInsensitiveSearch
+                                               range:NSMakeRange(0, edozent.length)];
+            [dozentUmlaut replaceOccurrencesOfString:@"ä"
+                                          withString:@"%E4"
+                                             options:NSCaseInsensitiveSearch
+                                               range:NSMakeRange(0, edozent.length)];
+            [dozentUmlaut replaceOccurrencesOfString:@"ö"
+                                          withString:@"%F6"
+                                             options:NSCaseInsensitiveSearch
+                                               range:NSMakeRange(0, edozent.length)];
+            dozent = dozentUmlaut;
+        }
+        else dozent = @" ";
+        dozentB = YES;
         
         _pruefungenArray = [[NSMutableArray alloc] init];
         _pruefungDic = [[NSMutableDictionary alloc] init];
@@ -57,10 +94,14 @@
     completition = handler;
     
     // Request String für PHP-Argumente
-    NSString *myRequestString = [NSString stringWithFormat:@"was=1&feld1=%@&feld2=%@&feld3=%@", jahr, gruppe, BDM];
+    NSString *myRequestString;
+    if(!dozentB)
+        myRequestString = [NSString stringWithFormat:@"was=1&feld1=%@&feld2=%@&feld3=%@", jahr, gruppe, BDM];
+    else
+        myRequestString = [NSString stringWithFormat:@"was=3&feld1=%s", dozent.UTF8String];
     
-    // NSData synchron füllen (wird im ViewController durch unterschiedliche Threads ansynchron)
-    NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
+    
+    NSData *myRequestData = [myRequestString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_pruefungsSeitenURL
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:10];
