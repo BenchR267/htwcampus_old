@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HTWNeueStudiengruppeDelegate <NSObject>
+
+@optional
+-(void)neueStudienGruppeEingegeben;
+
+@end
+
 @interface HTWNeueStudiengruppe : UITableViewController
+
+@property (nonatomic, strong) id <HTWNeueStudiengruppeDelegate> delegate;
 
 @end

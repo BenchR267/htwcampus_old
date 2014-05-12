@@ -7,9 +7,13 @@
 //
 
 #import "HTWNeueStudiengruppe.h"
+#import "UIColor+HTW.h"
+#import "UIFont+HTW.h"
 
 @interface HTWNeueStudiengruppe () <UIPickerViewDataSource, UIPickerViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *immaLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gruppenLabel;
 @property (weak, nonatomic) IBOutlet UITextField *jahrTextField;
 @property (weak, nonatomic) IBOutlet UITextField *gruppeTextField;
 @property (weak, nonatomic) IBOutlet UIPickerView *BDMPicker;
@@ -24,6 +28,16 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _jahrTextField.font = [UIFont HTWTableViewCellFont];
+    _jahrTextField.textColor = [UIColor HTWBlueColor];
+    _gruppeTextField.font = [UIFont HTWTableViewCellFont];
+    _gruppeTextField.textColor = [UIColor HTWBlueColor];
+    _immaLabel.font = [UIFont HTWTableViewCellFont];
+    _immaLabel.textColor = [UIColor HTWTextColor];
+    _gruppenLabel.font = [UIFont HTWTableViewCellFont];
+    _gruppenLabel.textColor = [UIColor HTWTextColor];
+    
     
     _BDMData = @[@"Bachelor", @"Diplom", @"Master"];
     
@@ -64,6 +78,18 @@
     return _BDMData[row];
 }
 
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* tView = (UILabel*)view;
+    if (!tView){
+        tView = [[UILabel alloc] init];
+        tView.textColor = [UIColor HTWTextColor];
+        tView.font = [UIFont HTWLargeFont];
+        tView.textAlignment = NSTextAlignmentCenter;
+    }
+    tView.text = _BDMData[row];
+    return tView;
+}
+
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     [[NSUserDefaults standardUserDefaults] setObject:[_BDMData[row] substringToIndex:1] forKey:@"pruefungTyp"];
@@ -75,7 +101,7 @@
     [defaults setObject:_jahrTextField.text forKey:@"pruefungJahr"];
     [defaults setObject:_gruppeTextField.text forKey:@"pruefungGruppe"];
     
-    
+    if(_delegate) [_delegate neueStudienGruppeEingegeben];
     [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 }
 

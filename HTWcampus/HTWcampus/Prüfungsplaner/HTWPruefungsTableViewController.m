@@ -14,7 +14,7 @@
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
-@interface HTWPruefungsTableViewController ()
+@interface HTWPruefungsTableViewController () <HTWNeueStudiengruppeDelegate>
 
 @property (nonatomic, strong) NSArray *pruefungsArray;
 
@@ -100,7 +100,18 @@
             pdtvc.pruefung = _pruefungsArray[row+1];
         }
     }
+    else if ([segue.identifier isEqualToString:@"modalEingeben"])
+    {
+        HTWNeueStudiengruppe *nstvc = (HTWNeueStudiengruppe*)segue.destinationViewController;
+        nstvc.delegate = self;
+    }
 }
+
+-(void)neueStudienGruppeEingegeben
+{
+    [self viewDidLoad];
+}
+
 - (IBAction)settingsButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"modalEingeben" sender:self];
 }
