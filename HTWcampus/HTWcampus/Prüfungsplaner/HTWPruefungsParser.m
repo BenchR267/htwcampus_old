@@ -7,6 +7,7 @@
 //
 
 #import "HTWPruefungsParser.h"
+#import "HTWAppDelegate.h"
 
 @interface HTWPruefungsParser () <NSXMLParserDelegate>
 {
@@ -70,6 +71,7 @@
     // Set Request Body
     [request setHTTPBody: myRequestData];
     
+    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(connectionError) { NSLog(@"%@", connectionError.localizedDescription); return;}
         
@@ -93,6 +95,7 @@
         _parser = [[NSXMLParser alloc] initWithData:dataForParser];
         _parser.delegate = self;
         [_parser parse];
+        [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 

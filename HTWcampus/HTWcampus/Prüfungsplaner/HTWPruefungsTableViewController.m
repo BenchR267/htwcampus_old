@@ -54,7 +54,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(_pruefungsArray) return self.pruefungsArray.count - 2;
+    if(_pruefungsArray) return self.pruefungsArray.count - 1;
     else return 1;
 }
 
@@ -71,9 +71,23 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if(!_pruefungsArray)
+    {
+        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = @"";
+        UIActivityIndicatorView *act = [[UIActivityIndicatorView alloc] init];
+        act.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        act.frame = CGRectMake(0, 0, 50, 50);
+        act.center = CGPointMake(cell.frame.size.width/2, cell.frame.size.height/2);
+        [act startAnimating];
+        [cell addSubview:act];
+        return cell;
+    }
     if(!_pruefungsArray) return cell;
     cell.textLabel.text = _pruefungsArray[indexPath.row+1][@"Modul"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@ Uhr", _pruefungsArray[indexPath.row+1][@"Tag"], _pruefungsArray[indexPath.row+1][@"Zeit"]];
+    if(![_pruefungsArray[indexPath.row+1][@"Tag"] isEqualToString:@" "])
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@ Uhr", _pruefungsArray[indexPath.row+1][@"Tag"], _pruefungsArray[indexPath.row+1][@"Zeit"]];
+    else cell.detailTextLabel.text = @" ";
     
     cell.textLabel.font = [UIFont HTWTableViewCellFont];
     cell.detailTextLabel.font = [UIFont HTWMediumFont];
@@ -102,8 +116,7 @@
     }
     else if ([segue.identifier isEqualToString:@"modalEingeben"])
     {
-        HTWNeueStudiengruppe *nstvc = (HTWNeueStudiengruppe*)segue.destinationViewController;
-        nstvc.delegate = self;
+        [(HTWNeueStudiengruppe*)segue.destinationViewController setDelegate:self];
     }
 }
 

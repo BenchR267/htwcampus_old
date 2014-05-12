@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     
+    self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
+    
     _jahrTextField.font = [UIFont HTWTableViewCellFont];
     _jahrTextField.textColor = [UIColor HTWBlueColor];
     _gruppeTextField.font = [UIFont HTWTableViewCellFont];
