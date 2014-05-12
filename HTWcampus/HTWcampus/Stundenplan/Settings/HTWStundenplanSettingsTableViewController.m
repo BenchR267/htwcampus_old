@@ -35,6 +35,14 @@
 {
     [super viewDidLoad];
     self.title = @"Einstellungen";
+    
+    UIBarButtonItem *fertigButton = [[UIBarButtonItem alloc] initWithTitle:@"Fertig" style:UIBarButtonItemStylePlain target:self action:@selector(fertigPressed:)];
+    self.navigationItem.rightBarButtonItem = fertigButton;
+}
+
+-(IBAction)fertigPressed:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 -(void)viewWillAppear:(BOOL)animated
