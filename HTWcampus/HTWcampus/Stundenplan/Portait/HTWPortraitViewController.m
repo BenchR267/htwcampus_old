@@ -120,6 +120,7 @@
     
     _detailView = [[UIView alloc] init];
     _detailView.tag = 1;
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:_detailView depth:DEPTH_FOR_PARALLAX];
     [_scrollView addSubview:_detailView];
     
     
@@ -681,6 +682,9 @@
         dozent.textAlignment = NSTextAlignmentCenter;
         dozent.font = [UIFont HTWSmallFont];
         dozent.textColor = [UIColor HTWWhiteColor];
+        
+        
+        
         [_detailView addSubview:dozent];
         
         [_scrollView bringSubviewToFront:_detailView];

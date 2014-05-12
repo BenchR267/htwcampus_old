@@ -28,6 +28,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Studiengruppe eingeben";
     
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
     

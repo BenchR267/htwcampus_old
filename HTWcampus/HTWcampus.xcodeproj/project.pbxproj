@@ -628,8 +628,8 @@
 				E61D87D819082D870033D543 /* Stundenplan */,
 				E6FE12A21909880500D56D52 /* Raumplaner */,
 				6D94E995191521C900872FC8 /* Noten */,
-				6D94EA461915375800872FC8 /* Mensa */,
 				E6966E771921358500EFB998 /* Prüfungsplaner */,
+				6D94EA461915375800872FC8 /* Mensa */,
 				E63772CF1908146300DEE8AB /* Supporting Files */,
 			);
 			path = HTWcampus;

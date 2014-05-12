@@ -32,7 +32,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self loadData];
+}
+
+-(void)loadData
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if(!([defaults objectForKey:@"pruefungJahr"] && [defaults objectForKey:@"pruefungGruppe"] && [defaults objectForKey:@"pruefungTyp"]))
@@ -60,7 +64,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 90;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -122,7 +126,10 @@
 
 -(void)neueStudienGruppeEingegeben
 {
-    [self viewDidLoad];
+    [self loadData];
+}
+- (IBAction)refreshButtonPressed:(id)sender {
+    [self loadData];
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
