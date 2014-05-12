@@ -103,6 +103,7 @@
 		E6966E7C1921359B00EFB998 /* HTWPruefungsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E791921359B00EFB998 /* HTWPruefungsParser.m */; };
 		E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */; };
 		E6966E831921473900EFB998 /* HTWPruefungsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */; };
+		E6966E8F19214DC300EFB998 /* HTWNeueStudiengruppe.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */; };
 		E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */; };
 		E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */; };
 		E6B771EF191C370200E9A2A5 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771E9191C370200E9A2A5 /* page1.png */; };
@@ -284,6 +285,8 @@
 		E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsTableViewController.m; path = "Prüfungsplaner/HTWPruefungsTableViewController.m"; sourceTree = "<group>"; };
 		E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsDetailTableViewController.h; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.h"; sourceTree = "<group>"; };
 		E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsDetailTableViewController.m; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.m"; sourceTree = "<group>"; };
+		E6966E8D19214DC300EFB998 /* HTWNeueStudiengruppe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNeueStudiengruppe.h; path = "Prüfungsplaner/HTWNeueStudiengruppe.h"; sourceTree = "<group>"; };
+		E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNeueStudiengruppe.m; path = "Prüfungsplaner/HTWNeueStudiengruppe.m"; sourceTree = "<group>"; };
 		E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageContentViewController.h; path = PageViewFirstLaunch/HTWPageContentViewController.h; sourceTree = "<group>"; };
 		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; };
 		E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageViewController.h; path = PageViewFirstLaunch/HTWPageViewController.h; sourceTree = "<group>"; };
@@ -677,14 +680,40 @@
 		E6966E771921358500EFB998 /* Prüfungsplaner */ = {
 			isa = PBXGroup;
 			children = (
+				E6966E8B19214D9500EFB998 /* Prüfungen anzeigen */,
+				E6966E8C19214DA000EFB998 /* Studiengruppe eingeben */,
+				E6966E8A19214D8D00EFB998 /* Model */,
+			);
+			name = "Prüfungsplaner";
+			sourceTree = "<group>";
+		};
+		E6966E8A19214D8D00EFB998 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				E6966E781921359B00EFB998 /* HTWPruefungsParser.h */,
 				E6966E791921359B00EFB998 /* HTWPruefungsParser.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E6966E8B19214D9500EFB998 /* Prüfungen anzeigen */ = {
+			isa = PBXGroup;
+			children = (
 				E6966E7E19213ABC00EFB998 /* HTWPruefungsTableViewController.h */,
 				E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */,
 				E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */,
 				E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */,
 			);
-			name = "Prüfungsplaner";
+			name = "Prüfungen anzeigen";
+			sourceTree = "<group>";
+		};
+		E6966E8C19214DA000EFB998 /* Studiengruppe eingeben */ = {
+			isa = PBXGroup;
+			children = (
+				E6966E8D19214DC300EFB998 /* HTWNeueStudiengruppe.h */,
+				E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */,
+			);
+			name = "Studiengruppe eingeben";
 			sourceTree = "<group>";
 		};
 		E6B771E1191C36D700E9A2A5 /* FirstLaunch */ = {
@@ -869,6 +898,7 @@
 				E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */,
 				E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */,
 				6D94EA4119152FDB00872FC8 /* NSString_HTML.m in Sources */,
+				E6966E8F19214DC300EFB998 /* HTWNeueStudiengruppe.m in Sources */,
 				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
 				6D94EA4319152FDB00872FC8 /* TagChunk.m in Sources */,
 				E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */,

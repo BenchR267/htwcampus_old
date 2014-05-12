@@ -9,6 +9,8 @@
 #import "HTWPruefungsTableViewController.h"
 #import "HTWPruefungsParser.h"
 #import "HTWPruefungsDetailTableViewController.h"
+#import "HTWNeueStudiengruppe.h"
+
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
@@ -31,8 +33,13 @@
 {
     [super viewWillAppear:animated];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    HTWPruefungsParser *parser = [[HTWPruefungsParser alloc] initWithURL:[NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/pr_abfrage.php"] andImmaJahr:@"12" andStudienGruppe:@"041" andBDM:@"B"];
+    if(!([defaults objectForKey:@"pruefungJahr"] && [defaults objectForKey:@"pruefungGruppe"] && [defaults objectForKey:@"pruefungTyp"]))
+        [self performSegueWithIdentifier:@"modalEingeben" sender:self];
+    
+    
+    HTWPruefungsParser *parser = [[HTWPruefungsParser alloc] initWithURL:[NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/pr_abfrage.php"] andImmaJahr:[defaults objectForKey:@"pruefungJahr"] andStudienGruppe:[defaults objectForKey:@"pruefungGruppe"] andBDM:[defaults objectForKey:@"pruefungTyp"]];
     [parser startWithCompletetionHandler:^(NSArray *erg, NSString *errorMessage) {
         if(errorMessage) { NSLog(@"ERROR: %@", errorMessage); return;}
         self.pruefungsArray = [NSArray arrayWithArray:erg];
@@ -93,6 +100,9 @@
             pdtvc.pruefung = _pruefungsArray[row+1];
         }
     }
+}
+- (IBAction)settingsButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"modalEingeben" sender:self];
 }
 
 @end
