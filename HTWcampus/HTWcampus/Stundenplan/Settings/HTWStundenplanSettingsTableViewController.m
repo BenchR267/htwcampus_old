@@ -34,6 +34,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Einstellungen";
 }
 
 -(void)viewWillAppear:(BOOL)animated

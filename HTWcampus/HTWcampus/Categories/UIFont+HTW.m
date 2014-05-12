@@ -21,15 +21,15 @@
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 
 + (UIFont *)boldSystemFontOfSize:(CGFloat)fontSize {
-    return [self HTWBaseBoldFont];
+    return [UIFont fontWithName:@"PTSans-Regular" size:fontSize];
 }
 
 + (UIFont *)systemFontOfSize:(CGFloat)fontSize {
-    return [self HTWSmallestFont];
+    return [UIFont fontWithName:@"PTSans-Regular" size:fontSize];
 }
 
 + (UIFont *)italicSystemFontOfSize:(CGFloat)fontSize {
-    return [self HTWSmallItalicBoldFont];
+    return [UIFont fontWithName:@"PTSans-Regular" size:fontSize];
 }
 
 #pragma clang diagnostic pop
