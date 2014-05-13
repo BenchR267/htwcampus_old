@@ -1340,7 +1340,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="QX2-pS-Taf" id="zIJ-cO-t6X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="D2C-1b-JUI"/>
+                    <navigationItem key="navigationItem" id="D2C-1b-JUI">
+                        <barButtonItem key="rightBarButtonItem" image="Kalender" id="HaV-BJ-Cd6">
+                            <connections>
+                                <action selector="addToStundenplanPressed:" destination="QX2-pS-Taf" id="7uk-gS-XCL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dW7-aT-Gio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

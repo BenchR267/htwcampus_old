@@ -7,11 +7,17 @@
 //
 
 #import "HTWPruefungsDetailTableViewController.h"
+#import "HTWAppDelegate.h"
+#import "User.h"
+#import "Stunde.h"
 
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
-@interface HTWPruefungsDetailTableViewController ()
+#define ALERT_ERROR 0
+#define ALERT_SUCCESS 1
+
+@interface HTWPruefungsDetailTableViewController () <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *keys;
 
@@ -68,5 +74,99 @@
     
     return cell;
 }
+
+#pragma mark - IBActions
+
+- (IBAction)addToStundenplanPressed:(id)sender {
+    
+    NSManagedObjectContext *context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(raum = %@)", [NSNumber numberWithBool:NO]];
+    fetchRequest.predicate = pred;
+    NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
+    if(objects.count == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] init];
+        alert.message = @"Es wurde kein Stundenplan angelegt, deswegen kann auch diese Prüfung keinem Stundenplan hinzugefügt werden.";
+        [alert addButtonWithTitle:@"Ok"];
+        alert.tag = ALERT_ERROR;
+        [alert show];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] init];
+        alert.message = @"Zu welchem Stundenplan soll die Prüfung hinzugefügt werden?";
+        for (User *this in objects) {
+            if(!this.name) [alert addButtonWithTitle:this.matrnr];
+            else [alert addButtonWithTitle:[NSString stringWithFormat:@"%@ %@", this.name, this.matrnr]];
+        }
+        [alert addButtonWithTitle:@"Abbrechen"];
+        alert.tag = ALERT_SUCCESS;
+        alert.delegate = self;
+        [alert show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSArray *nameUndMatrnr = [[alertView buttonTitleAtIndex:buttonIndex] componentsSeparatedByString:@" "];
+    NSString *matrnr = nameUndMatrnr[nameUndMatrnr.count - 1];
+    if (![matrnr isEqualToString:@"Abbrechen"]) {
+        NSManagedObjectContext *context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(raum = %@) && matrnr = %@", [NSNumber numberWithBool:NO], matrnr];
+        fetchRequest.predicate = pred;
+        NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
+        User *info = objects[0];
+        
+        Stunde *neu = [[Stunde alloc] initWithEntity:[NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
+        neu.titel = _pruefung[_keys[5]];
+        neu.kurzel = _pruefung[_keys[6]];
+        neu.raum = _pruefung[_keys[9]];
+        neu.dozent = _pruefung[_keys[10]];
+        neu.anfang = [self getAnfang];
+        neu.ende = [self getEnde];
+        neu.anzeigen = [NSNumber numberWithBool:YES];
+        neu.id = [NSString stringWithFormat:@"%@%d%@", neu.kurzel, [self weekdayFromDate:neu.anfang], [(NSString*)_pruefung[_keys[8]] componentsSeparatedByString:@" "][0]];
+        
+        [info addStundenObject:neu];
+        [context save:nil];
+        
+        UIAlertView *succcess = [[UIAlertView alloc] init];
+        succcess.message = [NSString stringWithFormat:@"Die Prüfung %@ wurde erfolgreich dem Stundenplan %@ hinzugefügt", _pruefung[_keys[5]], [alertView buttonTitleAtIndex:buttonIndex]];
+        [succcess show];
+        [succcess performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+    }
+}
+
+-(NSDate*)getAnfang
+{
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefung[_keys[7]], [self aktuellesJahr], [(NSString*)_pruefung[_keys[8]] componentsSeparatedByString:@" "][0]]];
+}
+
+-(NSDate*)getEnde
+{
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefung[_keys[7]], [self aktuellesJahr], [(NSString*)_pruefung[_keys[8]] componentsSeparatedByString:@" "][2]]];
+}
+
+-(int)weekdayFromDate:(NSDate*)date
+{
+    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
+    if(weekday == -1) weekday=6;
+    
+    return weekday;
+}
+
+-(NSString*)aktuellesJahr
+{
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"yyyy"];
+    return [dateF stringFromDate:[NSDate date]];
+}
+
 
 @end
