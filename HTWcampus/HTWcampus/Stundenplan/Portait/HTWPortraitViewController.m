@@ -469,11 +469,11 @@
         shadow.tag = -1;
         [self.scrollView addSubview:shadow];
         [self.scrollView addSubview:button];
+        UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
+        longPressGR.minimumPressDuration = 0.1;
+        longPressGR.allowableMovement = 0;
+        [button addGestureRecognizer:longPressGR];
         if (Matrnr){
-            UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
-            longPressGR.minimumPressDuration = 0.1;
-            longPressGR.allowableMovement = 0;
-            [button addGestureRecognizer:longPressGR];
             UITapGestureRecognizer *tapGREdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressedForEdit:)];
             tapGREdit.numberOfTapsRequired = 2;
             [button addGestureRecognizer:tapGREdit];

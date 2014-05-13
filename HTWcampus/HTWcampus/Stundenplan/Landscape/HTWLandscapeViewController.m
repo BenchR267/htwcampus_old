@@ -93,7 +93,6 @@
         isPortait = YES;
     }
     
-    self.navigationController.navigationBar.tintColor = [UIColor HTWWhiteColor];
     self.navigationController.navigationBarHidden = YES;
     self.scrollView.contentSize = CGSizeMake(508*2+68, 320);
     _scrollView.delegate = self;
@@ -102,6 +101,7 @@
     _detailView = [[UIView alloc] init];
     _detailView.hidden = YES;
     _detailView.tag = 1;
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:_detailView depth:DEPTH_FOR_PARALLAX];
     [_scrollView addSubview:_detailView];
     
     self.scrollView.backgroundColor = [UIColor HTWSandColor];
@@ -204,11 +204,9 @@
         HTWStundenplanButtonForLesson *button = [[HTWStundenplanButtonForLesson alloc] initWithLesson:aktuell andPortait:NO];
         button.tag = -1;
         
-        if (!_raum){
-            UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
-            longPressGR.minimumPressDuration = 0.1;
-            [button addGestureRecognizer:longPressGR];
-        }
+        UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
+        longPressGR.minimumPressDuration = 0.1;
+        [button addGestureRecognizer:longPressGR];
         
         if ([[NSDate date] compare:[button.lesson.anfang dateByAddingTimeInterval:-[defaults floatForKey:@"markierSliderValue"]*60]] == NSOrderedDescending &&
             [[NSDate date] compare:button.lesson.ende] == NSOrderedAscending) {

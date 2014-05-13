@@ -87,23 +87,37 @@
     if(objects.count == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] init];
-        alert.message = @"Es wurde kein Stundenplan angelegt, deswegen kann auch diese Prüfung keinem Stundenplan hinzugefügt werden.";
+        alert.message = @"Es wurde noch kein Stundenplan angelegt, deswegen kann auch diese Prüfung keinem Stundenplan hinzugefügt werden.";
         [alert addButtonWithTitle:@"Ok"];
         alert.tag = ALERT_ERROR;
         [alert show];
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] init];
-        alert.message = @"Zu welchem Stundenplan soll die Prüfung hinzugefügt werden?";
-        for (User *this in objects) {
-            if(!this.name) [alert addButtonWithTitle:this.matrnr];
-            else [alert addButtonWithTitle:[NSString stringWithFormat:@"%@ %@", this.name, this.matrnr]];
+        if(objects.count == 1)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            alert.message = [NSString stringWithFormat:@"Soll die Prüfung zu dem Stundenplan %@ %@ hinzugefügt werden?", [(User*)objects[0] name], [(User*)objects[0] matrnr]];
+            [alert addButtonWithTitle:@"Ja"];
+            [alert addButtonWithTitle:@"Abbrechen"];
+            alert.tag = ALERT_SUCCESS;
+            alert.delegate = self;
+            [alert show];
         }
-        [alert addButtonWithTitle:@"Abbrechen"];
-        alert.tag = ALERT_SUCCESS;
-        alert.delegate = self;
-        [alert show];
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            alert.message = @"Zu welchem Stundenplan soll die Prüfung hinzugefügt werden?";
+            for (User *this in objects) {
+                if(!this.name) [alert addButtonWithTitle:this.matrnr];
+                else [alert addButtonWithTitle:[NSString stringWithFormat:@"%@ %@", this.name, this.matrnr]];
+            }
+            [alert addButtonWithTitle:@"Abbrechen"];
+            alert.tag = ALERT_SUCCESS;
+            alert.delegate = self;
+            [alert show];
+        }
+        
     }
 }
 
@@ -114,7 +128,9 @@
     if (![matrnr isEqualToString:@"Abbrechen"]) {
         NSManagedObjectContext *context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(raum = %@) && matrnr = %@", [NSNumber numberWithBool:NO], matrnr];
+        NSPredicate *pred;
+        if(![matrnr isEqualToString:@"Ja"]) pred = [NSPredicate predicateWithFormat:@"(raum = %@) && matrnr = %@", [NSNumber numberWithBool:NO], matrnr];
+        else pred = [NSPredicate predicateWithFormat:@"raum = %@", [NSNumber numberWithBool:NO]];
         fetchRequest.predicate = pred;
         NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
         User *info = objects[0];

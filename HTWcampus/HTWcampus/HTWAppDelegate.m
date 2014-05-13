@@ -32,6 +32,8 @@
     [UINavigationBar appearance].barTintColor = [UIColor HTWBlueColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
     {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
@@ -42,8 +44,11 @@
         [self.window setRootViewController:vc];
     }
     
+    
     return YES;
 }
+
+
 
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible {
     static NSInteger NumberOfCallsToSetVisible = 0;
