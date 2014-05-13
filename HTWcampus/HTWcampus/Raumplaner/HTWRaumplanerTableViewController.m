@@ -9,12 +9,13 @@
 #import "HTWRaumplanerTableViewController.h"
 #import "HTWStundenplanParser.h"
 #import "HTWAppDelegate.h"
+#import "HTWAlleRaeumeTableViewController.h"
 #import "User.h"
 #import "Stunde.h"
 #import "HTWPortraitViewController.h"
 #import "UIColor+HTW.h"
 
-@interface HTWRaumplanerTableViewController() <UIAlertViewDelegate, HTWStundenplanParserDelegate>
+@interface HTWRaumplanerTableViewController() <HTWStundenplanParserDelegate, HTWAlleRaeumeDelegate>
 {
     HTWAppDelegate *appdelegate;
 }
@@ -147,45 +148,6 @@
     return @"Löschen";
 }
 
-#pragma mark - UIAlertView Delegate
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *clickedButtonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    
-    if ([clickedButtonTitle isEqualToString:@"Ok"])
-    {
-        if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
-            NSMutableString *raumNummer = [NSMutableString stringWithString:[alertView textFieldAtIndex:0].text];
-            
-            if([raumNummer rangeOfString:@" "].length == 0) {
-                [raumNummer insertString:@" " atIndex:1];
-            }
-            
-//            raumNummer = (NSMutableString*)[raumNummer capitalizedString];
-            raumNummer = (NSMutableString*)[raumNummer stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[raumNummer substringToIndex:1] capitalizedString]];
-            
-            
-            for (User *this in _zimmer) {
-                if ([this.matrnr isEqualToString:raumNummer]) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
-                                                                    message:@"Dieser Raum ist schon in der Übersicht enthalten."
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"Ok"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-                    return;
-                }
-            }
-            
-            _parser = nil;
-            _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:raumNummer andRaum:YES];
-            [_parser setDelegate:self];
-            [_parser parserStart];
-        }
-    }
-}
-
 #pragma mark - HTWStundenplanParser Delegate
 
 -(void)HTWStundenplanParserFinished
@@ -208,16 +170,26 @@
     [alert show];
 }
 
-#pragma mark - IBActions
+#pragma mark - HTWAlleRaeume Delegate
 
-- (IBAction)addBarButtonItemPressed:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Raum hinzufügen"
-                                                    message:@"Bitte geben Sie den Raum ein. (Format: Z 355)"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Ok", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [alert show];
+-(void)neuerRaumAusgewaehlt:(NSString *)raumNummer
+{
+    for (User *this in _zimmer) {
+        if ([this.matrnr isEqualToString:raumNummer]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                            message:@"Dieser Raum ist schon in der Übersicht enthalten."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
+    }
+    
+    _parser = nil;
+    _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:raumNummer andRaum:YES];
+    [_parser setDelegate:self];
+    [_parser parserStart];
 }
 
 #pragma mark - Hilfsfunktionen
@@ -258,6 +230,10 @@
         HTWPortraitViewController *pvc = segue.destinationViewController;
         UITableViewCell *senderCell = sender;
         pvc.raumNummer = senderCell.textLabel.text;
+    }
+    else if ([segue.identifier isEqualToString:@"modalNeuerRaum"])
+    {
+        [(HTWAlleRaeumeTableViewController*)[(UINavigationController*)segue.destinationViewController viewControllers][0] setDelegate:self];
     }
 }
 

@@ -96,6 +96,8 @@
 		E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C6E190D3F34002AE150 /* HTWRaumParser.m */; };
 		E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C70190D3F34002AE150 /* HTWTabParser.m */; };
 		E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C74190D3FD1002AE150 /* HTWTestViewController.m */; };
+		E65737AB19222AE600916A1A /* alleRaeume.txt in Resources */ = {isa = PBXBuildFile; fileRef = E65737A819222AE600916A1A /* alleRaeume.txt */; };
+		E65737AC19222AE600916A1A /* HTWAlleRaeumeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E65737AA19222AE600916A1A /* HTWAlleRaeumeTableViewController.m */; };
 		E6642B1A191D0B260003FF5A /* HTWMensaDetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6642B19191D0B260003FF5A /* HTWMensaDetailParser.m */; };
 		E6642B1D191D0B8F0003FF5A /* HTWMensaDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6642B1C191D0B8E0003FF5A /* HTWMensaDetailTableViewController.m */; };
 		E6642B1F191D15AF0003FF5A /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = E6642B1E191D15AF0003FF5A /* noimage.png */; };
@@ -273,6 +275,9 @@
 		E6379C70190D3F34002AE150 /* HTWTabParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTabParser.m; path = Raumplaner/HTWTabParser.m; sourceTree = "<group>"; };
 		E6379C73190D3FD1002AE150 /* HTWTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTestViewController.h; path = Raumplaner/HTWTestViewController.h; sourceTree = "<group>"; };
 		E6379C74190D3FD1002AE150 /* HTWTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTestViewController.m; path = Raumplaner/HTWTestViewController.m; sourceTree = "<group>"; };
+		E65737A819222AE600916A1A /* alleRaeume.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = alleRaeume.txt; path = "Raumplaner/Alle Raeume/alleRaeume.txt"; sourceTree = "<group>"; };
+		E65737A919222AE600916A1A /* HTWAlleRaeumeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWAlleRaeumeTableViewController.h; path = "Raumplaner/Alle Raeume/HTWAlleRaeumeTableViewController.h"; sourceTree = "<group>"; };
+		E65737AA19222AE600916A1A /* HTWAlleRaeumeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWAlleRaeumeTableViewController.m; path = "Raumplaner/Alle Raeume/HTWAlleRaeumeTableViewController.m"; sourceTree = "<group>"; };
 		E6642B18191D0B260003FF5A /* HTWMensaDetailParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaDetailParser.h; path = Mensa/HTWMensaDetailParser.h; sourceTree = "<group>"; };
 		E6642B19191D0B260003FF5A /* HTWMensaDetailParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaDetailParser.m; path = Mensa/HTWMensaDetailParser.m; sourceTree = "<group>"; };
 		E6642B1B191D0B8E0003FF5A /* HTWMensaDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaDetailTableViewController.h; path = Mensa/HTWMensaDetailTableViewController.h; sourceTree = "<group>"; };
@@ -669,6 +674,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E65737A419222AC100916A1A /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				E6379C73190D3FD1002AE150 /* HTWTestViewController.h */,
+				E6379C74190D3FD1002AE150 /* HTWTestViewController.m */,
+				E6379C6F190D3F34002AE150 /* HTWTabParser.h */,
+				E6379C70190D3F34002AE150 /* HTWTabParser.m */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
+		E65737A519222AC800916A1A /* Raumübersicht */ = {
+			isa = PBXGroup;
+			children = (
+				E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */,
+				E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */,
+			);
+			name = "Raumübersicht";
+			sourceTree = "<group>";
+		};
+		E65737A619222AD200916A1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E6379C6D190D3F34002AE150 /* HTWRaumParser.h */,
+				E6379C6E190D3F34002AE150 /* HTWRaumParser.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E65737A719222AD800916A1A /* Alle Räume */ = {
+			isa = PBXGroup;
+			children = (
+				E65737A819222AE600916A1A /* alleRaeume.txt */,
+				E65737A919222AE600916A1A /* HTWAlleRaeumeTableViewController.h */,
+				E65737AA19222AE600916A1A /* HTWAlleRaeumeTableViewController.m */,
+			);
+			name = "Alle Räume";
+			sourceTree = "<group>";
+		};
 		E684DCDC190FD995005DE0B3 /* Export */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,14 +793,10 @@
 		E6FE12A21909880500D56D52 /* Raumplaner */ = {
 			isa = PBXGroup;
 			children = (
-				E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */,
-				E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */,
-				E6379C73190D3FD1002AE150 /* HTWTestViewController.h */,
-				E6379C74190D3FD1002AE150 /* HTWTestViewController.m */,
-				E6379C6D190D3F34002AE150 /* HTWRaumParser.h */,
-				E6379C6E190D3F34002AE150 /* HTWRaumParser.m */,
-				E6379C6F190D3F34002AE150 /* HTWTabParser.h */,
-				E6379C70190D3F34002AE150 /* HTWTabParser.m */,
+				E65737A519222AC800916A1A /* Raumübersicht */,
+				E65737A719222AD800916A1A /* Alle Räume */,
+				E65737A419222AC100916A1A /* Test */,
+				E65737A619222AD200916A1A /* Model */,
 			);
 			name = Raumplaner;
 			sourceTree = "<group>";
@@ -852,6 +892,7 @@
 				6D753A6F1917C9B500C6BAA1 /* PT_Sans-Web-BoldItalic.ttf in Resources */,
 				E6B771F2191C370200E9A2A5 /* page4.png in Resources */,
 				6D753A701917C9B500C6BAA1 /* PT_Sans-Web-Italic.ttf in Resources */,
+				E65737AB19222AE600916A1A /* alleRaeume.txt in Resources */,
 				E6B771EF191C370200E9A2A5 /* page1.png in Resources */,
 				6D753A6D1917C9B500C6BAA1 /* OFL.txt in Resources */,
 				E6B771F3191C370200E9A2A5 /* page5.png in Resources */,
@@ -906,6 +947,7 @@
 				E6966E8F19214DC300EFB998 /* HTWNeueStudiengruppe.m in Sources */,
 				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
 				6D94EA4319152FDB00872FC8 /* TagChunk.m in Sources */,
+				E65737AC19222AE600916A1A /* HTWAlleRaeumeTableViewController.m in Sources */,
 				E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */,
 				6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */,
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,

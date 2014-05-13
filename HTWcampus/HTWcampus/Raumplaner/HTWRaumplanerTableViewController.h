@@ -10,4 +10,6 @@
 
 @interface HTWRaumplanerTableViewController : UITableViewController
 
+-(void)neuerRaumAusgewaehlt:(NSString *)raumNummer;
+
 @end
