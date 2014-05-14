@@ -32,9 +32,9 @@
 
 #pragma mark - ViewController Lifecycle
 
--(void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     
     if(!_zimmer) _zimmer = [[NSArray alloc] init];
     [self updateZimmerArray];

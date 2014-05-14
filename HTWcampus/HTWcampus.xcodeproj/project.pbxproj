@@ -64,6 +64,7 @@
 		6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA55191538E600872FC8 /* UIImage+Alpha.m */; };
 		6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
+		E61B6A2C1923B7BE0050EB10 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E61B6A2B1923B7BE0050EB10 /* Images.xcassets */; };
 		E61C34BD19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61C34BC19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m */; };
 		E61C4C7519193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61C4C7419193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m */; };
 		E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
@@ -76,7 +77,6 @@
 		E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D882C19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m */; };
 		E61D883719085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D882E19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m */; };
 		E61D883919085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D883219085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m */; };
-		E61D883B19085E380033D543 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E61D883A19085E380033D543 /* Images.xcassets */; };
 		E61D887F1908705E0033D543 /* landscapeSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D887E1908705E0033D543 /* landscapeSegue.m */; };
 		E62C484B191422DE00788651 /* HTWCSVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E62C4848191422DE00788651 /* HTWCSVConnection.m */; };
 		E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E62C484A191422DE00788651 /* HTWCSVParser.m */; };
@@ -223,6 +223,7 @@
 		6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "Categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		E60BD347192173CA0018E3C2 /* HTWDozentEingebenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWDozentEingebenTableViewController.h; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.h"; sourceTree = "<group>"; };
 		E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWDozentEingebenTableViewController.m; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.m"; sourceTree = "<group>"; };
+		E61B6A2B1923B7BE0050EB10 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E61C34BB19198BE500EBEBDD /* HTWStundenplanAddTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanAddTableViewController.h; path = Stundenplan/Portait/HTWStundenplanAddTableViewController.h; sourceTree = "<group>"; };
 		E61C34BC19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanAddTableViewController.m; path = Stundenplan/Portait/HTWStundenplanAddTableViewController.m; sourceTree = "<group>"; };
 		E61C4C7319193AA400560C91 /* HTWStundenplanEditDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanEditDetailTableViewController.h; path = Stundenplan/Portait/HTWStundenplanEditDetailTableViewController.h; sourceTree = "<group>"; };
@@ -246,7 +247,6 @@
 		E61D882E19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanSettingsUebersichtTableViewController.m; path = Stundenplan/Settings/HTWStundenplanSettingsUebersichtTableViewController.m; sourceTree = "<group>"; };
 		E61D883119085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h; path = Stundenplan/Settings/HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h; sourceTree = "<group>"; };
 		E61D883219085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m; path = Stundenplan/Settings/HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m; sourceTree = "<group>"; };
-		E61D883A19085E380033D543 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E61D887D1908705E0033D543 /* landscapeSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = landscapeSegue.h; path = Stundenplan/Landscape/landscapeSegue.h; sourceTree = "<group>"; };
 		E61D887E1908705E0033D543 /* landscapeSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = landscapeSegue.m; path = Stundenplan/Landscape/landscapeSegue.m; sourceTree = "<group>"; };
 		E62C4847191422DE00788651 /* HTWCSVConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVConnection.h; path = Stundenplan/Model/HTWCSVConnection.h; sourceTree = "<group>"; };
@@ -628,7 +628,7 @@
 			children = (
 				E6B771E1191C36D700E9A2A5 /* FirstLaunch */,
 				6D7B451B1908150F00D99C9D /* main.storyboard */,
-				E61D883A19085E380033D543 /* Images.xcassets */,
+				E61B6A2B1923B7BE0050EB10 /* Images.xcassets */,
 				6D753A621917C99900C6BAA1 /* Assets */,
 				6D753A5E1917C52800C6BAA1 /* Classes */,
 				6D94EA501915378E00872FC8 /* Categories */,
@@ -883,10 +883,10 @@
 				6D753A6E1917C9B500C6BAA1 /* PT_Sans-Web-Bold.ttf in Resources */,
 				6D753A711917C9B500C6BAA1 /* PT_Sans-Web-Regular.ttf in Resources */,
 				E6B771F0191C370200E9A2A5 /* page2.png in Resources */,
+				E61B6A2C1923B7BE0050EB10 /* Images.xcassets in Resources */,
 				6D753A5A1917A8C300C6BAA1 /* uboot.jpg in Resources */,
 				6D753A4D1917A8C300C6BAA1 /* mensa-bruehl.jpg in Resources */,
 				6D753A541917A8C300C6BAA1 /* noavailablemensaimage.jpg in Resources */,
-				E61D883B19085E380033D543 /* Images.xcassets in Resources */,
 				6D753A561917A8C300C6BAA1 /* pillnitz.jpg in Resources */,
 				6D753A551917A8C300C6BAA1 /* palucca.jpg in Resources */,
 				6D753A6F1917C9B500C6BAA1 /* PT_Sans-Web-BoldItalic.ttf in Resources */,

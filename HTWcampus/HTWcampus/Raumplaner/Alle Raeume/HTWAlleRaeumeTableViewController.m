@@ -7,12 +7,21 @@
 //
 
 #import "HTWAlleRaeumeTableViewController.h"
+#import "HTWAppDelegate.h"
+#import "Stunde.h"
 
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
+#import "UIImage+Resize.h"
+
+#define ACCESSORY_VIEW_TAG -6
 
 @interface HTWAlleRaeumeTableViewController () <UISearchBarDelegate>
+{
+    BOOL stern;
+}
 
+@property (nonatomic, strong) NSArray *stundenplanRaeume;
 @property (nonatomic, strong) NSArray *arrayRaeume;
 @property (nonatomic, strong) NSMutableArray *filteredArrayRaeume;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -24,6 +33,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    stern = NO;
     
     self.title = @"Übersicht Räume";
     
@@ -40,6 +51,11 @@
     
     _filteredArrayRaeume = [NSMutableArray arrayWithCapacity:_arrayRaeume.count];
     _searchBar.delegate = self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self aktualisiereStundenPlanRaeume];
     [self.tableView reloadData];
 }
 
@@ -50,25 +66,57 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [_filteredArrayRaeume count];
-    } else {
-        return [_arrayRaeume count];
+    if(stern)
+    {
+        return _stundenplanRaeume.count;
+    }
+    else {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            return [_filteredArrayRaeume count];
+        } else {
+            return [_arrayRaeume count];
+        }
     }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    [[cell.contentView viewWithTag:ACCESSORY_VIEW_TAG] removeFromSuperview];
+    
     if ( cell == nil ) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [_filteredArrayRaeume objectAtIndex:indexPath.row];
-    } else {
-        cell.textLabel.text = [_arrayRaeume objectAtIndex:indexPath.row];
+    NSMutableString *textLabelText;
+    if(stern)
+    {
+        textLabelText = [NSMutableString stringWithString:_stundenplanRaeume[indexPath.row]];
     }
+    else {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            textLabelText = [NSMutableString stringWithString:[_filteredArrayRaeume objectAtIndex:indexPath.row]];
+        } else {
+            textLabelText = [NSMutableString stringWithString:[_arrayRaeume objectAtIndex:indexPath.row]];
+        }
+    }
+    
+    [textLabelText replaceOccurrencesOfString:@"\r" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, textLabelText.length)];
+    
+    cell.textLabel.text = textLabelText;
+    
     cell.textLabel.font = [UIFont HTWTableViewCellFont];
+    
+    
+    if([_stundenplanRaeume containsObject:textLabelText])
+    {
+        CGRect rect = CGRectMake(284, 6, 31, 31);
+        UIImageView *imageV = [[UIImageView alloc] initWithFrame:rect];
+        imageV.image = [[UIImage imageNamed:@"Stern"] resizedImage:rect.size interpolationQuality:kCGInterpolationDefault];
+        imageV.tag = ACCESSORY_VIEW_TAG;
+        [cell.contentView addSubview:imageV];
+        [cell.contentView viewWithTag:ACCESSORY_VIEW_TAG].alpha = 0.6;
+    }
+    
     cell.textLabel.textColor = [UIColor HTWTextColor];
     return cell;
 }
@@ -115,6 +163,30 @@
 -(IBAction)fertigPressed:(id)sender
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (IBAction)sternPressed:(id)sender {
+    stern = !stern;
+    _searchBar.hidden = !_searchBar.hidden;
+    [self.tableView reloadData];
+}
+
+
+-(void)aktualisiereStundenPlanRaeume
+{
+    NSManagedObjectContext *context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
+    request.predicate = [NSPredicate predicateWithFormat:@"student.raum = %@", [NSNumber numberWithBool:NO]];
+    NSArray *stunden = [context executeFetchRequest:request error:nil];
+    if(!stunden) return;
+    
+    NSMutableSet *set = [[NSMutableSet alloc] init];
+    
+    for (Stunde *this in stunden) {
+        if(this.raum) [set addObject:this.raum];
+    }
+    
+    self.stundenplanRaeume = [set allObjects];
 }
 
 @end

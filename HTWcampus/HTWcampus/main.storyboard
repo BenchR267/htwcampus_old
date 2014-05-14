@@ -562,7 +562,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Raumplaner" id="Fn6-tV-g3r">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="TEST" id="NlH-sK-DY5">
+                        <barButtonItem key="leftBarButtonItem" title="TEST" id="NlH-sK-DY5">
                             <connections>
                                 <segue destination="18J-fd-H3h" kind="push" id="RTB-Y1-tsy"/>
                             </connections>
@@ -1031,7 +1031,13 @@
                             <outlet property="delegate" destination="gJW-Jk-xPD" id="TnC-g4-ip5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="a1W-Ae-gBx"/>
+                    <navigationItem key="navigationItem" id="a1W-Ae-gBx">
+                        <barButtonItem key="leftBarButtonItem" image="Stern" id="9xk-Uv-G5o">
+                            <connections>
+                                <action selector="sternPressed:" destination="gJW-Jk-xPD" id="bKq-Iv-hZi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="MoQ-Wu-ffw" id="qLD-cc-G8L"/>
                         <outlet property="searchDisplayController" destination="seC-hp-RZj" id="Zlc-AY-ill"/>
@@ -1896,6 +1902,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="Reload" width="24" height="28"/>
         <image name="Settings" width="30" height="30"/>
         <image name="Share" width="29" height="30"/>
+        <image name="Stern" width="30" height="30"/>
         <image name="add" width="28" height="28"/>
         <image name="openInSafari" width="28" height="28"/>
     </resources>
