@@ -19,6 +19,11 @@
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
+
+@interface notenViewController () <NSURLSessionDelegate>
+
+@end
+
 @implementation notenViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -131,6 +136,12 @@
                             if ([data length]>0 && error == nil)
                             {
                                 NSString *notenspiegelHtmlResultAsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                
+#warning PDF DOWNLOAD
+                                [self savePDFFromHtml:notenspiegelHtmlResultAsString];
+                                
+                                
+                                
                                 self.notenspiegel = [[NSArray alloc] init];
                                 NSMutableArray *sortedNotenspiegel = [NSMutableArray arrayWithArray:[startseiteParser parseNotenspiegelFromString:notenspiegelHtmlResultAsString]];
                                 self.notenspiegel = [sortedNotenspiegel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -150,7 +161,7 @@
                                         default: return NSOrderedSame;
                                     }
                                 }];
-                                NSLog(@"%@", self.notenspiegel);
+                                // NSLog(@"%@", self.notenspiegel);
                                 isLoading = false;
                                 notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
                                 [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
@@ -422,7 +433,49 @@
 
 #pragma mark - Hilfsfunktionen
 
+-(void)savePDFFromHtml:(NSString*)html
+{
+    
+    NSMutableString *htmlFormed = [NSMutableString stringWithString:html];
+    [htmlFormed replaceOccurrencesOfString:@"\n" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, htmlFormed.length)];
+    [htmlFormed replaceOccurrencesOfString:@"\t" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, htmlFormed.length)];
+    [htmlFormed replaceOccurrencesOfString:@"  " withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange(0, htmlFormed.length)];
+    NSRange startR = [htmlFormed rangeOfString:@"<a class=\"Konto\" href=\""];
+    NSString *urlString = [htmlFormed substringFromIndex:startR.location + @"<a class=\"Konto\" href=\"".length];
+    NSRange endR = [urlString rangeOfString:@"\">"];
+    urlString = [urlString substringToIndex:endR.location];
+    NSMutableString *urlStringFormed = [NSMutableString stringWithString:urlString];
+    [urlStringFormed replaceOccurrencesOfString:@"amp;" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, urlStringFormed.length)];
+    [urlStringFormed replaceOccurrencesOfString:@"StudentNotenspiegel" withString:@"ProgrammStudentNotenspiegel" options:NSCaseInsensitiveSearch range:NSMakeRange(0, urlStringFormed.length)];
+    
+    
+    NSLog(@"%@", urlStringFormed);
+    
+    NSURL *url = [NSURL URLWithString:urlStringFormed];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    request.HTTPMethod = @"GET";
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        NSLog(@"RESPONSE: %@", response);
+        if(error)
+        {
+            NSLog(@"%@", error.localizedDescription);
+            return;
+        }
+        NSLog(@"%@", location);
+        UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[location, @"Meine Noten als PDF"] applicationActivities:nil];
+        [self presentViewController:avc animated:YES completion:^{
+            NSLog(@"PDF geteilt.");
+        }];
+    }];
+    [task resume];
+}
 
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
+{
+    completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
+}
 
 #pragma mark - Navigation
 
