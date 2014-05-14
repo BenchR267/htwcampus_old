@@ -25,6 +25,15 @@
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
+    
+    _availableMeals = [_availableMeals sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        switch([obj1[@"price"] compare:obj2[@"price"]])
+        {
+            case NSOrderedAscending: return NSOrderedDescending;
+            case NSOrderedDescending: return NSOrderedAscending;
+            default: return NSOrderedSame;
+        }
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated {

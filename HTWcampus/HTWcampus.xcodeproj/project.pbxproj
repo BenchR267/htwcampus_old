@@ -850,7 +850,7 @@
 				ORGANIZATIONNAME = "Benjamin Herzog";
 				TargetAttributes = {
 					E63772C21908146300DEE8AB = {
-						DevelopmentTeam = Q8ZZ4R39MN;
+						DevelopmentTeam = 3E4PGPNR47;
 					};
 					E63772E21908146300DEE8AB = {
 						TestTargetID = E63772C21908146300DEE8AB;
