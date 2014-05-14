@@ -73,6 +73,17 @@
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
     isPortait = NO;
+    int degrees;
+    if([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) degrees = 90;
+    else if([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight) degrees = 270;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.view.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
+    }];
+}
+
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 
