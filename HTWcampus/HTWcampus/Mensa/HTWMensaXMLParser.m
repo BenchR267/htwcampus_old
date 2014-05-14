@@ -1,38 +1,31 @@
 //
-//  MensaXMLParserDelegate.m
+//  HTWMensaXMLParser.m
 //  HTWcampus
 //
-//  Created by Konstantin on 15.09.13.
-//  Copyright (c) 2013 Konstantin. All rights reserved.
+//  Created by Konstantin Werner on 14.05.14.
+//  Copyright (c) 2014 Benjamin Herzog. All rights reserved.
 //
 
-#import "MensaXMLParserDelegate.h"
+#import "HTWMensaXMLParser.h"
 
-//<item>
-//    <title>Steak mit pikanter Wurstsoße (2.83 EUR / 4.48 EUR)</title>
-//    <description>Rückensteak vom Schwein mit pikanter Wurstsoße und Buttererbsen, dazu Petersilienkartoffeln oder Pommes frites (Studierende: 2.83 EUR / Bedienstete: 4.48 EUR)</description>
-//    <guid>http://www.studentenwerk-dresden.de/mensen/speiseplan/details-120074.html</guid>
-//    <link>http://www.studentenwerk-dresden.de/mensen/speiseplan/details-120074.html</link>
-//    <author>Neue Mensa</author>
-//</item>
-
-@interface MensaXMLParserDelegate ()
+@interface HTWMensaXMLParser () <NSXMLParserDelegate>
 @property (nonatomic, strong) NSMutableDictionary *currentMeal;
 @property (nonatomic, strong) NSString *aktuellesElement;
 @property (nonatomic, strong) NSString *aktuellerInhalt;
+@property (nonatomic, strong) NSMutableArray *allMeals;
+@property (nonatomic, strong) NSXMLParser *xmlParser;
 @end
 
-@implementation MensaXMLParserDelegate
-@synthesize delegate;
+@implementation HTWMensaXMLParser
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.allMeals = [[NSMutableArray alloc] init];
-        //self.feedList = @[ @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=heute",
-        //                   @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen"];
-    }
-    return self;
+- (NSArray *)getAllMealsFromHTML:(NSData *)htmlData {
+    //NSLog(@"%@", [[NSString alloc] initWithData:htmlData encoding:NSASCStringEncoding]);
+    _xmlParser = [[NSXMLParser alloc] initWithData:htmlData];
+    _xmlParser.delegate = self;
+    if ([_xmlParser parse]) {
+        
+    };
+    return _allMeals;
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
@@ -125,10 +118,10 @@
 
 -(void)parserDidEndDocument: (NSXMLParser *)parser {
     NSLog(@"Parsen der Mensen erfolgreich beendet");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"mensaParsingFinished" object:nil];
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
     NSLog(@"Fehler beim Parsen des Mensaplan.");
 }
+
 @end

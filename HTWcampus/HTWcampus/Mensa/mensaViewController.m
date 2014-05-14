@@ -9,24 +9,25 @@
 #define MENSAERROR_1 1
 #define MENSAERROR_2 2
 
+#define mensaTodayUrl @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss"
+#define mensaTomorrowUrl @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen"
 
 #import "mensaViewController.h"
-#import "MensaXMLParserDelegate.h"
 #import "MensaDetailViewController.h"
 #import "HTWAppDelegate.h"
 #import "UIImage+Resize.h"
 #import "UIColor+HTW.h"
 #import "HTWMensaSpeiseTableViewCell.h"
+#import "HTWMensaXMLParser.h"
 
-@interface mensaViewController ()
-
-@property (nonatomic, strong) NSXMLParser *xmlParser;
-@property (nonatomic, strong) MensaXMLParserDelegate *mensaXMLParserDelegate;
-@end
-
-@implementation mensaViewController {
+@interface mensaViewController () {
     UIActivityIndicatorView *mensaSpinner;
 }
+@property (strong, nonatomic) NSMutableArray *allMensasOfToday;
+@property (strong, nonatomic) NSMutableArray *allMensasOfTomorrow;
+@end
+
+@implementation mensaViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,28 +44,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    mensaMeta = [[NSDictionary alloc] initWithObjectsAndKeys:
-                 @"neuemensa.jpg", @"Neue Mensa",
-                 @"altemensa.jpg", @"Alte Mensa",
-                 @"reichenbachstrasse.jpg", @"Mensa Reichenbachstraße",
-                 @"mensologie.jpg", @"Mensologie",
-                 @"mensa-siedepunkt.jpg", @"Mensa Siedepunkt",
-                 @"johannstadt.jpg", @"Mensa Johannstadt",
-                 @"mensa-wueins.jpg", @"Mensa WUeins",
-                 @"mensa-bruehl.jpg", @"Mensa Brühl",
-                 @"biomensa-uboot.jpg", @"BioMensa U-Boot",
-                 @"tellerrandt.jpg", @"Mensa TellerRandt",
-                 @"zittau.jpg", @"Mensa Zittau",
-                 @"stimmgabel.jpg", @"Mensa Stimm-Gabel",
-                 @"palucca.jpg", @"Mensa Palucca Hochschule",
-                 @"goerlitz.jpg", @"Mensa Görlitz",
-                 @"hausvii.jpg", @"Mensa Haus VII",
-                 @"mensasport.jpg", @"Mensa Sport",
-                 @"mensa-kreuzgymnasium.jpg", @"Mensa Kreuzgymnasium", nil];
     
-    self.feedList = [[NSMutableArray alloc] initWithObjects:
-                     @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=heute",
-                     @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen", nil];
+    NSError *error;
+    NSArray *mensaMeta = [NSJSONSerialization
+                                JSONObjectWithData: [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mensen" ofType:@"json"]]
+                                options: NSJSONReadingMutableContainers
+                                error:&error];
+    
     isLoading = YES;
     
     [self.mensaDaySwitcher addTarget:self
@@ -82,8 +68,6 @@
 //                                               object:nil];
 //    
 }
-
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -111,71 +95,32 @@
     [self.tableView reloadData];
 }
 
-- (IBAction)loadMensa {
-    NSURL *RSSUrlToday =[NSURL URLWithString:@"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=heute"];
-    NSURL *RSSUrlTomorrow = [NSURL URLWithString:@"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen"];
-    NSURLRequest *requestToday = [NSURLRequest requestWithURL:RSSUrlToday];
-    NSURLRequest *requestTomorrow = [NSURLRequest requestWithURL:RSSUrlTomorrow];
-    NSOperationQueue *queue = [NSOperationQueue mainQueue];
+- (void)loadMensa {
+    NSURL *RSSUrlToday =[NSURL URLWithString:mensaTodayUrl];
+    NSURL *RSSUrlTomorrow = [NSURL URLWithString:mensaTomorrowUrl];
+    
+    NSURLSession *sessionForTodaysMensa = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [[sessionForTodaysMensa dataTaskWithURL:RSSUrlToday completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        HTWMensaXMLParser *parser = [[HTWMensaXMLParser alloc] init];
+        _allMensasOfToday = [[NSMutableArray alloc] initWithArray: [self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
+        dispatch_async(dispatch_get_main_queue(), ^
+       {
+           [self.tableView reloadData];
+       });
+        
+    }] resume];
+    
+    NSURLSession *sessionForTomorrowsMensa = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [[sessionForTomorrowsMensa dataTaskWithURL:RSSUrlTomorrow completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        HTWMensaXMLParser *parser = [HTWMensaXMLParser new];
+        _allMensasOfTomorrow = [[NSMutableArray alloc] initWithArray:[self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
+        dispatch_async(dispatch_get_main_queue(), ^
+           {
+               [self.tableView reloadData];
+           });
+    }] resume];
     
     
-    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
-    [NSURLConnection sendAsynchronousRequest:requestToday queue:queue completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
-        if ([data length]>0 && error == nil)
-        {
-            //today
-            self.mensaXMLParserDelegate = [[MensaXMLParserDelegate alloc] init];
-            self.xmlParser = [[NSXMLParser alloc] initWithData:data];
-            self.xmlParser.delegate = self.mensaXMLParserDelegate;
-            if ([self.xmlParser parse]) {
-                [self.feedList removeObjectIdenticalTo:@"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=heute"];
-                NSLog(@"Noch übrig: %@", self.feedList);
-            }
-            
-            //tomorrow
-            [NSURLConnection sendAsynchronousRequest:requestTomorrow queue:queue completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
-                if ([data length]>0 && error == nil)
-                {
-                    if (!self.mensaXMLParserDelegate) {
-                        self.mensaXMLParserDelegate = [[MensaXMLParserDelegate alloc] init];
-                    }
-                    self.xmlParser = [[NSXMLParser alloc] initWithData:data];
-                    self.xmlParser.delegate = self.mensaXMLParserDelegate;
-                    if ([self.xmlParser parse]) {
-                        [self.feedList removeObjectIdenticalTo:@"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen"];
-                    }
-                }
-                else if ([data length] == 0 && error == nil)
-                {
-                    NSLog(@"No Meals found for tomorrow.");
-                }
-                else if (error != nil){
-                    NSLog(@"Fehler beim Parsen der Mensen. Error: %@", error);
-                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Fehler" message:@"Fehler beim Parsen der Mensa :( Versuch es später nochmal." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                    alert.tag = MENSAERROR_2;
-                    alert.alertViewStyle = UIAlertViewStyleDefault;
-                    [alert show];
-                }
-                [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
-            }];
-            
-            //check if both days have been parsed
-            if (!self.feedList.count) {
-                NSLog(@"Es konnten nicht alle Tage geparst werden: %@", self.feedList);
-            }
-        }
-        else if ([data length] == 0 && error == nil)
-        {
-            NSLog(@"No Meals found for today.");
-        }
-        else if (error != nil){
-            NSLog(@"Fehler beim Parsen der Mensen. Error: %@", error);
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Fehler" message:@"Fehler beim Parsen der Mensa :( Versuche es später nochmal." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            alert.tag = MENSAERROR_1;
-            alert.alertViewStyle = UIAlertViewStyleDefault;
-            [alert show];
-        }
-    }];
 }
 
 /*
@@ -184,16 +129,16 @@
 }
  */
 
-- (void)addMensaData {
-    //Restructure Array according to Mensa
-    BOOL todayMensaDone = [[self.feedList objectAtIndex:0] isEqualToString:@"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen"] ? YES : NO;
-    if (!self.allMensasOfToday) self.allMensasOfToday = [[NSMutableArray alloc] init];
-    if (!self.allMensasOfTomorrow) self.allMensasOfTomorrow = [[NSMutableArray alloc] init];
-    id allMealsOfOneMensa = [[NSMutableArray alloc] init];
-    int mealCount = 0;
+- (NSArray *)groupMealsAccordingToMensa:(NSArray *)meals {
+    if (meals == nil) return nil;
     
-    for (int i = 0; i < self.mensaXMLParserDelegate.allMeals.count; i++) {
-        NSDictionary *tmpDict = [self.mensaXMLParserDelegate.allMeals objectAtIndex:mealCount];
+    
+    NSMutableArray *allMealsOfOneMensa = [[NSMutableArray alloc] init];
+    int mealCount = 0;
+    NSMutableArray *allMensas = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [meals count]; i++) {
+        NSDictionary *tmpDict = [meals objectAtIndex:mealCount];
 		
 		if ([allMealsOfOneMensa count] == 0)
 			[allMealsOfOneMensa addObject:tmpDict];
@@ -206,33 +151,22 @@
 				[allMealsOfOneMensa addObject:tmpDict];
 			else
 			{
-				if (!todayMensaDone) {
-                    [self.allMensasOfToday addObject:allMealsOfOneMensa];
-                }
-                else {
-                    [self.allMensasOfTomorrow addObject:allMealsOfOneMensa];
-                }
-				
+				[allMensas addObject:allMealsOfOneMensa];
 				allMealsOfOneMensa = [NSMutableArray new];
-				
 				[allMealsOfOneMensa addObject:tmpDict];
 			}
 			
-			if((mealCount+1) == [self.mensaXMLParserDelegate.allMeals count])
+			if((mealCount+1) == [meals count])
 			{
-				if (!todayMensaDone) {
-                    [self.allMensasOfToday addObject:allMealsOfOneMensa];
-                }
-                else {
-                    [self.allMensasOfTomorrow addObject:allMealsOfOneMensa];
-                }
+				[allMensas addObject:allMealsOfOneMensa];
 			}
 		}
         mealCount++;
     }
-    
-    [self reloadView];
+
+    return allMensas;
 }
+
 
 - (NSString *)getMensaImageNameForName:(NSString *)mensaName {
     for(id mensa in mensaMeta) {
@@ -259,12 +193,8 @@
 }
 
 - (IBAction)refreshMensa:(id)sender {
-    [self.allMensasOfToday removeAllObjects];
-    [self.allMensasOfTomorrow removeAllObjects];
-    self.feedList = [[NSMutableArray alloc] initWithObjects:
-                     @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=heute",
-                     @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen", nil];
-
+    [_allMensasOfToday removeAllObjects];
+    [_allMensasOfTomorrow removeAllObjects];
     isLoading = YES;
     [self.mensaTableView reloadData];
     [self loadMensa];

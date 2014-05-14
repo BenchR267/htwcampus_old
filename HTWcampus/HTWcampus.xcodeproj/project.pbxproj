@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D5B71281923AC340061CEA6 /* HTWMensaXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B71271923AC340061CEA6 /* HTWMensaXMLParser.m */; };
 		6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A371917A8C300C6BAA1 /* altemensa.jpg */; };
 		6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A381917A8C300C6BAA1 /* biomensa-uboot.jpg */; };
 		6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A391917A8C300C6BAA1 /* goerlitz.jpg */; };
@@ -59,7 +60,6 @@
 		6D94EA4519152FDB00872FC8 /* URLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA3419152FDB00872FC8 /* URLParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D94EA4D1915377E00872FC8 /* MensaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA481915377E00872FC8 /* MensaDetailViewController.m */; };
 		6D94EA4E1915377E00872FC8 /* mensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA4A1915377E00872FC8 /* mensaViewController.m */; };
-		6D94EA4F1915377E00872FC8 /* MensaXMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA4C1915377E00872FC8 /* MensaXMLParserDelegate.m */; };
 		6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA52191537BA00872FC8 /* UIImage+Resize.m */; };
 		6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA55191538E600872FC8 /* UIImage+Alpha.m */; };
 		6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */; };
@@ -136,6 +136,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D5B71261923AC340061CEA6 /* HTWMensaXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaXMLParser.h; path = Mensa/HTWMensaXMLParser.h; sourceTree = "<group>"; };
+		6D5B71271923AC340061CEA6 /* HTWMensaXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaXMLParser.m; path = Mensa/HTWMensaXMLParser.m; sourceTree = "<group>"; };
 		6D753A371917A8C300C6BAA1 /* altemensa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = altemensa.jpg; path = Mensa/Pictures/altemensa.jpg; sourceTree = "<group>"; };
 		6D753A381917A8C300C6BAA1 /* biomensa-uboot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "biomensa-uboot.jpg"; path = "Mensa/Pictures/biomensa-uboot.jpg"; sourceTree = "<group>"; };
 		6D753A391917A8C300C6BAA1 /* goerlitz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = goerlitz.jpg; path = Mensa/Pictures/goerlitz.jpg; sourceTree = "<group>"; };
@@ -213,8 +215,6 @@
 		6D94EA481915377E00872FC8 /* MensaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MensaDetailViewController.m; path = Mensa/MensaDetailViewController.m; sourceTree = "<group>"; };
 		6D94EA491915377E00872FC8 /* mensaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mensaViewController.h; path = Mensa/mensaViewController.h; sourceTree = "<group>"; };
 		6D94EA4A1915377E00872FC8 /* mensaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = mensaViewController.m; path = Mensa/mensaViewController.m; sourceTree = "<group>"; };
-		6D94EA4B1915377E00872FC8 /* MensaXMLParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MensaXMLParserDelegate.h; path = Mensa/MensaXMLParserDelegate.h; sourceTree = "<group>"; };
-		6D94EA4C1915377E00872FC8 /* MensaXMLParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MensaXMLParserDelegate.m; path = Mensa/MensaXMLParserDelegate.m; sourceTree = "<group>"; };
 		6D94EA51191537BA00872FC8 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "Categories/UIImage+Resize.h"; sourceTree = "<group>"; };
 		6D94EA52191537BA00872FC8 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "Categories/UIImage+Resize.m"; sourceTree = "<group>"; };
 		6D94EA54191538E600872FC8 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "Categories/UIImage+Alpha.h"; sourceTree = "<group>"; };
@@ -486,14 +486,14 @@
 				6D753A361917A84500C6BAA1 /* Pictures */,
 				6D94EA491915377E00872FC8 /* mensaViewController.h */,
 				6D94EA4A1915377E00872FC8 /* mensaViewController.m */,
+				6D5B71261923AC340061CEA6 /* HTWMensaXMLParser.h */,
+				6D5B71271923AC340061CEA6 /* HTWMensaXMLParser.m */,
 				6D94EA471915377E00872FC8 /* MensaDetailViewController.h */,
 				6D94EA481915377E00872FC8 /* MensaDetailViewController.m */,
 				E6642B18191D0B260003FF5A /* HTWMensaDetailParser.h */,
 				E6642B19191D0B260003FF5A /* HTWMensaDetailParser.m */,
 				E6642B1B191D0B8E0003FF5A /* HTWMensaDetailTableViewController.h */,
 				E6642B1C191D0B8E0003FF5A /* HTWMensaDetailTableViewController.m */,
-				6D94EA4B1915377E00872FC8 /* MensaXMLParserDelegate.h */,
-				6D94EA4C1915377E00872FC8 /* MensaXMLParserDelegate.m */,
 			);
 			name = Mensa;
 			sourceTree = "<group>";
@@ -850,7 +850,7 @@
 				ORGANIZATIONNAME = "Benjamin Herzog";
 				TargetAttributes = {
 					E63772C21908146300DEE8AB = {
-						DevelopmentTeam = 3E4PGPNR47;
+						DevelopmentTeam = Q8ZZ4R39MN;
 					};
 					E63772E21908146300DEE8AB = {
 						TestTargetID = E63772C21908146300DEE8AB;
@@ -940,6 +940,7 @@
 				E67D2530191620F9009D7634 /* User.m in Sources */,
 				E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */,
 				6D94EA4019152FDB00872FC8 /* EntityChunk.m in Sources */,
+				6D5B71281923AC340061CEA6 /* HTWMensaXMLParser.m in Sources */,
 				6D94EA3A19152FDB00872FC8 /* CSSSelectorMatcher.m in Sources */,
 				E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */,
 				E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */,
@@ -978,7 +979,6 @@
 				6D94EA4419152FDB00872FC8 /* TxtChunk.m in Sources */,
 				E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */,
 				E61D88141908583C0033D543 /* HTWStundenplanButtonForLesson.m in Sources */,
-				6D94EA4F1915377E00872FC8 /* MensaXMLParserDelegate.m in Sources */,
 				6D94E9DB191524B300872FC8 /* notenStartseiteHTMLParser.m in Sources */,
 				6D94EA3719152FDB00872FC8 /* CommentChunk.m in Sources */,
 				E61C34BD19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m in Sources */,

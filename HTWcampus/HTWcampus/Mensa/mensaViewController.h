@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MensaXMLParserDelegate.h"
 
-@interface mensaViewController : UITableViewController <CustomMensaManagerDelegate> {
+@interface mensaViewController : UITableViewController  {
     NSInteger mensaDay;
     BOOL isLoading;
     NSDictionary *mensaMeta;
 }
 - (NSString *)checkWorkingHours:currentMensaName;
-- (IBAction)loadMensa;
+- (void)loadMensa;
 - (void)addMensaData;
 - (void)setMensaDay;
 - (void)reloadView;
@@ -24,7 +23,4 @@
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mensaDaySwitcher;
 @property (weak, nonatomic) IBOutlet UITableView *mensaTableView;
-@property (strong, nonatomic) IBOutlet NSMutableArray *allMensasOfToday;
-@property (strong, nonatomic) IBOutlet NSMutableArray *allMensasOfTomorrow;
-@property (strong, nonatomic) NSMutableArray *feedList;
 @end
