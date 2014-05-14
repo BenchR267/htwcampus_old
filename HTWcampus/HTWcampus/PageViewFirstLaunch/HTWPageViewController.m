@@ -45,7 +45,7 @@
     UITabBarController *tbc = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
     [UIView transitionWithView:appD.window
                       duration:0.5
-                       options:UIViewAnimationOptionTransitionFlipFromRight
+                       options:UIViewAnimationOptionTransitionFlipFromTop
                     animations:^{
                     
                         [appD.window setRootViewController:tbc];

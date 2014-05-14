@@ -150,6 +150,7 @@
                                         default: return NSOrderedSame;
                                     }
                                 }];
+                                NSLog(@"%@", self.notenspiegel);
                                 isLoading = false;
                                 notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
                                 [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];

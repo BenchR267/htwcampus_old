@@ -11,7 +11,7 @@
 
 @interface HTWPruefungsParser () <NSXMLParserDelegate>
 {
-    void (^completition)(NSArray* erg, NSString *error);
+    void (^completion)(NSArray* erg, NSString *error);
     
     NSString* jahr;
     NSString* gruppe;
@@ -91,7 +91,7 @@
 
 -(void)startWithCompletetionHandler:(void(^)(NSArray *erg, NSString *errorMessage))handler
 {
-    completition = handler;
+    completion = handler;
     
     // Request String für PHP-Argumente
     NSString *myRequestString;
@@ -130,8 +130,7 @@
         [dataAfterHtml replaceOccurrencesOfString:@"<table border cellpadding=5>" withString:@"<table>" options:NSCaseInsensitiveSearch range:NSMakeRange(0, dataAfterHtml.length)];
         [dataAfterHtml replaceOccurrencesOfString:@" nowrap" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, dataAfterHtml.length)];
 
-        NSString *parserString = [NSString stringWithFormat:@"<data>%@</data>", dataAfterHtml];
-        NSData *dataForParser = [parserString dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *dataForParser = [dataAfterHtml dataUsingEncoding:NSUTF8StringEncoding];
         
         _parser = [[NSXMLParser alloc] initWithData:dataForParser];
         _parser.delegate = self;
@@ -180,7 +179,7 @@
 
 -(void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    completition(_pruefungenArray,nil);
+    completion(_pruefungenArray,nil);
 }
 
 @end
