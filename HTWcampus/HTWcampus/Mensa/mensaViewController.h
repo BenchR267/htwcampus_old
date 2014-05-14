@@ -11,11 +11,9 @@
 @interface mensaViewController : UITableViewController  {
     NSInteger mensaDay;
     BOOL isLoading;
-    NSDictionary *mensaMeta;
 }
 - (NSString *)checkWorkingHours:currentMensaName;
 - (void)loadMensa;
-- (void)addMensaData;
 - (void)setMensaDay;
 - (void)reloadView;
 - (IBAction)refreshMensa:(id)sender;

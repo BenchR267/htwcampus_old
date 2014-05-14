@@ -25,6 +25,7 @@
 }
 @property (strong, nonatomic) NSMutableArray *allMensasOfToday;
 @property (strong, nonatomic) NSMutableArray *allMensasOfTomorrow;
+@property (strong, nonatomic) NSArray *mensaMeta;
 @end
 
 @implementation mensaViewController
@@ -46,7 +47,7 @@
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     NSError *error;
-    NSArray *mensaMeta = [NSJSONSerialization
+    _mensaMeta = [NSJSONSerialization
                                 JSONObjectWithData: [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mensen" ofType:@"json"]]
                                 options: NSJSONReadingMutableContainers
                                 error:&error];
@@ -56,17 +57,6 @@
     [self.mensaDaySwitcher addTarget:self
                             action:@selector(setMensaDay)
                   forControlEvents:UIControlEventValueChanged];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(addMensaData)
-                                                 name:@"mensaParsingFinished"
-                                               object:nil];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(addTomorrowMensaData)
-//                                                 name:@"mensaTomorrowParsingFinished"
-//                                               object:nil];
-//    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -105,6 +95,7 @@
         _allMensasOfToday = [[NSMutableArray alloc] initWithArray: [self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
         dispatch_async(dispatch_get_main_queue(), ^
        {
+           isLoading = false;
            [self.tableView reloadData];
        });
         
@@ -116,6 +107,7 @@
         _allMensasOfTomorrow = [[NSMutableArray alloc] initWithArray:[self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
         dispatch_async(dispatch_get_main_queue(), ^
            {
+               isLoading = false;
                [self.tableView reloadData];
            });
     }] resume];
@@ -169,9 +161,9 @@
 
 
 - (NSString *)getMensaImageNameForName:(NSString *)mensaName {
-    for(id mensa in mensaMeta) {
-        if ([mensaName isEqualToString:mensa]) {
-            return [mensaMeta objectForKey:mensa];
+    for (NSDictionary *mensa in _mensaMeta) {
+        if ([mensaName isEqualToString:mensa[@"name"]]) {
+            return [mensa objectForKey:@"bild"];
         }
     }
     return @"noavailablemensaimage.jpg";
@@ -246,10 +238,10 @@
         NSString *currentMensaName;
         
         if (mensaDay == 0) {
-            currentMensaName = [[[[self allMensasOfToday] objectAtIndex:indexPath.row] objectAtIndex:0] valueForKey:@"mensa"];
+            currentMensaName = _allMensasOfToday[indexPath.row][0][@"mensa"];
         }
         else {
-            currentMensaName = [[[[self allMensasOfTomorrow] objectAtIndex:indexPath.row] objectAtIndex:0] valueForKey:@"mensa"];
+            currentMensaName = _allMensasOfTomorrow[indexPath.row][0][@"mensa"];
         }
     
         [cell.textLabel setText:currentMensaName];

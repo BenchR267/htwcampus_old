@@ -10,5 +10,5 @@
 
 @interface HTWMensaXMLParser : NSObject
 
-- (NSArray *)getAllMealsFromHTML:htmlData;
+- (NSArray *)getAllMealsFromHTML:(NSData *)htmlData;
 @end

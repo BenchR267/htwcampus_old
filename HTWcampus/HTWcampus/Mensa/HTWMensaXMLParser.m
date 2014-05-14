@@ -19,7 +19,7 @@
 @implementation HTWMensaXMLParser
 
 - (NSArray *)getAllMealsFromHTML:(NSData *)htmlData {
-    //NSLog(@"%@", [[NSString alloc] initWithData:htmlData encoding:NSASCStringEncoding]);
+    _allMeals = [[NSMutableArray alloc] init];
     _xmlParser = [[NSXMLParser alloc] initWithData:htmlData];
     _xmlParser.delegate = self;
     if ([_xmlParser parse]) {
