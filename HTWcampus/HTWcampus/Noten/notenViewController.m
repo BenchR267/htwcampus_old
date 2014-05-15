@@ -240,7 +240,6 @@
                 NSLog(@"%@ %@", strings[0], strings[1]);
                 username = usernameText;
                 password = passwordText;
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 
                 [self loadNoten];
             }

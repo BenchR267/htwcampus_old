@@ -123,6 +123,7 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if(![self getAnfang] || ![self getEnde]) return;
     NSArray *nameUndMatrnr = [[alertView buttonTitleAtIndex:buttonIndex] componentsSeparatedByString:@" "];
     NSString *matrnr = nameUndMatrnr[nameUndMatrnr.count - 1];
     if (![matrnr isEqualToString:@"Abbrechen"]) {

@@ -13,64 +13,24 @@
 #import "HTWStundenplanSettingsUebersichtTableViewCell.h"
 #import "Stunde.h"
 #import "HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h"
+#import "HTWStundenplanEditDetailTableViewController.h"
+
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
-@interface HTWStundenplanSettingsUebersichtTableViewController () <NSFetchedResultsControllerDelegate>
+@interface HTWStundenplanSettingsUebersichtTableViewController ()
 {
     HTWAppDelegate *appdelegate;
     NSString *Matrnr;
 }
 
 @property (nonatomic, strong) NSArray *array;
-@property (nonatomic, strong) NSMutableArray *angezeigteStunden;
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
 @end
 
 @implementation HTWStundenplanSettingsUebersichtTableViewController
-
-@synthesize fetchedResultsController;
-
-#pragma mark - Lazy loading
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    
-    if (fetchedResultsController != nil) {
-        return fetchedResultsController;
-    }
-    
-    appdelegate = [[UIApplication sharedApplication] delegate];
-    _context = [appdelegate managedObjectContext];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
-    [fetchRequest setEntity:entity];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"student.matrnr = %@", [defaults objectForKey:@"Matrikelnummer"]];
-    fetchRequest.predicate=pred;
-    
-    
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"titel" ascending:YES]]];
-    
-    
-    
-//    [fetchRequest setReturnsDistinctResults:YES];
-//
-//    [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:@"id"]];
-    
-    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                                  managedObjectContext:_context
-                                                                                                    sectionNameKeyPath:@"id"
-                                                                                                             cacheName:nil];
-    self.fetchedResultsController = theFetchedResultsController;
-    fetchedResultsController.delegate = self;
-    
-    return fetchedResultsController;
-    
-}
 
 #pragma mark - View Controller Lifecycle
 
@@ -80,15 +40,10 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     Matrnr = [defaults objectForKey:@"Matrikelnummer"];
     
-    NSError *error;
-	if (![[self fetchedResultsController] performFetch:&error]) {
-		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		exit(-1);  // Fail
-	}
+    [self updateArray];
     
-    if(![defaults boolForKey:@"Dozent"]) self.title = Matrnr;
-    else self.title = [self getNameOf:Matrnr];
+    if([self getNameOf:Matrnr] && ![[self getNameOf:Matrnr] isEqualToString:@""]) self.title = [self getNameOf:Matrnr];
+    else self.title = Matrnr;
     
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
 }
@@ -122,6 +77,13 @@
         }
         
         [_context save:nil];
+        [self updateArray];
+        [UIView transitionWithView:self.tableView
+                          duration:0.3f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^(void) {
+                            [self.tableView reloadData];
+                        } completion:NULL];
     } 
 }
 
@@ -134,14 +96,8 @@
 
     
     Matrnr = [defaults objectForKey:@"Matrikelnummer"];
-    
-    fetchedResultsController = nil;
-    [[self fetchedResultsController] performFetch:nil];
+    [self updateArray];
     [self.tableView reloadData];
-}
-
-- (void)viewDidUnload {
-    self.fetchedResultsController = nil;
 }
 
 #pragma mark - Table view data source
@@ -153,16 +109,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[fetchedResultsController sections] count];
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return _array.count;
 }
 
 - (void)configureCell:(HTWStundenplanSettingsUebersichtTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    Stunde *info = [fetchedResultsController objectAtIndexPath:indexPath];
+    Stunde *info = _array[indexPath.row];
     
     NSString *typ;
     if ([info.kurzel componentsSeparatedByString:@" "].count > 1) 
@@ -236,57 +192,44 @@
     return 82;
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView beginUpdates];
+    [self performSegueWithIdentifier:@"editStunde" sender:indexPath];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:(HTWStundenplanSettingsUebersichtTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray
-                                               arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray
-                                               arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+-(void)updateArray
 {
-    [self.tableView endUpdates];
+    appdelegate = [[UIApplication sharedApplication] delegate];
+    _context = [appdelegate managedObjectContext];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
+    [fetchRequest setEntity:entity];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"student.matrnr = %@", [defaults objectForKey:@"Matrikelnummer"]];
+    fetchRequest.predicate=pred;
+    
+    
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"titel" ascending:YES]]];
+    
+    
+    NSArray *objects = [_context executeFetchRequest:fetchRequest error:nil];
+    NSMutableArray *objectsFormed = [[NSMutableArray alloc] init];
+    
+    BOOL gefunden = NO;
+    for (Stunde *this1 in objects) {
+        gefunden = NO;
+        for (Stunde *this2 in objectsFormed) {
+            if([this1.id isEqualToString:this2.id]) {
+                gefunden = YES;
+            }
+        }
+        if(!gefunden) [objectsFormed addObject:this1];
+    }
+    
+    _array = objectsFormed;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Switch Action
@@ -323,6 +266,20 @@
     [request setPredicate:pred];
     
     return [(User*)[context executeFetchRequest:request error:nil][0] name];
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"editStunde"])
+    {
+        if ([sender isKindOfClass:[NSIndexPath class]]) {
+            NSIndexPath *indexPath = sender;
+            HTWStundenplanEditDetailTableViewController *destVC = segue.destinationViewController;
+            destVC.stunde = _array[indexPath.row];
+        }
+    }
 }
 
 @end

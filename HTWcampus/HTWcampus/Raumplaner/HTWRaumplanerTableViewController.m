@@ -138,7 +138,12 @@
         
         [self updateZimmerArray];
         
-        [self.tableView reloadData];
+        [UIView transitionWithView:self.tableView
+                          duration:0.3f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^(void) {
+                            [self.tableView reloadData];
+                        } completion:NULL];
         
     }
 }

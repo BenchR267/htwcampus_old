@@ -10,6 +10,4 @@
 
 @interface HTWStundenplanSettingsUebersichtTableViewController : UITableViewController
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-
 @end

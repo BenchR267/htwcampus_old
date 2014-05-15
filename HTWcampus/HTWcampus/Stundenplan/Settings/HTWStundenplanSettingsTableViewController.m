@@ -136,18 +136,6 @@
     [[NSUserDefaults standardUserDefaults] setBool:switchS.isOn forKey:@"parallax"];
 }
 
-#pragma mark - Navigation
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"stundenOverview"]) {
-        if ([segue.destinationViewController isKindOfClass:[HTWStundenplanSettingsUebersichtTableViewController class]]) {
-            HTWStundenplanSettingsUebersichtTableViewController *sstvc = segue.destinationViewController;
-            sstvc.fetchedResultsController = nil;
-        }
-    }
-}
-
 #pragma mark - Hilfsfunktionen
 
 -(NSString*)getNameOf:(NSString*)matrnr
