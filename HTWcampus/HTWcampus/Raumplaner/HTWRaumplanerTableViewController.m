@@ -150,7 +150,7 @@
 
 #pragma mark - HTWStundenplanParser Delegate
 
--(void)HTWStundenplanParserFinished
+-(void)HTWStundenplanParserFinished:(HTWStundenplanParser *)parser
 {
     NSLog(@"Parser fertig");
     
@@ -159,7 +159,7 @@
     [self.tableView reloadData];
 }
 
--(void)HTWStundenplanParserError:(NSString *)errorMessage
+-(void)HTWStundenplanParser:(HTWStundenplanParser *)parser Error:(NSString *)errorMessage
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
                                                     message:errorMessage
