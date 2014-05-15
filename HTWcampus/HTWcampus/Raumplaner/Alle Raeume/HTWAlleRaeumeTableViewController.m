@@ -50,13 +50,14 @@
     
     
     _filteredArrayRaeume = [NSMutableArray arrayWithCapacity:_arrayRaeume.count];
-    _searchBar.delegate = self;
+    self.tableView.tableHeaderView = _searchBar;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self aktualisiereStundenPlanRaeume];
     [self.tableView reloadData];
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -122,19 +123,30 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-    if(tableView == self.searchDisplayController.searchResultsTableView) {
-        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-        NSMutableString *destinationTitle = [NSMutableString stringWithString:[_filteredArrayRaeume objectAtIndex:indexPath.row]];
-        [destinationTitle replaceOccurrencesOfString:@"\r" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, destinationTitle.length)];
-        if(_delegate) [_delegate neuerRaumAusgewaehlt:destinationTitle];
+{
+    if(!stern)
+    {
+        if(tableView == self.searchDisplayController.searchResultsTableView) {
+            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            NSMutableString *destinationTitle = [NSMutableString stringWithString:[_filteredArrayRaeume objectAtIndex:indexPath.row]];
+            [destinationTitle replaceOccurrencesOfString:@"\r" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, destinationTitle.length)];
+            if(_delegate) [_delegate neuerRaumAusgewaehlt:destinationTitle];
+        }
+        else {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            NSMutableString *destinationTitle = [NSMutableString stringWithString:[_arrayRaeume objectAtIndex:indexPath.row]];
+            [destinationTitle replaceOccurrencesOfString:@"\r" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, destinationTitle.length)];
+            if(_delegate) [_delegate neuerRaumAusgewaehlt:destinationTitle];
+        }
     }
-    else {
+    else
+    {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSMutableString *destinationTitle = [NSMutableString stringWithString:[_arrayRaeume objectAtIndex:indexPath.row]];
+        NSMutableString *destinationTitle = [NSMutableString stringWithString:[_stundenplanRaeume objectAtIndex:indexPath.row]];
         [destinationTitle replaceOccurrencesOfString:@"\r" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, destinationTitle.length)];
         if(_delegate) [_delegate neuerRaumAusgewaehlt:destinationTitle];
     }
+    
     
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
@@ -187,6 +199,9 @@
     }
     
     self.stundenplanRaeume = [set allObjects];
+    self.stundenplanRaeume = [self.stundenplanRaeume sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2];
+    }];
 }
 
 @end

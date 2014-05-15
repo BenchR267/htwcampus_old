@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class HTWCSVConnection;
+
 @protocol HTWCSVConnectionDelegate <NSObject>
 
 @optional
--(void)HTWCSVConnectionFinished;
--(void)HTWCSVConnectionError:(NSString*)errorMessage;
+-(void)HTWCSVConnectionFinished:(HTWCSVConnection*)connection;
+-(void)HTWCSVConnection:(HTWCSVConnection*)connection Error:(NSString*)errorMessage;
 
 @end
 
@@ -20,6 +22,7 @@
 
 @property (nonatomic, strong) id <HTWCSVConnectionDelegate> delegate;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *eName;
 
 -(id)initWithPassword:(NSString*)password;
 -(void)startParser;

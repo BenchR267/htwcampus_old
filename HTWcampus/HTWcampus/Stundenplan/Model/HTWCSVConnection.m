@@ -37,6 +37,7 @@
     self = [self init];
     
     _password = password;
+    
     _array = [[NSMutableArray alloc] init];
     _context = [[HTWAppDelegate alloc] managedObjectContext];
     
@@ -46,6 +47,10 @@
 
 -(void)startParser
 {
+    if ([_password isEqualToString:@""] && _delegate) {
+        [_delegate HTWCSVConnection:self Error:@"Falsche Kennung."];
+        return;
+    }
     
     // Request String für PHP-Argumente
     NSString *myRequestString = [NSString stringWithFormat:@"unix=%@&pressme=%@",_password,@"S+T+A+R+T"];
@@ -70,15 +75,23 @@
             NSString *html = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             
             if ([html rangeOfString:@"Falsche Kennung"].length != 0) {
-                [_delegate HTWCSVConnectionError:@"Falsche Kennung"];
+                [_delegate HTWCSVConnection:self Error:@"Falsche Kennung"];
                 return;
             }
             
-            NSRange startRange = [html rangeOfString:@"<b>"];
-            NSString *name = [html substringFromIndex:startRange.location+3];
+            if(!_eName)
+            {
+                NSRange startRange = [html rangeOfString:@"<b>"];
+                NSString *name = [html substringFromIndex:startRange.location+3];
+                
+                NSRange endRange = [name rangeOfString:@"</b>"];
+                _name = [name substringToIndex:endRange.location];
+            }
+            else
+            {
+                _name = _eName;
+            }
             
-            NSRange endRange = [name rangeOfString:@"</b>"];
-            _name = [name substringToIndex:endRange.location];
             
             
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<form name=Testform method=post action=\\.\\.\\/plan\\/([^>]*)>" options:0 error:nil];
@@ -128,6 +141,7 @@
                 [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
                 [parser startHTWCSVParser];
             }
+            else [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
         }
     }];
 }
@@ -191,7 +205,7 @@
 -(void)HTWCSVParserDidFinishedWorking:(HTWCSVParser *)parser
 {
     [_context save:nil];
-    [_delegate HTWCSVConnectionFinished];
+    [_delegate HTWCSVConnectionFinished:self];
 }
 
 #pragma mark - Hilfsfunktionen

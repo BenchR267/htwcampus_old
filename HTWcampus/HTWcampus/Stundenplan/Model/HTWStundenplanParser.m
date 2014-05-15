@@ -13,7 +13,7 @@
 
 NSMutableData *receivedData;
 
-@interface HTWStundenplanParser () <NSXMLParserDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface HTWStundenplanParser () <NSXMLParserDelegate>
 {
     
     BOOL isData;
@@ -89,62 +89,47 @@ NSMutableData *receivedData;
     
     [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     // Connection mit dem oben definierten Request
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    
-    if (connection) {
-        // Connection succesfull
-    }
-    else {
-        // Error with connection
-        NSLog(@"Connection fehlgeschlagen.");
-    }
-}
-
-#pragma mark - Connection delegate mathods
-
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [response appendString:[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
-    // Wenn eins dieser Strings in dem HTML-File vorkommt, ist die Nummer falsch oder es gibt keine Daten dazu
-    if (([response rangeOfString:@"Stundenplan im csv-Format erstellen"].length != 0) || [response rangeOfString:@"Es wurden keine Daten gefunden."].length != 0) {
-        if(!_boolRaum) [_delegate HTWStundenplanParserError:@"Falsche Matrikelnummer oder Studiengruppe. Bitte erneut eingeben."];
-        else [_delegate HTWStundenplanParserError:@"Raum nicht gefunden. Bitte erneut eingeben. (Format: Z 355)"];
-        return;
-    }
-    
-    NSRange startRange = [response rangeOfString:@"<Stunde>"];
-    NSString *dataAfterHtml = [response substringFromIndex:startRange.location];
-    
-    NSRange endRange = [dataAfterHtml rangeOfString:@"<br>"];
-    dataAfterHtml = [dataAfterHtml substringToIndex:endRange.location];
-    
-    NSMutableString *formattedXML = [NSMutableString
-                                     stringWithFormat:@"<data>%@</data>",
-                                     dataAfterHtml];
-    
-    
-    // eventuell auftretende Sonderzeichen entfernen, damit der Parser ordentlich funktioniert
-    [formattedXML replaceOccurrencesOfString:@"&" withString:@" und " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [formattedXML length])];
-    
-    NSData *retData = [formattedXML dataUsingEncoding:NSUTF8StringEncoding];
-    
-    // Parser initialisieren
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:retData];
-    
-    [parser setDelegate:self];
-    [parser parse];
-}
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    if(_delegate) [_delegate HTWStundenplanParserError:@"Fehler mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if (connectionError) {
+            if(_delegate)
+            {
+                [_delegate HTWStundenplanParser:self Error:@"Fehler mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."];
+                return;
+            }
+        }
+        
+        NSString *html = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+        [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
+        // Wenn eins dieser Strings in dem HTML-File vorkommt, ist die Nummer falsch oder es gibt keine Daten dazu
+        if (([html rangeOfString:@"Stundenplan im csv-Format erstellen"].length != 0) || [html rangeOfString:@"Es wurden keine Daten gefunden."].length != 0) {
+            if(!_boolRaum) [_delegate HTWStundenplanParser:self Error:@"Falsche Matrikelnummer oder Studiengruppe. Bitte erneut eingeben."];
+            else [_delegate HTWStundenplanParser:self Error:@"Raum nicht gefunden. Bitte erneut eingeben. (Format: Z 355)"];
+            return;
+        }
+        
+        NSRange startRange = [html rangeOfString:@"<Stunde>"];
+        NSString *dataAfterHtml = [html substringFromIndex:startRange.location];
+        
+        NSRange endRange = [dataAfterHtml rangeOfString:@"<br>"];
+        dataAfterHtml = [dataAfterHtml substringToIndex:endRange.location];
+        
+        NSMutableString *formattedXML = [NSMutableString
+                                         stringWithFormat:@"<data>%@</data>",
+                                         dataAfterHtml];
+        
+        
+        // eventuell auftretende Sonderzeichen entfernen, damit der Parser ordentlich funktioniert
+        [formattedXML replaceOccurrencesOfString:@"&" withString:@" und " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [formattedXML length])];
+        
+        NSData *retData = [formattedXML dataUsingEncoding:NSUTF8StringEncoding];
+        
+        // Parser initialisieren
+        NSXMLParser *parser = [[NSXMLParser alloc] initWithData:retData];
+        
+        [parser setDelegate:self];
+        [parser parse];
+    }];
 }
 
 #pragma mark - Parser delegate methods
@@ -183,6 +168,7 @@ NSMutableData *receivedData;
             newStudent.matrnr = self.Matrnr;
             newStudent.letzteAktualisierung = [NSDate date];
             newStudent.raum = [NSNumber numberWithBool:self.boolRaum];
+            if(_name) newStudent.name = _name;
         }
         
         
@@ -317,7 +303,7 @@ NSMutableData *receivedData;
             NSLog(@"Es wurden %lu Datensätze gefunden. (Alles außer 1 ist falsch.)", (unsigned long)[objects count]);
             
         }
-        if(_delegate) [_delegate HTWStundenplanParserFinished];
+        if(_delegate) [_delegate HTWStundenplanParserFinished:self];
         
         return;
     }

@@ -8,17 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@class HTWStundenplanParser;
+
 @protocol HTWStundenplanParserDelegate
 
 @optional
--(void)HTWStundenplanParserFinished;
--(void)HTWStundenplanParserError:(NSString *)errorMessage;
+-(void)HTWStundenplanParserFinished:(HTWStundenplanParser*)parser;
+-(void)HTWStundenplanParser:(HTWStundenplanParser*)parser Error:(NSString *)errorMessage;
 
 @end
 
 @interface HTWStundenplanParser : NSObject
 
 @property (nonatomic, strong) NSString *Matrnr;
+@property (nonatomic, strong) NSString *name;
 
 @property (nonatomic, assign) id <HTWStundenplanParserDelegate> delegate;
 

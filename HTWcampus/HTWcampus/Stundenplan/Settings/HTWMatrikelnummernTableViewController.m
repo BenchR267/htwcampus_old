@@ -13,6 +13,7 @@
 #import "HTWCSVConnection.h"
 #import "User.h"
 #import "HTWMatrikelnummernEditTableViewController.h"
+#import "HTWAlertNavigationController.h"
 
 #import "Stunde.h"
 #import "UIColor+HTW.h"
@@ -22,7 +23,7 @@
 #define ALERT_FEHLER 111
 #define ALERT_WARNUNG 112
 
-@interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIAlertViewDelegate>
+@interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, HTWAlertViewDelegate, UIAlertViewDelegate>
 {
     HTWAppDelegate *appdelegate;
     NSString *Matrnr;
@@ -79,51 +80,50 @@
 
 #pragma mark - AlertView Delegate
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)htwAlert:(HTWAlertNavigationController *)alert gotStringsFromTextFields:(NSArray *)strings
 {
-    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if(alertView.tag == ALERT_EINGEBEN)
+    if(alert.tag == ALERT_EINGEBEN)
     {
-        NSString *eingegeben = [alertView textFieldAtIndex:0].text;
+        NSString *eingegeben = strings[1];
         if (eingegeben.length == 0) return;
-        if ([buttonTitle isEqualToString:@"Ok"]) {
             if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
-            
-            _parser = nil;
-            
-            NSString *matrNr = [eingegeben copy];
-            
-            appdelegate = [[UIApplication sharedApplication] delegate];
-            _context = [appdelegate managedObjectContext];
-            
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
-            [fetchRequest setEntity:entity];
-            
-            [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-            
-            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", matrNr]];
-            
-            NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
-            
-            if(tempArray.count == 0)
-            {
-                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:matrNr andRaum:NO];
-                [_parser setDelegate:self];
-                [_parser parserStart];
+                
+                _parser = nil;
+                
+                NSString *matrNr = [eingegeben copy];
+                
+                appdelegate = [[UIApplication sharedApplication] delegate];
+                _context = [appdelegate managedObjectContext];
+                
+                NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
+                [fetchRequest setEntity:entity];
+                
+                [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+                
+                [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", matrNr]];
+                
+                NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
+                
+                if(tempArray.count == 0)
+                {
+                    _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:matrNr andRaum:NO];
+                    if(strings[0] && ![strings[0] isEqualToString:@""]) _parser.name = strings[0];
+                    [_parser setDelegate:self];
+                    [_parser parserStart];
+                }
+                else
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nummer schon vorhanden"
+                                                                    message:@"Die Nummer ist in der Datenbank schon vorhanden, bitte tippen Sie stattdessen auf das Aktualisieren-Symbol."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Ok"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
             }
-            else
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nummer schon vorhanden"
-                                                                message:@"Die Nummer ist in der Datenbank schon vorhanden, bitte tippen Sie stattdessen auf das Aktualisieren-Symbol."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
-            }
-        else {
-                NSString *matrNr = [alertView textFieldAtIndex:0].text;
+            else {
+                NSString *matrNr = strings[1];
                 _dozentParser = nil;
                 
                 appdelegate = [[UIApplication sharedApplication] delegate];
@@ -142,6 +142,7 @@
                 if(tempArray.count == 0)
                 {
                     _dozentParser = [[HTWCSVConnection alloc] initWithPassword:matrNr];
+                    if(strings[0] && ![strings[0] isEqualToString:@""]) _dozentParser.eName = strings[0];
                     _dozentParser.delegate = self;
                     [_dozentParser startParser];
                 }
@@ -154,10 +155,14 @@
                                                           otherButtonTitles:nil];
                     [alert show];
                 }
-        }
-        }
+            }
     }
-    else if ([alertView.title isEqualToString:@"Stundenplan wiederherstellen"])
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([alertView.title isEqualToString:@"Stundenplan wiederherstellen"])
     {
         if([buttonTitle isEqualToString:@"Ok"])
         {
@@ -182,6 +187,16 @@
             }
             
         }
+    }
+    else if (alertView.tag == ALERT_FEHLER)
+    {
+        HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
+        [alert setHtwTitle:@"Neuer Stundenplan"];
+        alert.message = @"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:";
+        alert.mainTitle = @[@"Name (optional)",@"Kennung"];
+        alert.htwDelegate = self;
+        alert.tag = ALERT_EINGEBEN;
+        [self presentViewController:alert animated:YES completion:^{}];
     }
 }
 
@@ -328,14 +343,22 @@
 #pragma mark - IBAction
 
 - (IBAction)addButtonPressed:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Neuer Stundenplan"
-                                                    message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Ok", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Neuer Stundenplan"
+//                                                    message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"Abbrechen"
+//                                          otherButtonTitles:@"Ok", nil];
+//    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//    alert.tag = ALERT_EINGEBEN;
+//    [alert show];
+    
+    HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
+    [alert setHtwTitle:@"Neuer Stundenplan"];
+    alert.message = @"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:";
+    alert.mainTitle = @[@"Name (optional)",@"Kennung"];
+    alert.htwDelegate = self;
     alert.tag = ALERT_EINGEBEN;
-    [alert show];
+    [self presentViewController:alert animated:YES completion:^{}];
 }
 
 -(void)didTabReloadButton:(UIButton *)sender
@@ -351,7 +374,7 @@
 
 #pragma mark - StundenplanParser Delegate
 
--(void)HTWStundenplanParserFinished
+-(void)HTWStundenplanParserFinished:(HTWStundenplanParser *)parser
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_parser.Matrnr forKey:@"Matrikelnummer"];
@@ -395,7 +418,7 @@
     
 }
 
--(void)HTWCSVConnectionFinished
+-(void)HTWCSVConnectionFinished:(HTWCSVConnection *)connection
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_dozentParser.password forKey:@"Matrikelnummer"];
@@ -439,23 +462,25 @@
     }
 }
 
--(void)HTWStundenplanParserError:(NSString *)errorMessage
+-(void)HTWStundenplanParser:(HTWStundenplanParser *)parser Error:(NSString *)errorMessage
 {
     UIAlertView *alert = [[UIAlertView alloc] init];
     alert.title = @"Fehler";
     alert.message = errorMessage;
     [alert addButtonWithTitle:@"Ok"];
     alert.tag = ALERT_FEHLER;
+    alert.delegate = self;
     [alert show];
 }
 
--(void)HTWCSVConnectionError:(NSString *)errorMessage
+-(void)HTWCSVConnection:(HTWCSVConnection *)connection Error:(NSString *)errorMessage
 {
     UIAlertView *alert = [[UIAlertView alloc] init];
     alert.title = @"Fehler";
     alert.message = errorMessage;
     [alert addButtonWithTitle:@"Ok"];
     alert.tag = ALERT_FEHLER;
+    alert.delegate = self;
     [alert show];
 }
 
