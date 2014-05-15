@@ -114,6 +114,8 @@
         
         _textfield.delegate = self;
         _textfield.tag = indexPath.row;
+        if([_numberOfSecureTextField containsObject:[NSNumber numberWithInteger:_textfield.tag]]) _textfield.secureTextEntry = YES;
+        else _textfield.secureTextEntry = NO;
         sender.detailTextLabel.text = @"";
         [sender addSubview:_textfield];
         [_textfield becomeFirstResponder];

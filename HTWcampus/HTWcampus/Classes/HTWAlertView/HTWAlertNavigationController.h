@@ -26,6 +26,7 @@
 @property int tag;
 
 @property (nonatomic, strong) NSArray *mainTitle;
+@property (nonatomic, strong) NSArray *numberOfSecureTextField;
 
 @property (nonatomic, strong) id <HTWAlertViewDelegate> htwDelegate;
 

@@ -41,6 +41,11 @@
     _htwDelegate = htwDelegate;
 }
 
+-(void)setNumberOfSecureTextField:(NSArray *)numberOfSecureTextField
+{
+    [(HTWAlertViewController*)self.viewControllers[0] setNumberOfSecureTextField:numberOfSecureTextField];
+}
+
 -(void)gotStringsFromTextFields:(NSArray *)strings
 {
     [self dismissViewControllerAnimated:YES completion:^{

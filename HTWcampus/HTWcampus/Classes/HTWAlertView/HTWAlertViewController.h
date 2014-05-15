@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *commitButtonTitle;
 
 @property (nonatomic, strong) NSArray *mainTitle;
+@property (nonatomic, strong) NSArray *numberOfSecureTextField;
 
 @property (nonatomic, strong) id <HTWAlertViewCDelegate> delegate;
 

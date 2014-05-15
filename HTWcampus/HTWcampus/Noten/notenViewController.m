@@ -16,11 +16,14 @@
 #import "notenViewController.h"
 #import "notenDetailViewController.h"
 #import "HTWAppDelegate.h"
+#import "HTWAlertNavigationController.h"
+
+
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
 
-@interface notenViewController () <NSURLSessionDelegate>
+@interface notenViewController () <NSURLSessionDelegate, HTWAlertViewDelegate>
 
 @end
 
@@ -45,11 +48,14 @@
         //[self loadNoten];
     }
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (self.notenspiegel == nil) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        username = [defaults objectForKey:@"LoginNoten"];
+        password = [defaults objectForKey:@"PasswortNoten"];
+        if (username && password) [self loadNoten];
+        else //Ask for user login data
+            [self showLoginPopup];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -61,14 +67,7 @@
     
     self.navigationItem.rightBarButtonItem = refresh;
     
-    if (self.notenspiegel == nil) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        username = [defaults objectForKey:@"LoginNoten"];
-        password = [defaults objectForKey:@"PasswortNoten"];
-        if (username && password) [self loadNoten];
-        else //Ask for user login data
-            [self showLoginPopup];
-    }
+    
 }
 
 - (IBAction)reloadNotenspiegel:(id)sender {
@@ -83,11 +82,20 @@
 }
 
 - (void) showLoginPopup {
-    UIAlertView *loginModal = [[UIAlertView alloc] initWithTitle:@"HISQIS Portal" message:nil delegate:self cancelButtonTitle:@"Abbrechen" otherButtonTitles:@"Anmelden", nil];
-    loginModal.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+//    UIAlertView *loginModal = [[UIAlertView alloc] initWithTitle:@"HISQIS Portal" message:nil delegate:self cancelButtonTitle:@"Abbrechen" otherButtonTitles:@"Anmelden", nil];
+//    loginModal.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+//    loginModal.tag = LOGINMODAL_TAG;
+//    [loginModal dismissWithClickedButtonIndex:0 animated:YES];
+//    [loginModal show];
+    
+    HTWAlertNavigationController *loginModal = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
+    loginModal.htwTitle = @"HISQIS Portal";
+    loginModal.message = @"Bitte geben Sie Ihre Matrikelnummer und das zugehörige HISQIS-Passwort ein.";
+    loginModal.mainTitle = @[@"Login", @"Passwort"];
+    loginModal.numberOfSecureTextField = @[@1];
+    loginModal.htwDelegate = self;
     loginModal.tag = LOGINMODAL_TAG;
-    [loginModal dismissWithClickedButtonIndex:0 animated:YES];
-    [loginModal show];
+    [self presentViewController:loginModal animated:YES completion:^{}];
 }
 
 - (void)loadNoten {
@@ -128,6 +136,19 @@
                         notenStartseiteHTMLParser *startseiteParser = [notenStartseiteHTMLParser new];
                         NSString *asiToken = [startseiteParser parseAsiTokenFromString:loginHtmlResultAsString];
                         NSLog(@"Login erfolgreich. Asi Token: %@", asiToken);
+                        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NotenLoginNieSpeichern"] &&
+                           ![username isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginNoten"]] &&
+                           ![password isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"PasswortNoten"]])
+                        {
+                            UIAlertView *saveAlert = [[UIAlertView alloc] init];
+                            saveAlert.message = @"Soll der Login gespeichert werden?";
+                            [saveAlert addButtonWithTitle:@"Ja"];
+                            [saveAlert addButtonWithTitle:@"Nein"];
+                            [saveAlert addButtonWithTitle:@"Nein, nicht mehr fragen"];
+                            saveAlert.tag = ALERT_SAVE_LOGIN;
+                            saveAlert.delegate = self;
+                            [saveAlert show];
+                        }
                         
                         //send notenspiegel request
                         NSURL *notenUrl =[NSURL URLWithString:[NSString stringWithFormat:@"https://wwwqis.htw-dresden.de/qisserver/rds?state=htmlbesch&stg=121&abschl=84&next=list.vm&asi=%@", asiToken]];
@@ -138,7 +159,7 @@
                                 NSString *notenspiegelHtmlResultAsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                 
 #warning PDF DOWNLOAD
-                                [self savePDFFromHtml:notenspiegelHtmlResultAsString];
+                                // [self savePDFFromHtml:notenspiegelHtmlResultAsString];
                                 
                                 
                                 
@@ -208,48 +229,41 @@
     }];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(alertView.tag == LOGINMODAL_TAG) {
-        if (buttonIndex == 1) {
-            UITextField *usernameTextfield = [alertView textFieldAtIndex:0];
-            UITextField *passwordTextfield = [alertView textFieldAtIndex:1];
+-(void)htwAlert:(HTWAlertNavigationController *)alert gotStringsFromTextFields:(NSArray *)strings
+{
+    if(alert.tag == LOGINMODAL_TAG) {
+            NSString *usernameText = strings[0];
+            NSString *passwordText = strings[1];
             
-            if (usernameTextfield && usernameTextfield.text.length > 0 &&
-                passwordTextfield && passwordTextfield.text.length > 0) {
-                NSLog(@"%@ %@", [[alertView textFieldAtIndex:0] text], [[alertView textFieldAtIndex:0] text]);
-                username = [[alertView textFieldAtIndex:0] text];
-                password = [[alertView textFieldAtIndex:1] text];
+            if (usernameText && usernameText.length > 0 &&
+                passwordText && passwordText.length > 0) {
+                NSLog(@"%@ %@", strings[0], strings[1]);
+                username = usernameText;
+                password = passwordText;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                if(![defaults boolForKey:@"NotenLoginNieSpeichern"])
-                {
-                    UIAlertView *saveAlert = [[UIAlertView alloc] init];
-                    saveAlert.message = @"Soll der Login gespeichert werden?";
-                    [saveAlert addButtonWithTitle:@"Ja"];
-                    [saveAlert addButtonWithTitle:@"Nein"];
-                    [saveAlert addButtonWithTitle:@"Nein, nicht mehr fragen"];
-                    saveAlert.tag = ALERT_SAVE_LOGIN;
-                    saveAlert.delegate = self;
-                    [saveAlert show];
-                }
+                
                 [self loadNoten];
             }
             else {
-                [alertView dismissWithClickedButtonIndex:-1 animated:YES];
                 UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler" message:@"Alle Felder müssen ausgefüllt werden" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
                 errorPopup.alertViewStyle = UIAlertViewStyleDefault;
                 errorPopup.tag = LOGIN_VALIDATION_ERROR_TAG;
+                errorPopup.delegate = self;
                 [errorPopup show];
             }
-        }
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    else if (alertView.tag == LOGIN_ERROR_TAG) {
+    if (alertView.tag == LOGIN_ERROR_TAG) {
         //Try again
         [self showLoginPopup];
     }
-    
+ 
     else if (alertView.tag == LOGIN_VALIDATION_ERROR_TAG) {
-        [self showLoginPopup];
+        if(buttonIndex == 0)
+            [self showLoginPopup];
     }
     
     else if (alertView.tag == ALERT_SAVE_LOGIN)
