@@ -269,7 +269,7 @@
     NSDateFormatter *vereinfacher = [[NSDateFormatter alloc] init];
     [vereinfacher setDateFormat:@"dd.MM.yyyy"];
 
-    NSDate *cDate = [[vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]] dateByAddingTimeInterval:(-60*60*24*[self weekdayFromDate:[NSDate date]]) ];
+    NSDate *cDate = [[vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]] dateByAddingTimeInterval:(-60*60*24*[self weekdayFromDate:self.currentDate]) ];
     for (int i = 0; i < ANZAHLTAGE; i++) {
         int j = i;
         if (i > 4) j = i-5;
