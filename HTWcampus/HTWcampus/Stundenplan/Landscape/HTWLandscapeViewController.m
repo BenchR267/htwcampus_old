@@ -37,6 +37,14 @@
 
 @synthesize Matrnr;
 
+#pragma mark - Lazy Getter
+
+-(NSDate *)currentDate
+{
+    if(!_currentDate) self.currentDate = [NSDate date];
+    return _currentDate;
+}
+
 #pragma mark - Support methods for Orientation and Swipe
 
 - (void)orientationChanged:(NSNotification *)notification
@@ -125,9 +133,9 @@
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
     
-    int weekday = [self weekdayFromDate:[NSDate date]];
+    int weekday = [self weekdayFromDate:self.currentDate];
     
-    NSDate *letzterMontag = [[nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]] dateByAddingTimeInterval:-60*60*24*weekday ];
+    NSDate *letzterMontag = [[nurTag dateFromString:[nurTag stringFromDate:self.currentDate]] dateByAddingTimeInterval:-60*60*24*weekday ];
     NSDate *zweiWochenNachDemMontag = [letzterMontag dateByAddingTimeInterval:60*60*24*13];
     
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
@@ -178,6 +186,32 @@
     [nurTag setDateFormat:@"dd.MM.yyyy"];
     NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    for (Stunde *aktuell in self.angezeigteStunden) {
+        if(!aktuell.anzeigen.boolValue) continue;
+        HTWStundenplanButtonForLesson *button = [[HTWStundenplanButtonForLesson alloc] initWithLesson:aktuell andPortait:NO andCurrentDate:self.currentDate];
+        button.tag = -1;
+        
+        UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
+        longPressGR.minimumPressDuration = 0.1;
+        [button addGestureRecognizer:longPressGR];
+        
+        if ([[NSDate date] compare:[button.lesson.anfang dateByAddingTimeInterval:-[defaults floatForKey:@"markierSliderValue"]*60]] == NSOrderedDescending &&
+            [[NSDate date] compare:button.lesson.ende] == NSOrderedAscending) {
+            [button setNow:YES];
+        }
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
+        
+        UIView *shadow = [[UIView alloc] initWithFrame:button.frame];
+        shadow.layer.cornerRadius = button.layer.cornerRadius;
+        shadow.backgroundColor = [UIColor HTWGrayColor];
+        shadow.alpha = 0.3;
+        shadow.tag = -1;
+        [self.scrollView addSubview:shadow];
+        [self.scrollView addSubview:button];
+    }
+    
     if ([[NSDate date] compare:[today dateByAddingTimeInterval:7*60*60+30*60]] == NSOrderedDescending &&
         [[NSDate date] compare:[today dateByAddingTimeInterval:20*60*60]] == NSOrderedAscending)
     {
@@ -208,33 +242,6 @@
         [self.scrollView addSubview:lineView2];
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    for (Stunde *aktuell in self.angezeigteStunden) {
-        if(!aktuell.anzeigen.boolValue) continue;
-        HTWStundenplanButtonForLesson *button = [[HTWStundenplanButtonForLesson alloc] initWithLesson:aktuell andPortait:NO];
-        button.tag = -1;
-        
-        UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressed:)];
-        longPressGR.minimumPressDuration = 0.1;
-        [button addGestureRecognizer:longPressGR];
-        
-        if ([[NSDate date] compare:[button.lesson.anfang dateByAddingTimeInterval:-[defaults floatForKey:@"markierSliderValue"]*60]] == NSOrderedDescending &&
-            [[NSDate date] compare:button.lesson.ende] == NSOrderedAscending) {
-            [button setNow:YES];
-        }
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
-        
-        UIView *shadow = [[UIView alloc] initWithFrame:button.frame];
-        shadow.layer.cornerRadius = button.layer.cornerRadius;
-        shadow.backgroundColor = [UIColor HTWGrayColor];
-        shadow.alpha = 0.3;
-        shadow.tag = -1;
-        [self.scrollView addSubview:shadow];
-        [self.scrollView addSubview:button];
-    }
-//    self.scrollView.bounds = self.scrollView.frame;
-    
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
@@ -244,7 +251,6 @@
 
 -(void)loadLabels
 {
-//    float xWerteTage[10] = {0.0,103.0,206.0,309.0,412.0,576.0,679.0,782.0,885.0,988.0};
     CGFloat yWertTage = 24;
     NSArray *stringsTage = [NSArray arrayWithObjects:@"Montag", @"Dienstag", @"Mittwoch", @"Donnerstag", @"Freitag", nil];
     
@@ -279,7 +285,7 @@
     
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
-    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
+    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:self.currentDate]];
     
     NSArray *vonStrings = @[@"07:30", @"09:20", @"11:10", @"13:10", @"15:00", @"16:50", @"18:30"];
     NSArray *bisStrings = @[@"09:00", @"10:50", @"12:40", @"14:40", @"16:30", @"18:20", @"20:00"];
@@ -329,16 +335,16 @@
     [vereinfacher setDateFormat:@"dd.MM.yyyy"];
     [vereinfacher setTimeZone:[NSTimeZone timeZoneWithName:@"CET"]];
     
-    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:[NSDate date]] weekday] - 2;
+    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:self.currentDate] weekday] - 2;
     if(weekday == -1) weekday=6;
-    NSDate *today = [vereinfacher dateFromString:[vereinfacher stringFromDate:[NSDate date]]];
+    NSDate *today = [vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]];
     
-    NSDate *montag = [[vereinfacher dateFromString:[vereinfacher stringFromDate:[NSDate date]]] dateByAddingTimeInterval:(-60*60*24*weekday) ];
+    NSDate *montag = [[vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]] dateByAddingTimeInterval:(-60*60*24*weekday) ];
     NSDate *dienstag = [montag dateByAddingTimeInterval:60*60*24];
     NSDate *mittwoch = [dienstag dateByAddingTimeInterval:60*60*24];
     NSDate *donnerstag = [mittwoch dateByAddingTimeInterval:60*60*24];
     NSDate *freitag = [donnerstag dateByAddingTimeInterval:60*60*24];
-    NSDate *montag2 = [[vereinfacher dateFromString:[vereinfacher stringFromDate:[NSDate date]]] dateByAddingTimeInterval:((-60*60*24*weekday)+60*60*24*7) ];
+    NSDate *montag2 = [[vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]] dateByAddingTimeInterval:((-60*60*24*weekday)+60*60*24*7) ];
     NSDate *dienstag2 = [montag2 dateByAddingTimeInterval:60*60*24];
     NSDate *mittwoch2 = [dienstag2 dateByAddingTimeInterval:60*60*24];
     NSDate *donnerstag2 = [mittwoch2 dateByAddingTimeInterval:60*60*24];

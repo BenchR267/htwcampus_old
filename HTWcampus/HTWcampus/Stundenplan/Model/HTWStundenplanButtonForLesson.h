@@ -15,6 +15,6 @@
 @property (nonatomic) BOOL portait;
 @property (nonatomic) BOOL now;
 
--(id)initWithLesson:(Stunde *)lessonForButton andPortait:(BOOL)portaitForButton;
+-(id)initWithLesson:(Stunde *)lessonForButton andPortait:(BOOL)portaitForButton andCurrentDate:(NSDate*)date;
 
 @end

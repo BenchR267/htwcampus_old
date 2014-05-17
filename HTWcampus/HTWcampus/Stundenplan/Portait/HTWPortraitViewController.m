@@ -30,6 +30,7 @@
 #define ALERT_ERROR 2
 #define ALERT_NEW 3
 #define DEPTH_FOR_PARALLAX 10
+#define DATEPICKER_TAG 222
 
 @interface HTWPortraitViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIScrollViewDelegate, HTWAlertViewDelegate>
 {
@@ -37,6 +38,7 @@
     BOOL isPortrait;
     
     HTWAppDelegate *appdelegate;
+    BOOL datePickerIsVisible;
 }
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *angezeigteStunden;
@@ -54,6 +56,14 @@
 
 
 @implementation HTWPortraitViewController
+
+#pragma mark - Lazy Getter
+
+-(NSDate *)currentDate
+{
+    if(!_currentDate) self.currentDate = [NSDate date];
+    return _currentDate;
+}
 
 #pragma mark - Interface Orientation
 
@@ -106,8 +116,31 @@
              object:nil];
     isPortrait = YES;
     
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addSegue)];
-    if(!_raumNummer) [self.navigationItem setRightBarButtonItems:@[add, self.navigationItem.rightBarButtonItem]];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"]
+                                                            style:UIBarButtonItemStyleBordered
+                                                           target:self
+                                                           action:@selector(addSegue)];
+    UIBarButtonItem *changeDate = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender"]
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(changeDatePressed:)];
+    
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(shareTestButtonPressed:)];
+    
+    if(!_raumNummer)
+    {
+        [self.navigationItem setRightBarButtonItems:@[add, shareButton]];
+        [self.navigationItem setLeftBarButtonItems:@[self.navigationItem.leftBarButtonItem, changeDate]];
+    }
+    else
+    {
+        [self.navigationItem setRightBarButtonItem:changeDate];
+    }
+    
+    
     
     if(!_raumNummer) Matrnr = [[NSUserDefaults standardUserDefaults] objectForKey:@"Matrikelnummer"];
     if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""]))) {
@@ -163,14 +196,8 @@
         [self updateAngezeigteStunden];
         
         if ([_angezeigteStunden count] == 0) {
-//            HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
-//            alert.htwTitle = @"Hallo";
-//            alert.message = @"Bitte geben Sie Ihre Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein, damit der Stundenplan geladen werden kann.";
-//            alert.mainTitle = @[@"Name (optional)",@"Kennung"];
-//            alert.htwDelegate = self;
-//            alert.tag = ALERT_EINGEBEN;
-//            [self presentViewController:alert animated:NO completion:^{}];
             NSLog(@"Keine Stunden gefunden.");
+            [self setUpInterface];
         }
         else
         {
@@ -501,7 +528,7 @@
     
     for (Stunde *aktuell in self.angezeigteStunden) {
         if (!aktuell.anzeigen.boolValue) continue;
-        HTWStundenplanButtonForLesson *button = [[HTWStundenplanButtonForLesson alloc] initWithLesson:aktuell andPortait:YES];
+        HTWStundenplanButtonForLesson *button = [[HTWStundenplanButtonForLesson alloc] initWithLesson:aktuell andPortait:YES andCurrentDate:self.currentDate];
         button.tag = -1;
         UIView *shadow = [[UIView alloc] initWithFrame:button.frame];
         shadow.backgroundColor = [UIColor HTWGrayColor];
@@ -531,7 +558,8 @@
     
     NSArray *wochentage = @[@"Montag",@"Dienstag",@"Mittwoch",@"Donnerstag",@"Freitag",@"Samstag",@"Sonntag"];
     
-    int weekday = [self weekdayFromDate:[NSDate date]];
+    NSDate *cDate = self.currentDate.copy;
+    int weekday = [self weekdayFromDate:self.currentDate];
     
     int wochentagePointer = weekday;
     
@@ -545,16 +573,25 @@
         this.tag = -1;
         this.textColor = [UIColor HTWWhiteColor];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
-        
         this.text = wochentage[wochentagePointer];
+        
+        UILabel *thisDate = [[UILabel alloc] initWithFrame:CGRectMake(this.frame.origin.x+this.frame.size.width/4, this.frame.origin.y-10, this.frame.size.width/2, 15)];
+        thisDate.textAlignment = NSTextAlignmentCenter;
+        thisDate.font = [UIFont HTWVerySmallFont];
+        thisDate.tag = -1;
+        thisDate.textColor = [UIColor HTWWhiteColor];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
+        thisDate.text = [self getShortDateFromDate:cDate];
         
         wochentagePointer++;
         if (wochentagePointer > wochentage.count-1) {
             wochentagePointer = 0;
         }
+        cDate = [cDate dateByAddingTimeInterval:60*60*24];
         
         
         [labels addObject:this];
+        [labels addObject:thisDate];
     }
     
     UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50)];
@@ -581,7 +618,7 @@
 {
     NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
     [nurTag setDateFormat:@"dd.MM.yyyy"];
-    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
+    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:self.currentDate]];
     
     
     UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 45, _scrollView.contentSize.height+700)];
@@ -624,6 +661,7 @@
     
     [self.scrollView addSubview:zeitenView];
     
+    today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
     if ([[NSDate date] compare:[today dateByAddingTimeInterval:7*60*60+30*60]] == NSOrderedDescending &&
         [[NSDate date] compare:[today dateByAddingTimeInterval:22*60*60]] == NSOrderedAscending)
     {
@@ -765,6 +803,71 @@
     [alert show];
 }
 
+-(IBAction)changeDatePressed:(id)sender
+{
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"]
+                                                            style:UIBarButtonItemStyleBordered
+                                                           target:self
+                                                           action:@selector(addSegue)];
+    UIBarButtonItem *changeDate = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender"]
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(changeDatePressed:)];
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(shareTestButtonPressed:)];
+    if(!datePickerIsVisible)
+    {
+        datePickerIsVisible = YES;
+        UIDatePicker* picker = [[UIDatePicker alloc] init];
+        picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        picker.datePickerMode = UIDatePickerModeDate;
+        picker.tag = DATEPICKER_TAG;
+        picker.backgroundColor = [UIColor HTWBackgroundColor];
+        
+        [picker addTarget:self action:@selector(dueDateChanged:) forControlEvents:UIControlEventValueChanged];
+        picker.frame = CGRectMake(0.0, self.view.frame.size.height - 460, self.view.frame.size.width, 460);
+        
+        picker.date = self.currentDate;
+        
+        [self.view addSubview:picker];
+        [self.view bringSubviewToFront:picker];
+        self.scrollView.userInteractionEnabled = NO;
+        UIBarButtonItem *heute = [[UIBarButtonItem alloc] initWithTitle:@"Heute" style:UIBarButtonItemStyleBordered target:self action:@selector(setToday)];
+        if(!_raumNummer) [self.navigationItem setRightBarButtonItems:@[heute] animated:YES];
+        else [self.navigationItem setRightBarButtonItems:@[changeDate, heute] animated:YES];
+    }
+    else
+    {
+        [[self.view viewWithTag:DATEPICKER_TAG] removeFromSuperview];
+        self.scrollView.userInteractionEnabled = YES;
+        datePickerIsVisible = NO;
+        
+        
+        if(!_raumNummer)
+        {
+            [self.navigationItem setRightBarButtonItems:@[add, shareButton] animated:YES];
+        }
+        else
+        {
+            [self.navigationItem setRightBarButtonItems:@[changeDate] animated:YES];
+        }
+    }
+}
+
+-(void)setToday
+{
+    self.currentDate = [NSDate date];
+    [(UIDatePicker*)[self.view viewWithTag:DATEPICKER_TAG] setDate:[NSDate date]];
+    [self dueDateChanged:(UIDatePicker*)[self.view viewWithTag:DATEPICKER_TAG]];
+}
+
+-(void) dueDateChanged:(UIDatePicker *)sender {
+    self.currentDate = sender.date;
+    [self viewWillAppear:YES];
+}
+
 #pragma mark - Hilfsfunktionen
 
 -(void)updateAngezeigteStunden
@@ -778,16 +881,16 @@
     
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     
-    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
-    NSDate *theDayAfterTomorrow = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
+    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:self.currentDate]];
+    NSDate *theLastShownDate = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Stunde"
                                    inManagedObjectContext:_context]];
     NSPredicate *pred;
     
-    if(Matrnr) pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", Matrnr, today, theDayAfterTomorrow];
-    else pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", _raumNummer, today, theDayAfterTomorrow];
+    if(Matrnr) pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", Matrnr, today, theLastShownDate];
+    else pred = [NSPredicate predicateWithFormat:@"(student.matrnr = %@) && anfang > %@ && ende < %@", _raumNummer, today, theLastShownDate];
     [request setPredicate:pred];
     
     // FetchRequest-Ergebnisse
@@ -865,6 +968,13 @@
     return weekday;
 }
 
+-(NSString*)getShortDateFromDate:(NSDate*)date
+{
+    NSDateFormatter *dateF = [NSDateFormatter new];
+    [dateF setDateFormat:@"dd.MM"];
+    return [dateF stringFromDate:date];
+}
+
 -(BOOL)isMatrikelnummer:(NSString*)string
 {
     if([string isEqualToString:@""]) return NO;
@@ -911,6 +1021,7 @@
             [segue.destinationViewController setMatrnr:self.raumNummer];
             [(HTWLandscapeViewController*)segue.destinationViewController setRaum:YES];
         }
+        [(HTWLandscapeViewController*)segue.destinationViewController setCurrentDate:self.currentDate];
     }
     else if ([segue.identifier isEqualToString:@"showEditDetail"])
     {

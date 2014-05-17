@@ -78,13 +78,15 @@
         
         [_context save:nil];
         [self updateArray];
-        [UIView transitionWithView:self.tableView
-                          duration:0.3f
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        animations:^(void) {
-                            [self.tableView reloadData];
-                        } completion:NULL];
-    } 
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+//        [UIView transitionWithView:self.tableView
+//                          duration:0.3f
+//                           options:UIViewAnimationOptionTransitionCrossDissolve
+//                        animations:^(void) {
+//                            [self.tableView reloadData];
+//                        } completion:NULL];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -229,7 +231,7 @@
     }
     
     _array = objectsFormed;
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 #pragma mark - Switch Action

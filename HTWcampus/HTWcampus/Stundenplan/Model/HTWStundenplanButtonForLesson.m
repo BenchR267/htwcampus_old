@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UILabel *kurzel;
 @property (nonatomic, strong) UILabel *raum;
 @property (nonatomic, strong) UILabel *typ;
+@property (nonatomic, strong) NSDate *currentDate;
 
 @end
 
@@ -36,10 +37,10 @@
 
 #pragma mark - INIT
 
--(id)initWithLesson:(Stunde *)lessonForButton andPortait:(BOOL)portaitForButton
+-(id)initWithLesson:(Stunde *)lessonForButton andPortait:(BOOL)portaitForButton andCurrentDate:(NSDate*)date
 {
     self = [super init];
-    
+    [self setCurrentDate:date];
     [self setPortait:portaitForButton];
     [self setLesson:lessonForButton];
     return self;
@@ -80,7 +81,7 @@
     
     
     if(_portait){
-        NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
+        NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:self.currentDate]];
         
         NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
         dayComponent.day = 1;
@@ -103,7 +104,7 @@
     }
     else {
         
-        int weekday = [self weekdayFromDate:[NSDate date]];
+        int weekday = [self weekdayFromDate:self.currentDate];
         
         NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
         dayComponent.day = 1;
@@ -112,7 +113,7 @@
         
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
         
-        NSDate *montag = [[nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]] dateByAddingTimeInterval:(-60*60*24*weekday) ];
+        NSDate *montag = [[nurTag dateFromString:[nurTag stringFromDate:self.currentDate]] dateByAddingTimeInterval:(-60*60*24*weekday) ];
         
         NSMutableArray *tage = [[NSMutableArray alloc] init];
         [tage addObject:montag];

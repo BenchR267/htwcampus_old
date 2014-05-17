@@ -13,4 +13,6 @@
 @property (nonatomic, strong) NSString *Matrnr;
 @property BOOL raum;
 
+@property (nonatomic, strong) NSDate *currentDate;
+
 @end

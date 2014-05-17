@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSString *raumNummer; // Nur für Raum..
 
+@property (nonatomic, strong) NSDate *currentDate; // Um ein bestimmtes Datum anzeigen zu können
+
 @end

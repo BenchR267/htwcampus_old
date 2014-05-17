@@ -135,15 +135,16 @@
             [_context deleteObject:raum];
         }
         [_context save:nil];
-        
         [self updateZimmerArray];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        [UIView transitionWithView:self.tableView
-                          duration:0.3f
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        animations:^(void) {
-                            [self.tableView reloadData];
-                        } completion:NULL];
+        
+//        [UIView transitionWithView:self.tableView
+//                          duration:0.3f
+//                           options:UIViewAnimationOptionTransitionCrossDissolve
+//                        animations:^(void) {
+//                            [self.tableView reloadData];
+//                        } completion:NULL];
         
     }
 }
