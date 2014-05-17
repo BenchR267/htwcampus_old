@@ -266,6 +266,10 @@
     heuteMorgenLabelsView.backgroundColor = [UIColor HTWDarkGrayColor];
     heuteMorgenLabelsView.tag = -1;
     
+    NSDateFormatter *vereinfacher = [[NSDateFormatter alloc] init];
+    [vereinfacher setDateFormat:@"dd.MM.yyyy"];
+
+    NSDate *cDate = [[vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]] dateByAddingTimeInterval:(-60*60*24*[self weekdayFromDate:[NSDate date]]) ];
     for (int i = 0; i < ANZAHLTAGE; i++) {
         int j = i;
         if (i > 4) j = i-5;
@@ -280,6 +284,21 @@
         label.font = [UIFont HTWBaseFont];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:label depth:DEPTH_FOR_PARALLAX];
         [heuteMorgenLabelsView addSubview:label];
+        
+        UILabel *thisDate = [[UILabel alloc] initWithFrame:CGRectMake(label.frame.origin.x+label.frame.size.width/4, label.frame.origin.y-10, label.frame.size.width/2, 15)];
+        thisDate.textAlignment = NSTextAlignmentCenter;
+        thisDate.font = [UIFont HTWVerySmallFont];
+        thisDate.tag = -1;
+        thisDate.textColor = [UIColor HTWWhiteColor];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
+        thisDate.text = [self getShortDateFromDate:cDate];
+        [heuteMorgenLabelsView addSubview:thisDate];
+        
+        cDate = [cDate dateByAddingTimeInterval:60*60*24];
+        if([self weekdayFromDate:cDate] == 5)
+        {
+            cDate = [cDate dateByAddingTimeInterval:60*60*24*2];
+        }
     }
     [_scrollView addSubview:heuteMorgenLabelsView];
     
@@ -432,6 +451,13 @@
     if(weekday == -1) weekday=6;
     
     return weekday;
+}
+
+-(NSString*)getShortDateFromDate:(NSDate*)date
+{
+    NSDateFormatter *dateF = [NSDateFormatter new];
+    [dateF setDateFormat:@"dd.MM"];
+    return [dateF stringFromDate:date];
 }
 
 - (void)registerEffectForView:(UIView *)aView depth:(CGFloat)depth;
