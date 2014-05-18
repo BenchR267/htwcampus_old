@@ -16,6 +16,7 @@
 #import "MensaDetailViewController.h"
 #import "HTWAppDelegate.h"
 #import "UIImage+Resize.h"
+#import "UIFont+HTW.h"
 #import "UIColor+HTW.h"
 #import "HTWMensaSpeiseTableViewCell.h"
 #import "HTWMensaXMLParser.h"
@@ -200,7 +201,10 @@
 
 #pragma mark - Table view data source
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(!isLoading && mensaDay == 0 && self.allMensasOfToday.count == 0) return 120;
+    else if(!isLoading && mensaDay == 1 && self.allMensasOfTomorrow.count == 0) return 120;
     return 64.0;
 }
 
@@ -216,10 +220,12 @@
     if (!isLoading) {
         if (mensaDay == 0) {
             NSLog(@"Zeige HEUTIGEN Speiseplan");
+            if(self.allMensasOfToday.count == 0) return 1;
             return [[self allMensasOfToday] count];
         }
         else {
             NSLog(@"Zeige MORGIGEN Speiseplan");
+            if(self.allMensasOfTomorrow.count == 0) return 1;
             return [[self allMensasOfTomorrow] count];
         }
     }
@@ -233,20 +239,39 @@
     static NSString *LoadingCellIdentifier = @"MensaLoading";
     
     HTWMensaSpeiseTableViewCell *cell;
-    if (!isLoading) {
+    
+    if(!isLoading && mensaDay == 0 && self.allMensasOfToday.count == 0)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier forIndexPath:indexPath];
+        cell.textLabel.numberOfLines = 3;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.font = [UIFont HTWTableViewCellFont];
+        cell.textLabel.textColor = [UIColor HTWTextColor];
+        cell.textLabel.text = @"Leider haben heute keine Mensen offen..";
+    }
+    else if(!isLoading && mensaDay == 1 && self.allMensasOfTomorrow.count == 0)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier forIndexPath:indexPath];
+        cell.textLabel.numberOfLines = 3;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.font = [UIFont HTWTableViewCellFont];
+        cell.textLabel.textColor = [UIColor HTWTextColor];
+        cell.textLabel.text = @"Leider haben morgen keine Mensen offen..";
+    }
+    
+    else if (!isLoading && ((mensaDay == 0 && self.allMensasOfToday.count) || (mensaDay == 1 && self.allMensasOfTomorrow.count))) {
         cell = (HTWMensaSpeiseTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         NSString *currentMensaName;
         
-        if (mensaDay == 0) {
+        if (mensaDay == 0)
             currentMensaName = _allMensasOfToday[indexPath.row][0][@"mensa"];
-        }
-        else {
+        else
             currentMensaName = _allMensasOfTomorrow[indexPath.row][0][@"mensa"];
-        }
+        
     
         [cell.textLabel setText:currentMensaName];
         [cell.detailTextLabel setText:[self checkWorkingHours:currentMensaName]];
-    
+        
         //Add mensa image
         UIImage *currentMensaImage = [UIImage imageNamed:[self getMensaImageNameForName:currentMensaName]];
         cell.imageView.image = [currentMensaImage thumbnailImage:128 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationDefault];
@@ -274,56 +299,5 @@
         }
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

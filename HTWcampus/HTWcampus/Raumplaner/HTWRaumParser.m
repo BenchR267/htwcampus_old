@@ -10,6 +10,8 @@
 #import "HTWTabParser.h"
 #import "HTWAppDelegate.h"
 
+#import "NSDate+HTW.h"
+
 #define kURL @"http://www2.htw-dresden.de/~rawa/cgi-bin/plan/plan_quelle_app.txt"
 
 @interface HTWRaumParser () <HTWTabParserDelegate>
@@ -183,16 +185,9 @@
     return erg;
 }
 
--(NSDate*)nurTagFromDate:(NSDate*)date
-{
-    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-    [nurTag setDateFormat:@"dd.MM.yyyy"];
-    return [nurTag dateFromString:[nurTag stringFromDate:date]];
-}
-
 -(BOOL)isDate1:(NSDate*)date1 onSameDayAsDate2:(NSDate*)date2
 {
-    return ([[self nurTagFromDate:date1] compare:[self nurTagFromDate:date2]] == NSOrderedSame);
+    return ([date1.getDayOnly compare:date2.getDayOnly] == NSOrderedSame);
 }
 
 -(int)getWeekNumberFromDate:(NSDate*)date

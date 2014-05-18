@@ -107,6 +107,7 @@
 		E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */; };
 		E6966E831921473900EFB998 /* HTWPruefungsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */; };
 		E6966E8F19214DC300EFB998 /* HTWNeueStudiengruppe.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */; };
+		E69BB0CC1928F89B002E5757 /* NSDate+HTW.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */; };
 		E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */; };
 		E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */; };
 		E6B771EF191C370200E9A2A5 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771E9191C370200E9A2A5 /* page1.png */; };
@@ -297,6 +298,8 @@
 		E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsDetailTableViewController.m; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.m"; sourceTree = "<group>"; };
 		E6966E8D19214DC300EFB998 /* HTWNeueStudiengruppe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNeueStudiengruppe.h; path = "Prüfungsplaner/HTWNeueStudiengruppe.h"; sourceTree = "<group>"; };
 		E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNeueStudiengruppe.m; path = "Prüfungsplaner/HTWNeueStudiengruppe.m"; sourceTree = "<group>"; };
+		E69BB0CA1928F89B002E5757 /* NSDate+HTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+HTW.h"; path = "Categories/NSDate+HTW.h"; sourceTree = "<group>"; };
+		E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+HTW.m"; path = "Categories/NSDate+HTW.m"; sourceTree = "<group>"; };
 		E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageContentViewController.h; path = PageViewFirstLaunch/HTWPageContentViewController.h; sourceTree = "<group>"; };
 		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; };
 		E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageViewController.h; path = PageViewFirstLaunch/HTWPageViewController.h; sourceTree = "<group>"; };
@@ -518,6 +521,8 @@
 				6D753A5C1917BBED00C6BAA1 /* UIColor+HTW.m */,
 				6D753A721917CC1100C6BAA1 /* UIFont+HTW.h */,
 				6D753A731917CC1100C6BAA1 /* UIFont+HTW.m */,
+				E69BB0CA1928F89B002E5757 /* NSDate+HTW.h */,
+				E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -977,6 +982,7 @@
 				E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */,
 				6D94EA3819152FDB00872FC8 /* CSSPartMatcher.m in Sources */,
 				6D753A741917CC1100C6BAA1 /* UIFont+HTW.m in Sources */,
+				E69BB0CC1928F89B002E5757 /* NSDate+HTW.m in Sources */,
 				E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */,
 				E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D753A611917C54B00C6BAA1 /* HTWMensaSpeiseTableViewCell.m in Sources */,

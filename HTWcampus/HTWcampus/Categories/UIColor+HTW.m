@@ -39,6 +39,11 @@
     return [UIColor colorWithRed:65/255.f green:104/255.f blue:111/255.f alpha:1.0f];
 }
 
++ (UIColor *) HTWGreenColor
+{
+    return [UIColor colorWithRed:115/255.f green:145/255.f blue:51/255.f alpha:1.0f];
+}
+
 #pragma mark Context
 
 + (UIColor *) HTWBackgroundColor {

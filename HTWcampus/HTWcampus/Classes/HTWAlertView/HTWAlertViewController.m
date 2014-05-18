@@ -87,7 +87,7 @@
         else cell.textLabel.text = @"Bestätigen";
         cell.textLabel.font = [UIFont HTWLargeFont];
         cell.textLabel.textColor = [UIColor HTWWhiteColor];
-        cell.backgroundColor = [UIColor HTWRedColor];
+        cell.backgroundColor = [UIColor HTWGreenColor];
         UILongPressGestureRecognizer *longGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self
                                                                                              action:@selector(commitPressed:)];
         longGR.minimumPressDuration = 0.01;

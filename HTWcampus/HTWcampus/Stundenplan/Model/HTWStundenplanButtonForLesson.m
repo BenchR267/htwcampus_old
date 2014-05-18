@@ -8,8 +8,10 @@
 
 #import "HTWStundenplanButtonForLesson.h"
 #import <QuartzCore/QuartzCore.h>
+
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
+#import "NSDate+HTW.h"
 
 #define CornerRadius 5
 #define ANZAHLTAGE_LANDSCAPE 10
@@ -74,14 +76,9 @@
     height = (CGFloat)[lesson.ende timeIntervalSinceDate:lesson.anfang] / 60 * PixelPerMin;
     if (_portait) width = 108;
     else width = 90;
-
-    
-    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-    [nurTag setDateFormat:@"dd.MM.yyyy"];
-    
     
     if(_portait){
-        NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:self.currentDate]];
+        NSDate *today = self.currentDate.getDayOnly;
         
         NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
         dayComponent.day = 1;
@@ -113,7 +110,7 @@
         
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
         
-        NSDate *montag = [[nurTag dateFromString:[nurTag stringFromDate:self.currentDate]] dateByAddingTimeInterval:(-60*60*24*weekday) ];
+        NSDate *montag = [self.currentDate.getDayOnly dateByAddingTimeInterval:(-60*60*24*weekday) ];
         
         NSMutableArray *tage = [[NSMutableArray alloc] init];
         [tage addObject:montag];
@@ -130,7 +127,7 @@
             if ([self isSameDayWithDate1:lesson.anfang date2:tage[i]]) {
                 x = 1+i*103;
                 if(i > 4) x += 61;
-                y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[tage[i] dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
+                y = 45 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[tage[i] dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
                 break;
             }
         }

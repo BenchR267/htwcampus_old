@@ -23,6 +23,7 @@
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 #import "UIImage+Resize.h"
+#import "NSDate+HTW.h"
 
 #define PixelPerMin 0.5
 #define ALERT_EINGEBEN 0
@@ -359,7 +360,7 @@
             
             
         }
-        else if([clickedButtonTitle isEqualToString:@"ICS (Mac, Windows, iPhone)"])
+        else if([clickedButtonTitle isEqualToString:@"ICS (Mac, Windows)"])
         {
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
             [request setEntity:[NSEntityDescription entityForName:@"Stunde"
@@ -559,7 +560,7 @@
     NSArray *wochentage = @[@"Montag",@"Dienstag",@"Mittwoch",@"Donnerstag",@"Freitag",@"Samstag",@"Sonntag"];
     
     NSDate *cDate = self.currentDate.copy;
-    int weekday = [self weekdayFromDate:self.currentDate];
+    int weekday = [self.currentDate getWeekDay];
     
     int wochentagePointer = weekday;
     
@@ -581,7 +582,7 @@
         thisDate.tag = -1;
         thisDate.textColor = [UIColor HTWWhiteColor];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
-        thisDate.text = [self getShortDateFromDate:cDate];
+        thisDate.text = [cDate getAsStringWithFormat:@"dd.MM"];
         
         wochentagePointer++;
         if (wochentagePointer > wochentage.count-1) {
@@ -616,9 +617,7 @@
 
 -(void)reloadZeitenViewAndClockLine
 {
-    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-    [nurTag setDateFormat:@"dd.MM.yyyy"];
-    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:self.currentDate]];
+    NSDate *today = self.currentDate.getDayOnly;
     
     
     UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 45, _scrollView.contentSize.height+700)];
@@ -661,7 +660,7 @@
     
     [self.scrollView addSubview:zeitenView];
     
-    today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
+    today = [NSDate date].getDayOnly;
     if ([[NSDate date] compare:[today dateByAddingTimeInterval:7*60*60+30*60]] == NSOrderedDescending &&
         [[NSDate date] compare:[today dateByAddingTimeInterval:22*60*60]] == NSOrderedAscending)
     {
@@ -798,7 +797,7 @@
                                                     message:@"In welcher Form wollen Sie den Stundenplan exportieren oder teilen?"
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Bild", @"CSV (Google Kalender)", @"ICS (Mac, Windows, iPhone)", nil];
+                                          otherButtonTitles:@"Bild", @"CSV (Google Kalender)", @"ICS (Mac, Windows)", nil];
     alert.tag = ALERT_EXPORT;
     [alert show];
 }
@@ -872,16 +871,13 @@
 
 -(void)updateAngezeigteStunden
 {
-    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-    [nurTag setDateFormat:@"dd.MM.yyyy"];
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
     dayComponent.day = [defaults integerForKey:@"tageInPortrait"];
     
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     
-    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:self.currentDate]];
+    NSDate *today = self.currentDate.getDayOnly;
     NSDate *theLastShownDate = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -957,22 +953,6 @@
 	
 	[aView addMotionEffect:effectX];
 	[aView addMotionEffect:effectY];
-}
-
--(int)weekdayFromDate:(NSDate*)date
-{
-    // Montag : 0, Dienstag : 1, ....., Sonntag : 6
-    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
-    if(weekday == -1) weekday=6;
-    
-    return weekday;
-}
-
--(NSString*)getShortDateFromDate:(NSDate*)date
-{
-    NSDateFormatter *dateF = [NSDateFormatter new];
-    [dateF setDateFormat:@"dd.MM"];
-    return [dateF stringFromDate:date];
 }
 
 -(BOOL)isMatrikelnummer:(NSString*)string

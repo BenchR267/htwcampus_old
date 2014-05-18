@@ -110,24 +110,24 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Koe-Fs-hil">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="45" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z52-Jj-Pv6">
-                                <rect key="frame" x="60" y="0.0" width="508" height="320"/>
+                                <rect key="frame" x="45" y="0.0" width="523" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Koe-Fs-hil" firstAttribute="leading" secondItem="7xG-Z3-kFR" secondAttribute="leading" id="3Bg-Jy-ftY"/>
-                            <constraint firstItem="Koe-Fs-hil" firstAttribute="top" secondItem="z52-Jj-Pv6" secondAttribute="top" id="63J-W1-FqM"/>
-                            <constraint firstItem="z52-Jj-Pv6" firstAttribute="leading" secondItem="Koe-Fs-hil" secondAttribute="trailing" id="Ae1-SV-jha"/>
-                            <constraint firstAttribute="trailing" secondItem="z52-Jj-Pv6" secondAttribute="trailing" id="dLN-6T-TRD"/>
-                            <constraint firstAttribute="bottom" secondItem="Koe-Fs-hil" secondAttribute="bottom" id="gdv-vp-qEk"/>
-                            <constraint firstItem="z52-Jj-Pv6" firstAttribute="leading" secondItem="7xG-Z3-kFR" secondAttribute="leading" constant="60" id="i9n-QQ-08G"/>
-                            <constraint firstItem="Koe-Fs-hil" firstAttribute="top" secondItem="7xG-Z3-kFR" secondAttribute="top" id="o8o-Tv-bww"/>
-                            <constraint firstItem="Koe-Fs-hil" firstAttribute="bottom" secondItem="z52-Jj-Pv6" secondAttribute="bottom" id="pVl-6g-cF7"/>
+                            <constraint firstItem="z52-Jj-Pv6" firstAttribute="top" secondItem="Koe-Fs-hil" secondAttribute="top" id="7Jn-h2-4pg"/>
+                            <constraint firstItem="Koe-Fs-hil" firstAttribute="leading" secondItem="7xG-Z3-kFR" secondAttribute="leading" id="JQ8-Vs-fLM"/>
+                            <constraint firstAttribute="bottom" secondItem="Koe-Fs-hil" secondAttribute="bottom" id="NWt-zX-GbA"/>
+                            <constraint firstItem="z52-Jj-Pv6" firstAttribute="leading" secondItem="Koe-Fs-hil" secondAttribute="trailing" id="RI1-ll-60h"/>
+                            <constraint firstAttribute="trailing" secondItem="z52-Jj-Pv6" secondAttribute="trailing" id="dbr-Xd-5tz"/>
+                            <constraint firstItem="Koe-Fs-hil" firstAttribute="top" secondItem="7xG-Z3-kFR" secondAttribute="top" id="j0y-Ve-dib"/>
+                            <constraint firstItem="z52-Jj-Pv6" firstAttribute="bottom" secondItem="Koe-Fs-hil" secondAttribute="bottom" id="oeB-mq-Tfb"/>
+                            <constraint firstItem="z52-Jj-Pv6" firstAttribute="leading" secondItem="7xG-Z3-kFR" secondAttribute="leading" constant="45" id="w22-8A-QXI"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -898,24 +898,24 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2os-B3-FFZ">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="45" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oiw-8X-ozQ">
-                                <rect key="frame" x="60" y="0.0" width="508" height="320"/>
+                                <rect key="frame" x="45" y="0.0" width="523" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="2os-B3-FFZ" secondAttribute="bottom" id="0y6-TO-pNL"/>
-                            <constraint firstItem="2os-B3-FFZ" firstAttribute="leading" secondItem="I3P-Ua-L9b" secondAttribute="leading" id="DK8-tT-KCa"/>
-                            <constraint firstItem="2os-B3-FFZ" firstAttribute="top" secondItem="I3P-Ua-L9b" secondAttribute="top" id="LPI-y5-HeG"/>
-                            <constraint firstItem="Oiw-8X-ozQ" firstAttribute="leading" secondItem="I3P-Ua-L9b" secondAttribute="leading" constant="60" id="QRB-El-TO5"/>
-                            <constraint firstItem="Oiw-8X-ozQ" firstAttribute="leading" secondItem="2os-B3-FFZ" secondAttribute="trailing" id="Tcd-F8-faX"/>
-                            <constraint firstAttribute="trailing" secondItem="Oiw-8X-ozQ" secondAttribute="trailing" id="VcR-TJ-joO"/>
-                            <constraint firstItem="2os-B3-FFZ" firstAttribute="bottom" secondItem="Oiw-8X-ozQ" secondAttribute="bottom" id="YGf-HO-S6N"/>
-                            <constraint firstItem="2os-B3-FFZ" firstAttribute="top" secondItem="Oiw-8X-ozQ" secondAttribute="top" id="ZeO-8k-qGb"/>
+                            <constraint firstItem="Oiw-8X-ozQ" firstAttribute="top" secondItem="2os-B3-FFZ" secondAttribute="top" id="Eag-zf-Lld"/>
+                            <constraint firstItem="Oiw-8X-ozQ" firstAttribute="top" secondItem="I3P-Ua-L9b" secondAttribute="top" id="ImH-qV-Q51"/>
+                            <constraint firstItem="2os-B3-FFZ" firstAttribute="leading" secondItem="I3P-Ua-L9b" secondAttribute="leading" id="Oup-NL-dcU"/>
+                            <constraint firstItem="Oiw-8X-ozQ" firstAttribute="leading" secondItem="2os-B3-FFZ" secondAttribute="trailing" id="U0q-My-ifw"/>
+                            <constraint firstAttribute="trailing" secondItem="Oiw-8X-ozQ" secondAttribute="trailing" id="jLm-qP-Fng"/>
+                            <constraint firstItem="2os-B3-FFZ" firstAttribute="bottom" secondItem="Oiw-8X-ozQ" secondAttribute="bottom" id="qhp-sX-oMK"/>
+                            <constraint firstItem="Oiw-8X-ozQ" firstAttribute="leading" secondItem="I3P-Ua-L9b" secondAttribute="leading" constant="45" id="tHQ-8e-TqL"/>
+                            <constraint firstAttribute="bottom" secondItem="Oiw-8X-ozQ" secondAttribute="bottom" id="zMN-dX-gLL"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>

@@ -12,6 +12,8 @@
 #import "Stunde.h"
 #import "HTWAppDelegate.h"
 
+#import "NSDate+HTW.h"
+
 #define kURL [NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_kal.php"]
 
 @interface HTWCSVConnection () <HTWCSVParserDelegate>
@@ -183,7 +185,7 @@
             _stunde.raum = characters;
             _stunde.bemerkungen = @"";
             _stunde.anzeigen = [NSNumber numberWithBool:YES];
-            _stunde.id = [NSString stringWithFormat:@"%@%d%@", _stunde.kurzel, [self weekdayFromDate:_stunde.anfang], [self uhrZeitFromDate:_stunde.anfang]];
+            _stunde.id = [NSString stringWithFormat:@"%@%d%@", _stunde.kurzel, [_stunde.anfang getWeekDay], [self uhrZeitFromDate:_stunde.anfang]];
             _stunde.titel = [_stunde.kurzel componentsSeparatedByString:@" "][0];
             [_student addStundenObject:_stunde];
 
@@ -209,14 +211,6 @@
 }
 
 #pragma mark - Hilfsfunktionen
-
--(int)weekdayFromDate:(NSDate*)date
-{
-    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
-    if(weekday == -1) weekday=6;
-    
-    return weekday;
-}
 
 -(NSDate*)dateFromString:(NSString*)date
 {

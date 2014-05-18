@@ -17,6 +17,7 @@
 + (UIColor *) HTWSandColor;
 + (UIColor *) HTWWhiteColor;
 + (UIColor *) HTWDarkBlueColor;
++ (UIColor *) HTWGreenColor;
 
 + (UIColor *) HTWBackgroundColor;
 + (UIColor *) HTWTextColor;

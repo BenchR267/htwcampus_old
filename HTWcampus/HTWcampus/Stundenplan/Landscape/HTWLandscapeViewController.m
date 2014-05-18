@@ -12,8 +12,10 @@
 #import "Stunde.h"
 #import "User.h"
 #import "HTWPortraitViewController.h"
+
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
+#import "NSDate+HTW.h"
 
 #define PixelPerMin 0.35
 #define ANZAHLTAGE 10
@@ -130,12 +132,9 @@
     _context = [appdelegate managedObjectContext];
     
     
-    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-    [nurTag setDateFormat:@"dd.MM.yyyy"];
+    int weekday = [self.currentDate getWeekDay];
     
-    int weekday = [self weekdayFromDate:self.currentDate];
-    
-    NSDate *letzterMontag = [[nurTag dateFromString:[nurTag stringFromDate:self.currentDate]] dateByAddingTimeInterval:-60*60*24*weekday ];
+    NSDate *letzterMontag = [self.currentDate.getDayOnly dateByAddingTimeInterval:-60*60*24*weekday ];
     NSDate *zweiWochenNachDemMontag = [letzterMontag dateByAddingTimeInterval:60*60*24*13];
     
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
@@ -181,10 +180,7 @@
 -(void)setUpInterface
 {
     [self loadLabels];
-    
-    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-    [nurTag setDateFormat:@"dd.MM.yyyy"];
-    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:[NSDate date]]];
+    NSDate *today = [NSDate date].getDayOnly;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -226,10 +222,12 @@
         CGFloat y = 55 + [[NSDate date] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin;
         
         clockView.frame = CGRectMake(0, y-7.5, 15, 15);
+        clockView.alpha = 0.6;
         clockView.tag = -1;
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, y, self.zeitenView.bounds.size.width, 1)];
         lineView.backgroundColor = linieUndClock;
+        lineView.alpha = 0.6;
         lineView.tag = -1;
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:clockView depth:DEPTH_FOR_PARALLAX];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
@@ -237,6 +235,7 @@
         [self.zeitenView addSubview:lineView];
         UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(-350, y, self.scrollView.contentSize.width+350-10, 1)];
         lineView2.backgroundColor = linieUndClock;
+        lineView2.alpha = 0.6;
         lineView2.tag = -1;
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView2 depth:DEPTH_FOR_PARALLAX];
         [self.scrollView addSubview:lineView2];
@@ -251,25 +250,22 @@
 
 -(void)loadLabels
 {
-    CGFloat yWertTage = 24;
+    CGFloat yWertTage = 15;
     NSArray *stringsTage = [NSArray arrayWithObjects:@"Montag", @"Dienstag", @"Mittwoch", @"Donnerstag", @"Freitag", nil];
     
-    UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-350, 0, _scrollView.contentSize.width+350+350, 24+21)];
+    UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-350, 0, _scrollView.contentSize.width+350+350, 36)];
     
     UIImage *indicator = [UIImage imageNamed:@"indicator.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
-    indicatorView.frame = CGRectMake([self getScrollX]+350, 24+18, 90, 7);
+    indicatorView.frame = CGRectMake([self getScrollX]+350, 15+18, 90, 7);
     [heuteMorgenLabelsView addSubview:indicatorView];
     
     
     
     heuteMorgenLabelsView.backgroundColor = [UIColor HTWDarkGrayColor];
     heuteMorgenLabelsView.tag = -1;
-    
-    NSDateFormatter *vereinfacher = [[NSDateFormatter alloc] init];
-    [vereinfacher setDateFormat:@"dd.MM.yyyy"];
 
-    NSDate *cDate = [[vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]] dateByAddingTimeInterval:(-60*60*24*[self weekdayFromDate:self.currentDate]) ];
+    NSDate *cDate = [self.currentDate.getDayOnly dateByAddingTimeInterval:(-60*60*24*[self.currentDate getWeekDay]) ];
     for (int i = 0; i < ANZAHLTAGE; i++) {
         int j = i;
         if (i > 4) j = i-5;
@@ -291,20 +287,18 @@
         thisDate.tag = -1;
         thisDate.textColor = [UIColor HTWWhiteColor];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
-        thisDate.text = [self getShortDateFromDate:cDate];
+        thisDate.text = [cDate getAsStringWithFormat:@"dd.MM"];
         [heuteMorgenLabelsView addSubview:thisDate];
         
         cDate = [cDate dateByAddingTimeInterval:60*60*24];
-        if([self weekdayFromDate:cDate] == 5)
+        if([cDate getWeekDay] == 5)
         {
             cDate = [cDate dateByAddingTimeInterval:60*60*24*2];
         }
     }
     [_scrollView addSubview:heuteMorgenLabelsView];
     
-    NSDateFormatter *nurTag = [[NSDateFormatter alloc] init];
-    [nurTag setDateFormat:@"dd.MM.yyyy"];
-    NSDate *today = [nurTag dateFromString:[nurTag stringFromDate:self.currentDate]];
+    NSDate *today = self.currentDate.getDayOnly;
     
     NSArray *vonStrings = @[@"07:30", @"09:20", @"11:10", @"13:10", @"15:00", @"16:50", @"18:30"];
     NSArray *bisStrings = @[@"09:00", @"10:50", @"12:40", @"14:40", @"16:30", @"18:20", @"20:00"];
@@ -317,7 +311,7 @@
                                [today dateByAddingTimeInterval:60*60*18+60*30] ];
     
     for (int i = 0; i < stundenZeiten.count; i++) {
-        CGFloat y = 54 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin ;
+        CGFloat y = 45 + [(NSDate*)[stundenZeiten objectAtIndex:i] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin ;
         UIView *vonBisLabel = [[UIView alloc] initWithFrame:CGRectMake(5, y, 30, 90 * PixelPerMin)];
         UILabel *von = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, vonBisLabel.frame.size.width, vonBisLabel.frame.size.height/2)];
         von.text = vonStrings[i];
@@ -350,20 +344,16 @@
 
 -(CGFloat)getScrollX
 {
-    NSDateFormatter *vereinfacher = [[NSDateFormatter alloc] init];
-    [vereinfacher setDateFormat:@"dd.MM.yyyy"];
-    [vereinfacher setTimeZone:[NSTimeZone timeZoneWithName:@"CET"]];
-    
     int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:self.currentDate] weekday] - 2;
     if(weekday == -1) weekday=6;
-    NSDate *today = [vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]];
+    NSDate *today = self.currentDate.getDayOnly;
     
-    NSDate *montag = [[vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]] dateByAddingTimeInterval:(-60*60*24*weekday) ];
+    NSDate *montag = [self.currentDate.getDayOnly dateByAddingTimeInterval:(-60*60*24*weekday) ];
     NSDate *dienstag = [montag dateByAddingTimeInterval:60*60*24];
     NSDate *mittwoch = [dienstag dateByAddingTimeInterval:60*60*24];
     NSDate *donnerstag = [mittwoch dateByAddingTimeInterval:60*60*24];
     NSDate *freitag = [donnerstag dateByAddingTimeInterval:60*60*24];
-    NSDate *montag2 = [[vereinfacher dateFromString:[vereinfacher stringFromDate:self.currentDate]] dateByAddingTimeInterval:((-60*60*24*weekday)+60*60*24*7) ];
+    NSDate *montag2 = [self.currentDate.getDayOnly dateByAddingTimeInterval:((-60*60*24*weekday)+60*60*24*7) ];
     NSDate *dienstag2 = [montag2 dateByAddingTimeInterval:60*60*24];
     NSDate *mittwoch2 = [dienstag2 dateByAddingTimeInterval:60*60*24];
     NSDate *donnerstag2 = [mittwoch2 dateByAddingTimeInterval:60*60*24];
@@ -444,21 +434,6 @@
 }
 
 #pragma mark - Hilfsfunktionen
-
--(int)weekdayFromDate:(NSDate*)date
-{
-    int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:date] weekday] - 2;
-    if(weekday == -1) weekday=6;
-    
-    return weekday;
-}
-
--(NSString*)getShortDateFromDate:(NSDate*)date
-{
-    NSDateFormatter *dateF = [NSDateFormatter new];
-    [dateF setDateFormat:@"dd.MM"];
-    return [dateF stringFromDate:date];
-}
 
 - (void)registerEffectForView:(UIView *)aView depth:(CGFloat)depth;
 {

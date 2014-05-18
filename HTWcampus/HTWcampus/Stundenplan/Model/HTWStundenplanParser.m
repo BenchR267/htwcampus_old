@@ -11,6 +11,8 @@
 #import "Stunde.h"
 #import "User.h"
 
+#import "NSDate+HTW.h"
+
 NSMutableData *receivedData;
 
 @interface HTWStundenplanParser () <NSXMLParserDelegate>
@@ -322,13 +324,10 @@ NSMutableData *receivedData;
         stunde.kurzel = kuerzel;
         stunde.dozent = dozent;
         stunde.raum = raum;
-        stunde.anfang = [dateFormatter dateFromString:anfang];
-        stunde.ende = [dateFormatter dateFromString:ende];
+        stunde.anfang = [NSDate getFromString:anfang withFormat:@"dd.MM.yyyy HH:mm"];
+        stunde.ende = [NSDate getFromString:ende withFormat:@"dd.MM.yyyy HH:mm"];
         
-        int weekday = (int)[[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:stunde.anfang] weekday] - 2;
-        if(weekday == -1) weekday=6;
-        
-        stunde.id = [NSString stringWithFormat:@"%@%d%@", kuerzel, weekday, anfangZeit];
+        stunde.id = [NSString stringWithFormat:@"%@%d%@", kuerzel, [stunde.anfang getWeekDay], anfangZeit];
         stunde.anzeigen = [NSNumber numberWithBool:YES];
         stunde.student.matrnr = _Matrnr;
         
