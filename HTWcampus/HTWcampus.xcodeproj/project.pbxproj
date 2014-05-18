@@ -116,6 +116,7 @@
 		E6B771F2191C370200E9A2A5 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EC191C370200E9A2A5 /* page4.png */; };
 		E6B771F3191C370200E9A2A5 /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771ED191C370200E9A2A5 /* page5.png */; };
 		E6B771F4191C370200E9A2A5 /* page6.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EE191C370200E9A2A5 /* page6.png */; };
+		E6B95BCA19290D3400AF2438 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B95BC919290D3400AF2438 /* indicator.png */; };
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
 		E6D6A8B8191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */; };
@@ -125,7 +126,6 @@
 		E6EBD38F191A8E3000720962 /* HTWNotenSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */; };
 		E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator-red.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
-		E6FE97F619183742004C6596 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE97F519183742004C6596 /* indicator.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -310,6 +310,7 @@
 		E6B771EC191C370200E9A2A5 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page4.png; path = PageViewFirstLaunch/Bilder/page4.png; sourceTree = "<group>"; };
 		E6B771ED191C370200E9A2A5 /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page5.png; path = PageViewFirstLaunch/Bilder/page5.png; sourceTree = "<group>"; };
 		E6B771EE191C370200E9A2A5 /* page6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page6.png; path = PageViewFirstLaunch/Bilder/page6.png; sourceTree = "<group>"; };
+		E6B95BC919290D3400AF2438 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
 		E6D2E56E190FF55C00DCD9EF /* HTWCSVExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVExport.h; path = Stundenplan/Export/HTWCSVExport.h; sourceTree = "<group>"; };
 		E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVExport.m; path = Stundenplan/Export/HTWCSVExport.m; sourceTree = "<group>"; };
 		E6D2E571190FF60400DCD9EF /* HTWICSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWICSExport.h; path = Stundenplan/Export/HTWICSExport.h; sourceTree = "<group>"; };
@@ -327,7 +328,6 @@
 		E6FE12A019093D6700D56D52 /* indicator-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator-red.png"; path = "Stundenplan/Portait/indicator-red.png"; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
-		E6FE97F519183742004C6596 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -569,7 +569,7 @@
 				E61D882519085B4C0033D543 /* HTWDatePickViewController.h */,
 				E61D882619085B4C0033D543 /* HTWDatePickViewController.m */,
 				E6FE12A019093D6700D56D52 /* indicator-red.png */,
-				E6FE97F519183742004C6596 /* indicator.png */,
+				E6B95BC919290D3400AF2438 /* indicator.png */,
 			);
 			name = Portait;
 			sourceTree = "<group>";
@@ -936,12 +936,12 @@
 				6D753A761917F1D000C6BAA1 /* zittau.jpg in Resources */,
 				E6B771F4191C370200E9A2A5 /* page6.png in Resources */,
 				6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */,
-				E6FE97F619183742004C6596 /* indicator.png in Resources */,
 				E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */,
 				6D753A531917A8C300C6BAA1 /* neuemensa.jpg in Resources */,
 				6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */,
 				6D753A571917A8C300C6BAA1 /* reichenbachstrasse.jpg in Resources */,
 				6D7B451C1908150F00D99C9D /* main.storyboard in Resources */,
+				E6B95BCA19290D3400AF2438 /* indicator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
