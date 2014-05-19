@@ -170,6 +170,7 @@
                     break;
             }
             
+            _textfield.clearButtonMode = UITextFieldViewModeNever;
             _textfield.delegate = self;
             _textfield.tag = indexPath.row;
             sender.detailTextLabel.text = @"";
@@ -190,6 +191,7 @@
         
         _textfield.text = _stunde.bemerkungen;
         
+        _textfield.clearButtonMode = UITextFieldViewModeAlways;
         _textfield.delegate = self;
         _textfield.tag = 4;
         sender.detailTextLabel.text = @"";

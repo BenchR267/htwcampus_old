@@ -18,7 +18,7 @@
 #import "NSDate+HTW.h"
 
 #define PixelPerMin 0.35
-#define ANZAHLTAGE 10
+#define ANZAHLTAGE 15
 #define DEPTH_FOR_PARALLAX 8
 
 @interface HTWLandscapeViewController () <UIScrollViewDelegate>
@@ -115,7 +115,8 @@
     }
     
     self.navigationController.navigationBarHidden = YES;
-    self.scrollView.contentSize = CGSizeMake(508*2+68, 320);
+//    self.scrollView.contentSize = CGSizeMake(508*(ANZAHLTAGE/5)+68*(ANZAHLTAGE/5-1), 320);
+    self.scrollView.contentSize = CGSizeMake(103*ANZAHLTAGE+68*(ANZAHLTAGE/5-1), 320);
     _scrollView.delegate = self;
     
     
@@ -135,12 +136,18 @@
     int weekday = [self.currentDate getWeekDay];
     
     NSDate *letzterMontag = [self.currentDate.getDayOnly dateByAddingTimeInterval:-60*60*24*weekday ];
-    NSDate *zweiWochenNachDemMontag = [letzterMontag dateByAddingTimeInterval:60*60*24*13];
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = ANZAHLTAGE+(ANZAHLTAGE/5*2);
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    
+    NSDate *today = self.currentDate.getDayOnly;
+    NSDate *theLastShownDate = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
     
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = entityDesc;
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"student.matrnr = %@ && anfang > %@ && ende < %@", Matrnr, letzterMontag, zweiWochenNachDemMontag];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"student.matrnr = %@ && anfang > %@ && ende < %@", Matrnr, letzterMontag, theLastShownDate];
     request.predicate = pred;
     
     _angezeigteStunden = [_context executeFetchRequest:request error:nil];
@@ -266,12 +273,13 @@
     heuteMorgenLabelsView.tag = -1;
 
     NSDate *cDate = [self.currentDate.getDayOnly dateByAddingTimeInterval:(-60*60*24*[self.currentDate getWeekDay]) ];
+    CGFloat x = 1;
     for (int i = 0; i < ANZAHLTAGE; i++) {
         int j = i;
-        if (i > 4) j = i-5;
+        if (i > (ANZAHLTAGE%5)+4) j = (i%5);
         
-        CGFloat x = 1+i*103;
-        if(i > 4) x += 61;
+        if(i != 0) x += 103;
+        if(j == 0 && i != 0) x += 61;
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x+350, yWertTage, 90, 21)];
         label.text = [stringsTage objectAtIndex:j];

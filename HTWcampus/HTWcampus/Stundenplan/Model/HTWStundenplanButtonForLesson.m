@@ -14,7 +14,7 @@
 #import "NSDate+HTW.h"
 
 #define CornerRadius 5
-#define ANZAHLTAGE_LANDSCAPE 10
+#define ANZAHLTAGE_LANDSCAPE 15
 
 @interface HTWStundenplanButtonForLesson ()
 {
@@ -127,8 +127,11 @@
         }
         for (int i = 0; i < tage.count; i++) {
             if ([self isSameDayWithDate1:lesson.anfang date2:tage[i]]) {
-                x = 1+i*103;
-                if(i > 4) x += 61;
+                int j = i;
+                if (i > (tage.count%5)+4) j = (i%5);
+                x = 1;
+                if(i != 0) x = 1+i*103 + 61*(int)(i/5);
+//                if(j == 0 && i != 0) x += 61;
                 y = 45 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[tage[i] dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
                 break;
             }
