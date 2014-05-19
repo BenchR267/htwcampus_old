@@ -98,8 +98,6 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterInForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 -(void)applicationWillEnterInForeground
@@ -109,12 +107,7 @@
 
 -(void)viewDidLoad
 {
-    UIDevice *device = [UIDevice currentDevice];
-    
-    [device beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:)
-               name:UIDeviceOrientationDidChangeNotification
-             object:nil];
+    [super viewDidLoad];
     isPortrait = YES;
     
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"]
@@ -159,6 +152,15 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterInForeground)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
     
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -215,7 +217,7 @@
 }
 
 
--(void)dealloc
+-(void)viewWillDisappear:(BOOL)animated
 {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];

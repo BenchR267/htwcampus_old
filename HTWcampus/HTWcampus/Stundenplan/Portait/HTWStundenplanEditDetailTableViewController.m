@@ -63,7 +63,8 @@
 {
     switch (indexPath.row) {
         case 0:
-            if(indexPath.section == 0 || indexPath.section == 1) return 82;
+            if(indexPath.section == 0) return 82;
+            else if(indexPath.section == 1) return 120;
             else return 50;
         default: return 50;
     }
@@ -182,7 +183,7 @@
     {
         [self.tableView reloadData];
         UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
-        CGRect frame = CGRectMake(sender.frame.size.width/4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width/4*3-20, sender.detailTextLabel.frame.size.height);
+        CGRect frame = CGRectMake(sender.frame.size.width*0.4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width*0.6-20, sender.detailTextLabel.frame.size.height);
         _textfield.frame = frame;
         _textfield.hidden = NO;
         _textfield.font = [UIFont HTWTableViewCellFont];

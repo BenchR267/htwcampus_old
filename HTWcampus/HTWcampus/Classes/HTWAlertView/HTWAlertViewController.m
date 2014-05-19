@@ -155,12 +155,11 @@
     else if (gesture.state == UIGestureRecognizerStateEnded)
     {
         _stringsFromTextField[_textfield.tag] = _textfield.text;
-        gesture.view.backgroundColor = [UIColor HTWRedColor];
+        gesture.view.backgroundColor = [UIColor HTWGreenColor];
         
         
         if(_delegate)
         {
-            //[self performSelector:@selector(sendToDelegate) withObject:nil afterDelay:1];
             [_delegate gotStringsFromTextFields:_stringsFromTextField];
         }
     }
