@@ -98,6 +98,8 @@
 		E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C74190D3FD1002AE150 /* HTWTestViewController.m */; };
 		E65737AB19222AE600916A1A /* alleRaeume.txt in Resources */ = {isa = PBXBuildFile; fileRef = E65737A819222AE600916A1A /* alleRaeume.txt */; };
 		E65737AC19222AE600916A1A /* HTWAlleRaeumeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E65737AA19222AE600916A1A /* HTWAlleRaeumeTableViewController.m */; };
+		E658457819295E110008A758 /* indicator-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = E658457619295E110008A758 /* indicator-grey.png */; };
+		E658457919295E110008A758 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E658457719295E110008A758 /* indicator.png */; };
 		E6642B1A191D0B260003FF5A /* HTWMensaDetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6642B19191D0B260003FF5A /* HTWMensaDetailParser.m */; };
 		E6642B1D191D0B8F0003FF5A /* HTWMensaDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6642B1C191D0B8E0003FF5A /* HTWMensaDetailTableViewController.m */; };
 		E6642B1F191D15AF0003FF5A /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = E6642B1E191D15AF0003FF5A /* noimage.png */; };
@@ -116,7 +118,6 @@
 		E6B771F2191C370200E9A2A5 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EC191C370200E9A2A5 /* page4.png */; };
 		E6B771F3191C370200E9A2A5 /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771ED191C370200E9A2A5 /* page5.png */; };
 		E6B771F4191C370200E9A2A5 /* page6.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EE191C370200E9A2A5 /* page6.png */; };
-		E6B95BCA19290D3400AF2438 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B95BC919290D3400AF2438 /* indicator.png */; };
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
 		E6D6A8B8191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */; };
@@ -281,6 +282,8 @@
 		E65737A819222AE600916A1A /* alleRaeume.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = alleRaeume.txt; path = "Raumplaner/Alle Raeume/alleRaeume.txt"; sourceTree = "<group>"; };
 		E65737A919222AE600916A1A /* HTWAlleRaeumeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWAlleRaeumeTableViewController.h; path = "Raumplaner/Alle Raeume/HTWAlleRaeumeTableViewController.h"; sourceTree = "<group>"; };
 		E65737AA19222AE600916A1A /* HTWAlleRaeumeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWAlleRaeumeTableViewController.m; path = "Raumplaner/Alle Raeume/HTWAlleRaeumeTableViewController.m"; sourceTree = "<group>"; };
+		E658457619295E110008A758 /* indicator-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator-grey.png"; path = "Stundenplan/Portait/indicator-grey.png"; sourceTree = "<group>"; };
+		E658457719295E110008A758 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
 		E6642B18191D0B260003FF5A /* HTWMensaDetailParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaDetailParser.h; path = Mensa/HTWMensaDetailParser.h; sourceTree = "<group>"; };
 		E6642B19191D0B260003FF5A /* HTWMensaDetailParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaDetailParser.m; path = Mensa/HTWMensaDetailParser.m; sourceTree = "<group>"; };
 		E6642B1B191D0B8E0003FF5A /* HTWMensaDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaDetailTableViewController.h; path = Mensa/HTWMensaDetailTableViewController.h; sourceTree = "<group>"; };
@@ -310,7 +313,6 @@
 		E6B771EC191C370200E9A2A5 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page4.png; path = PageViewFirstLaunch/Bilder/page4.png; sourceTree = "<group>"; };
 		E6B771ED191C370200E9A2A5 /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page5.png; path = PageViewFirstLaunch/Bilder/page5.png; sourceTree = "<group>"; };
 		E6B771EE191C370200E9A2A5 /* page6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page6.png; path = PageViewFirstLaunch/Bilder/page6.png; sourceTree = "<group>"; };
-		E6B95BC919290D3400AF2438 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indicator.png; path = Stundenplan/Portait/indicator.png; sourceTree = "<group>"; };
 		E6D2E56E190FF55C00DCD9EF /* HTWCSVExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVExport.h; path = Stundenplan/Export/HTWCSVExport.h; sourceTree = "<group>"; };
 		E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVExport.m; path = Stundenplan/Export/HTWCSVExport.m; sourceTree = "<group>"; };
 		E6D2E571190FF60400DCD9EF /* HTWICSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWICSExport.h; path = Stundenplan/Export/HTWICSExport.h; sourceTree = "<group>"; };
@@ -569,7 +571,8 @@
 				E61D882519085B4C0033D543 /* HTWDatePickViewController.h */,
 				E61D882619085B4C0033D543 /* HTWDatePickViewController.m */,
 				E6FE12A019093D6700D56D52 /* indicator-red.png */,
-				E6B95BC919290D3400AF2438 /* indicator.png */,
+				E658457619295E110008A758 /* indicator-grey.png */,
+				E658457719295E110008A758 /* indicator.png */,
 			);
 			name = Portait;
 			sourceTree = "<group>";
@@ -908,6 +911,7 @@
 				E6B771F0191C370200E9A2A5 /* page2.png in Resources */,
 				E61B6A2C1923B7BE0050EB10 /* Images.xcassets in Resources */,
 				6D753A5A1917A8C300C6BAA1 /* uboot.jpg in Resources */,
+				E658457919295E110008A758 /* indicator.png in Resources */,
 				6D753A4D1917A8C300C6BAA1 /* mensa-bruehl.jpg in Resources */,
 				6D753A541917A8C300C6BAA1 /* noavailablemensaimage.jpg in Resources */,
 				6D753A561917A8C300C6BAA1 /* pillnitz.jpg in Resources */,
@@ -933,6 +937,7 @@
 				6D753A641917C9A600C6BAA1 /* mensen.json in Resources */,
 				6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */,
 				E6642B1F191D15AF0003FF5A /* noimage.png in Resources */,
+				E658457819295E110008A758 /* indicator-grey.png in Resources */,
 				6D753A761917F1D000C6BAA1 /* zittau.jpg in Resources */,
 				E6B771F4191C370200E9A2A5 /* page6.png in Resources */,
 				6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */,
@@ -941,7 +946,6 @@
 				6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */,
 				6D753A571917A8C300C6BAA1 /* reichenbachstrasse.jpg in Resources */,
 				6D7B451C1908150F00D99C9D /* main.storyboard in Resources */,
-				E6B95BCA19290D3400AF2438 /* indicator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
