@@ -50,19 +50,20 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0) return 7;
+    else if(section == 1) return 1;
     else return 1;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
         case 0:
-            if(indexPath.section == 0) return 82;
+            if(indexPath.section == 0 || indexPath.section == 1) return 82;
             else return 50;
         default: return 50;
     }
@@ -118,7 +119,21 @@
                 break;
         }
     }
-    else {
+    else if(indexPath.section == 1)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        
+        cell.textLabel.font = [UIFont HTWTableViewCellFont];
+        cell.textLabel.textColor = [UIColor HTWTextColor];
+        cell.detailTextLabel.font = [UIFont HTWTableViewCellFont];
+        cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
+        cell.detailTextLabel.numberOfLines = 3;
+        cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        
+        cell.textLabel.text = @"Bemerkungen";
+        cell.detailTextLabel.text = _stunde.bemerkungen;
+    }
+    else if(indexPath.section == 2) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"LoeschenCell"];
         cell.textLabel.text = @"Stunde löschen";
         cell.textLabel.font = [UIFont HTWLargeFont];
@@ -162,6 +177,25 @@
             [_textfield becomeFirstResponder];
         }
     }
+    else if (indexPath.section == 1)
+    {
+        [self.tableView reloadData];
+        UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
+        CGRect frame = CGRectMake(sender.frame.size.width/4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width/4*3-20, sender.detailTextLabel.frame.size.height);
+        _textfield.frame = frame;
+        _textfield.hidden = NO;
+        _textfield.font = [UIFont HTWTableViewCellFont];
+        _textfield.textColor = [UIColor HTWBlueColor];
+        _textfield.textAlignment = NSTextAlignmentRight;
+        
+        _textfield.text = _stunde.bemerkungen;
+        
+        _textfield.delegate = self;
+        _textfield.tag = 4;
+        sender.detailTextLabel.text = @"";
+        [sender addSubview:_textfield];
+        [_textfield becomeFirstResponder];
+    }
 }
 
 #pragma mark - TextField Delegate
@@ -190,6 +224,9 @@
                 break;
             case 3:
                 this.dozent = textField.text;
+                break;
+            case 4:
+                this.bemerkungen = textField.text;
                 break;
             default:
                 break;

@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UILabel *kurzel;
 @property (nonatomic, strong) UILabel *raum;
 @property (nonatomic, strong) UILabel *typ;
+@property (nonatomic, strong) UIView *circle;
 @property (nonatomic, strong) NSDate *currentDate;
 
 @end
@@ -66,6 +67,7 @@
         kurzel.textColor = [UIColor HTWWhiteColor];
         raum.textColor = [UIColor HTWWhiteColor];
         typ.textColor = [UIColor HTWWhiteColor];
+        _circle.backgroundColor = [UIColor HTWWhiteColor];
     }
 }
 
@@ -164,6 +166,18 @@
         typ.frame = CGRectMake(x+3, y+(height*0.5), width-6, height*0.4);
         typ.textColor = [UIColor HTWDarkGrayColor];
         [self addSubview:typ];
+    }
+    
+    if(lesson.bemerkungen && ![lesson.bemerkungen isEqualToString:@""])
+    {
+        // Bemerkung ist vorhanden, muss im Button bemerkbar sein..
+        _circle = [[UIView alloc] init];
+        if(_portait) _circle.frame = CGRectMake(x+(width*6/7)+2, y+3, 10, 10);
+        else _circle.frame = CGRectMake(x+(width*6/7)+2, y+3, 7, 7);
+        _circle.backgroundColor = [UIColor HTWTextColor];
+        _circle.layer.cornerRadius = _circle.frame.size.height/2;
+        _circle.tag = -9;
+        [self addSubview:_circle];
     }
  
     self.bounds = self.frame;

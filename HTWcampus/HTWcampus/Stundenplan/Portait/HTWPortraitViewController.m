@@ -719,6 +719,7 @@
         buttonPressed.backgroundColor = [UIColor HTWBlueColor];
         for (UIView *this in buttonPressed.subviews) {
             if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWWhiteColor]];
+            else if (this.tag == -9) this.backgroundColor = [UIColor whiteColor];
         }
         
         CGFloat x = buttonPressed.frame.origin.x-buttonPressed.frame.size.width/2;
@@ -781,6 +782,7 @@
         
             for (UIView *this in buttonPressed.subviews) {
                 if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWDarkGrayColor]];
+                else if (this.tag == -9) this.backgroundColor = [UIColor HTWTextColor];
             }
         }
     }
