@@ -78,7 +78,7 @@
         <scene sceneID="i0a-xJ-Bbr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LKt-8b-hr2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stundenplan" image="Kalender" id="m9u-ql-Gyi"/>
+                    <tabBarItem key="tabBarItem" title="Stundenplan" image="Kalender" id="m9u-ql-Gyi" customClass="HTWTabBarItem"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4WR-nP-WKe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -612,7 +612,7 @@
         <scene sceneID="0mp-Mg-j6I">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Ks8-ti-cl6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Räume" image="Haus" id="Ftu-lT-buJ"/>
+                    <tabBarItem key="tabBarItem" title="Räume" image="Haus" id="Ftu-lT-buJ" customClass="HTWTabBarItem"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="syy-4I-5A9">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -765,7 +765,7 @@
         <scene sceneID="ig7-r3-nG3">
             <objects>
                 <navigationController definesPresentationContext="YES" id="awF-52-2uh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Noten" image="Noten" id="mmt-2K-Ian"/>
+                    <tabBarItem key="tabBarItem" title="Noten" image="Noten" id="mmt-2K-Ian" customClass="HTWTabBarItem"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IfC-AO-GTp">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1149,7 +1149,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <scene sceneID="zZR-BE-e7a">
             <objects>
                 <navigationController definesPresentationContext="YES" id="O6x-P4-Am4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Prüfungen" image="Pruefung" id="HTe-zW-pgL"/>
+                    <tabBarItem key="tabBarItem" title="Prüfungen" image="Pruefung" id="HTe-zW-pgL" customClass="HTWTabBarItem"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CcA-LK-ECF">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1439,7 +1439,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <scene sceneID="Iof-OO-tOb">
             <objects>
                 <navigationController id="ASF-tg-Kaz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mensa" image="Mensa" id="sQN-dx-nTE"/>
+                    <tabBarItem key="tabBarItem" title="Mensa" image="Mensa" id="sQN-dx-nTE" customClass="HTWTabBarItem"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KRm-Sn-Gqy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

@@ -118,6 +118,7 @@
 		E6B771F2191C370200E9A2A5 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EC191C370200E9A2A5 /* page4.png */; };
 		E6B771F3191C370200E9A2A5 /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771ED191C370200E9A2A5 /* page5.png */; };
 		E6B771F4191C370200E9A2A5 /* page6.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EE191C370200E9A2A5 /* page6.png */; };
+		E6B87E74192A71AB0052EC20 /* HTWTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */; };
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
 		E6D6A8B8191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */; };
@@ -313,6 +314,8 @@
 		E6B771EC191C370200E9A2A5 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page4.png; path = PageViewFirstLaunch/Bilder/page4.png; sourceTree = "<group>"; };
 		E6B771ED191C370200E9A2A5 /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page5.png; path = PageViewFirstLaunch/Bilder/page5.png; sourceTree = "<group>"; };
 		E6B771EE191C370200E9A2A5 /* page6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page6.png; path = PageViewFirstLaunch/Bilder/page6.png; sourceTree = "<group>"; };
+		E6B87E72192A71AB0052EC20 /* HTWTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTabBarItem.h; path = Classes/HTWTabBarItem.h; sourceTree = "<group>"; };
+		E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTabBarItem.m; path = Classes/HTWTabBarItem.m; sourceTree = "<group>"; };
 		E6D2E56E190FF55C00DCD9EF /* HTWCSVExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVExport.h; path = Stundenplan/Export/HTWCSVExport.h; sourceTree = "<group>"; };
 		E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVExport.m; path = Stundenplan/Export/HTWCSVExport.m; sourceTree = "<group>"; };
 		E6D2E571190FF60400DCD9EF /* HTWICSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWICSExport.h; path = Stundenplan/Export/HTWICSExport.h; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 				6D753A601917C54B00C6BAA1 /* HTWMensaSpeiseTableViewCell.m */,
 				E61D88121908583C0033D543 /* HTWStundenplanButtonForLesson.h */,
 				E61D88131908583C0033D543 /* HTWStundenplanButtonForLesson.m */,
+				E6B87E72192A71AB0052EC20 /* HTWTabBarItem.h */,
+				E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1003,6 +1008,7 @@
 				6D94EA4219152FDB00872FC8 /* ProcessingInstructionChunk.m in Sources */,
 				6D94EA3E19152FDB00872FC8 /* Element.m in Sources */,
 				6D94EA3919152FDB00872FC8 /* CSSSelector.m in Sources */,
+				E6B87E74192A71AB0052EC20 /* HTWTabBarItem.m in Sources */,
 				E61D883919085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D94EA4419152FDB00872FC8 /* TxtChunk.m in Sources */,
 				E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */,
