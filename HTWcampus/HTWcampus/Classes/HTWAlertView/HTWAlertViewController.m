@@ -87,7 +87,7 @@
         else cell.textLabel.text = @"Bestätigen";
         cell.textLabel.font = [UIFont HTWLargeFont];
         cell.textLabel.textColor = [UIColor HTWWhiteColor];
-        cell.backgroundColor = [UIColor HTWGreenColor];
+        cell.backgroundColor = [UIColor HTWBlueColor];
         UILongPressGestureRecognizer *longGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self
                                                                                              action:@selector(commitPressed:)];
         longGR.minimumPressDuration = 0.01;
@@ -155,7 +155,7 @@
     else if (gesture.state == UIGestureRecognizerStateEnded)
     {
         _stringsFromTextField[_textfield.tag] = _textfield.text;
-        gesture.view.backgroundColor = [UIColor HTWGreenColor];
+        gesture.view.backgroundColor = [UIColor HTWBlueColor];
         
         
         if(_delegate)

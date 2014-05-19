@@ -30,6 +30,7 @@
     [super viewDidLoad];
     _keys = @[@"Fakultät",@"Studiengang",@"Jahr/Semester",@"Abschluss",@"Studienrichtung",@"Modul",@"Art",@"Tag",@"Zeit",@"Raum",@"Prüfender",@"Nächste WD"];
     self.title = _pruefung[_keys[5]];
+    self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
