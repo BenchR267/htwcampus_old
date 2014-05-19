@@ -467,8 +467,9 @@
                         <outlet property="markierSlider" destination="ury-VD-uDq" id="EE9-Ni-0oL"/>
                         <outlet property="markierungsCell" destination="5MF-uz-lzT" id="Dp3-rl-RYe"/>
                         <outlet property="matrikelnummernCell" destination="q6k-gO-nub" id="zqE-Cq-XpF"/>
-                        <outlet property="parallaxCell" destination="sQ3-8d-S5f" id="6uY-Wd-HdK"/>
-                        <outlet property="parallaxLabel" destination="txc-NF-0pM" id="78W-2Q-h0a"/>
+                        <outlet property="parallaxCell" destination="0hb-IN-veU" id="1fX-KX-ONj"/>
+                        <outlet property="parallaxLabel" destination="Eti-cF-lsE" id="lIe-9J-Y5Z"/>
+                        <outlet property="parallaxSwitch" destination="u60-f2-mqe" id="uwl-WN-Frf"/>
                         <outlet property="portraitTageSliderWert" destination="Vv3-Kg-RBk" id="F9l-qn-xpX"/>
                         <outlet property="tageInLandscapeCell" destination="sQ3-8d-S5f" id="T0I-MK-Dp1"/>
                         <outlet property="tageInLandscapeSlider" destination="e3M-ad-WBr" id="nAo-Jp-ZT4"/>
