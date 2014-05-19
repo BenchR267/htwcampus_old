@@ -19,10 +19,13 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *uebersichtCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *markierungsCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *tageInPortraitCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *tageInLandscapeCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *parallaxCell;
 @property (weak, nonatomic) IBOutlet UISlider *markierSlider;
 @property (weak, nonatomic) IBOutlet UISlider *tageInPortraitSlider;
-@property (weak, nonatomic) IBOutlet UILabel *sliderWert;
+@property (weak, nonatomic) IBOutlet UISlider *tageInLandscapeSlider;
+@property (weak, nonatomic) IBOutlet UILabel *portraitTageSliderWert;
+@property (weak, nonatomic) IBOutlet UILabel *landscapeTageSliderWert;
 @property (weak, nonatomic) IBOutlet UILabel *tageInPortraitLabel;
 @property (weak, nonatomic) IBOutlet UILabel *parallaxLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *parallaxSwitch;
@@ -72,8 +75,10 @@
     
     _markierSlider.value = [defaults floatForKey:@"markierSliderValue"];
     _tageInPortraitSlider.value = (float)[defaults integerForKey:@"tageInPortrait"];
-    _sliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
+    _tageInLandscapeSlider.value = (float)[defaults integerForKey:@"anzahlTageLandscape"];
+    _portraitTageSliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
     _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Portrait", _tageInPortraitSlider.value];
+    _landscapeTageSliderWert.text = [NSString stringWithFormat:@"%.0f Tage im Landscape", _tageInLandscapeSlider.value];
     
     self.navigationController.navigationBarHidden = NO;
     
@@ -101,10 +106,16 @@
     [_parallaxSwitch setOn:[defaults boolForKey:@"parallax"]];
     
     _markierungsCell.backgroundColor = [UIColor HTWWhiteColor];
-    _sliderWert.textColor = [UIColor HTWDarkGrayColor];
-    _sliderWert.font = [UIFont HTWBaseFont];
-    _sliderWert.numberOfLines = 2;
-    _sliderWert.lineBreakMode = NSLineBreakByWordWrapping;
+    _portraitTageSliderWert.textColor = [UIColor HTWDarkGrayColor];
+    _portraitTageSliderWert.font = [UIFont HTWBaseFont];
+    _portraitTageSliderWert.numberOfLines = 2;
+    _portraitTageSliderWert.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    _tageInLandscapeCell.backgroundColor = [UIColor HTWWhiteColor];
+    _landscapeTageSliderWert.textColor = [UIColor HTWDarkGrayColor];
+    _landscapeTageSliderWert.font = [UIFont HTWBaseFont];
+    _landscapeTageSliderWert.numberOfLines = 2;
+    _landscapeTageSliderWert.lineBreakMode = NSLineBreakByWordWrapping;
     
     _tageInPortraitSlider.backgroundColor = [UIColor HTWWhiteColor];
     _tageInPortraitLabel.textColor = [UIColor HTWDarkGrayColor];
@@ -120,7 +131,7 @@
         [_markierSlider setValue:(int)(sender.value/5)*5];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setFloat:_markierSlider.value forKey:@"markierSliderValue"];
-        _sliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
+        _portraitTageSliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
     }
 }
 - (IBAction)tageInPortraitSliderChangedValue:(UISlider *)sender {
@@ -129,6 +140,14 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:(int)_tageInPortraitSlider.value forKey:@"tageInPortrait"];
         _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Portrait", _tageInPortraitSlider.value];
+    }
+}
+- (IBAction)tageInLandscapeChangedValue:(UISlider *)sender {
+    if (sender.tag == 2) {
+        [_tageInLandscapeSlider setValue:(int)(sender.value/5)*5];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:(int)_tageInLandscapeSlider.value forKey:@"anzahlTageLandscape"];
+        _landscapeTageSliderWert.text = [NSString stringWithFormat:@"%.0f Tage im Landscape", _tageInLandscapeSlider.value];
     }
 }
 - (IBAction)parallaxSwitchChanged:(id)sender {

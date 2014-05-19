@@ -34,6 +34,9 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    if(![[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"])
+        [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"anzahlTageLandscape"];
+    
 //    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
 //    {
 //        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];

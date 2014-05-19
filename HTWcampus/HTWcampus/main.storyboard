@@ -65,7 +65,7 @@
                     <connections>
                         <outlet property="scrollView" destination="43P-Fj-3SQ" id="bGX-XH-Mfq"/>
                         <outlet property="settingsBarButtonItem" destination="rzC-X1-CYS" id="FVt-zC-Xbn"/>
-                        <segue destination="3ET-sn-wAx" kind="custom" identifier="switchToLandscape" customClass="landscapeSegue" id="jdK-3b-YiY"/>
+                        <segue destination="3ET-sn-wAx" kind="custom" identifier="switchToLandscape" customClass="HTWLandscapeSegue" id="jdK-3b-YiY"/>
                         <segue destination="ErJ-Y0-Bwe" kind="push" identifier="showEditDetail" id="AxC-5o-l1i"/>
                         <segue destination="PUL-WW-heI" kind="push" identifier="add" id="40J-Uq-QhV"/>
                     </connections>
@@ -410,17 +410,44 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Parallax-Effekt in Portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txc-NF-0pM">
+                                                    <rect key="frame" x="9" y="10" width="98" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="5" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="e3M-ad-WBr">
+                                                    <rect key="frame" x="113" y="20" width="191" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.40000003579999999" green="0.78039222959999999" blue="0.92941182850000004" alpha="1" colorSpace="deviceRGB"/>
+                                                    <connections>
+                                                        <action selector="sliderValueChanged:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="Qrn-DB-YA4"/>
+                                                        <action selector="tageInLandscapeChangedValue:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="cf4-zW-cxb"/>
+                                                        <action selector="tageInPortraitSliderChangedValue:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="d0e-cg-AxI"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="0hb-IN-veU">
+                                        <rect key="frame" x="0.0" y="517" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0hb-IN-veU" id="GD1-Bm-n8E">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Parallax-Effekt in Portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eti-cF-lsE">
                                                     <rect key="frame" x="9" y="10" width="191" height="49"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r8W-gi-iTH">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u60-f2-mqe">
                                                     <rect key="frame" x="251" y="19" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="parallaxSwitchChanged:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="aZC-qm-CWe"/>
+                                                        <action selector="parallaxSwitchChanged:" destination="nnZ-fM-8JQ" eventType="valueChanged" id="2DB-bn-455"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -436,13 +463,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="JLa-Zf-oux"/>
                     <connections>
+                        <outlet property="landscapeTageSliderWert" destination="txc-NF-0pM" id="hfL-Rl-0gV"/>
                         <outlet property="markierSlider" destination="ury-VD-uDq" id="EE9-Ni-0oL"/>
                         <outlet property="markierungsCell" destination="5MF-uz-lzT" id="Dp3-rl-RYe"/>
                         <outlet property="matrikelnummernCell" destination="q6k-gO-nub" id="zqE-Cq-XpF"/>
                         <outlet property="parallaxCell" destination="sQ3-8d-S5f" id="6uY-Wd-HdK"/>
                         <outlet property="parallaxLabel" destination="txc-NF-0pM" id="78W-2Q-h0a"/>
-                        <outlet property="parallaxSwitch" destination="r8W-gi-iTH" id="YZ5-4s-hzU"/>
-                        <outlet property="sliderWert" destination="Vv3-Kg-RBk" id="fzM-jO-4Mu"/>
+                        <outlet property="portraitTageSliderWert" destination="Vv3-Kg-RBk" id="F9l-qn-xpX"/>
+                        <outlet property="tageInLandscapeCell" destination="sQ3-8d-S5f" id="T0I-MK-Dp1"/>
+                        <outlet property="tageInLandscapeSlider" destination="e3M-ad-WBr" id="nAo-Jp-ZT4"/>
                         <outlet property="tageInPortraitCell" destination="LYa-dE-Ign" id="IJJ-1F-Rsm"/>
                         <outlet property="tageInPortraitLabel" destination="fhP-is-gCO" id="qml-Ym-tHf"/>
                         <outlet property="tageInPortraitSlider" destination="1Ee-AA-Id3" id="Fpr-hN-LJK"/>
@@ -778,7 +807,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="scrollView" destination="p3h-nu-sQ2" id="WTx-fc-oqT"/>
-                        <segue destination="lSU-Cn-pEh" kind="custom" identifier="switchToLandscape" customClass="landscapeSegue" id="bvS-vl-Jia"/>
+                        <segue destination="lSU-Cn-pEh" kind="custom" identifier="switchToLandscape" customClass="HTWLandscapeSegue" id="bvS-vl-Jia"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVs-oC-R2W" userLabel="First Responder" sceneMemberID="firstResponder"/>

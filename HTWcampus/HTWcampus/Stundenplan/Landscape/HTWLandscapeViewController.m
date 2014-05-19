@@ -18,13 +18,13 @@
 #import "NSDate+HTW.h"
 
 #define PixelPerMin 0.35
-#define ANZAHLTAGE 15
 #define DEPTH_FOR_PARALLAX 8
 
 @interface HTWLandscapeViewController () <UIScrollViewDelegate>
 {
     HTWAppDelegate *appdelegate;
     BOOL isPortait;
+    long ANZAHLTAGE;
 }
 @property (strong, nonatomic) IBOutlet UIView *zeitenView;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -70,6 +70,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ANZAHLTAGE = [[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationWillEnterInForeground)
