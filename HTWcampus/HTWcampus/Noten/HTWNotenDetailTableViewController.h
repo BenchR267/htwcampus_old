@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface notenDetailViewController : UITableViewController
+@interface HTWNotenDetailTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSDictionary *fach;
 @end

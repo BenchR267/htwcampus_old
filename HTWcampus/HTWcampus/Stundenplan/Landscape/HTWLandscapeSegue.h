@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface landscapeSegue : UIStoryboardSegue
+@interface HTWLandscapeSegue : UIStoryboardSegue
 
 @end

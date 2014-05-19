@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Konstantin. All rights reserved.
 //
 
-#import "MensaDetailViewController.h"
+#import "HTWMensaSingleTableViewController.h"
 #import "HTWMensaSpeiseTableViewCell.h"
 #import "HTWMensaDetailTableViewController.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
-@interface MensaDetailViewController ()
+@interface HTWMensaSingleTableViewController ()
 
 @end
 
-@implementation MensaDetailViewController
+@implementation HTWMensaSingleTableViewController
 
 - (void)viewDidLoad
 {

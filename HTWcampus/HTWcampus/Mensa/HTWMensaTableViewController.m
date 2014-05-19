@@ -12,8 +12,8 @@
 #define mensaTodayUrl @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss"
 #define mensaTomorrowUrl @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen"
 
-#import "mensaViewController.h"
-#import "MensaDetailViewController.h"
+#import "HTWMensaTableViewController.h"
+#import "HTWMensaSingleTableViewController.h"
 #import "HTWAppDelegate.h"
 #import "UIImage+Resize.h"
 #import "UIFont+HTW.h"
@@ -21,7 +21,7 @@
 #import "HTWMensaSpeiseTableViewCell.h"
 #import "HTWMensaXMLParser.h"
 
-@interface mensaViewController () {
+@interface HTWMensaTableViewController () {
     UIActivityIndicatorView *mensaSpinner;
 }
 @property (strong, nonatomic) NSMutableArray *allMensasOfToday;
@@ -29,7 +29,7 @@
 @property (strong, nonatomic) NSArray *mensaMeta;
 @end
 
-@implementation mensaViewController
+@implementation HTWMensaTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -290,7 +290,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"mensaMeals"]) {
         NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
-        MensaDetailViewController *mensaDetailController = [segue destinationViewController];
+        HTWMensaSingleTableViewController *mensaDetailController = [segue destinationViewController];
         if (mensaDay == 0) {
             mensaDetailController.availableMeals = [[self allMensasOfToday] objectAtIndex:selectedRowIndex.row];
         }

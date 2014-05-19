@@ -13,8 +13,8 @@
 
 #define HISQIS_LOGGEDIN_STARTPAGE @"https://wwwqis.htw-dresden.de/qisserver/rds?state=user&type=0&category=menu.browse&breadCrumbSource=&startpage=portal.vm"
 
-#import "notenViewController.h"
-#import "notenDetailViewController.h"
+#import "HTWNotenTableViewController.h"
+#import "HTWNotenDetailTableViewController.h"
 #import "HTWAppDelegate.h"
 #import "HTWAlertNavigationController.h"
 
@@ -23,11 +23,11 @@
 #import "UIFont+HTW.h"
 
 
-@interface notenViewController () <NSURLSessionDelegate, HTWAlertViewDelegate>
+@interface HTWNotenTableViewController () <NSURLSessionDelegate, HTWAlertViewDelegate>
 
 @end
 
-@implementation notenViewController
+@implementation HTWNotenTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -133,7 +133,7 @@
                     //Check if login was successful
                     if ([[response.URL absoluteString] isEqualToString:HISQIS_LOGGEDIN_STARTPAGE]) {
                         //parse asi token
-                        notenStartseiteHTMLParser *startseiteParser = [notenStartseiteHTMLParser new];
+                        HTWNotenStartseiteHTMLParser *startseiteParser = [HTWNotenStartseiteHTMLParser new];
                         NSString *asiToken = [startseiteParser parseAsiTokenFromString:loginHtmlResultAsString];
                         NSLog(@"Login erfolgreich. Asi Token: %@", asiToken);
                         if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NotenLoginNieSpeichern"] &&
@@ -497,7 +497,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showFachDetails"]) {
         NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
-        notenDetailViewController *notenDetailController = [segue destinationViewController];
+        HTWNotenDetailTableViewController *notenDetailController = [segue destinationViewController];
             notenDetailController.fach = [[self.notenspiegel objectAtIndex:selectedRowIndex.section-1] objectAtIndex:selectedRowIndex.row];
     }
 }

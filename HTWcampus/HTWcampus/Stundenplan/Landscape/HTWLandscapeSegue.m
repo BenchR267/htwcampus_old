@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Benjamin Herzog. All rights reserved.
 //
 
-#import "landscapeSegue.h"
+#import "HTWLandscapeSegue.h"
 
-@implementation landscapeSegue
+@implementation HTWLandscapeSegue
 
 -(void) perform
 {

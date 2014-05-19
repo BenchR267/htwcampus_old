@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Konstantin. All rights reserved.
 //
 
-#import "notenDetailViewController.h"
+#import "HTWNotenDetailTableViewController.h"
 #import "UIColor+HTW.h"
 
-@interface notenDetailViewController ()
+@interface HTWNotenDetailTableViewController ()
 
 @end
 
-@implementation notenDetailViewController
+@implementation HTWNotenDetailTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MensaDetailViewController : UITableViewController
+@interface HTWMensaSingleTableViewController : UITableViewController
 
 @property (strong, atomic) NSArray *availableMeals;
 

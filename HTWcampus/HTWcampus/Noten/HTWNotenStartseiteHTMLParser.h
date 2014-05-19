@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ElementParser.h"
 
-@interface notenStartseiteHTMLParser : NSObject
+@interface HTWNotenStartseiteHTMLParser : NSObject
 @property(nonatomic, retain) NSString *asiToken;
 
 - (NSArray*) parseNotenspiegelFromString: (NSString*)htmlString;

@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "notenStartseiteHTMLParser.h"
+#import "HTWNotenStartseiteHTMLParser.h"
 
 @interface NSURLRequest(Private)
 +(void)setAllowsAnyHTTPSCertificate:(BOOL)inAllow forHost:(NSString *)inHost;
 @end
 
-@interface notenViewController : UITableViewController <UITextFieldDelegate> {
+@interface HTWNotenTableViewController : UITableViewController <UITextFieldDelegate> {
     bool isLoading;
     float notendurchschnitt;
     

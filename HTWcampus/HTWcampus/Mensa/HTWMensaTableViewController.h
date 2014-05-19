@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface mensaViewController : UITableViewController  {
+@interface HTWMensaTableViewController : UITableViewController  {
     NSInteger mensaDay;
     BOOL isLoading;
 }

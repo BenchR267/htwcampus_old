@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Konstantin. All rights reserved.
 //
 
-#import "notenStartseiteHTMLParser.h"
+#import "HTWNotenStartseiteHTMLParser.h"
 
-@implementation notenStartseiteHTMLParser
+@implementation HTWNotenStartseiteHTMLParser
 
 - (NSString*) parseAsiTokenFromString: (NSString*)htmlString {
     DocumentRoot *document = [Element parseHTML:htmlString];
