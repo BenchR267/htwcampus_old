@@ -18,8 +18,10 @@ In der finalen Version wird man damit folgendes können:
 	- incl Bearbeitung dessen (Editieren, Löschen, Hinzufügen und Ausblenden)
 	- mehrere Stundenpläne möglich
 	- Export des gesamten Stundenplans eines Nutzers oder einer einzelnen Stunde direkt möglich
+	- es kann ein bestimmtes Datum eingegeben werden, um zu sehen, ob man an diesem Tag Module hat oder nicht
 - Raumplanung mittels "Überwachung"
 	- Es können Räume aus einer Liste ausgewählt werden, welche einmalig über CoreData gespeichert werden und dann überwacht werden
+	- Es kann ein bestimmtes Datum eingegeben werden, um zu sehen, welcher Raum wann besetzt ist
 - Prüfungsplaner
 	- Es können alle Prüfungen eines Studiengangs oder eines Prüfenden angezeigt werden
 	- Einzelne Prüfungen können in einen ausgewählten Stundenplan übertragen werden und so dort angezeigt werden
