@@ -72,7 +72,13 @@
     [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     // Connection mit dem oben definierten Request
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (connectionError) NSLog(@"ERROR: %@", [connectionError localizedDescription]);
+        if (connectionError)
+        {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            NSLog(@"ERROR: %@", [connectionError localizedDescription]);
+            [_delegate HTWCSVConnection:self Error:@"Es scheint ein Problem mit der Internet-Verbindung zu geben. Bitte stellen Sie sicher, dass eine Verbindung besteht und versuchen Sie es danach erneut."];
+            return;
+        }
         else {
             NSString *html = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             

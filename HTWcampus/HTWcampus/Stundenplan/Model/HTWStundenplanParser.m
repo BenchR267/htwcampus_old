@@ -96,6 +96,7 @@ NSMutableData *receivedData;
         if (connectionError) {
             if(_delegate)
             {
+                [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
                 [_delegate HTWStundenplanParser:self Error:@"Fehler mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."];
                 return;
             }

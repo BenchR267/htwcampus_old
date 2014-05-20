@@ -90,8 +90,26 @@
     NSURL *RSSUrlToday =[NSURL URLWithString:mensaTodayUrl];
     NSURL *RSSUrlTomorrow = [NSURL URLWithString:mensaTomorrowUrl];
     
-    NSURLSession *sessionForTodaysMensa = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.timeoutIntervalForRequest = 10;
+    NSURLSession *sessionForTodaysMensa = [NSURLSession sessionWithConfiguration:config];
     [[sessionForTodaysMensa dataTaskWithURL:RSSUrlToday completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if(error)
+        {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                                 message:@"Es scheint keine Verbindung zum Internet zu bestehen. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen sie es danach erneut."
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"Ok"
+                                                       otherButtonTitles:nil];
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                               [errorAlert show];
+                           });
+            isLoading = false;
+            return;
+        }
         HTWMensaXMLParser *parser = [[HTWMensaXMLParser alloc] init];
         _allMensasOfToday = [[NSMutableArray alloc] initWithArray: [self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
         dispatch_async(dispatch_get_main_queue(), ^
@@ -102,13 +120,19 @@
         
     }] resume];
     
-    NSURLSession *sessionForTomorrowsMensa = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSURLSession *sessionForTomorrowsMensa = [NSURLSession sessionWithConfiguration:config];
     [[sessionForTomorrowsMensa dataTaskWithURL:RSSUrlTomorrow completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if(error)
+        {
+            return;
+        }
         HTWMensaXMLParser *parser = [HTWMensaXMLParser new];
         _allMensasOfTomorrow = [[NSMutableArray alloc] initWithArray:[self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
         dispatch_async(dispatch_get_main_queue(), ^
            {
                isLoading = false;
+               [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                [self.tableView reloadData];
            });
     }] resume];

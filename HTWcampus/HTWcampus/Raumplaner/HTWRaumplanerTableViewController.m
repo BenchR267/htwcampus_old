@@ -161,9 +161,8 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fehler"
                                                     message:errorMessage
                                                    delegate:self
-                                          cancelButtonTitle:@"Abbrechen"
-                                          otherButtonTitles:@"Ok", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
     [alert show];
 }
 

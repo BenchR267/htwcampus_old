@@ -101,7 +101,8 @@
 - (void)loadNoten {
     
     NSURL *hisqisUrl =[NSURL URLWithString:@"https://wwwqis.htw-dresden.de/qisserver/rds?state=user&type=0"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:hisqisUrl];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:hisqisUrl];
+    request.timeoutInterval = 10;
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
     [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"wwwqis.htw-dresden.de"];
 
@@ -224,6 +225,14 @@
         }
         else if (error != nil){
             NSLog(@"Fehler beim Laden der Noten. Error: %@", error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                                     message:@"Das iPhone hat scheinbar keine Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"Ok"
+                                                           otherButtonTitles:nil];
+                [errorAlert show];
+            });
             [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
         }
     }];

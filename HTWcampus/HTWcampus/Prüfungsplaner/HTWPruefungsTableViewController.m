@@ -60,7 +60,17 @@
     
     
     [parser startWithCompletetionHandler:^(NSArray *erg, NSString *errorMessage) {
-        if(errorMessage) { NSLog(@"ERROR: %@", errorMessage); return;}
+        if(errorMessage) {
+            NSLog(@"ERROR: %@", errorMessage);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                                     message:errorMessage
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"Ok"
+                                                           otherButtonTitles:nil];
+                [errorAlert show];
+            });
+            return;}
         self.pruefungsArray = [NSArray arrayWithArray:erg];
         [self.tableView reloadData];
     }];
