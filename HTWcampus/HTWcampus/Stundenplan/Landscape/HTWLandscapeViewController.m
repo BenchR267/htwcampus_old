@@ -143,8 +143,7 @@
     
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     
-    NSDate *today = self.currentDate.getDayOnly;
-    NSDate *theLastShownDate = [theCalendar dateByAddingComponents:dayComponent toDate:today options:0];
+    NSDate *theLastShownDate = [theCalendar dateByAddingComponents:dayComponent toDate:letzterMontag options:0];
     
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
