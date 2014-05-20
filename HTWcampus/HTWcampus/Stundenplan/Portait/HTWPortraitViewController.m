@@ -102,7 +102,8 @@
 
 -(void)applicationWillEnterInForeground
 {
-    [self viewWillAppear:YES];
+    [self setUpInterface];
+    [self orderViewsInScrollView:_scrollView];
 }
 
 -(void)viewDidLoad
