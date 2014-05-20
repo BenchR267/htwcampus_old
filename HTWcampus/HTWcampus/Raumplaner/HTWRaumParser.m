@@ -66,7 +66,6 @@
             
             [_raum setObject:[self dateFromStringsWoche:_raum[@"woche"] andTag:_raum[@"tagNum"] andZeit:_raum[@"anfang"]] forKey:@"anfangDatum"];
             [_raum setObject:[self dateFromStringsWoche:_raum[@"woche"] andTag:_raum[@"tagNum"] andZeit:_raum[@"ende"]] forKey:@"endeDatum"];
-//            NSLog(@"raum: %@\tanfang: %@\tende: %@", _raum[@"raum"], _raum[@"anfangDatum"], _raum[@"endeDatum"]);
             
             if ((![self isBetweenDate:[NSDate date] earlyDate:_raum[@"anfangDatum"] andLateDate:_raum[@"endeDatum"]]) && [self isDate1:[NSDate date] onSameDayAsDate2:_raum[@"anfangDatum"]])
                  [_raeumeHeute addObject:_raum];

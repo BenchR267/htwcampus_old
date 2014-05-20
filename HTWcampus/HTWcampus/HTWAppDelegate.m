@@ -7,7 +7,10 @@
 //
 
 #import "HTWAppDelegate.h"
+
 #import "HTWPageViewController.h"
+#import "HTWPortraitViewController.h"
+
 #import "UIColor+HTW.h"
 
 @implementation HTWAppDelegate
@@ -37,15 +40,20 @@
     if(![[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"])
         [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"anzahlTageLandscape"];
     
-//    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
-//    {
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
-//        [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
-//        [[NSUserDefaults standardUserDefaults] setFloat:30 forKey:@"markierSliderValue"];
-//        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"parallax"];
-//        HTWPageViewController *vc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateViewControllerWithIdentifier:@"HTWPageViewController"];
-//        [self.window setRootViewController:vc];
-//    }
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
+        [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
+        [[NSUserDefaults standardUserDefaults] setFloat:30 forKey:@"markierSliderValue"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"parallax"];
+        HTWPageViewController *vc = [[UIStoryboard storyboardWithName:@"FirstLaunch" bundle:nil] instantiateViewControllerWithIdentifier:@"HTWPageViewController"];
+        [self.window setRootViewController:vc];
+    }
+    else
+    {
+        HTWPortraitViewController *vc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateInitialViewController];
+        [self.window setRootViewController:vc];
+    }
     
     
     return YES;

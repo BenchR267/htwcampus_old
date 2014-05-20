@@ -117,11 +117,11 @@
 }
 
 -(void)parserDidEndDocument: (NSXMLParser *)parser {
-    NSLog(@"Parsen der Mensen erfolgreich beendet");
+//    NSLog(@"Parsen der Mensen erfolgreich beendet");
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    NSLog(@"Fehler beim Parsen des Mensaplan.");
+//    NSLog(@"Fehler beim Parsen des Mensaplan.");
 }
 
 @end

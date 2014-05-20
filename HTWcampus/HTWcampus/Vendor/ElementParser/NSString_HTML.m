@@ -360,18 +360,14 @@ NSString* createStringFromBuffer(CFStringInlineBuffer* buffer, CFIndex index, CF
 static inline int moveBufferToIndex(CFStringInlineBuffer *buffer, CFIndex index){
 	CFIndex lengthLeftInString = CFStringGetLength(buffer->theString) - index;
 	if (!lengthLeftInString) {
-//		NSLog(@"done with string");
 		return false;		
 	}
 	int bufferLength = (int)MIN(lengthLeftInString, MAX_READ_BUFFER_LENGTH);
 	CFRange range = CFRangeMake(index, bufferLength);
 	if (range.location + range.length == buffer->rangeToBuffer.location + buffer->rangeToBuffer.length){
-//		NSLog(@"end of string already buffered");
 		return false;
 	}
 	CFStringInitInlineBuffer(buffer->theString, buffer, range);
-//	if(range.location)
-//		NSLog(@"moved buffer beyond 0");
 	return true;
 }
 

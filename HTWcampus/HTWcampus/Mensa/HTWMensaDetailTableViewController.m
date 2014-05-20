@@ -41,6 +41,7 @@
     else if (indexPath.section == 1)
     {
         if(indexPath.row == 1 && [_speise[@"price"] isEqualToString:@""]) return [self heightForCellWithTextView:indexPath];
+        if(indexPath.row == 1 && ![_speise[@"price"] isEqualToString:@""]) return 60;
         if(indexPath.row == 2)
             return [self heightForCellWithTextView:indexPath];
         else return 90;
@@ -50,7 +51,6 @@
 
 -(CGFloat)heightForCellWithTextView:(NSIndexPath*)indexPath
 {
-//    NSLog(@"%f", [_textView.text sizeWithAttributes:@{NSFontAttributeName: [UIFont HTWSmallFont]}].height*[_zusatzInfos[@"speiseDetails"] count]);
     if(_textView.text) return [_textView.text sizeWithAttributes:@{NSFontAttributeName: [UIFont HTWSmallFont]}].height*[_zusatzInfos[@"speiseDetails"] count] + 25;
     else return 10;
 }

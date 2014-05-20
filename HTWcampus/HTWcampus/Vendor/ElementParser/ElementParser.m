@@ -162,7 +162,6 @@ static NSSet* HTML_TAGS_THAT_SHOULD_BE_EMPTY;
 				(int)tag.range.location - (int)NSMaxRange(closedElement.range);
 			if(!tag && closedElement.contentsLength == 0)
 				[self warning: ElementParserGeneralError description:@"Contents may not be right" chunk: closedElement];
-//			NSLog(@"Close %@", [closedElement description]);
 			self.lastClosedBeforeOpen = closedElement;
 			[tagStack removeObjectsInRange: NSMakeRange([tagStack count] - 1, 1)];
 			if (delegate && callbackMatchers)
@@ -177,7 +176,6 @@ static NSSet* HTML_TAGS_THAT_SHOULD_BE_EMPTY;
 }
 
 -(void)openElement:(Element*) element{
-//	NSLog(@"Open %@", [element description]);
 	element.parent = [self parentElement];
 	lastOpened.nextElement = element;
 	self.lastClosedBeforeOpen.nextSybling = element;
@@ -218,12 +216,6 @@ static NSSet* HTML_TAGS_THAT_SHOULD_BE_EMPTY;
 }
 
 -(id)buildElementTreeWithChunk:(Chunk*)chunk context:(void*)builder{
-/*
-	used to hunt down problem strings in example documents
-	BOOL breakpoint = [[chunk description] rangeOfString: @""].location != NSNotFound;
-	if (breakpoint)
-		NSLog(@"found breakpoint");
-*/	
 	self.lastChunk = chunk;
 	TagChunk* tag = [chunk isKind: ChunkKindTag] ? (TagChunk*) chunk : nil;
 

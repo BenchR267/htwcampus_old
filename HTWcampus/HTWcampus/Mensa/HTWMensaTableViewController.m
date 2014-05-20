@@ -140,12 +140,6 @@
     
 }
 
-/*
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSLog(@"Entered: %@",[[alertView textFieldAtIndex:0] text]);
-}
- */
-
 - (NSArray *)groupMealsAccordingToMensa:(NSArray *)meals {
     if (meals == nil) return nil;
     
@@ -205,7 +199,7 @@
 -(void)reloadView {
     isLoading = NO;
     [mensaSpinner stopAnimating];
-    NSLog(@"reloadView called");
+//    NSLog(@"reloadView called");
     [self.mensaTableView reloadData];
 }
 
@@ -235,7 +229,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    NSLog(@"%lu Mensen gefunden.", (unsigned long)[[self allMensasOfToday] count]);
+//    NSLog(@"%lu Mensen gefunden.", (unsigned long)[[self allMensasOfToday] count]);
 //    return [[self allMensas] count];
     return 1;
 }
@@ -243,12 +237,12 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!isLoading) {
         if (mensaDay == 0) {
-            NSLog(@"Zeige HEUTIGEN Speiseplan");
+//            NSLog(@"Zeige HEUTIGEN Speiseplan");
             if(self.allMensasOfToday.count == 0) return 1;
             return [[self allMensasOfToday] count];
         }
         else {
-            NSLog(@"Zeige MORGIGEN Speiseplan");
+//            NSLog(@"Zeige MORGIGEN Speiseplan");
             if(self.allMensasOfTomorrow.count == 0) return 1;
             return [[self allMensasOfTomorrow] count];
         }

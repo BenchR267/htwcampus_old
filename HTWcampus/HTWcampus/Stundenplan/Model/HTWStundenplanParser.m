@@ -302,8 +302,8 @@ NSMutableData *receivedData;
             NSLog(@"No matches");
         } else {
             matches = objects[0];
-            NSLog(@"Neuer Datensatz:\tKennung: %@\tLetzte Aktualisierung: %@\tRaum:%@", matches.matrnr, matches.letzteAktualisierung, _boolRaum?@"ja":@"nein");
-            NSLog(@"Es wurden %lu Datensätze gefunden. (Alles außer 1 ist falsch.)", (unsigned long)[objects count]);
+            NSLog(@"Neuer Stundenplan-Datensatz:\tKennung: %@\tLetzte Aktualisierung: %@\tRaum:%@", matches.matrnr, matches.letzteAktualisierung, _boolRaum?@"ja":@"nein");
+//            NSLog(@"Es wurden %lu Datensätze gefunden. (Alles außer 1 ist falsch.)", (unsigned long)[objects count]);
             
         }
         if(_delegate) [_delegate HTWStundenplanParserFinished:self];

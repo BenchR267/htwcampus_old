@@ -38,23 +38,10 @@
 }
 
 -(void)dealloc{
-//	NSLog(@"pruned: %@", [self description]);
 	[matchedElement release];
 	[matchersForNextPart release];
 	[super dealloc];
 }
-
-/* we don't do this yet...
- -(void)pruneMatchesForElement: (Element*)anElement{
-	if (!matchersForNextPart) return;
-	for (CSSPartMatcher* match in matchersForNextPart){
-		if ([match scopeElement] == anElement)
-			[matchersForNextPart removeObject: match];
-		else
-			[match pruneMatchesForElement: anElement];
-	}
-}
-*/
 
 -(void)addNextMatch:(Element*)nextElement withIndex:(int)index{
 	CSSPartMatcher* nextMatch = [[CSSPartMatcher alloc] initWithElement: nextElement selectorMatcher: selectorMatcher];

@@ -42,7 +42,7 @@
 
 - (IBAction)skip:(id)sender {
     HTWAppDelegate *appD = [[UIApplication sharedApplication] delegate];
-    UITabBarController *tbc = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+    UITabBarController *tbc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabBarController"];
     [UIView transitionWithView:appD.window
                       duration:0.5
                        options:UIViewAnimationOptionTransitionFlipFromTop

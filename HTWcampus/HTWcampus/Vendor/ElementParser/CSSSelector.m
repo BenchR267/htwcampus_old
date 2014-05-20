@@ -64,7 +64,6 @@
 }
 
 -(void)dealloc{
-//	NSLog(@"disposing of %@", [self description]);
 	[chain release];
 	[super dealloc];
 }

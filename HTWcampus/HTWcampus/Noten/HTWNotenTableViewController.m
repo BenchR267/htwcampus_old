@@ -114,11 +114,11 @@
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
         if ([data length]>0 && error == nil)
         {
-            NSDictionary* headers = [(NSHTTPURLResponse *)response allHeaderFields];
-            NSString *cookies = [headers objectForKey:@"Set-Cookie"];
-            NSArray *cookieArray = [cookies componentsSeparatedByString:@";"];
-            NSString *jsessionid = [cookieArray objectAtIndex:0];
-            NSLog(@"%@", jsessionid);
+//            NSDictionary* headers = [(NSHTTPURLResponse *)response allHeaderFields];
+//            NSString *cookies = [headers objectForKey:@"Set-Cookie"];
+//            NSArray *cookieArray = [cookies componentsSeparatedByString:@";"];
+//            NSString *jsessionid = [cookieArray objectAtIndex:0];
+//            NSLog(@"%@", jsessionid);
             
             //send login post request
             NSMutableURLRequest *loginRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://wwwqis.htw-dresden.de/qisserver/rds?state=user&type=1&category=auth.login&startpage=portal.vm"]];
@@ -201,7 +201,7 @@
                     }
                     else {
                         //Login failed
-                        UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:@"Nochmal", nil];
+                        UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Nochmal" otherButtonTitles:nil];
                         errorPopup.alertViewStyle = UIAlertViewStyleDefault;
                         errorPopup.tag = LOGIN_ERROR_TAG;
                         [errorPopup show];
@@ -246,7 +246,7 @@
             
             if (usernameText && usernameText.length > 0 &&
                 passwordText && passwordText.length > 0) {
-                NSLog(@"%@ %@", strings[0], strings[1]);
+//                NSLog(@"%@ %@", strings[0], strings[1]);
                 username = usernameText;
                 password = passwordText;
                 
@@ -472,7 +472,7 @@
     [urlStringFormed replaceOccurrencesOfString:@"StudentNotenspiegel" withString:@"ProgrammStudentNotenspiegel" options:NSCaseInsensitiveSearch range:NSMakeRange(0, urlStringFormed.length)];
     
     
-    NSLog(@"%@", urlStringFormed);
+//    NSLog(@"%@", urlStringFormed);
     
     NSURL *url = [NSURL URLWithString:urlStringFormed];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -480,13 +480,13 @@
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-        NSLog(@"RESPONSE: %@", response);
+//        NSLog(@"RESPONSE: %@", response);
         if(error)
         {
             NSLog(@"%@", error.localizedDescription);
             return;
         }
-        NSLog(@"%@", location);
+//        NSLog(@"%@", location);
         UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[location, @"Meine Noten als PDF"] applicationActivities:nil];
         [self presentViewController:avc animated:YES completion:^{
             NSLog(@"PDF geteilt.");

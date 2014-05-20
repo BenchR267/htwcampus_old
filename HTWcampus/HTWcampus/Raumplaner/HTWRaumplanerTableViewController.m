@@ -148,9 +148,7 @@
 #pragma mark - HTWStundenplanParser Delegate
 
 -(void)HTWStundenplanParserFinished:(HTWStundenplanParser *)parser
-{
-    NSLog(@"Parser fertig");
-    
+{   
     [self updateZimmerArray];
     
     [self.tableView reloadData];

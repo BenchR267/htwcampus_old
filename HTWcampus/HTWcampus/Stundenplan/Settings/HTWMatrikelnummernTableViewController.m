@@ -401,7 +401,6 @@
     for (int i=0; i<_nummern.count; i++) {
         User *aktuell = _nummern[i];
         if ([aktuell.matrnr isEqualToString:_parser.Matrnr]) {
-            NSLog(@"und fertig..");
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
             imageView.tag = i;
@@ -446,7 +445,6 @@
     for (int i=0; i<_nummern.count; i++) {
         User *aktuell = _nummern[i];
         if ([aktuell.matrnr isEqualToString:_dozentParser.password]) {
-            NSLog(@"und fertig..");
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
             imageView.tag = i;
