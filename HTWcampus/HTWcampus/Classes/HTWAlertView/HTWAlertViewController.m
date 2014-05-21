@@ -144,7 +144,7 @@
 
 -(IBAction)abbrechenPressed:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 -(IBAction)commitPressed:(UILongPressGestureRecognizer*)gesture

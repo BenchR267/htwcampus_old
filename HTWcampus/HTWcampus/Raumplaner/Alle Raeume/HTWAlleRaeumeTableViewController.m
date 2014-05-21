@@ -156,7 +156,7 @@
     }
     
     
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 #pragma mark Content Filtering

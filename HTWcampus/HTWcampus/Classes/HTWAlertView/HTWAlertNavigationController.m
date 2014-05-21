@@ -48,7 +48,7 @@
 
 -(void)gotStringsFromTextFields:(NSArray *)strings
 {
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
         if(_htwDelegate)
         {
             [_htwDelegate htwAlert:self gotStringsFromTextFields:strings];

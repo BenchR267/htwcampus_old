@@ -45,7 +45,7 @@
 
 -(IBAction)fertigPressed:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 -(void)viewWillAppear:(BOOL)animated
