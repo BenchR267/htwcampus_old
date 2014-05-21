@@ -209,7 +209,15 @@
     NSManagedObjectContext *context = [appdelegate managedObjectContext];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
+    NSPredicate *pred;
+    if(textField.tag == 4)
+    {
+        pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@ && anfang = %@", _stunde.id, _stunde.student.matrnr, _stunde.anfang];
+    }
+    else
+    {
+        pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
+    }
     [fetchRequest setPredicate:pred];
     
     NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
