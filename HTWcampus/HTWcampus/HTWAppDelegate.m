@@ -35,6 +35,8 @@
     [UINavigationBar appearance].barTintColor = [UIColor HTWBlueColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     
+    [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDark;
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     if(![[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"])

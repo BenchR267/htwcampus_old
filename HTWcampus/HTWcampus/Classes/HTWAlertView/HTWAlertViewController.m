@@ -25,6 +25,7 @@
     UIBarButtonItem *abbrechen = [[UIBarButtonItem alloc] initWithTitle:@"Abbrechen" style:UIBarButtonItemStylePlain target:self action:@selector(abbrechenPressed:)];
     self.navigationItem.rightBarButtonItem = abbrechen;
     
+    
     if(!_textfield) _textfield = [[UITextField alloc] init];
     if(!_stringsFromTextField) _stringsFromTextField = [[NSMutableArray alloc] init];
     for (int i = 0; i < _mainTitle.count; i++) {
