@@ -116,7 +116,7 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(connectionError) {
             NSLog(@"%@", connectionError.localizedDescription);
-            completion(nil,@"Es besteht ein Problem mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone onlein ist und versuchen Sie es danach erneut.");
+            completion(nil,@"Es besteht ein Problem mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut.");
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             return;
         }

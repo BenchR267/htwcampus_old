@@ -25,6 +25,15 @@
     [super viewDidLoad];
     HTWMensaDetailParser *parser = [[HTWMensaDetailParser alloc] initWithURL:[NSURL URLWithString:_speise[@"link"]]];
     [parser parseInQueue:[NSOperationQueue mainQueue] WithCompletetionHandler:^(NSDictionary *dic, NSString *errorMessage) {
+        if(errorMessage)
+        {
+            UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                                 message:errorMessage
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"Ok"
+                                                       otherButtonTitles:nil];
+            [errorAlert show];
+        }
         _zusatzInfos = dic;
         [self.tableView reloadData];
     }];
@@ -44,7 +53,7 @@
         if(indexPath.row == 1 && ![_speise[@"price"] isEqualToString:@""]) return 60;
         if(indexPath.row == 2)
             return [self heightForCellWithTextView:indexPath];
-        else return 90;
+        else return 120;
     }
     return 0;
 }
@@ -121,7 +130,7 @@
             {
                 cell.textLabel.text = _speise[@"price"];
             }
-            cell.textLabel.numberOfLines = 3;
+            cell.textLabel.numberOfLines = 4;
             cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         }
     }

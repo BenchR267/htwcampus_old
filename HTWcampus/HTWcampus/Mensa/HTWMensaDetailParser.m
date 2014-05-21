@@ -43,7 +43,15 @@
     completition = handler;
 
     [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:_url] queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_url];
+    [request setTimeoutInterval:10];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(connectionError)
+        {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            completition(nil,@"Leider besteht ein Problem bei der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut.");
+            return;
+        }
         NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSRange startRange = [html rangeOfString:@"<div id=\"spalterechtsnebenmenue\">"];
         NSMutableString *dataAfterHtml = [NSMutableString stringWithString:[html substringFromIndex:startRange.location]];
