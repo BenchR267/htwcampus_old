@@ -16,22 +16,44 @@
 
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
+#import "NSDate+HTW.h"
 
 #define kURL [NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/pr_abfrage.php"]
 
 @interface HTWPruefungsTableViewController () <HTWNeueStudiengruppeDelegate, HTWNeuerDozentDelegate>
 
 @property (nonatomic, strong) NSArray *pruefungsArray;
+@property (nonatomic, strong) NSArray *keys;
+
+@property (nonatomic, strong) NSMutableArray *vorher;
+@property (nonatomic, strong) NSMutableArray *nachher;
 
 @end
 
 @implementation HTWPruefungsTableViewController
+
+-(NSMutableArray *)vorher
+{
+    if (!_vorher) {
+        _vorher = [NSMutableArray new];
+    }
+    return _vorher;
+}
+
+-(NSMutableArray *)nachher
+{
+    if (!_nachher) {
+        _nachher = [NSMutableArray new];
+    }
+    return _nachher;
+}
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = @"Prüfungen";
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
+    _keys = @[@"Fakultät",@"Studiengang",@"Jahr/Semester",@"Abschluss",@"Studienrichtung",@"Modul",@"Art",@"Tag",@"Zeit",@"Raum",@"Prüfender",@"Nächste WD"];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -72,18 +94,29 @@
             });
             return;}
         self.pruefungsArray = [NSArray arrayWithArray:erg];
+        for (int i = 1; i < _pruefungsArray.count; i++) {
+            if([[[self getAnfang:i] getDayOnly] compare:[NSDate date]] == NSOrderedAscending)
+               [self.vorher addObject:_pruefungsArray[i]];
+            else
+                [self.nachher addObject:_pruefungsArray[i]];
+            
+        }
         [self.tableView reloadData];
     }];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(_pruefungsArray) return self.pruefungsArray.count - 1;
+    if(_pruefungsArray)
+    {
+        if (section == 0) return _nachher.count;
+        else return _vorher.count;
+    }
     else return 1;
 }
 
@@ -94,7 +127,13 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Prüfungen";
+    switch (section) {
+        case 0: return @"Zukünftige Prüfungen";
+        case 1: return @"Abgeschlossene Prüfungen";
+        default:
+            break;
+    }
+    return @"";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -113,10 +152,22 @@
         return cell;
     }
     if(!_pruefungsArray) return cell;
-    cell.textLabel.text = _pruefungsArray[indexPath.row+1][@"Modul"];
-    if(![_pruefungsArray[indexPath.row+1][@"Tag"] isEqualToString:@" "])
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@ Uhr", _pruefungsArray[indexPath.row+1][@"Tag"], _pruefungsArray[indexPath.row+1][@"Zeit"]];
-    else cell.detailTextLabel.text = @" ";
+    
+    if (indexPath.section == 0) {
+        NSLog(@"%ld", (long)indexPath.row);
+        cell.textLabel.text = _nachher[indexPath.row][@"Modul"];
+        if(![_nachher[indexPath.row][@"Tag"] isEqualToString:@" "])
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@ Uhr", _nachher[indexPath.row][@"Tag"], _nachher[indexPath.row][@"Zeit"]];
+        else cell.detailTextLabel.text = @" ";
+    }
+    else
+    {
+        cell.textLabel.text = _vorher[indexPath.row][@"Modul"];
+        if(![_vorher[indexPath.row][@"Tag"] isEqualToString:@" "])
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@ Uhr", _vorher[indexPath.row][@"Tag"], _vorher[indexPath.row][@"Zeit"]];
+        else cell.detailTextLabel.text = @" ";
+    }
+    
     
     cell.textLabel.font = [UIFont HTWTableViewCellFont];
     cell.detailTextLabel.font = [UIFont HTWMediumFont];
@@ -189,6 +240,27 @@
         else return NO;
     }
     return NO;
+}
+
+-(NSDate*)getAnfang:(int)index
+{
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahr], [(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]]];
+}
+
+-(NSDate*)getEnde:(int)index
+{
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahr], [(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][2]]];
+}
+
+-(NSString*)aktuellesJahr
+{
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"yyyy"];
+    return [dateF stringFromDate:[NSDate date]];
 }
 
 @end
