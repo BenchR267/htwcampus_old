@@ -94,8 +94,10 @@
             });
             return;}
         self.pruefungsArray = [NSArray arrayWithArray:erg];
+        [self.vorher removeAllObjects];
+        [self.nachher removeAllObjects];
         for (int i = 1; i < _pruefungsArray.count; i++) {
-            if([[[self getAnfang:i] getDayOnly] compare:[NSDate date]] == NSOrderedAscending)
+            if([[self getAnfang:i] compare:[NSDate date]] == NSOrderedAscending || [[(NSString*)_pruefungsArray[i][_keys[8]] componentsSeparatedByString:@" "][0] isEqualToString:@"*)"])
                [self.vorher addObject:_pruefungsArray[i]];
             else
                 [self.nachher addObject:_pruefungsArray[i]];
@@ -154,7 +156,6 @@
     if(!_pruefungsArray) return cell;
     
     if (indexPath.section == 0) {
-        NSLog(@"%ld", (long)indexPath.row);
         cell.textLabel.text = _nachher[indexPath.row][@"Modul"];
         if(![_nachher[indexPath.row][@"Tag"] isEqualToString:@" "])
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@ Uhr", _nachher[indexPath.row][@"Tag"], _nachher[indexPath.row][@"Zeit"]];
@@ -190,8 +191,9 @@
         if ([segue.destinationViewController isKindOfClass:[HTWPruefungsDetailTableViewController class]]) {
             HTWPruefungsDetailTableViewController *pdtvc = (HTWPruefungsDetailTableViewController*)segue.destinationViewController;
             UITableViewCell *senderCell = (UITableViewCell *)sender;
-            long row = [self.tableView indexPathForCell:senderCell].row;
-            pdtvc.pruefung = _pruefungsArray[row+1];
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:senderCell];
+            if(indexPath.section == 0) pdtvc.pruefung = _nachher[indexPath.row];
+            else pdtvc.pruefung = _vorher[indexPath.row];
         }
     }
     else if ([segue.identifier isEqualToString:@"modalEingeben"])
@@ -246,14 +248,18 @@
 {
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
     [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
-    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahr], [(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]]];
+    NSMutableString *anfang = [NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]];
+    [anfang replaceOccurrencesOfString:@"." withString:@":" options:NSCaseInsensitiveSearch range:NSMakeRange(0, anfang.length)];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahr], anfang]];
 }
 
 -(NSDate*)getEnde:(int)index
 {
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
     [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
-    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahr], [(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][2]]];
+    NSMutableString *ende = [NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][2]];
+    [ende replaceOccurrencesOfString:@"." withString:@":" options:NSCaseInsensitiveSearch range:NSMakeRange(0, ende.length)];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahr], ende]];
 }
 
 -(NSString*)aktuellesJahr
