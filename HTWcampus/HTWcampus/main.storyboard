@@ -466,11 +466,11 @@
                         <outlet property="landscapeTageSliderWert" destination="txc-NF-0pM" id="hfL-Rl-0gV"/>
                         <outlet property="markierSlider" destination="ury-VD-uDq" id="EE9-Ni-0oL"/>
                         <outlet property="markierungsCell" destination="5MF-uz-lzT" id="Dp3-rl-RYe"/>
+                        <outlet property="markierungsWertLabel" destination="Vv3-Kg-RBk" id="neb-QF-oFK"/>
                         <outlet property="matrikelnummernCell" destination="q6k-gO-nub" id="zqE-Cq-XpF"/>
                         <outlet property="parallaxCell" destination="0hb-IN-veU" id="1fX-KX-ONj"/>
                         <outlet property="parallaxLabel" destination="Eti-cF-lsE" id="lIe-9J-Y5Z"/>
                         <outlet property="parallaxSwitch" destination="u60-f2-mqe" id="uwl-WN-Frf"/>
-                        <outlet property="portraitTageSliderWert" destination="Vv3-Kg-RBk" id="F9l-qn-xpX"/>
                         <outlet property="tageInLandscapeCell" destination="sQ3-8d-S5f" id="T0I-MK-Dp1"/>
                         <outlet property="tageInLandscapeSlider" destination="e3M-ad-WBr" id="nAo-Jp-ZT4"/>
                         <outlet property="tageInPortraitCell" destination="LYa-dE-Ign" id="IJJ-1F-Rsm"/>

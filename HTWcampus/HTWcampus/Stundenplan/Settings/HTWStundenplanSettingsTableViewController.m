@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *markierSlider;
 @property (weak, nonatomic) IBOutlet UISlider *tageInPortraitSlider;
 @property (weak, nonatomic) IBOutlet UISlider *tageInLandscapeSlider;
-@property (weak, nonatomic) IBOutlet UILabel *portraitTageSliderWert;
+@property (weak, nonatomic) IBOutlet UILabel *markierungsWertLabel;
 @property (weak, nonatomic) IBOutlet UILabel *landscapeTageSliderWert;
 @property (weak, nonatomic) IBOutlet UILabel *tageInPortraitLabel;
 @property (weak, nonatomic) IBOutlet UILabel *parallaxLabel;
@@ -76,7 +76,7 @@
     _markierSlider.value = [defaults floatForKey:@"markierSliderValue"];
     _tageInPortraitSlider.value = (float)[defaults integerForKey:@"tageInPortrait"];
     _tageInLandscapeSlider.value = (float)[defaults integerForKey:@"anzahlTageLandscape"];
-    _portraitTageSliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
+    _markierungsWertLabel.text = [NSString stringWithFormat:@"%.0f min Markierung, bevor die Stunde beginnt", _markierSlider.value];
     _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Portrait", _tageInPortraitSlider.value];
     _landscapeTageSliderWert.text = [NSString stringWithFormat:@"%.0f Tage im Landscape", _tageInLandscapeSlider.value];
     
@@ -106,10 +106,10 @@
     [_parallaxSwitch setOn:[defaults boolForKey:@"parallax"]];
     
     _markierungsCell.backgroundColor = [UIColor HTWWhiteColor];
-    _portraitTageSliderWert.textColor = [UIColor HTWDarkGrayColor];
-    _portraitTageSliderWert.font = [UIFont HTWBaseFont];
-    _portraitTageSliderWert.numberOfLines = 2;
-    _portraitTageSliderWert.lineBreakMode = NSLineBreakByWordWrapping;
+    _markierungsWertLabel.textColor = [UIColor HTWDarkGrayColor];
+    _markierungsWertLabel.font = [UIFont HTWBaseFont];
+    _markierungsWertLabel.numberOfLines = 2;
+    _markierungsWertLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     _tageInLandscapeCell.backgroundColor = [UIColor HTWWhiteColor];
     _landscapeTageSliderWert.textColor = [UIColor HTWDarkGrayColor];
@@ -131,7 +131,7 @@
         [_markierSlider setValue:(int)(sender.value/5)*5];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setFloat:_markierSlider.value forKey:@"markierSliderValue"];
-        _portraitTageSliderWert.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
+        _markierungsWertLabel.text = [NSString stringWithFormat:@"%.0f min Markierung, bevor die Stunde beginnt", _markierSlider.value];
     }
 }
 - (IBAction)tageInPortraitSliderChangedValue:(UISlider *)sender {
