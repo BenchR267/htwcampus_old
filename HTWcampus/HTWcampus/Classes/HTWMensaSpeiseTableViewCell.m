@@ -12,14 +12,6 @@
 
 @implementation HTWMensaSpeiseTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 -(void)drawRect:(CGRect)rect {
     _mainLabel.font = _secondaryLabel.font = [UIFont HTWBaseFont];
@@ -28,18 +20,6 @@
     _mainLabel.textColor = [UIColor HTWTextColor];
     _secondaryLabel.textColor = [UIColor HTWBlueColor];
     _mensaPreisLabel.textColor = [UIColor HTWBlueColor];
-}
-
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

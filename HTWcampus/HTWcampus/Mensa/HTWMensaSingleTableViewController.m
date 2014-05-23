@@ -59,7 +59,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 112;
+    if(!_availableMeals[indexPath.row][@"price"] || [_availableMeals[indexPath.row][@"price"] isEqualToString:@""]) return 80;
+    return 120;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -90,7 +91,9 @@
     [mealPriceLabel setText:mealPrice];
     
     [mealNameLabel sizeToFit];
-    [mealNameLabel setNumberOfLines:0];    
+    [mealNameLabel setNumberOfLines:3];
+    mealNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [mealNameLabel sizeToFit];
     return cell;
 }
 

@@ -154,7 +154,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self setToday];
+    self.currentDate = [NSDate date];
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
