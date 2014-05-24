@@ -68,4 +68,24 @@
     return [dateF dateFromString:[dateF stringFromDate:self]];
 }
 
+-(BOOL)isYesterday:(NSDate*)date
+{
+    NSDateComponents *comp = [NSDateComponents new];
+    comp.day = 1;
+    if ([[self getDayOnly] compare:[[NSCalendar currentCalendar] dateByAddingComponents:comp toDate:[date getDayOnly] options:0]] == NSOrderedSame) {
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)isTommorrow:(NSDate*)date
+{
+    NSDateComponents *comp = [NSDateComponents new];
+    comp.day = -1;
+    if ([[self getDayOnly] compare:[[NSCalendar currentCalendar] dateByAddingComponents:comp toDate:[date getDayOnly] options:0]] == NSOrderedSame) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

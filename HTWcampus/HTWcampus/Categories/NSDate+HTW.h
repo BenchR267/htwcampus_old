@@ -17,5 +17,7 @@
 -(NSString*)getWeekDayString;
 -(NSString*)getAsStringWithFormat:(NSString*)formatString;
 -(NSDate*)getDayOnly;
+-(BOOL)isYesterday:(NSDate*)date;
+-(BOOL)isTommorrow:(NSDate*)date;
 
 @end

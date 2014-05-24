@@ -102,8 +102,8 @@
 
 -(void)applicationWillEnterInForeground
 {
-    [self setUpInterface];
-    [self orderViewsInScrollView:_scrollView];
+    self.currentDate = [NSDate date];
+    [self viewWillAppear:YES];
 }
 
 -(void)viewDidLoad
@@ -153,8 +153,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    self.currentDate = [NSDate date];
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
