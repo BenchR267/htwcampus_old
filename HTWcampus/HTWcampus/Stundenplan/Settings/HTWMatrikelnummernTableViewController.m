@@ -57,7 +57,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
     [fetchRequest setEntity:entity];
     
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
     
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
     
@@ -99,7 +99,7 @@
                 NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
                 [fetchRequest setEntity:entity];
                 
-                [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+                [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
                 
                 [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", matrNr]];
                 
@@ -133,7 +133,7 @@
                 NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
                 [fetchRequest setEntity:entity];
                 
-                [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+                [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
                 
                 [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", matrNr]];
                 
@@ -299,7 +299,7 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
         [fetchRequest setEntity:entity];
         
-        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
         
         NSString *zuLoeschendeNummer = [(User*)_nummern[indexPath.row] matrnr];
         
@@ -315,7 +315,7 @@
         entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
         [fetchRequest setEntity:entity];
         
-        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
         
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
         
@@ -331,13 +331,6 @@
         
         
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [UIView transitionWithView:self.tableView
-//                          duration:0.3f
-//                           options:UIViewAnimationOptionTransitionCrossDissolve
-//                        animations:^(void) {
-//                            [self.tableView reloadData];
-//                        } completion:NULL];
-        
     }
 }
 
@@ -348,14 +341,6 @@
 #pragma mark - IBAction
 
 - (IBAction)addButtonPressed:(id)sender {
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Neuer Stundenplan"
-//                                                    message:@"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:"
-//                                                   delegate:self
-//                                          cancelButtonTitle:@"Abbrechen"
-//                                          otherButtonTitles:@"Ok", nil];
-//    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-//    alert.tag = ALERT_EINGEBEN;
-//    [alert show];
     
     HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
     [alert setHtwTitle:@"Neuer Stundenplan"];
@@ -391,7 +376,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
     [fetchRequest setEntity:entity];
     
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
     
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
     
@@ -435,7 +420,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
     [fetchRequest setEntity:entity];
     
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
     
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
     

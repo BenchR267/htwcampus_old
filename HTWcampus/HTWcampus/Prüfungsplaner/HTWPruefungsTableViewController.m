@@ -97,7 +97,7 @@
         [self.vorher removeAllObjects];
         [self.nachher removeAllObjects];
         for (int i = 1; i < _pruefungsArray.count; i++) {
-            if([[self getAnfang:i] compare:[NSDate date]] == NSOrderedAscending || [[(NSString*)_pruefungsArray[i][_keys[8]] componentsSeparatedByString:@" "][0] isEqualToString:@"*)"])
+            if([[self getAnfang:i] compare:[NSDate date]] == NSOrderedAscending || ![self getAnfang:i])
                [self.vorher addObject:_pruefungsArray[i]];
             else
                 [self.nachher addObject:_pruefungsArray[i]];
@@ -246,6 +246,8 @@
 
 -(NSDate*)getAnfang:(int)index
 {
+    if(![NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]])
+        return nil;
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
     [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
     NSMutableString *anfang = [NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]];
