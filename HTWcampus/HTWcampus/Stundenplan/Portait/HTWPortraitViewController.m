@@ -103,12 +103,19 @@
 -(void)applicationWillEnterInForeground
 {
     self.currentDate = [NSDate date];
+    [self updateAngezeigteStunden];
+    [self setUpInterface];
 }
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     isPortrait = YES;
+
+    appdelegate = [[UIApplication sharedApplication] delegate];
+    _context = [appdelegate managedObjectContext];
+
+    _settingsBarButtonItem.tintColor = [UIColor HTWWhiteColor];
     
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"]
                                                             style:UIBarButtonItemStyleBordered
@@ -166,8 +173,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if([defaults integerForKey:@"tageInPortrait"] < 2) [defaults setInteger:2 forKey:@"tageInPortrait"];
-    
-    _settingsBarButtonItem.tintColor = [UIColor HTWWhiteColor];
+
     
     _scrollView.contentSize = CGSizeMake(60+116*[defaults integerForKey:@"tageInPortrait"], 459 + [UINavigationBar appearance].frame.size.height);
     _scrollView.directionalLockEnabled = YES;
@@ -186,9 +192,7 @@
     
     if(!self.raumNummer) Matrnr = [defaults objectForKey:@"Matrikelnummer"];
     else self.title = self.raumNummer;
-    
-    appdelegate = [[UIApplication sharedApplication] delegate];
-    _context = [appdelegate managedObjectContext];
+
     
     if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""])) && !_parser && !_csvParser) {
         
