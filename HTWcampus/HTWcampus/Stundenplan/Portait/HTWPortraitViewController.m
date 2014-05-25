@@ -103,7 +103,6 @@
 -(void)applicationWillEnterInForeground
 {
     self.currentDate = [NSDate date];
-    [self viewWillAppear:YES];
 }
 
 -(void)viewDidLoad
