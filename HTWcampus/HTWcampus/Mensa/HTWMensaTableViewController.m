@@ -188,12 +188,33 @@
     return @"noavailablemensaimage.jpg";
 }
 
-- (NSString *)checkWorkingHours:currentMensaName {
-    if ([currentMensaName isEqualToString:@"Mensa Reichenbachstraße"]) {
-        return @"Geöffnet";
+- (NSString *)checkWorkingHours:(NSString*)currentMensa4sq {
+    if([currentMensa4sq isEqualToString:@""] || [currentMensa4sq isEqualToString:@"na"])
+        return @"nicht verfügbar";
+
+    NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=41JI0EUVFDHKEUXTB1DHBXP5W2GAUNHUQNMZP5XXAQWZE1BN&client_secret=QG1XL1SLIH2IFH5AT1ZFPBVNSZRAMKUG5BEWYJBALTXYRBUO&v=20140526", currentMensa4sq]];
+    NSData *data = [NSData dataWithContentsOfURL:requestURL];
+    if(!data) return @"Data leer";
+    NSDictionary *erg = [NSJSONSerialization JSONObjectWithData:data
+                                                   options:NSJSONReadingMutableContainers
+                                                     error:nil];
+
+    if(!erg[@"response"][@"venue"][@"popular"])
+        return @"nicht verfügbar";
+    if (erg[@"response"][@"venue"][@"popular"][@"isOpen"]) {
+        return @"Wahrscheinlich geöffnet";
     }
-    
-    return @"Keine Öffnungszeiten verfügbar";
+    return @"Nicht geöffnet";
+}
+
+-(NSString*)get4sqForMensaName:(NSString*)name
+{
+    if(!name) return @"";
+    for (NSDictionary *mensa in _mensaMeta) {
+        if([mensa[@"name"] isEqualToString:name])
+            return mensa[@"4sq"];
+    }
+    return @"";
 }
 
 -(void)reloadView {
@@ -288,8 +309,8 @@
         
     
         [cell.textLabel setText:currentMensaName];
-        [cell.detailTextLabel setText:[self checkWorkingHours:currentMensaName]];
-        
+        [cell.detailTextLabel setText:[self checkWorkingHours:[self get4sqForMensaName:currentMensaName]]];
+
         //Add mensa image
         UIImage *currentMensaImage = [UIImage imageNamed:[self getMensaImageNameForName:currentMensaName]];
         cell.imageView.image = [currentMensaImage thumbnailImage:128 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationDefault];

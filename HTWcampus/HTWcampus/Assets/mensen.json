@@ -2,86 +2,103 @@
   {
   "bild": "neuemensa.jpg",
   "name": "Neue Mensa",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "4b597cfdf964a520e78928e3"
   },
   {
   "bild": "altemensa.jpg",
   "name": "Alte Mensa",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "4b6fec5ef964a52026002de3"
   },
   {
   "bild": "reichenbachstrasse.jpg",
   "name": "Mensa Reichenbachstraße",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "4bdaba7063c5c9b642b92468"
   },
   {
   "bild": "mensologie.jpg",
   "name": "Mensologie",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "na"
   },
   {
   "bild": "mensa-siedepunkt.jpg",
   "name": "Mensa Siedepunkt",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "4c44443759d99c74bcbdfbad"
   },
   {
   "bild": "johannstadt.jpg",
   "name": "Mensa Johannstadt",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "4e11a1031f6e671dd9e92333"
   },
   {
   "bild": "mensa-wueins.jpg",
   "name": "Mensa WUeins",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "51751ac0e4b0ffeb9dff803c"
   },
   {
   "bild": "mensa-bruehl.jpg",
   "name": "Mensa Brühl",
-  "ort": ""
+  "ort": "",
+  "4sq": "na"
   },
   {
   "bild": "biomensa-uboot.jpg",
   "name": "BioMensa U-Boot",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "5098ef75e4b0dec37d16b07d"
   },
   {
   "bild": "tellerrandt.jpg",
   "name": "Mensa TellerRandt",
-  "ort": "Tharandt"
+  "ort": "Tharandt",
+  "4sq": "na"
   },
   {
   "bild": "zittau.jpg",
   "name": "Mensa Zittau",
-  "ort": "Zittau"
+  "ort": "Zittau",
+  "4sq": "4da6addd4df0260c3e977f7a"
   },
   {
   "bild": "stimmgabel.jpg",
   "name": "Mensa Stimm-Gabel",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "na"
   },
   {
   "bild": "palucca.jpg",
   "name": "Mensa Palucca Hochschule",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "na"
   },
   {
   "bild": "goerlitz.jpg",
   "name": "Mensa Görlitz",
-  "ort": "Görlitz"
+  "ort": "Görlitz",
+  "4sq": "na"
   },
   {
   "bild": "hausvii.jpg",
   "name": "Mensa Haus VII",
-  "ort": "Zittau"
+  "ort": "Zittau",
+  "4sq": "na"
   },
   {
   "bild": "mensasport.jpg",
   "name": "Mensa Sport",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "na"
   },
   {
   "bild": "mensa-kreuzgymnasium.jpg",
   "name": "Mensa Kreuzgymnasium",
-  "ort": "Dresden"
+  "ort": "Dresden",
+  "4sq": "na"
   }
   ]

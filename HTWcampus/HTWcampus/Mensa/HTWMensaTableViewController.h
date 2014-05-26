@@ -12,7 +12,6 @@
     NSInteger mensaDay;
     BOOL isLoading;
 }
-- (NSString *)checkWorkingHours:currentMensaName;
 - (void)loadMensa;
 - (void)setMensaDay;
 - (void)reloadView;
