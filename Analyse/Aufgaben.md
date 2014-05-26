@@ -15,7 +15,8 @@
 ### Roadmap
 
 1. Aufgaben s.o.
-2. Zusatzfeautures
+2. SplitViewController
+3. Zusatzfeautures
 	- Homescreen
 	- Lageplan
 	- Bibliothek
