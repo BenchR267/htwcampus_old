@@ -69,13 +69,11 @@
     self.navigationController.navigationBar.barTintColor = [UIColor HTWBlueColor];
     _mensaDaySwitcher.tintColor = [UIColor HTWWhiteColor];
 
-    openingHoursLoaded = NO;
     if (![self allMensasOfToday]) {
         [self loadMensa];
     }
     else {
         [self.tableView reloadData];
-        [self checkAllOpeningHours];
     }
 }
 
@@ -97,6 +95,7 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             openingHoursLoaded = YES;
             [self.tableView reloadData];
         });
@@ -125,9 +124,14 @@
     }
 
     if(!erg[@"response"][@"venue"][@"popular"])
-        return @"Keine Öffnungszeiten verfügbar";
+    {
+        NSString* ret = erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"];
+        if(!ret) return @"Keine Öffnungszeiten verfügbar";
+        return ret;
+    }
+
     if (erg[@"response"][@"venue"][@"popular"][@"isOpen"]) {
-        return @"Momentan geöffnet";
+        return [NSString stringWithFormat:@"Geöffnet (%@)",erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"]];
     }
     return @"Nicht geöffnet";
 }
@@ -149,6 +153,7 @@
 }
 
 - (void)loadMensa {
+    openingHoursLoaded = NO;
     NSURL *RSSUrlToday =[NSURL URLWithString:mensaTodayUrl];
     NSURL *RSSUrlTomorrow = [NSURL URLWithString:mensaTomorrowUrl];
     
@@ -195,7 +200,6 @@
         dispatch_async(dispatch_get_main_queue(), ^
            {
                isLoading = false;
-               [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                [self.tableView reloadData];
            });
     }] resume];
@@ -254,7 +258,6 @@
 -(void)reloadView {
     isLoading = NO;
     [mensaSpinner stopAnimating];
-//    NSLog(@"reloadView called");
     [self.mensaTableView reloadData];
 }
 
