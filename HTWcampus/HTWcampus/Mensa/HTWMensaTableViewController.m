@@ -23,10 +23,12 @@
 
 @interface HTWMensaTableViewController () {
     UIActivityIndicatorView *mensaSpinner;
+    BOOL openingHoursLoaded;
 }
 @property (strong, nonatomic) NSMutableArray *allMensasOfToday;
 @property (strong, nonatomic) NSMutableArray *allMensasOfTomorrow;
 @property (strong, nonatomic) NSArray *mensaMeta;
+@property (nonatomic, strong) NSMutableArray *openingHours;
 @end
 
 @implementation HTWMensaTableViewController
@@ -60,24 +62,84 @@
                   forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-    
-    
-    //self.navigationController.navigationBar.barStyle = htwColors.darkNavigationBarStyle;
     self.navigationController.navigationBarHidden = NO;
     self.tableView.backgroundColor = [UIColor HTWSandColor];
     self.navigationController.navigationBar.barTintColor = [UIColor HTWBlueColor];
     _mensaDaySwitcher.tintColor = [UIColor HTWWhiteColor];
-    
-//    self.mensaLoadingIndicator.hidden = NO;
-//    self.mensaLoadingIndicator.hidesWhenStopped = YES;
+
+    openingHoursLoaded = NO;
     if (![self allMensasOfToday]) {
         [self loadMensa];
     }
     else {
         [self.tableView reloadData];
+        [self checkAllOpeningHours];
     }
+}
+
+-(void)checkAllOpeningHours
+{
+    if(!_allMensasOfToday || !_allMensasOfTomorrow) return;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        if(!self.openingHours) _openingHours = [NSMutableArray new];
+        [self.openingHours removeAllObjects];
+
+        [self.openingHours addObject:[NSMutableArray new]];
+        for (NSArray *dicT in _allMensasOfToday) {
+            [self.openingHours[0] addObject:[self checkWorkingHours:dicT[0][@"mensa"] day:0]];
+        }
+        [self.openingHours addObject:[NSMutableArray new]];
+        for (NSArray *dicM in _allMensasOfTomorrow) {
+            [self.openingHours[1] addObject:[self checkWorkingHours:dicM[0][@"mensa"] day:1]];
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            openingHoursLoaded = YES;
+            [self.tableView reloadData];
+        });
+
+    });
+}
+
+- (NSString*)checkWorkingHours:(NSString*)currentMensa day:(int)day{
+    NSString *s4sq = [self get4sqForMensaName:currentMensa];
+
+    if([s4sq isEqualToString:@""] || [s4sq isEqualToString:@"na"])
+        return @"Keine Öffnungszeiten verfügbar";
+
+    NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=41JI0EUVFDHKEUXTB1DHBXP5W2GAUNHUQNMZP5XXAQWZE1BN&client_secret=QG1XL1SLIH2IFH5AT1ZFPBVNSZRAMKUG5BEWYJBALTXYRBUO&v=20140526", s4sq]];
+    NSData *data = [NSData dataWithContentsOfURL:requestURL];
+    if(!data) return @"Data leer";
+    NSDictionary *erg = [NSJSONSerialization JSONObjectWithData:data
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:nil];
+
+    if(day == 1)
+    {
+        NSString* ret = erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"];
+        if(!ret) return @"Keine Öffnungszeiten verfügbar";
+        return ret;
+    }
+
+    if(!erg[@"response"][@"venue"][@"popular"])
+        return @"Keine Öffnungszeiten verfügbar";
+    if (erg[@"response"][@"venue"][@"popular"][@"isOpen"]) {
+        return @"Momentan geöffnet";
+    }
+    return @"Nicht geöffnet";
+}
+
+-(NSString*)get4sqForMensaName:(NSString*)name
+{
+    if(!name) return @"";
+    for (NSDictionary *mensa in _mensaMeta) {
+        if([mensa[@"name"] isEqualToString:name])
+            return mensa[@"4sq"];
+    }
+    return @"";
 }
 
 
@@ -116,6 +178,7 @@
        {
            isLoading = false;
            [self.tableView reloadData];
+           [self checkAllOpeningHours];
        });
         
     }] resume];
@@ -188,42 +251,6 @@
     return @"noavailablemensaimage.jpg";
 }
 
-- (NSString *)checkWorkingHours:(NSString*)currentMensa4sq {
-    if([currentMensa4sq isEqualToString:@""] || [currentMensa4sq isEqualToString:@"na"])
-        return @"Keine Öffnungszeiten verfügbar";
-
-    NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=41JI0EUVFDHKEUXTB1DHBXP5W2GAUNHUQNMZP5XXAQWZE1BN&client_secret=QG1XL1SLIH2IFH5AT1ZFPBVNSZRAMKUG5BEWYJBALTXYRBUO&v=20140526", currentMensa4sq]];
-    NSData *data = [NSData dataWithContentsOfURL:requestURL];
-    if(!data) return @"Data leer";
-    NSDictionary *erg = [NSJSONSerialization JSONObjectWithData:data
-                                                   options:NSJSONReadingMutableContainers
-                                                     error:nil];
-
-    if(mensaDay == 1)
-    {
-        NSString* ret = erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"];
-        if(!ret) return @"Keine Öffnungszeiten verfügbar";
-        return ret;
-    }
-
-    if(!erg[@"response"][@"venue"][@"popular"])
-        return @"Keine Öffnungszeiten verfügbar";
-    if (erg[@"response"][@"venue"][@"popular"][@"isOpen"]) {
-        return @"Momentan geöffnet";
-    }
-    return @"Nicht geöffnet";
-}
-
--(NSString*)get4sqForMensaName:(NSString*)name
-{
-    if(!name) return @"";
-    for (NSDictionary *mensa in _mensaMeta) {
-        if([mensa[@"name"] isEqualToString:name])
-            return mensa[@"4sq"];
-    }
-    return @"";
-}
-
 -(void)reloadView {
     isLoading = NO;
     [mensaSpinner stopAnimating];
@@ -235,6 +262,7 @@
     [_allMensasOfToday removeAllObjects];
     [_allMensasOfTomorrow removeAllObjects];
     isLoading = YES;
+    openingHoursLoaded = NO;
     [self.mensaTableView reloadData];
     [self loadMensa];
 }
@@ -316,7 +344,9 @@
         
     
         [cell.textLabel setText:currentMensaName];
-        [cell.detailTextLabel setText:[self checkWorkingHours:[self get4sqForMensaName:currentMensaName]]];
+        if(!openingHoursLoaded)
+            cell.detailTextLabel.text = @"Öffnungszeiten werden geladen";
+        else cell.detailTextLabel.text = _openingHours[mensaDay][indexPath.row];
 
         //Add mensa image
         UIImage *currentMensaImage = [UIImage imageNamed:[self getMensaImageNameForName:currentMensaName]];
