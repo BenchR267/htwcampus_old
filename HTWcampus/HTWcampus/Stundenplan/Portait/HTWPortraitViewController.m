@@ -589,7 +589,7 @@
         thisDate.tag = -1;
         thisDate.textColor = [UIColor HTWWhiteColor];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
-        thisDate.text = [cDate getAsStringWithFormat:@"dd.MM"];
+        thisDate.text = [cDate getAsStringWithFormat:@"dd.MM."];
         
         wochentagePointer++;
         if (wochentagePointer > wochentage.count-1) {

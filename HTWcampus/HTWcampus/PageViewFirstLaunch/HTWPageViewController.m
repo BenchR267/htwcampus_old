@@ -63,7 +63,7 @@
     // Create a new view controller and pass suitable data.
     HTWPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWPageContentViewController"];
     pageContentViewController.imageFile = self.pageImages[index];
-    pageContentViewController.titleText = self.pageTitles[index];
+    //pageContentViewController.titleText = self.pageTitles[index];
     pageContentViewController.pageIndex = index;
     
     
