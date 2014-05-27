@@ -190,7 +190,7 @@
 
 - (NSString *)checkWorkingHours:(NSString*)currentMensa4sq {
     if([currentMensa4sq isEqualToString:@""] || [currentMensa4sq isEqualToString:@"na"])
-        return @"nicht verfügbar";
+        return @"Keine Öffnungszeiten verfügbar";
 
     NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=41JI0EUVFDHKEUXTB1DHBXP5W2GAUNHUQNMZP5XXAQWZE1BN&client_secret=QG1XL1SLIH2IFH5AT1ZFPBVNSZRAMKUG5BEWYJBALTXYRBUO&v=20140526", currentMensa4sq]];
     NSData *data = [NSData dataWithContentsOfURL:requestURL];
@@ -199,10 +199,17 @@
                                                    options:NSJSONReadingMutableContainers
                                                      error:nil];
 
+    if(mensaDay == 1)
+    {
+        NSString* ret = erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"];
+        if(!ret) return @"Keine Öffnungszeiten verfügbar";
+        return ret;
+    }
+
     if(!erg[@"response"][@"venue"][@"popular"])
-        return @"nicht verfügbar";
+        return @"Keine Öffnungszeiten verfügbar";
     if (erg[@"response"][@"venue"][@"popular"][@"isOpen"]) {
-        return @"Wahrscheinlich geöffnet";
+        return @"Momentan geöffnet";
     }
     return @"Nicht geöffnet";
 }
