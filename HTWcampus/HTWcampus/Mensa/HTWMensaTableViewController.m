@@ -111,7 +111,7 @@
 
     NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=41JI0EUVFDHKEUXTB1DHBXP5W2GAUNHUQNMZP5XXAQWZE1BN&client_secret=QG1XL1SLIH2IFH5AT1ZFPBVNSZRAMKUG5BEWYJBALTXYRBUO&v=20140526", s4sq]];
     NSData *data = [NSData dataWithContentsOfURL:requestURL];
-    if(!data) return @"Data leer";
+    if(!data) return @"Problem mit der Internet-Verbindung..";
     NSDictionary *erg = [NSJSONSerialization JSONObjectWithData:data
                                                         options:NSJSONReadingMutableContainers
                                                           error:nil];
@@ -130,10 +130,11 @@
         return ret;
     }
 
-    if (erg[@"response"][@"venue"][@"popular"][@"isOpen"]) {
+    NSLog(@"%@", erg[@"response"][@"venue"][@"popular"][@"isOpen"]);
+    if (((int)erg[@"response"][@"venue"][@"popular"][@"isOpen"]) == true) {
         return [NSString stringWithFormat:@"Geöffnet (%@)",erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"]];
     }
-    return @"Nicht geöffnet";
+    return [NSString stringWithFormat:@"Nicht geöffnet (%@)",erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"]];
 }
 
 -(NSString*)get4sqForMensaName:(NSString*)name
