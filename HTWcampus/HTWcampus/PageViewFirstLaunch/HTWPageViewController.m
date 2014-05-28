@@ -22,7 +22,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor HTWBlueColor];
 	// Create the data model
-    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png", @"page5.png", @"page6.png"];
+    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png", @"page5.png", @"page6.png", @"page7.png"];
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];

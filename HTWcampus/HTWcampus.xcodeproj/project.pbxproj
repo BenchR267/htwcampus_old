@@ -126,6 +126,7 @@
 		E6B771F3191C370200E9A2A5 /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771ED191C370200E9A2A5 /* page5.png */; };
 		E6B771F4191C370200E9A2A5 /* page6.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771EE191C370200E9A2A5 /* page6.png */; };
 		E6B87E74192A71AB0052EC20 /* HTWTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */; };
+		E6CE1CD71936303A00BD525A /* page7.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CE1CD61936303A00BD525A /* page7.png */; };
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
 		E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E572190FF60400DCD9EF /* HTWICSExport.m */; };
 		E6D6A8B8191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */; };
@@ -331,6 +332,7 @@
 		E6B771EE191C370200E9A2A5 /* page6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page6.png; path = PageViewFirstLaunch/Bilder/page6.png; sourceTree = "<group>"; };
 		E6B87E72192A71AB0052EC20 /* HTWTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTabBarItem.h; path = Classes/HTWTabBarItem.h; sourceTree = "<group>"; };
 		E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTabBarItem.m; path = Classes/HTWTabBarItem.m; sourceTree = "<group>"; };
+		E6CE1CD61936303A00BD525A /* page7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page7.png; path = PageViewFirstLaunch/Bilder/page7.png; sourceTree = "<group>"; };
 		E6D2E56E190FF55C00DCD9EF /* HTWCSVExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVExport.h; path = Stundenplan/Export/HTWCSVExport.h; sourceTree = "<group>"; };
 		E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVExport.m; path = Stundenplan/Export/HTWCSVExport.m; sourceTree = "<group>"; };
 		E6D2E571190FF60400DCD9EF /* HTWICSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWICSExport.h; path = Stundenplan/Export/HTWICSExport.h; sourceTree = "<group>"; };
@@ -861,6 +863,7 @@
 				E6B771EC191C370200E9A2A5 /* page4.png */,
 				E6B771ED191C370200E9A2A5 /* page5.png */,
 				E6B771EE191C370200E9A2A5 /* page6.png */,
+				E6CE1CD61936303A00BD525A /* page7.png */,
 			);
 			name = Bilder;
 			sourceTree = "<group>";
@@ -973,6 +976,7 @@
 				6D753A5A1917A8C300C6BAA1 /* uboot.jpg in Resources */,
 				E658457919295E110008A758 /* indicator.png in Resources */,
 				6D8B1CFE19351A1E00D519C8 /* fontawesome-webfont.ttf in Resources */,
+				E6CE1CD71936303A00BD525A /* page7.png in Resources */,
 				6D753A4D1917A8C300C6BAA1 /* mensa-bruehl.jpg in Resources */,
 				6D753A541917A8C300C6BAA1 /* noavailablemensaimage.jpg in Resources */,
 				6D753A561917A8C300C6BAA1 /* pillnitz.jpg in Resources */,

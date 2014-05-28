@@ -27,12 +27,12 @@
     self.titleLabel.font = [UIFont HTWBaseFont];
     self.titleLabel.textColor = [UIColor HTWDarkGrayColor];
     
-    if(_pageIndex == 5) _goButton.hidden = NO;
+    if(_pageIndex == 6) _goButton.hidden = NO;
     else _goButton.hidden = YES;
 
-    _goButton.backgroundColor = [UIColor HTWDarkGrayColor];
+    _goButton.backgroundColor = [UIColor HTWBlueColor];
     _goButton.tintColor = [UIColor HTWWhiteColor];
-    [_goButton.titleLabel setFont:[UIFont HTWTableViewCellFont]];
+    [_goButton.titleLabel setFont:[UIFont boldSystemFontOfSize:27]];
     _goButton.layer.cornerRadius = 7;
 }
 - (IBAction)goButtonClicked:(id)sender {
