@@ -130,8 +130,8 @@
         return ret;
     }
 
-    NSLog(@"%@", erg[@"response"][@"venue"][@"popular"][@"isOpen"]);
-    if (((int)erg[@"response"][@"venue"][@"popular"][@"isOpen"]) == true) {
+    NSLog(@"%d", [(NSNumber*)[erg[@"response"][@"venue"][@"popular"] valueForKey:@"isOpen"] boolValue]);
+    if ([(NSNumber*)[erg[@"response"][@"venue"][@"popular"] valueForKey:@"isOpen"] boolValue]) {
         return [NSString stringWithFormat:@"Geöffnet (%@)",erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"]];
     }
     return [NSString stringWithFormat:@"Nicht geöffnet (%@)",erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"]];
