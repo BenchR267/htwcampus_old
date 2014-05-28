@@ -42,8 +42,8 @@
     if(![[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"])
         [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"anzahlTageLandscape"];
     
-//    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
-//    {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
+    {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
         [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
         [[NSUserDefaults standardUserDefaults] setFloat:30 forKey:@"markierSliderValue"];
@@ -53,12 +53,12 @@
         [self.window setRootViewController:vc];
     }];
 
-//    }
-//    else
-//    {
-//        HTWPortraitViewController *vc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateInitialViewController];
-//        [self.window setRootViewController:vc];
-//    }
+    }
+    else
+    {
+        HTWPortraitViewController *vc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateInitialViewController];
+        [self.window setRootViewController:vc];
+    }
 
     return YES;
 }
