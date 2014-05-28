@@ -14,9 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *immaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gruppenLabel;
-@property (weak, nonatomic) IBOutlet UITextField *jahrTextField;
-@property (weak, nonatomic) IBOutlet UITextField *gruppeTextField;
-@property (weak, nonatomic) IBOutlet UIPickerView *BDMPicker;
+
 
 @property (nonatomic, strong) NSArray *BDMData;
 
@@ -47,7 +45,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     _jahrTextField.text = [defaults objectForKey:@"pruefungJahr"];
-    [_jahrTextField becomeFirstResponder];
     _gruppeTextField.text = [defaults objectForKey:@"pruefungGruppe"];
     
     _BDMPicker.dataSource = self;
@@ -64,6 +61,12 @@
     
     UIBarButtonItem *fertigButton = [[UIBarButtonItem alloc] initWithTitle:@"Fertig" style:UIBarButtonItemStylePlain target:self action:@selector(fertigPressed:)];
     self.navigationItem.rightBarButtonItem = fertigButton;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_jahrTextField becomeFirstResponder];
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -96,16 +99,6 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     [[NSUserDefaults standardUserDefaults] setObject:[_BDMData[row] substringToIndex:1] forKey:@"pruefungTyp"];
-}
-
--(IBAction)fertigPressed:(id)sender
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:_jahrTextField.text forKey:@"pruefungJahr"];
-    [defaults setObject:_gruppeTextField.text forKey:@"pruefungGruppe"];
-    
-    if(_delegate) [_delegate neueStudienGruppeEingegeben];
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 @end

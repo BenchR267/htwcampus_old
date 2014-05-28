@@ -13,7 +13,7 @@
 @interface HTWDozentEingebenTableViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *dozentLabel;
-@property (weak, nonatomic) IBOutlet UITextField *dozentTextField;
+
 
 
 @end
@@ -33,7 +33,6 @@
     _dozentTextField.font = [UIFont HTWTableViewCellFont];
     _dozentTextField.textColor = [UIColor HTWBlueColor];
     _dozentTextField.delegate = self;
-    [_dozentTextField becomeFirstResponder];
     
     _dozentTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"pruefungDozent"];
     
@@ -41,11 +40,16 @@
     self.navigationItem.rightBarButtonItem = fertigButton;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_dozentTextField becomeFirstResponder];
+}
+
 -(IBAction)fertigPressed:(id)sender
 {
     [[NSUserDefaults standardUserDefaults] setObject:_dozentTextField.text forKey:@"pruefungDozent"];
-    
-    if(_delegate) [_delegate neuerDozentEingegeben];
+
     [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 }
 
@@ -53,7 +57,6 @@
 {
     [[NSUserDefaults standardUserDefaults] setObject:_dozentTextField.text forKey:@"pruefungDozent"];
     
-    if(_delegate) [_delegate neuerDozentEingegeben];
     [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
     return YES;
 }

@@ -1208,6 +1208,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <barButtonItem key="leftBarButtonItem" image="Settings" id="Eag-Os-I2f">
                             <connections>
                                 <action selector="settingsButtonPressed:" destination="zUr-jz-2ig" id="g9b-4w-Gno"/>
+                                <segue destination="Ju7-Ma-ulI" kind="modal" identifier="modalEingeben" id="hqy-4W-Oe5"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Reload" id="xSb-1r-2fP">
@@ -1216,10 +1217,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="AvO-Id-vAE" kind="modal" identifier="modalEingeben" modalTransitionStyle="coverVertical" id="iB6-Ru-TUM"/>
-                        <segue destination="ADI-0Z-ZYe" kind="modal" identifier="modalDozentEingeben" modalTransitionStyle="coverVertical" id="Dhx-fc-fYl"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lo3-66-oLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1228,30 +1225,30 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Neue Studiengruppe - Studiengruppe eingeben-->
         <scene sceneID="tAE-kb-QGA">
             <objects>
-                <tableViewController storyboardIdentifier="studienGruppeEingeben" title="Studiengruppe eingeben" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cOJ-js-ySy" customClass="HTWNeueStudiengruppe" sceneMemberID="viewController">
+                <tableViewController title="Studiengruppe eingeben" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cOJ-js-ySy" customClass="HTWNeueStudiengruppe" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="WEH-T2-3HA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="8W1-o5-qFv">
+                            <tableViewSection headerTitle="Bitte geben Sie Ihre Studiengruppe ein" id="8W1-o5-qFv">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="55" id="Ouz-Fn-W8f">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="55"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="45" id="Ouz-Fn-W8f">
+                                        <rect key="frame" x="0.0" y="119" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ouz-Fn-W8f" id="cCd-mb-REa">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Immatrikulationsjahr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyO-L1-0rM">
-                                                    <rect key="frame" x="20" y="0.0" width="171" height="59"/>
+                                                    <rect key="frame" x="20" y="0.0" width="171" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="12" textAlignment="right" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="BnT-m8-RaR">
-                                                    <rect key="frame" x="215" y="15" width="85" height="30"/>
+                                                    <rect key="frame" x="215" y="8" width="85" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1259,22 +1256,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="55" id="rCa-VZ-oq8">
-                                        <rect key="frame" x="0.0" y="154" width="320" height="55"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="45" id="rCa-VZ-oq8">
+                                        <rect key="frame" x="0.0" y="164" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rCa-VZ-oq8" id="nXf-6h-hCK">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Studiengruppe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mY2-Sf-SZ7">
-                                                    <rect key="frame" x="20" y="0.0" width="171" height="59"/>
+                                                    <rect key="frame" x="20" y="0.0" width="171" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="041" textAlignment="right" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="l9b-uC-z68">
-                                                    <rect key="frame" x="215" y="15" width="85" height="30"/>
+                                                    <rect key="frame" x="215" y="7" width="85" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1282,21 +1279,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="145" id="A2e-Ro-O5V">
-                                        <rect key="frame" x="0.0" y="209" width="320" height="145"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="131" id="A2e-Ro-O5V">
+                                        <rect key="frame" x="0.0" y="209" width="320" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A2e-Ro-O5V" id="Ndb-PP-Ydr">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ch-V3-qs4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                                    <rect key="frame" x="0.0" y="-16" width="320" height="162"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 </pickerView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="0ch-V3-qs4" secondAttribute="bottom" constant="-1" id="96X-pO-xo7"/>
-                                                <constraint firstItem="0ch-V3-qs4" firstAttribute="top" secondItem="Ndb-PP-Ydr" secondAttribute="top" id="HeY-ob-2QC"/>
+                                                <constraint firstAttribute="bottom" secondItem="0ch-V3-qs4" secondAttribute="bottom" constant="-16" id="96X-pO-xo7"/>
+                                                <constraint firstItem="0ch-V3-qs4" firstAttribute="top" secondItem="Ndb-PP-Ydr" secondAttribute="top" constant="-16" id="HeY-ob-2QC"/>
                                                 <constraint firstAttribute="trailing" secondItem="0ch-V3-qs4" secondAttribute="trailing" id="S5y-pi-C4n"/>
                                                 <constraint firstItem="0ch-V3-qs4" firstAttribute="leading" secondItem="Ndb-PP-Ydr" secondAttribute="leading" id="fpu-Xn-Zt9"/>
                                             </constraints>
@@ -1323,7 +1320,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Y4-bt-vpM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="4654"/>
+            <point key="canvasLocation" x="3309" y="5050"/>
         </scene>
         <!--Dozent Eingeben Table View Controller-->
         <scene sceneID="O4v-Kz-rzp">
@@ -1383,7 +1380,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2x-Zc-ZGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="5351"/>
+            <point key="canvasLocation" x="3309" y="5747"/>
         </scene>
         <!--Pruefungs Detail Table View Controller-->
         <scene sceneID="BJ3-8K-JcW">
@@ -1755,24 +1752,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <point key="canvasLocation" x="3047" y="-2443"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="DWR-yx-mRk">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AvO-Id-vAE" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UPC-uY-t8P">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cOJ-js-ySy" kind="relationship" relationship="rootViewController" id="Oca-ih-TuK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1g2-Vl-vUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1553" y="4654"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="R0Z-R1-uDJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XBm-Mp-8tl" sceneMemberID="viewController">
@@ -1808,23 +1787,45 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="859" y="-1765"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ND1-R8-gpJ">
+        <!--Pruefung Settings View Controller-->
+        <scene sceneID="rQy-Yx-XXz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ADI-0Z-ZYe" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gUa-Zt-0k1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="DlF-Xu-NxC" customClass="HTWPruefungSettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yxj-Rd-CMp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yq6-hK-7LR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KvA-mw-LIc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Yt0-wF-k7d">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="kpC-iu-R6j">
+                            <rect key="frame" x="55" y="7" width="207" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Studiengruppe"/>
+                                <segment title="Prüfender"/>
+                            </segments>
+                            <connections>
+                                <action selector="indexDidChangeForSegmentedControl:" destination="DlF-Xu-NxC" eventType="valueChanged" id="Dpm-6z-oIw"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Fertig" id="g4O-MJ-8U9">
+                            <connections>
+                                <action selector="fertigPressed:" destination="DlF-Xu-NxC" id="eWc-tY-Sjc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="bEI-eH-2nF" kind="relationship" relationship="rootViewController" id="041-4m-WGf"/>
+                        <outlet property="switchViewControllers" destination="kpC-iu-R6j" id="AEb-iV-cmz"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LqP-Il-9OO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tkO-ss-GN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="5351"/>
+            <point key="canvasLocation" x="2071" y="4664"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KM5-i5-IlT">
@@ -1991,6 +1992,60 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eon-fJ-oGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2534" y="-3132"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7WZ-Rd-QYK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ju7-Ma-ulI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cv8-1h-GrU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DlF-Xu-NxC" kind="relationship" relationship="rootViewController" id="BU6-N6-w11"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ns2-eb-l2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1545" y="4664"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OXp-tb-Bw9">
+            <objects>
+                <navigationController storyboardIdentifier="studienGruppeEingeben" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SVu-mo-X2f" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8NX-Es-Of4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cOJ-js-ySy" kind="relationship" relationship="rootViewController" id="627-Eb-ROS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFA-CD-95A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2783" y="5050"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="huu-pD-6Te">
+            <objects>
+                <navigationController storyboardIdentifier="dozentEingeben" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gFj-zo-OEC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="skR-gm-bGD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bEI-eH-2nF" kind="relationship" relationship="rootViewController" id="MaE-2E-OVc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qDg-Ez-3mW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2783" y="5747"/>
         </scene>
     </scenes>
     <resources>

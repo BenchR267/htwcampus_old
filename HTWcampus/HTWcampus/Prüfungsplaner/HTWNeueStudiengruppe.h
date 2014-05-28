@@ -8,15 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol HTWNeueStudiengruppeDelegate <NSObject>
-
-@optional
--(void)neueStudienGruppeEingegeben;
-
-@end
-
 @interface HTWNeueStudiengruppe : UITableViewController
 
-@property (nonatomic, strong) id <HTWNeueStudiengruppeDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextField *jahrTextField;
+@property (weak, nonatomic) IBOutlet UITextField *gruppeTextField;
+@property (weak, nonatomic) IBOutlet UIPickerView *BDMPicker;
 
 @end

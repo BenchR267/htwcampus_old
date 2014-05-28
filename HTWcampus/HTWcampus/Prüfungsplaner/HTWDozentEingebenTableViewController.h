@@ -8,15 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol HTWNeuerDozentDelegate <NSObject>
-
-@optional
--(void)neuerDozentEingegeben;
-
-@end
-
 @interface HTWDozentEingebenTableViewController : UITableViewController
 
-@property (nonatomic, strong) id <HTWNeuerDozentDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextField *dozentTextField;
 
 @end

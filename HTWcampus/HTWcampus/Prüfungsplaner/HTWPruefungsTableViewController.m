@@ -9,8 +9,7 @@
 #import "HTWPruefungsTableViewController.h"
 #import "HTWPruefungsParser.h"
 #import "HTWPruefungsDetailTableViewController.h"
-#import "HTWNeueStudiengruppe.h"
-#import "HTWDozentEingebenTableViewController.h"
+#import "HTWPruefungSettingsViewController.h"
 #import "HTWAppDelegate.h"
 #import "User.h"
 
@@ -20,7 +19,7 @@
 
 #define kURL [NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/pr_abfrage.php"]
 
-@interface HTWPruefungsTableViewController () <HTWNeueStudiengruppeDelegate, HTWNeuerDozentDelegate>
+@interface HTWPruefungsTableViewController () <HTWPruefungsSettingsDelegate>
 
 @property (nonatomic, strong) NSArray *pruefungsArray;
 @property (nonatomic, strong) NSArray *keys;
@@ -66,11 +65,8 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if(!([defaults objectForKey:@"pruefungJahr"] && [defaults objectForKey:@"pruefungGruppe"] && [defaults objectForKey:@"pruefungTyp"]) && ![self isDozent])
+    if((!([defaults objectForKey:@"pruefungJahr"] && [defaults objectForKey:@"pruefungGruppe"] && [defaults objectForKey:@"pruefungTyp"]) && ![self isDozent]) || (![defaults objectForKey:@"pruefungDozent"] && [self isDozent]))
         [self performSegueWithIdentifier:@"modalEingeben" sender:self];
-    else if (![defaults objectForKey:@"pruefungDozent"] && [self isDozent]) {
-        [self performSegueWithIdentifier:@"modalDozentEingeben" sender:self];
-    }
     
     
     HTWPruefungsParser *parser;
@@ -196,22 +192,14 @@
             else pdtvc.pruefung = _vorher[indexPath.row];
         }
     }
-    else if ([segue.identifier isEqualToString:@"modalEingeben"])
+    else if([segue.identifier isEqualToString:@"modalEingeben"])
     {
-        [(HTWNeueStudiengruppe*)segue.destinationViewController setDelegate:self];
-    }
-    else if ([segue.identifier isEqualToString:@"modalDozentEingeben"])
-    {
-        [(HTWDozentEingebenTableViewController*)segue.destinationViewController setDelegate:self];
+        HTWPruefungSettingsViewController *svc = segue.destinationViewController;
+        svc.delegate = self;
     }
 }
 
--(void)neueStudienGruppeEingegeben
-{
-    [self loadData];
-}
-
--(void)neuerDozentEingegeben
+-(void)HTWPruefungsSettingsDone
 {
     [self loadData];
 }
@@ -221,27 +209,14 @@
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
-    if(![self isDozent])
         [self performSegueWithIdentifier:@"modalEingeben" sender:self];
-    else [self performSegueWithIdentifier:@"modalDozentEingeben" sender:self];
 }
 
 #pragma mark - Hilfsfunktionen
 
 -(BOOL)isDozent
 {
-    NSManagedObjectContext *context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"matrnr = %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"Matrikelnummer"]];
-    request.predicate = pred;
-    NSArray *objects = [context executeFetchRequest:request error:nil];
-    if(objects.count > 0)
-    {
-        User *info = objects[0];
-        if(info.dozent.boolValue) return YES;
-        else return NO;
-    }
-    return NO;
+    return ([[NSUserDefaults standardUserDefaults] integerForKey:@"pruefungsPlanTyp"] == 1);
 }
 
 -(NSDate*)getAnfang:(int)index

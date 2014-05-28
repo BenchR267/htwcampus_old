@@ -551,7 +551,7 @@
         [button addGestureRecognizer:longPressGR];
         if (Matrnr){
             UITapGestureRecognizer *tapGREdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonIsPressedForEdit:)];
-            tapGREdit.numberOfTapsRequired = 2;
+            tapGREdit.numberOfTapsRequired = 1;
             [button addGestureRecognizer:tapGREdit];
         }
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
