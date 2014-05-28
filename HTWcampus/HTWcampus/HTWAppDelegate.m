@@ -44,7 +44,6 @@
     
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
     {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
         [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
         [[NSUserDefaults standardUserDefaults] setFloat:30 forKey:@"markierSliderValue"];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"parallax"];

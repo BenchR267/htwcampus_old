@@ -36,6 +36,7 @@
     _goButton.layer.cornerRadius = 7;
 }
 - (IBAction)goButtonClicked:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
     HTWAppDelegate *appD = [[UIApplication sharedApplication] delegate];
     UITabBarController *tbc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabBarController"];
     [UIView transitionWithView:appD.window
