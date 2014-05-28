@@ -55,6 +55,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"pruefungsPlanTyp"];
     [[NSUserDefaults standardUserDefaults] setObject:_dozentTextField.text forKey:@"pruefungDozent"];
     
     [self.navigationController dismissViewControllerAnimated:YES completion:^{}];

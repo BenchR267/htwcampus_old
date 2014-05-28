@@ -99,6 +99,7 @@
                 [self.nachher addObject:_pruefungsArray[i]];
             
         }
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
         [self.tableView reloadData];
     }];
 }
@@ -205,6 +206,7 @@
 }
 
 - (IBAction)refreshButtonPressed:(id)sender {
+    [(UIBarButtonItem*)sender setEnabled:NO];
     [self loadData];
 }
 

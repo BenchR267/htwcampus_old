@@ -1814,11 +1814,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationItem key="navigationItem" id="Yt0-wF-k7d">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="kpC-iu-R6j">
-                            <rect key="frame" x="55" y="7" width="207" height="31"/>
+                            <rect key="frame" x="55" y="7" width="207" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Studiengruppe"/>
-                                <segment title="Prüfender"/>
+                                <segment title="Prüfende(r)"/>
                             </segments>
                             <connections>
                                 <action selector="indexDidChangeForSegmentedControl:" destination="DlF-Xu-NxC" eventType="valueChanged" id="Dpm-6z-oIw"/>
