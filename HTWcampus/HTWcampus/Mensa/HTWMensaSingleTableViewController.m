@@ -79,15 +79,20 @@
     UILabel *mealPriceLabel = (UILabel *)[cell viewWithTag:2];
     
     // Configure the cell...
-    NSString *mealName = [[_availableMeals objectAtIndex:indexPath.row] valueForKey:@"desc"];
+    NSString *mealName = [[_availableMeals objectAtIndex:indexPath.row] valueForKey:@"title"];
     NSString *mealPrice = [[_availableMeals objectAtIndex:indexPath.row] valueForKey:@"price"];
     
     
     // Truncate mealName
     NSString *helpString = mealName;
     NSArray *helpArray = [helpString componentsSeparatedByString:@","];
-    
-    [mealNameLabel setText:[helpArray objectAtIndex:0]];
+
+    if(helpArray.count >= 2)
+        [mealNameLabel setText:[NSString stringWithFormat:@"%@,%@", helpArray[0], helpArray[1]]];
+    else
+        [mealNameLabel setText:helpArray[0]];
+
+    [mealNameLabel sizeToFit];
     [mealPriceLabel setText:mealPrice];
     
     [mealNameLabel sizeToFit];

@@ -57,10 +57,6 @@
     else if([[defaults objectForKey:@"pruefungTyp"] isEqualToString:@"M"]) [_BDMPicker selectRow:2 inComponent:0 animated:YES];
     
     if(![defaults objectForKey:@"pruefungTyp"]) [defaults setObject:@"B" forKey:@"pruefungTyp"];
-    
-    
-    UIBarButtonItem *fertigButton = [[UIBarButtonItem alloc] initWithTitle:@"Fertig" style:UIBarButtonItemStylePlain target:self action:@selector(fertigPressed:)];
-    self.navigationItem.rightBarButtonItem = fertigButton;
 }
 
 -(void)viewWillAppear:(BOOL)animated

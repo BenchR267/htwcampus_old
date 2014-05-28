@@ -11,9 +11,7 @@
 
 @interface HTWPageViewController : UIViewController <UIPageViewControllerDataSource>
 
-- (IBAction)skip:(id)sender;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-@property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageImages;
 
 @end
