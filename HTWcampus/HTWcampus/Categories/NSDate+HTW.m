@@ -27,6 +27,24 @@
     return [dateF dateFromString:dateAsString];
 }
 
++(int)day
+{
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    return (int)[comp day];
+}
+
++(int)month
+{
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    return (int)[comp month];
+}
+
++(int)year
+{
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    return (int)[comp year];
+}
+
 
 #pragma mark - Instance Methods
 -(int)getWeekDay
@@ -66,6 +84,24 @@
     NSDateFormatter *dateF = [NSDateFormatter new];
     [dateF setDateFormat:@"dd.MM.yyyy"];
     return [dateF dateFromString:[dateF stringFromDate:self]];
+}
+
+-(int)day
+{
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self];
+    return (int)[comp day];
+}
+
+-(int)month
+{
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self];
+    return (int)[comp month];
+}
+
+-(int)year
+{
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self];
+    return (int)[comp year];
 }
 
 -(BOOL)isYesterday:(NSDate*)date

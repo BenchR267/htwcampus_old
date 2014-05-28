@@ -12,11 +12,17 @@
 
 +(int)getWeekDay;
 +(NSDate*)getFromString:(NSString*)dateAsString withFormat:(NSString*)format;
++(int)day;
++(int)month;
++(int)year;
 
 -(int)getWeekDay;
 -(NSString*)getWeekDayString;
 -(NSString*)getAsStringWithFormat:(NSString*)formatString;
 -(NSDate*)getDayOnly;
+-(int)day;
+-(int)month;
+-(int)year;
 -(BOOL)isYesterday:(NSDate*)date;
 -(BOOL)isTommorrow:(NSDate*)date;
 
