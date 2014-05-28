@@ -32,6 +32,7 @@
 		<string>PT_Sans-Web-Regular.ttf</string>
 		<string>PT_Sans-Web-Italic.ttf</string>
 		<string>PT_Sans-Web-Bolditalic.ttf</string>
+		<string>fontawesome-webfont.ttf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>main</string>

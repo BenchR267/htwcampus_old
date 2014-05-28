@@ -28,7 +28,8 @@
 @property (strong, nonatomic) NSMutableArray *allMensasOfToday;
 @property (strong, nonatomic) NSMutableArray *allMensasOfTomorrow;
 @property (strong, nonatomic) NSArray *mensaMeta;
-@property (nonatomic, strong) NSMutableArray *openingHours;
+@property (strong, nonatomic) NSMutableArray *openingHours;
+@property (strong, nonatomic) NSMutableDictionary *mensaPictureDict;
 @end
 
 @implementation HTWMensaTableViewController
@@ -56,6 +57,13 @@
                                 error:&error];
     
     isLoading = YES;
+    
+    //Preload Mensa Pictures
+    _mensaPictureDict = [[NSMutableDictionary alloc] init];
+    for (NSDictionary *currentMensa in _mensaMeta) {
+        UIImage *image = [[UIImage imageNamed:[self getMensaImageNameForName:[currentMensa valueForKey:@"name"]]] thumbnailImage:128 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationDefault];
+        [_mensaPictureDict setValue:image forKey:[currentMensa valueForKey:@"name"]];
+    }
     
     [self.mensaDaySwitcher addTarget:self
                             action:@selector(setMensaDay)
@@ -353,8 +361,7 @@
         else cell.detailTextLabel.text = _openingHours[mensaDay][indexPath.row];
 
         //Add mensa image
-        UIImage *currentMensaImage = [UIImage imageNamed:[self getMensaImageNameForName:currentMensaName]];
-        cell.imageView.image = [currentMensaImage thumbnailImage:128 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationDefault];
+        cell.imageView.image = [_mensaPictureDict valueForKey:currentMensaName];
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier forIndexPath:indexPath];
