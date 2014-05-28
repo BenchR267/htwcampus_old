@@ -38,39 +38,11 @@
 		6D753A761917F1D000C6BAA1 /* zittau.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A751917F1D000C6BAA1 /* zittau.jpg */; };
 		6D753A781917F20800C6BAA1 /* hausvii.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D753A771917F20800C6BAA1 /* hausvii.jpg */; };
 		6D7B451C1908150F00D99C9D /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D7B451B1908150F00D99C9D /* main.storyboard */; };
-		6D8B1CFA19351A1E00D519C8 /* font-awesome.css in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CD619351A1E00D519C8 /* font-awesome.css */; };
-		6D8B1CFB19351A1E00D519C8 /* font-awesome.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CD719351A1E00D519C8 /* font-awesome.min.css */; };
 		6D8B1CFC19351A1E00D519C8 /* fontawesome-webfont.eot in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CD919351A1E00D519C8 /* fontawesome-webfont.eot */; };
 		6D8B1CFD19351A1E00D519C8 /* fontawesome-webfont.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CDA19351A1E00D519C8 /* fontawesome-webfont.svg */; };
 		6D8B1CFE19351A1E00D519C8 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CDB19351A1E00D519C8 /* fontawesome-webfont.ttf */; };
 		6D8B1CFF19351A1E00D519C8 /* fontawesome-webfont.woff in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CDC19351A1E00D519C8 /* fontawesome-webfont.woff */; };
 		6D8B1D0019351A1E00D519C8 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CDD19351A1E00D519C8 /* FontAwesome.otf */; };
-		6D8B1D0119351A1E00D519C8 /* bordered-pulled.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CDF19351A1E00D519C8 /* bordered-pulled.less */; };
-		6D8B1D0219351A1E00D519C8 /* core.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE019351A1E00D519C8 /* core.less */; };
-		6D8B1D0319351A1E00D519C8 /* fixed-width.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE119351A1E00D519C8 /* fixed-width.less */; };
-		6D8B1D0419351A1E00D519C8 /* font-awesome.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE219351A1E00D519C8 /* font-awesome.less */; };
-		6D8B1D0519351A1E00D519C8 /* icons.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE319351A1E00D519C8 /* icons.less */; };
-		6D8B1D0619351A1E00D519C8 /* larger.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE419351A1E00D519C8 /* larger.less */; };
-		6D8B1D0719351A1E00D519C8 /* list.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE519351A1E00D519C8 /* list.less */; };
-		6D8B1D0819351A1E00D519C8 /* mixins.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE619351A1E00D519C8 /* mixins.less */; };
-		6D8B1D0919351A1E00D519C8 /* path.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE719351A1E00D519C8 /* path.less */; };
-		6D8B1D0A19351A1E00D519C8 /* rotated-flipped.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE819351A1E00D519C8 /* rotated-flipped.less */; };
-		6D8B1D0B19351A1E00D519C8 /* spinning.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CE919351A1E00D519C8 /* spinning.less */; };
-		6D8B1D0C19351A1E00D519C8 /* stacked.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CEA19351A1E00D519C8 /* stacked.less */; };
-		6D8B1D0D19351A1E00D519C8 /* variables.less in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CEB19351A1E00D519C8 /* variables.less */; };
-		6D8B1D0E19351A1E00D519C8 /* _bordered-pulled.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CED19351A1E00D519C8 /* _bordered-pulled.scss */; };
-		6D8B1D0F19351A1E00D519C8 /* _core.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CEE19351A1E00D519C8 /* _core.scss */; };
-		6D8B1D1019351A1E00D519C8 /* _fixed-width.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CEF19351A1E00D519C8 /* _fixed-width.scss */; };
-		6D8B1D1119351A1E00D519C8 /* _icons.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF019351A1E00D519C8 /* _icons.scss */; };
-		6D8B1D1219351A1E00D519C8 /* _larger.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF119351A1E00D519C8 /* _larger.scss */; };
-		6D8B1D1319351A1E00D519C8 /* _list.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF219351A1E00D519C8 /* _list.scss */; };
-		6D8B1D1419351A1E00D519C8 /* _mixins.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF319351A1E00D519C8 /* _mixins.scss */; };
-		6D8B1D1519351A1E00D519C8 /* _path.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF419351A1E00D519C8 /* _path.scss */; };
-		6D8B1D1619351A1E00D519C8 /* _rotated-flipped.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF519351A1E00D519C8 /* _rotated-flipped.scss */; };
-		6D8B1D1719351A1E00D519C8 /* _spinning.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF619351A1E00D519C8 /* _spinning.scss */; };
-		6D8B1D1819351A1E00D519C8 /* _stacked.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF719351A1E00D519C8 /* _stacked.scss */; };
-		6D8B1D1919351A1E00D519C8 /* _variables.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF819351A1E00D519C8 /* _variables.scss */; };
-		6D8B1D1A19351A1E00D519C8 /* font-awesome.scss in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B1CF919351A1E00D519C8 /* font-awesome.scss */; };
 		6D94E9DA191524B300872FC8 /* HTWNotenDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94E9D5191524B300872FC8 /* HTWNotenDetailTableViewController.m */; };
 		6D94E9DB191524B300872FC8 /* HTWNotenStartseiteHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94E9D7191524B300872FC8 /* HTWNotenStartseiteHTMLParser.m */; };
 		6D94E9DC191524B300872FC8 /* HTWNotenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94E9D9191524B300872FC8 /* HTWNotenTableViewController.m */; };
@@ -210,39 +182,11 @@
 		6D753A751917F1D000C6BAA1 /* zittau.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = zittau.jpg; path = Mensa/Pictures/zittau.jpg; sourceTree = "<group>"; };
 		6D753A771917F20800C6BAA1 /* hausvii.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = hausvii.jpg; path = Mensa/Pictures/hausvii.jpg; sourceTree = "<group>"; };
 		6D7B451B1908150F00D99C9D /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
-		6D8B1CD619351A1E00D519C8 /* font-awesome.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "font-awesome.css"; sourceTree = "<group>"; };
-		6D8B1CD719351A1E00D519C8 /* font-awesome.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "font-awesome.min.css"; sourceTree = "<group>"; };
 		6D8B1CD919351A1E00D519C8 /* fontawesome-webfont.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.eot"; sourceTree = "<group>"; };
 		6D8B1CDA19351A1E00D519C8 /* fontawesome-webfont.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "fontawesome-webfont.svg"; sourceTree = "<group>"; };
 		6D8B1CDB19351A1E00D519C8 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		6D8B1CDC19351A1E00D519C8 /* fontawesome-webfont.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.woff"; sourceTree = "<group>"; };
 		6D8B1CDD19351A1E00D519C8 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
-		6D8B1CDF19351A1E00D519C8 /* bordered-pulled.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bordered-pulled.less"; sourceTree = "<group>"; };
-		6D8B1CE019351A1E00D519C8 /* core.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = core.less; sourceTree = "<group>"; };
-		6D8B1CE119351A1E00D519C8 /* fixed-width.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fixed-width.less"; sourceTree = "<group>"; };
-		6D8B1CE219351A1E00D519C8 /* font-awesome.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "font-awesome.less"; sourceTree = "<group>"; };
-		6D8B1CE319351A1E00D519C8 /* icons.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icons.less; sourceTree = "<group>"; };
-		6D8B1CE419351A1E00D519C8 /* larger.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = larger.less; sourceTree = "<group>"; };
-		6D8B1CE519351A1E00D519C8 /* list.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = list.less; sourceTree = "<group>"; };
-		6D8B1CE619351A1E00D519C8 /* mixins.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mixins.less; sourceTree = "<group>"; };
-		6D8B1CE719351A1E00D519C8 /* path.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = path.less; sourceTree = "<group>"; };
-		6D8B1CE819351A1E00D519C8 /* rotated-flipped.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "rotated-flipped.less"; sourceTree = "<group>"; };
-		6D8B1CE919351A1E00D519C8 /* spinning.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spinning.less; sourceTree = "<group>"; };
-		6D8B1CEA19351A1E00D519C8 /* stacked.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stacked.less; sourceTree = "<group>"; };
-		6D8B1CEB19351A1E00D519C8 /* variables.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = variables.less; sourceTree = "<group>"; };
-		6D8B1CED19351A1E00D519C8 /* _bordered-pulled.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "_bordered-pulled.scss"; sourceTree = "<group>"; };
-		6D8B1CEE19351A1E00D519C8 /* _core.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _core.scss; sourceTree = "<group>"; };
-		6D8B1CEF19351A1E00D519C8 /* _fixed-width.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "_fixed-width.scss"; sourceTree = "<group>"; };
-		6D8B1CF019351A1E00D519C8 /* _icons.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _icons.scss; sourceTree = "<group>"; };
-		6D8B1CF119351A1E00D519C8 /* _larger.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _larger.scss; sourceTree = "<group>"; };
-		6D8B1CF219351A1E00D519C8 /* _list.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _list.scss; sourceTree = "<group>"; };
-		6D8B1CF319351A1E00D519C8 /* _mixins.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _mixins.scss; sourceTree = "<group>"; };
-		6D8B1CF419351A1E00D519C8 /* _path.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _path.scss; sourceTree = "<group>"; };
-		6D8B1CF519351A1E00D519C8 /* _rotated-flipped.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "_rotated-flipped.scss"; sourceTree = "<group>"; };
-		6D8B1CF619351A1E00D519C8 /* _spinning.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _spinning.scss; sourceTree = "<group>"; };
-		6D8B1CF719351A1E00D519C8 /* _stacked.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _stacked.scss; sourceTree = "<group>"; };
-		6D8B1CF819351A1E00D519C8 /* _variables.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _variables.scss; sourceTree = "<group>"; };
-		6D8B1CF919351A1E00D519C8 /* font-awesome.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "font-awesome.scss"; sourceTree = "<group>"; };
 		6D94E9D4191524B300872FC8 /* HTWNotenDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNotenDetailTableViewController.h; path = Noten/HTWNotenDetailTableViewController.h; sourceTree = "<group>"; };
 		6D94E9D5191524B300872FC8 /* HTWNotenDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNotenDetailTableViewController.m; path = Noten/HTWNotenDetailTableViewController.m; sourceTree = "<group>"; };
 		6D94E9D6191524B300872FC8 /* HTWNotenStartseiteHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNotenStartseiteHTMLParser.h; path = Noten/HTWNotenStartseiteHTMLParser.h; sourceTree = "<group>"; };
@@ -505,21 +449,9 @@
 		6D8B1CD419351A1E00D519C8 /* font-awesome */ = {
 			isa = PBXGroup;
 			children = (
-				6D8B1CD519351A1E00D519C8 /* css */,
 				6D8B1CD819351A1E00D519C8 /* fonts */,
-				6D8B1CDE19351A1E00D519C8 /* less */,
-				6D8B1CEC19351A1E00D519C8 /* scss */,
 			);
 			path = "font-awesome";
-			sourceTree = "<group>";
-		};
-		6D8B1CD519351A1E00D519C8 /* css */ = {
-			isa = PBXGroup;
-			children = (
-				6D8B1CD619351A1E00D519C8 /* font-awesome.css */,
-				6D8B1CD719351A1E00D519C8 /* font-awesome.min.css */,
-			);
-			path = css;
 			sourceTree = "<group>";
 		};
 		6D8B1CD819351A1E00D519C8 /* fonts */ = {
@@ -532,46 +464,6 @@
 				6D8B1CDD19351A1E00D519C8 /* FontAwesome.otf */,
 			);
 			path = fonts;
-			sourceTree = "<group>";
-		};
-		6D8B1CDE19351A1E00D519C8 /* less */ = {
-			isa = PBXGroup;
-			children = (
-				6D8B1CDF19351A1E00D519C8 /* bordered-pulled.less */,
-				6D8B1CE019351A1E00D519C8 /* core.less */,
-				6D8B1CE119351A1E00D519C8 /* fixed-width.less */,
-				6D8B1CE219351A1E00D519C8 /* font-awesome.less */,
-				6D8B1CE319351A1E00D519C8 /* icons.less */,
-				6D8B1CE419351A1E00D519C8 /* larger.less */,
-				6D8B1CE519351A1E00D519C8 /* list.less */,
-				6D8B1CE619351A1E00D519C8 /* mixins.less */,
-				6D8B1CE719351A1E00D519C8 /* path.less */,
-				6D8B1CE819351A1E00D519C8 /* rotated-flipped.less */,
-				6D8B1CE919351A1E00D519C8 /* spinning.less */,
-				6D8B1CEA19351A1E00D519C8 /* stacked.less */,
-				6D8B1CEB19351A1E00D519C8 /* variables.less */,
-			);
-			path = less;
-			sourceTree = "<group>";
-		};
-		6D8B1CEC19351A1E00D519C8 /* scss */ = {
-			isa = PBXGroup;
-			children = (
-				6D8B1CED19351A1E00D519C8 /* _bordered-pulled.scss */,
-				6D8B1CEE19351A1E00D519C8 /* _core.scss */,
-				6D8B1CEF19351A1E00D519C8 /* _fixed-width.scss */,
-				6D8B1CF019351A1E00D519C8 /* _icons.scss */,
-				6D8B1CF119351A1E00D519C8 /* _larger.scss */,
-				6D8B1CF219351A1E00D519C8 /* _list.scss */,
-				6D8B1CF319351A1E00D519C8 /* _mixins.scss */,
-				6D8B1CF419351A1E00D519C8 /* _path.scss */,
-				6D8B1CF519351A1E00D519C8 /* _rotated-flipped.scss */,
-				6D8B1CF619351A1E00D519C8 /* _spinning.scss */,
-				6D8B1CF719351A1E00D519C8 /* _stacked.scss */,
-				6D8B1CF819351A1E00D519C8 /* _variables.scss */,
-				6D8B1CF919351A1E00D519C8 /* font-awesome.scss */,
-			);
-			path = scss;
 			sourceTree = "<group>";
 		};
 		6D94E995191521C900872FC8 /* Noten */ = {
@@ -1039,7 +931,7 @@
 				ORGANIZATIONNAME = "Benjamin Herzog";
 				TargetAttributes = {
 					E63772C21908146300DEE8AB = {
-						DevelopmentTeam = 3E4PGPNR47;
+						DevelopmentTeam = Q8ZZ4R39MN;
 					};
 					E63772E21908146300DEE8AB = {
 						TestTargetID = E63772C21908146300DEE8AB;
@@ -1069,57 +961,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D8B1CFA19351A1E00D519C8 /* font-awesome.css in Resources */,
 				6D753A6E1917C9B500C6BAA1 /* PT_Sans-Web-Bold.ttf in Resources */,
 				6D753A711917C9B500C6BAA1 /* PT_Sans-Web-Regular.ttf in Resources */,
-				6D8B1D0A19351A1E00D519C8 /* rotated-flipped.less in Resources */,
 				E6B771F0191C370200E9A2A5 /* page2.png in Resources */,
 				E61B6A2C1923B7BE0050EB10 /* Images.xcassets in Resources */,
-				6D8B1D0219351A1E00D519C8 /* core.less in Resources */,
 				6D753A5A1917A8C300C6BAA1 /* uboot.jpg in Resources */,
-				6D8B1D0C19351A1E00D519C8 /* stacked.less in Resources */,
-				6D8B1D0F19351A1E00D519C8 /* _core.scss in Resources */,
 				E658457919295E110008A758 /* indicator.png in Resources */,
 				6D8B1CFE19351A1E00D519C8 /* fontawesome-webfont.ttf in Resources */,
-				6D8B1D1219351A1E00D519C8 /* _larger.scss in Resources */,
-				6D8B1D1419351A1E00D519C8 /* _mixins.scss in Resources */,
-				6D8B1CFB19351A1E00D519C8 /* font-awesome.min.css in Resources */,
-				6D8B1D0319351A1E00D519C8 /* fixed-width.less in Resources */,
 				6D753A4D1917A8C300C6BAA1 /* mensa-bruehl.jpg in Resources */,
 				6D753A541917A8C300C6BAA1 /* noavailablemensaimage.jpg in Resources */,
 				6D753A561917A8C300C6BAA1 /* pillnitz.jpg in Resources */,
 				6D753A551917A8C300C6BAA1 /* palucca.jpg in Resources */,
-				6D8B1D1719351A1E00D519C8 /* _spinning.scss in Resources */,
 				6D753A6F1917C9B500C6BAA1 /* PT_Sans-Web-BoldItalic.ttf in Resources */,
 				6D8B1D0019351A1E00D519C8 /* FontAwesome.otf in Resources */,
 				E6B771F2191C370200E9A2A5 /* page4.png in Resources */,
-				6D8B1D0119351A1E00D519C8 /* bordered-pulled.less in Resources */,
 				6D753A701917C9B500C6BAA1 /* PT_Sans-Web-Italic.ttf in Resources */,
 				E65737AB19222AE600916A1A /* alleRaeume.txt in Resources */,
 				E6B771EF191C370200E9A2A5 /* page1.png in Resources */,
 				6D753A6D1917C9B500C6BAA1 /* OFL.txt in Resources */,
-				6D8B1D0419351A1E00D519C8 /* font-awesome.less in Resources */,
 				E6B771F3191C370200E9A2A5 /* page5.png in Resources */,
 				6D8B1CFC19351A1E00D519C8 /* fontawesome-webfont.eot in Resources */,
 				6D753A4C1917A8C300C6BAA1 /* johannstadt.jpg in Resources */,
-				6D8B1D0719351A1E00D519C8 /* list.less in Resources */,
-				6D8B1D1A19351A1E00D519C8 /* font-awesome.scss in Resources */,
 				6D753A591917A8C300C6BAA1 /* tellerrandt.jpg in Resources */,
 				E6949783192B6B4900E433E2 /* FirstLaunch.storyboard in Resources */,
 				6D753A521917A8C300C6BAA1 /* mensologie.jpg in Resources */,
-				6D8B1D1319351A1E00D519C8 /* _list.scss in Resources */,
 				6D753A581917A8C300C6BAA1 /* stimmgabel.jpg in Resources */,
-				6D8B1D0919351A1E00D519C8 /* path.less in Resources */,
 				6D753A4F1917A8C300C6BAA1 /* mensa-siedepunkt.jpg in Resources */,
-				6D8B1D1519351A1E00D519C8 /* _path.scss in Resources */,
 				E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */,
 				6D753A4E1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg in Resources */,
 				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,
-				6D8B1D1819351A1E00D519C8 /* _stacked.scss in Resources */,
 				6D753A781917F20800C6BAA1 /* hausvii.jpg in Resources */,
 				E6B771F1191C370200E9A2A5 /* page3.png in Resources */,
-				6D8B1D0619351A1E00D519C8 /* larger.less in Resources */,
-				6D8B1D0D19351A1E00D519C8 /* variables.less in Resources */,
 				6D753A501917A8C300C6BAA1 /* mensa-wueins.jpg in Resources */,
 				6D753A641917C9A600C6BAA1 /* mensen.json in Resources */,
 				6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */,
@@ -1129,19 +1001,11 @@
 				6D753A761917F1D000C6BAA1 /* zittau.jpg in Resources */,
 				E6B771F4191C370200E9A2A5 /* page6.png in Resources */,
 				6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */,
-				6D8B1D0819351A1E00D519C8 /* mixins.less in Resources */,
 				6D8B1CFF19351A1E00D519C8 /* fontawesome-webfont.woff in Resources */,
-				6D8B1D1019351A1E00D519C8 /* _fixed-width.scss in Resources */,
 				E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */,
-				6D8B1D0519351A1E00D519C8 /* icons.less in Resources */,
-				6D8B1D0E19351A1E00D519C8 /* _bordered-pulled.scss in Resources */,
-				6D8B1D1119351A1E00D519C8 /* _icons.scss in Resources */,
 				6D753A531917A8C300C6BAA1 /* neuemensa.jpg in Resources */,
-				6D8B1D1919351A1E00D519C8 /* _variables.scss in Resources */,
-				6D8B1D0B19351A1E00D519C8 /* spinning.less in Resources */,
 				6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */,
 				6D753A571917A8C300C6BAA1 /* reichenbachstrasse.jpg in Resources */,
-				6D8B1D1619351A1E00D519C8 /* _rotated-flipped.scss in Resources */,
 				6D7B451C1908150F00D99C9D /* main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

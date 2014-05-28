@@ -57,7 +57,6 @@
         [self.window setRootViewController:vc];
     }
     
-    
     return YES;
 }
 
