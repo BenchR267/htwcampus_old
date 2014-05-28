@@ -83,11 +83,13 @@
     if([(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:@"letzteAktMensa"]
                                     compare:[[NSDate date] getDayOnly]] != NSOrderedSame)
     {
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
         [self loadMensa];
         return;
     }
 
     if (![self allMensasOfToday]) {
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
         [self loadMensa];
     }
     else {
@@ -115,6 +117,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             openingHoursLoaded = YES;
+            [self.navigationItem.rightBarButtonItem setEnabled:YES];
             [self.tableView reloadData];
         });
 
@@ -201,6 +204,7 @@
         dispatch_async(dispatch_get_main_queue(), ^
        {
            isLoading = false;
+
            [self.tableView reloadData];
            [self checkAllOpeningHours];
        });
@@ -281,6 +285,7 @@
 }
 
 - (IBAction)refreshMensa:(id)sender {
+    [(UIBarButtonItem*)sender setEnabled:NO];
     [_allMensasOfToday removeAllObjects];
     [_allMensasOfTomorrow removeAllObjects];
     isLoading = YES;
