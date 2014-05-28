@@ -50,7 +50,7 @@
 -(void)startParser
 {
     if ([_password isEqualToString:@""] && _delegate) {
-        [_delegate HTWCSVConnection:self Error:@"Falsche Kennung."];
+        [_delegate HTWCSVConnection:self Error:@"Leider war die Kennung nicht richtig. Bitte probieren Sie es nochmal."];
         return;
     }
     
@@ -83,7 +83,7 @@
             NSString *html = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             
             if ([html rangeOfString:@"Falsche Kennung"].length != 0) {
-                [_delegate HTWCSVConnection:self Error:@"Falsche Kennung"];
+                [_delegate HTWCSVConnection:self Error:@"Leider war die Kennung nicht richtig. Bitte probieren Sie es nochmal."];
                 return;
             }
             

@@ -106,8 +106,8 @@ NSMutableData *receivedData;
         [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
         // Wenn eins dieser Strings in dem HTML-File vorkommt, ist die Nummer falsch oder es gibt keine Daten dazu
         if (([html rangeOfString:@"Stundenplan im csv-Format erstellen"].length != 0) || [html rangeOfString:@"Es wurden keine Daten gefunden."].length != 0) {
-            if(!_boolRaum) [_delegate HTWStundenplanParser:self Error:@"Falsche Matrikelnummer oder Studiengruppe. Bitte erneut eingeben."];
-            else [_delegate HTWStundenplanParser:self Error:@"Raum nicht gefunden. Bitte erneut eingeben. (Format: Z 355)"];
+            if(!_boolRaum) [_delegate HTWStundenplanParser:self Error:@"Leider war die Matrikelnummer oder Studiengruppe nicht richtig. Bitte probieren Sie es nochmal."];
+            else [_delegate HTWStundenplanParser:self Error:@"Leider wurde der Raum mit dieser Kennung nicht gefunden. Bitte probieren Sie es nochmal."];
             return;
         }
         

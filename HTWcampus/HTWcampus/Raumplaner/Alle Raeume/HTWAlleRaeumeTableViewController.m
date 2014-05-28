@@ -112,6 +112,8 @@
     }
     
     [textLabelText replaceOccurrencesOfString:@"\r" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, textLabelText.length)];
+
+    textLabelText = [textLabelText componentsSeparatedByString:@";"][0];
     
     cell.textLabel.text = textLabelText;
     

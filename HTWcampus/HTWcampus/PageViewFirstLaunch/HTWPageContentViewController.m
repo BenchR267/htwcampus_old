@@ -34,6 +34,8 @@
     _goButton.tintColor = [UIColor HTWWhiteColor];
     [_goButton.titleLabel setFont:[UIFont boldSystemFontOfSize:27]];
     _goButton.layer.cornerRadius = 7;
+    _goButton.layer.borderColor = [UIColor HTWWhiteColor].CGColor;
+    _goButton.layer.borderWidth = 1;
 }
 - (IBAction)goButtonClicked:(id)sender {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
