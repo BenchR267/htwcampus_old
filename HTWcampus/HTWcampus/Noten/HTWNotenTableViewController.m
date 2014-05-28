@@ -43,12 +43,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.notenspiegel == nil) {
-        isLoading = true;
-        //[self loadNoten];
-    }
+    self.tableView.backgroundColor = [UIColor HTWSandColor];
+    UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Reload"]
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(reloadNotenspiegel:)];
+
+    self.navigationItem.rightBarButtonItem = refresh;
 
     if (self.notenspiegel == nil) {
+        isLoading = true;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         username = [defaults objectForKey:@"LoginNoten"];
         password = [defaults objectForKey:@"PasswortNoten"];
@@ -56,18 +60,6 @@
         else //Ask for user login data
             [self showLoginPopup];
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    self.tableView.backgroundColor = [UIColor HTWSandColor];
-    UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Reload"]
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:@selector(reloadNotenspiegel:)];
-    
-    self.navigationItem.rightBarButtonItem = refresh;
-    
-    
 }
 
 - (IBAction)reloadNotenspiegel:(id)sender {
@@ -82,11 +74,6 @@
 }
 
 - (void) showLoginPopup {
-//    UIAlertView *loginModal = [[UIAlertView alloc] initWithTitle:@"HISQIS Portal" message:nil delegate:self cancelButtonTitle:@"Abbrechen" otherButtonTitles:@"Anmelden", nil];
-//    loginModal.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-//    loginModal.tag = LOGINMODAL_TAG;
-//    [loginModal dismissWithClickedButtonIndex:0 animated:YES];
-//    [loginModal show];
     
     HTWAlertNavigationController *loginModal = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
     loginModal.htwTitle = @"HISQIS Portal";
@@ -99,7 +86,7 @@
 }
 
 - (void)loadNoten {
-    
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     NSURL *hisqisUrl =[NSURL URLWithString:@"https://wwwqis.htw-dresden.de/qisserver/rds?state=user&type=0"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:hisqisUrl];
     request.timeoutInterval = 10;
@@ -114,12 +101,6 @@
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
         if ([data length]>0 && error == nil)
         {
-//            NSDictionary* headers = [(NSHTTPURLResponse *)response allHeaderFields];
-//            NSString *cookies = [headers objectForKey:@"Set-Cookie"];
-//            NSArray *cookieArray = [cookies componentsSeparatedByString:@";"];
-//            NSString *jsessionid = [cookieArray objectAtIndex:0];
-//            NSLog(@"%@", jsessionid);
-            
             //send login post request
             NSMutableURLRequest *loginRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://wwwqis.htw-dresden.de/qisserver/rds?state=user&type=1&category=auth.login&startpage=portal.vm"]];
             [loginRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -187,6 +168,7 @@
                                 isLoading = false;
                                 notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
                                 [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
+                                [self.navigationItem.rightBarButtonItem setEnabled:YES];
                                 [self.tableView reloadData];
                             }
                             else if ([data length] == 0 && error == nil)
@@ -196,6 +178,7 @@
                             else if (error != nil){
                                 NSLog(@"Fehler beim Laden der Notenseite. Error: %@", error);
                                 [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
+                                [self.navigationItem.rightBarButtonItem setEnabled:YES];
                             }
                         }];
                     }
@@ -214,6 +197,7 @@
                 else if (error != nil){
                     NSLog(@"HISQIS Login Request Page nicht erreichbar. Error: %@", error);
                     [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
+                    [self.navigationItem.rightBarButtonItem setEnabled:YES];
                 }
             }];
 
@@ -234,6 +218,7 @@
                 [errorAlert show];
             });
             [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
+            [self.navigationItem.rightBarButtonItem setEnabled:YES];
         }
     }];
 }
@@ -413,45 +398,6 @@
     
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Hilfsfunktionen
 
