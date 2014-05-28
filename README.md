@@ -31,4 +31,5 @@ In der finalen Version wird man damit folgendes können:
 	- Noten werden nach Semestern absteigend sortiert (neue zuerst)
 - Mensenpläne können eingesehen werden
 	- 17 Mensen werden abgefragt
-	- für Details wird die Seite des Studentenwerks geöffnet
+	- für Details werden geparste Daten des Studentenwerks aufbereitet angezeigt
+	- die Öffnungszeiten werden über die Foursquare-API geladen
