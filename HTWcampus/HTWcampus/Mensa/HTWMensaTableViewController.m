@@ -15,9 +15,12 @@
 #import "HTWMensaTableViewController.h"
 #import "HTWMensaSingleTableViewController.h"
 #import "HTWAppDelegate.h"
+
 #import "UIImage+Resize.h"
 #import "UIFont+HTW.h"
 #import "UIColor+HTW.h"
+#import "NSDate+HTW.h"
+
 #import "HTWMensaSpeiseTableViewCell.h"
 #import "HTWMensaXMLParser.h"
 
@@ -76,6 +79,13 @@
     self.tableView.backgroundColor = [UIColor HTWSandColor];
     self.navigationController.navigationBar.barTintColor = [UIColor HTWBlueColor];
     _mensaDaySwitcher.tintColor = [UIColor HTWWhiteColor];
+
+    if([(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:@"letzteAktMensa"]
+                                    compare:[[NSDate date] getDayOnly]] != NSOrderedSame)
+    {
+        [self loadMensa];
+        return;
+    }
 
     if (![self allMensasOfToday]) {
         [self loadMensa];
@@ -138,7 +148,6 @@
         return ret;
     }
 
-    NSLog(@"%d", [(NSNumber*)[erg[@"response"][@"venue"][@"popular"] valueForKey:@"isOpen"] boolValue]);
     if ([(NSNumber*)[erg[@"response"][@"venue"][@"popular"] valueForKey:@"isOpen"] boolValue]) {
         return [NSString stringWithFormat:@"Geöffnet (%@)",erg[@"response"][@"venue"][@"popular"][@"timeframes"][1][@"open"][0][@"renderedTime"]];
     }
@@ -163,6 +172,7 @@
 
 - (void)loadMensa {
     openingHoursLoaded = NO;
+    [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] getDayOnly] forKey:@"letzteAktMensa"];
     NSURL *RSSUrlToday =[NSURL URLWithString:mensaTodayUrl];
     NSURL *RSSUrlTomorrow = [NSURL URLWithString:mensaTomorrowUrl];
     
