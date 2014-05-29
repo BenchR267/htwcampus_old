@@ -124,7 +124,7 @@
     if([s4sq isEqualToString:@""] || [s4sq isEqualToString:@"na"])
         return @"Keine Öffnungszeiten verfügbar";
 
-    NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=41JI0EUVFDHKEUXTB1DHBXP5W2GAUNHUQNMZP5XXAQWZE1BN&client_secret=QG1XL1SLIH2IFH5AT1ZFPBVNSZRAMKUG5BEWYJBALTXYRBUO&v=20140526", s4sq]];
+    NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=41JI0EUVFDHKEUXTB1DHBXP5W2GAUNHUQNMZP5XXAQWZE1BN&client_secret=QG1XL1SLIH2IFH5AT1ZFPBVNSZRAMKUG5BEWYJBALTXYRBUO&v=%@", s4sq, [NSDate dateFor4sq]]];
     NSData *data = [NSData dataWithContentsOfURL:requestURL];
     if(!data) return @"Problem mit der Internet-Verbindung..";
     NSDictionary *erg = [NSJSONSerialization JSONObjectWithData:data

@@ -15,6 +15,7 @@
 +(int)day;
 +(int)month;
 +(int)year;
++(NSString*)dateFor4sq;
 
 -(int)getWeekDay;
 -(NSString*)getWeekDayString;

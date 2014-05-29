@@ -455,6 +455,30 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Rechtliches" id="oZC-uG-3jm">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Impressum" textLabel="vcd-bL-hZs" style="IBUITableViewCellStyleDefault" id="lhU-JB-Y3S">
+                                        <rect key="frame" x="0.0" y="685" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lhU-JB-Y3S" id="gaN-2l-PA4">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Impressum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vcd-bL-hZs">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="PEO-ea-dwc" kind="push" identifier="impressumPressed" id="uN9-JQ-49D"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="nnZ-fM-8JQ" id="xqa-QZ-cv0"/>
@@ -463,6 +487,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="JLa-Zf-oux"/>
                     <connections>
+                        <outlet property="impressumCell" destination="lhU-JB-Y3S" id="a6n-Nh-erv"/>
                         <outlet property="landscapeTageSliderWert" destination="txc-NF-0pM" id="hfL-Rl-0gV"/>
                         <outlet property="markierSlider" destination="ury-VD-uDq" id="EE9-Ni-0oL"/>
                         <outlet property="markierungsCell" destination="5MF-uz-lzT" id="Dp3-rl-RYe"/>
@@ -1781,6 +1806,109 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="2552" y="1525"/>
         </scene>
+        <!--Impressum View Controller - Impressum-->
+        <scene sceneID="tD6-C7-sV5">
+            <objects>
+                <viewController id="PEO-ea-dwc" customClass="HTWImpressumViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IpN-tA-xzW"/>
+                        <viewControllerLayoutGuide type="bottom" id="D4d-Wg-UQO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x5M-64-HKy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jay-hO-RHo">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <mutableString key="text">Geschichte[Bearbeiten]
+Die Entstehung des Königreichs[Bearbeiten]
+
+
+Württemberg 1789
+Das Herzogtum Wirtenberg[1] bestand im 18. Jahrhundert im Wesentlichen aus dem ehemaligen Stammland im mittleren Neckarraum rund um Stuttgart sowie den damit verbundenen Besitzungen im Nordschwarzwald und auf der Schwäbischen Alb. Neben dem Gebiet um Heidenheim war die linksrheinische Grafschaft Mömpelgard die bedeutendste Exklave des Herzogtums. Außerdem bestanden mit der Grafschaft Horburg und der Ortschaft Reichenweier weitere kleinere Exklaven links des Rheins auf heute französischem Gebiet. Nach dem Ausbruch der Französischen Revolution 1789, welche die Vorrechte des Adels und des Klerus einschränkte, formierten sich unter den europäischen Monarchien Koalitionen mit dem Ziel, die republikanische Entwicklung in Frankreich aufzuhalten. Der zwischen Kaiser Leopold II. und dem preußischen König Friedrich Wilhelm II. in der Pillnitzer Deklaration vereinbarten ersten Koalition schlossen sich bald weitere Monarchien an. Am 20. April 1792 kam es zum Ausbruch des Ersten Koalitionskriegs, den das revolutionäre Frankreich gewann. Im Frieden von Campo Formio am 17. Oktober 1797 erkannte Kaiser Franz II. den Rhein als Ostgrenze Frankreichs an. Hiervon betroffen waren auch Mömpelgard und die anderen linksrheinischen Besitzungen Württembergs. Das Herzogtum beteiligte sich daraufhin ab 1799 als Partner Österreichs an der Zweiten Koalition gegen Frankreich unter Napoléon Bonaparte. Im Frühjahr 1800 besetzten die Franzosen Württemberg. Da Österreich keinerlei Anstrengungen zur Verteidigung des Landes unternahm, musste sich der württembergische Herzog Friedrich II. mit seinen Truppen dem Rückzug der Österreicher anschließen. Nach dieser Demütigung war sein Vertrauen in das Bündnis mit Österreich tief erschüttert. Im Frieden von Lunéville am 9. Februar 1801 arrangierte er sich mit Frankreich. Sein Ziel war, das rechtsrheinische Territorium zu vergrößern. Der Pariser Vertrag vom 20. Mai 1802 sicherte den Bestand des Herzogtums und stellte Entschädigungen für die linksrheinischen Gebiete in Aussicht. Württemberg hatte Sitz und Stimmrecht in der außerordentlichen Reichsdeputation, die den Reichsdeputationshauptschluss vorbereitete, der die Entschädigungen für die verlorenen linksrheinischen Besitzungen deutscher Fürsten festlegte. Herzog Friedrich wurde zum Kurfürst erhoben.[2] Zahlreiche kleine Herrschaften wurden mediatisiert und unter der Bezeichnung Neuwürttemberg dem neuen Kurfürstentum zugeschlagen. Dazu gehörten die mediatisierten Reichsstädte Aalen, Giengen an der Brenz, Heilbronn, Rottweil, Esslingen am Neckar, Reutlingen, Schwäbisch Gmünd, Schwäbisch Hall und Weil der Stadt sowie folgende säkularisierte kirchliche Besitzungen: die Fürstpropstei Ellwangen, die Reichsabtei Zwiefalten, das Ritterstift Comburg, das Kloster Heiligkreuztal bei Riedlingen, das Kloster Schöntal, das Kloster Margrethausen, das Stift Oberstenfeld und der stift-murische Teil des Dorfes Dürrenmettstetten. Diese Zugewinne entsprachen in Summe etwa einer Fläche von 1609 Quadratkilometern mit 110.000 Einwohnern und 700.000 Gulden Steueraufkommen. Dem standen etwa 388 Quadratkilometer linksrheinisch verlorenes Gebiet mit zirka 14.000 Bewohnern und zirka 250.000 Gulden an Staatseinkünften gegenüber.[3] Mit dem Aufbau der Verwaltung Neuwürttembergs betraut war der Minister Normann-Ehrenfels.
+
+
+
+König Friedrich von Württemberg, Gemälde von Johann Baptist Seele, 1806
+Am 3. Oktober 1805 schloss Friedrich in Ludwigsburg eine weitere Allianz mit Napoléon. Württemberg beteiligte sich daraufhin mit Truppen auf französischer Seite am Dritten Koalitionskrieg. Im Frieden von Preßburg vom 26. Dezember 1805 wurde Vorderösterreich zwischen Württemberg, Bayern und Baden aufgeteilt. Dies bedeutete, dass weitere 125.000 neue Einwohner zum Kurfürstentum Württemberg dazukamen. Im Einzelnen handelte es sich um die folgenden Territorien: Grafschaft Hohenberg, Landvogtei Schwaben, Herrschaft Ehingen, die so genannten Donaustädte Mengen, Munderkingen, Riedlingen, Saulgau und Waldsee sowie im Unterland Gebiete des Deutschen Ordens (Amt Hornegg mit Neckarsulm und Gundelsheim), Gebiete des Johanniterordens und kleinere Territorien der Reichsritterschaft. Württemberg wurde mit Wirkung vom 1. Januar 1806 zum souveränen Königreich erhoben. Die bisherige Bezeichnung Wirtenberg wurde durch die modernere Schreibweise Württemberg ersetzt. Erster König war der bisherige Herzog und Kurfürst Friedrich II, unter dem Namen Friedrich (Eigenbezeichnung: König Friedrich I.). Mit der Unterzeichnung der Rheinbundakte am 12. Juli 1806 trat Württemberg aus dem Heiligen Römischen Reich Deutscher Nation aus. Mit dem Rheinbund kamen nochmals 270.000 neue Bewohner zum Königreich Württemberg hinzu, die sich auf die Territorien der Fürstentümer und Grafschaften Hohenlohe, Königsegg-Aulendorf, Thurn und Taxis, Waldburg und vieler weiterer Herrschaften in Oberschwaben verteilten.[4]
+
+Die Entwicklung der ersten Jahre[Bearbeiten]
+König Friedrich beteiligte sich 1809 mit Truppen an der Niederschlagung des Tiroler Volksaufstands gegen Napoléon. Mit dem Frieden von Schönbrunn am 14. Oktober 1809 wurde das Königreich Württemberg um die Gebiete des Deutschen Ordens bei Mergentheim erweitert, wobei ein Aufruhr der dortigen Bevölkerung blutig niedergeschlagen wurde. Schließlich vergrößerte sich die Einwohnerzahl mit dem Vertrag von Paris am 28. Februar 1810 und damit zusammenhängende Grenzverträge mit Bayern[5] und Baden[6] noch einmal um 110.000 Bewohner. Hinzu kamen im Wesentlichen Crailsheim und Creglingen sowie die ehemaligen Reichsstädte Bopfingen, Buchhorn, Leutkirch, Ravensburg, Ulm und Wangen und Gebiete der ehemaligen Grafschaft Montfort. Dafür fiel die alte württembergische Herrschaft Weiltingen an das Königreich Bayern sowie das Oberamt Hornberg und das Amt St. Georgen an das Großherzogtum Baden. Im Jahre 1813 erwarb das Königreich Württemberg noch die hohenzollernsche Herrschaft Hirschlatt. Insgesamt hatte sich Württemberg somit von ursprünglich 9.500 Quadratkilometern mit etwa 650.000 Einwohnern auf 19.508 Quadratkilometer mit etwa 1.380.000 Einwohnern vergrößert.[7]
+
+In den Jahren 1812/13 beteiligte sich König Friedrich an Napoléons Krieg gegen Russland, aus dem von 15.800 württembergischen Soldaten nur einige Hundert zurückkehrten. Trotz dieser Niederlage blieb das Königreich zunächst weiter als Mitglied des Rheinbunds an der Seite Frankreichs, bis es in der Völkerschlacht bei Leipzig im Oktober 1813 zu einer weiteren vernichtenden Niederlage Napoléons kam. Erst danach wechselte Württemberg zur Sechsten Koalition über, die von Österreich, Preußen und Russland geführt wurde. Am 2. November 1813 orientierte sich König Friedrich um, nachdem Österreich dem Land durch den Vertrag zu Fulda Wahrung seines Besitzstandes und den Erhalt seiner Souveränität garantiert hatte.[8]
+
+Die Gebietszuwächse Württembergs wurden durch die territoriale Neuordnung Deutschlands beim Wiener Kongress 1815 nicht revidiert und damit indirekt völkerrechtlich bestätigt. Durch die Beteiligung an den Koalitionskriegen und deren Folgen erlebte das Königreich in seinen Anfangsjahren einen wirtschaftlichen Niedergang, der zu hoher Staatsverschuldung und zur Verarmung breiter Bevölkerungsschichten bis hin zu Hungersnöten führte. Diese wirtschaftlich sehr schwierige Lage wurde durch das ungewöhnlich kalte und von Naturkatastrophen gekennzeichnete Jahr 1816 weiter verschärft. Die Auswanderung nach Osteuropa und Nordamerika stieg danach sprunghaft an.
+
+In den ersten Jahren des Königreichs sicherte die Verwicklung Württembergs in die kriegerischen Auseinandersetzungen und die Bündnistreue mit Frankreich König Friedrich weitgehende Handlungsfreiheit in der Innenpolitik. Deren Ziel war die konsequente Modernisierung der Verwaltung und die Zusammenführung der verschiedenen Territorien zu einem einheitlichen und zentral geführten Gesamtstaat. Dies war umso schwerer, da die neu hinzugekommenen Gebiete dem zuvor rein und streng evangelischen Württemberg eine beträchtliche katholische Minderheit brachten. Mittel zur Modernisierung waren die rigorose Abschaffung der Privilegien der Ehrbarkeit in Altwürttemberg sowie des Adels in den hinzugewonnenen Gebieten. Widerstand gegen diese Politik wurde rigoros bekämpft; ein Polizeiministerium, eine geheime Polizei und eine Zensurbehörde wurden nach französischem Vorbild eingerichtet. Wichtige Reformen der ersten Jahre waren die Trennung von Justiz und Verwaltung, die Gliederung des Landes in Oberämter und Kreise, die Aufhebung der Binnenzölle und die Gleichberechtigung der katholischen und der reformierten Konfession mit der seitherigen evangelisch-lutherischen Staatskonfession.
+
+Bei den Verhandlungen auf dem Wiener Kongress bestand das Ziel, für das neu zu konstituierende Deutschland eine bundesstaatliche Verfassung zu errichten. Der Erstentwurf des Konzepts für einen Staatenbund wurde von Metternich am 23. Mai 1815 der Versammlung der deutschen Einzelstaaten zugeleitet. Württemberg opponierte gemeinsam mit Bayern gegen diesen Staatenbund. Weil König Friedrich mit einer eigenen Verfassung der Bundesverfassung zuvorkommen wollte, legte er bereits dem am 15. März 1815 einberufenen Landtag[9] ein Staatsgrundgesetz vor. Württemberg unterzeichnete erst am 1. September 1815 die Deutsche Bundesakte und trat damit erst nachträglich dem am 8. Juni 1815 gegründeten Deutschen Bund bei. Der Entwurf des Staatsgrundgesetzes traf auf starken Widerstand der Landstände, die die bisherige auf dem Tübinger Vertrag von 1514 basierende Verfassung wieder in Kraft setzen wollten. Den Landständen gelang es, die Bevölkerung in einer Kampagne für das alte Recht auf ihre Seite zu ziehen. Einer der Protagonisten dieser Bewegung war der Dichter und Politiker Ludwig Uhland, der hierfür eigens das Gedicht Das alte, gute Recht[10] verfasste. Die Kampagne war so wirksam, dass das von König Friedrich vorgelegte Staatsgrundgesetz nicht verabschiedet wurde. Die völlig überarbeitete Verfassung wurde erst durch seinen Nachfolger König Wilhelm I. am 25. September 1819 erlassen.
+
+Die politische Konsolidierung nach dem Regierungsantritt König Wilhelms I.[Bearbeiten]
+
+
+König Wilhelm I. von Württemberg 1822 nach einem Gemälde von Joseph Karl Stieler
+Das Verhältnis zwischen König Friedrich und seinem Sohn Wilhelm Friedrich Karl, dem späteren König Wilhelm I., war sowohl persönlich als auch politisch von starken Spannungen geprägt. 1805 kam es zur offenen Auflehnung Wilhelms gegen seinen Vater, die zu seiner Flucht nach Paris führte. Wilhelm versuchte, Frankreich zum Umsturz in Württemberg zu bewegen, was ihm Napoléon aber verweigerte. 1807 verständigten sich Wilhelm und Friedrich zwar politisch; ihre persönliche und politische Abneigung gegeneinander blieb aber bestehen. So war es nur folgerichtig, dass der neue König nicht mit dem Namen seines Vaters, sondern mit dem Namen Wilhelm am 30. Oktober 1816 seine Regentschaft antrat und einen umfassenden Politikwechsel einleitete. Es ist überliefert, dass die Bevölkerung Württembergs durch Soldaten nur schwer von Freudenfesten über Friedrichs Tod abgehalten werden konnte.[11] Gemeinsam mit seiner Frau Königin Katharina, einer Tochter des russischen Zaren Paul I., war die Politik Wilhelms in seinen ersten Regierungsjahren stark auf die Linderung der wirtschaftlichen Not breiter Bevölkerungskreise ausgerichtet. Katharina, die am 9. Januar 1819 im Alter von nur 30 Jahren starb, widmete sich mit großem Engagement der Sozialfürsorge. So gehen die Gründung des Katharinenstifts als Mädchenschule, des Katharinenhospitals, der Württembergischen Landessparkasse, der Universität Hohenheim und weiterer Institutionen auf sie zurück. Wilhelm erließ bei seinem Amtsantritt eine Amnestie und setzte eine umfassende Verwaltungsreform auf der Basis der neuen modernen Verfassung vom 25. September 1819 durch. Die absolutistische Diktatur Friedrichs wurde aber nicht durch den aus dem Herzogtum Württemberg tradierten Dualismus zwischen dem Regenten und den Landständen ersetzt. Stattdessen basierte die neue Staatsform auf dem Konstitutionalismus, der die Herrschaft des Monarchen durch verfassungsrechtlich festgelegte Mitspracherechte gewählter Volksvertreter ergänzte. Die Verfassung wurde so auch zur Klammer zwischen den alten und den neuen Landesteilen. Die altständische Opposition löste sich praktisch auf. Es entstand eine nicht weniger streitbare bürgerliche Opposition liberaler Ausrichtung.
+
+Wesentliche Bestandteile der im Zusammenhang mit der neuen Verfassung durchgesetzten Reorganisation der Verwaltung waren die Kommunale Selbstverwaltung und die Trennung von Exekutive und Judikative. Die Verwaltung wurde gestrafft und transparenter gemacht. Die dem Staat und dem König verpflichteten Beamten entwickelten sich rasch zu einer Art Stand und damit zu einer Politischen Klasse, die die Staatsregierung stützte.[12]
+
+Beim Regierungsantritt Wilhelms I. betrug die Staatsverschuldung fast 25 Millionen Gulden,[13] was nahezu dem Vierfachen der Jahreseinnahmen[14] entsprach. Diese Schulden wurden in den ersten 20 Jahren seiner Regentschaft durch die Finanzminister Weckherlin, Varnbüler und vor allem Herdegen so nachhaltig abgebaut, dass Steuersenkungen ermöglicht wurden. Besonderer Schwerpunkt der Wirtschaftspolitik des Königs war der Ausbau der Landwirtschaft.
+
+Außenpolitisch verfolgte Wilhelm das Ziel, die staatlichen Strukturen in Deutschland weiter zu bereinigen und auf die fünf Königreiche Preußen, Sachsen, Bayern, Hannover und Württemberg sowie das Kaisertum Österreich zu begrenzen.[15] Preußen und Österreich sah er dabei als europäische Mächte an. Die vier anderen deutschen Königreiche sollten durch ein enges Bündnis eine gemeinsame auf die Einigung zu einer dritten deutschen Großmacht ausgerichtete Politik betreiben.[16] Wilhelm strebte die Mediatisierung Badens, Hohenzollerns sowie den Erwerb des Elsass an. Mittel zu diesem nie erreichten Ziel war die starke familiäre Verbindung mit Russland, die 1776 durch die Heirat seiner Tante Sophie Dorothee mit dem russischen Thronfolger, dem späteren Zaren Paul, begonnen und durch Wilhelms eigene Heirat mit deren Tochter Katharina 1816 erneuert wurde. Nachdem Katharina bereits 1819 gestorben war, verfolgte Wilhelm die gemeinsam mit ihr entwickelte Außenpolitik über seine gesamte Regierungszeit weiter. So war es nur folgerichtig, dass sein Sohn und Thronfolger Karl am 13. Juli 1846 die Zarentochter Olga heiratete.
+
+Erstarken der demokratischen Bewegung und des Liberalismus ab 1830[Bearbeiten]
+
+
+Friedrich Römer, 1848
+Nach der erfolgreichen französischen Julirevolution von 1830 erhielten die Liberalen in fast ganz Europa, so auch in Württemberg Auftrieb. Im Dezember 1831 gewannen sie die Wahlen zur zweiten Kammer des württembergischen Landtags.[9] Wilhelm I. verschob danach die Einberufung des Landtags[9] über ein Jahr bis zum 15. Januar 1833. Nach der Auflösung des Landtags[9] am 22. März fanden im April Neuwahlen statt, aus denen die Liberalen unter Friedrich Römer wiederum als Sieger hervorgingen. Wilhelm verweigerte daraufhin den gewählten Abgeordneten im Staatsdienst die Freistellung für die Ausübung ihres Mandats. Friedrich Römer, Ludwig Uhland und auch andere liberale Abgeordnete quittierten deshalb den Staatsdienst.
+
+In den Jahren 1846 und 1847 kam es nach Missernten zu Hungersnöten und stärkerer Auswanderung. Die bis dahin relativ „zufriedene“ Grundstimmung der Bevölkerung schlug um. Liberale und demokratische Forderungen wurden mit mehr Nachdruck vertreten. Im Januar 1848 verlangte eine Protestversammlung in Stuttgart ein gesamtdeutsches Bundesparlament, Pressefreiheit, Vereins- und Versammlungsfreiheit, Einführung von Schwurgerichten und Volksbewaffnung. Wilhelm I. versuchte zunächst, die Revolution, die ab März 1848 – in der Folge der französischen Februarrevolution (die zur zweiten französischen Republik geführt hatte) – in allen deutschen Staaten um sich griff, in Württemberg durch Entgegenkommen aufzuhalten. Er setzte das liberale Pressegesetz aus dem Jahr 1817 wieder in Kraft und tolerierte eine liberale Regierung unter dem Vorsitz Friedrich Römers. Das am 9. März 1848 eingesetzte Märzministerium war die erste parlamentarisch legitimierte Regierung des Landes. Durch diese Politik wurden während der Märzrevolution größere militärische Auseinandersetzungen im Königreich Württemberg verhindert.
+
+Im April 1849 beschlossen die Regierung und der Landtag[9] die Anerkennung der in der Frankfurter Paulskirche verabschiedeten Reichsverfassung, die einen gesamtdeutschen als kleindeutsche Lösung konzipierten Nationalstaat auf der Grundlage einer demokratisch verfassten konstitutionellen Monarchie vorsah. Wilhelm empfand diesen Beschluss zwar als Demütigung, war aber der einzige Monarch unter den 29 Landesfürsten des deutschen Bundes, die der von der Frankfurter Nationalversammlung verabschiedeten Verfassung zustimmten – die Könige von Preußen, Bayern, Sachsen, Hannover sowie der österreichische Kaiser lehnten sie ab.
+
+
+
+Die Auflösung des Rumpfparlaments durch württembergische Truppen – nach einer Buchillustration von 1893
+Nachdem die Nationalversammlung mit der Ablehnung einer deutschen Kaiserkrone durch den preußischen König gescheitert war, fassten die verbliebenen Abgeordneten am 30. Mai 1849 den Entschluss, die Sitzungen nach Stuttgart zu verlegen. Ab dem 6. Juni 1849 tagte diese mitunter spöttisch als Rumpfparlament bezeichnete Rest-Nationalversammlung mit anfangs 154 Abgeordneten unter Parlamentspräsident Wilhelm Loewe in Stuttgart. Als das Rumpfparlament zur Steuerverweigerung und mit der Unterstützung der Reichsverfassungskampagne zur Erhebung gegen die Regierungen aufrief, wurde es bereits am 18. Juni 1849 durch württembergisches Militär besetzt und nach einem Demonstrationszug der verbliebenen 99 Abgeordneten durch Stuttgart gewaltsam aufgelöst. Die nicht-württembergischen Abgeordneten wurden des Landes verwiesen.
+
+Im August 1849 fanden in Württemberg Wahlen zu einer Verfassunggebenden Versammlung statt, bei denen die Demokraten gegenüber den gemäßigten Liberalen die Mehrheit erreichten. Während die Liberalen die Bindung des aktiven und passiven Wahlrechts an Einkommenshöhe und Vermögen forderten, verlangten die Demokraten ein allgemeines, gleiches und direktes Wahlrecht für alle volljährigen Männer. Ende Oktober 1849 entließ der König die von der Landesversammlung gewählte Regierung unter Friedrich Römer. Die Minister wurden durch beamtete Minister unter Johannes von Schlayer ersetzt. Als die Struktur und die Rechtsgrundlage des Beamtenministeriums durch die Landesversammlung abgelehnt wurden, löste Wilhelm I. sie auf. Zwei weitere Landesversammlungen im Jahr 1850, bei denen die Demokraten ebenfalls jeweils die Mehrheit hatten, wurden ebenfalls aufgelöst. Trotzdem etablierte sich in Württemberg auch danach eine starke liberale und demokratische Opposition.
+
+
+
+Karl von Varnbüler war von 1864 bis 1870 leitender Minister
+Als König Karl 1864 die Regierung antrat, kam er liberalen und demokratischen Forderungen entgegen. Die Pressefreiheit und die Vereinsfreiheit wurden wieder hergestellt, die Gewerbefreiheit und Freizügigkeit wurden garantiert. Die Juden erhielten die vollen Staatsbürgerrechte. Bestehende Heiratsbeschränkungen für Arme wurden aufgehoben. Der konservative Leitende Minister Joseph von Linden wurde durch den eher liberal ausgerichteten Karl von Varnbüler ersetzt.
+
+Württemberg als Bundesstaat im Deutschen Kaiserreich[Bearbeiten]
+
+
+Standarte König Karls von Württemberg 1864–1891
+König Karl war entgegen der Politik seines Vaters ein Verfechter der Bildung eines deutschen Nationalstaats. Als nach dem Krieg Preußens und Österreichs gegen Dänemark 1864 die Spannung zwischen den Bündnispartnern Preußen und Österreich 1866 zum Krieg führte, standen Bayern, Württemberg und Baden auf der Seite Österreichs. Die württembergische Armee wurde am 24. Juli 1866 bei Tauberbischofsheim nur wenige Tage vor dem Waffenstillstand zwischen Preußen und Österreich von preußischen Truppen vernichtend geschlagen. Württemberg schloss daraufhin am 1. August 1866 einen Waffenstillstand mit Preußen. Der Krieg endete am 23. August mit dem Prager Frieden, bei dem Württemberg den kurz zuvor durch Preußen gegründeten Norddeutschen Bund anerkennen und Kriegsentschädigungen an Preußen zahlen musste. Zuvor hatte Württemberg, wie auch Bayern und Baden, ein zunächst geheim zu haltendes Schutz- und Trutzbündnis abschließen müssen, in welchem zwar die territoriale Integrität garantiert war, das aber den militärischen Oberbefehl im Kriegsfall an Preußen übertrug. Nach Kriegsende wurde in Württemberg die nationalliberale Deutsche Partei unter Führung von Julius Hölder gegründet, deren Ziel der Beitritt Württembergs zum Norddeutschen Bund war. Ihr stand die demokratische Württembergische Volkspartei gegenüber, die bereits 1864 aus der liberalen Fortschrittspartei hervorgegangen war. Die Volkspartei mit ihrem führenden Kopf Karl Mayer schloss sich mit Konservativen und Vertretern des Katholizismus zu einer Allianz zusammen, deren Ziel die Verhinderung eines von Preußen beherrschten Nationalstaats war. Im Deutsch-Französischen Krieg war die württembergische Armee gemäß dem abgeschlossenen Bündnis dem preußischen Oberbefehl unterstellt. Während des Krieges trat Württemberg am 25. November 1870 dem Norddeutschen Bund und im Januar 1871 dem Deutschen Kaiserreich bei.
+
+In der Reichsverfassung vom 16. April 1871 erhielt Württemberg im Bundesrat vier von 58 Stimmen. Von den 397 Abgeordneten des Reichstags kamen 17 aus Württemberg. Als Reservatrechte wurden dem Land die Verwaltung des Eisenbahn-, des Post- und des Fernmeldewesens, die Einnahmen aus der Bier- und Branntweinsteuer und eine eigene Militärverwaltung unter preußischem Oberbefehl zugestanden.
+
+Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eintritt ins Kaiserreich einherging, wurde durch eine starke Besinnung auf die württembergische Identität kompensiert. 1876 wurde die Regierung neu organisiert. Kernstück der Reform war die Einrichtung eines Staatsministeriums unter Ministerpräsident Hermann von Mittnacht. König Karl zog sich in den Folgejahren weitgehend aus dem operativen Regierungsgeschäft zurück und widmete sich gemeinsam mit Königin Olga stärker kulturellen und sozialen Aufgaben. Obwohl er Oberhaupt (Summenepiskopus) der württembergischen evangelischen Landeskirche war, legte er starken Wert auf den Ausbau der Rechte der katholischen Minderheit. Dem Königreich Württemberg blieb dadurch ein Kulturkampf wie in Preußen erspart. Im Alter wurde die Homosexualität König Karls zwar nicht für breite Bevölkerungskreise offensichtlich; sie führte aber beinahe zu einer Staatskrise. Der seit 1883 als Bediensteter des Königs angestellte Amerikaner Charles Woodcock geriet durch seine von der Regierung als anmaßend empfundenen persönlichen Forderungen und durch sein Verhalten zunehmend in die Kritik. Er wurde auch von der Presse angegriffen. Der hieraus 1888 zwischen dem König und Ministerpräsident Mittnacht resultierende Konflikt konnte erst durch Vermittlung Bismarcks mit der Entlassung Woodcocks beendet werden.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Impressum" id="0cr-cd-Zk0">
+                        <barButtonItem key="rightBarButtonItem" image="Mail" id="5JV-dF-gAq">
+                            <connections>
+                                <action selector="mailButtonPressed:" destination="PEO-ea-dwc" id="8Iz-2z-N1Z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="jay-hO-RHo" id="FkT-eQ-lZj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P1l-6x-bs6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="541" y="-2546"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mbs-Es-4YF">
             <objects>
@@ -2063,12 +2191,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <resources>
         <image name="Haus" width="30" height="30"/>
         <image name="Kalender" width="25" height="25"/>
+        <image name="Mail" width="30" height="30"/>
         <image name="Mensa" width="30" height="30"/>
         <image name="Minus" width="29" height="30"/>
         <image name="Noten" width="29" height="30"/>
         <image name="Pruefung" width="30" height="30"/>
         <image name="Reload" width="24" height="28"/>
-        <image name="Settings" width="28" height="28"/>
+        <image name="Settings" width="30" height="30"/>
         <image name="Stern" width="28" height="26"/>
         <image name="add" width="28" height="28"/>
         <image name="openInSafari" width="30" height="30"/>

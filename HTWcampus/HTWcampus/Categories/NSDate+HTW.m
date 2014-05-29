@@ -45,6 +45,12 @@
     return (int)[comp year];
 }
 
++(NSString*)dateFor4sq
+{
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"yyyyMMdd"];
+    return [dateF stringFromDate:[NSDate date]];
+}
 
 #pragma mark - Instance Methods
 -(int)getWeekDay

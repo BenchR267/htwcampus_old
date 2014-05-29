@@ -116,6 +116,8 @@
 		E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */; };
 		E6966E831921473900EFB998 /* HTWPruefungsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */; };
 		E6966E8F19214DC300EFB998 /* HTWNeueStudiengruppe.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */; };
+		E69A4AA6193741070072610A /* HTWImpressumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69A4AA5193741070072610A /* HTWImpressumViewController.m */; };
+		E69A4AA8193744340072610A /* Impressum.txt in Resources */ = {isa = PBXBuildFile; fileRef = E69A4AA7193744340072610A /* Impressum.txt */; };
 		E69BB0CC1928F89B002E5757 /* NSDate+HTW.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */; };
 		E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */; };
 		E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */; };
@@ -318,6 +320,9 @@
 		E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsDetailTableViewController.m; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.m"; sourceTree = "<group>"; };
 		E6966E8D19214DC300EFB998 /* HTWNeueStudiengruppe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNeueStudiengruppe.h; path = "Prüfungsplaner/HTWNeueStudiengruppe.h"; sourceTree = "<group>"; };
 		E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNeueStudiengruppe.m; path = "Prüfungsplaner/HTWNeueStudiengruppe.m"; sourceTree = "<group>"; };
+		E69A4AA4193741070072610A /* HTWImpressumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWImpressumViewController.h; path = Stundenplan/Settings/HTWImpressumViewController.h; sourceTree = "<group>"; };
+		E69A4AA5193741070072610A /* HTWImpressumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWImpressumViewController.m; path = Stundenplan/Settings/HTWImpressumViewController.m; sourceTree = "<group>"; };
+		E69A4AA7193744340072610A /* Impressum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Impressum.txt; path = Stundenplan/Settings/Impressum.txt; sourceTree = "<group>"; };
 		E69BB0CA1928F89B002E5757 /* NSDate+HTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+HTW.h"; path = "Categories/NSDate+HTW.h"; sourceTree = "<group>"; };
 		E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+HTW.m"; path = "Categories/NSDate+HTW.m"; sourceTree = "<group>"; };
 		E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageContentViewController.h; path = PageViewFirstLaunch/HTWPageContentViewController.h; sourceTree = "<group>"; };
@@ -638,6 +643,9 @@
 				E61D882C19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m */,
 				E61D883119085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.h */,
 				E61D883219085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m */,
+				E69A4AA4193741070072610A /* HTWImpressumViewController.h */,
+				E69A4AA5193741070072610A /* HTWImpressumViewController.m */,
+				E69A4AA7193744340072610A /* Impressum.txt */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -969,6 +977,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E69A4AA8193744340072610A /* Impressum.txt in Resources */,
 				6D753A6E1917C9B500C6BAA1 /* PT_Sans-Web-Bold.ttf in Resources */,
 				6D753A711917C9B500C6BAA1 /* PT_Sans-Web-Regular.ttf in Resources */,
 				E6B771F0191C370200E9A2A5 /* page2.png in Resources */,
@@ -1051,6 +1060,7 @@
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
 				6D94EA4D1915377E00872FC8 /* HTWMensaSingleTableViewController.m in Sources */,
 				E61D883719085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m in Sources */,
+				E69A4AA6193741070072610A /* HTWImpressumViewController.m in Sources */,
 				E6D6A8B8191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m in Sources */,
 				E61D883319085B4C0033D543 /* HTWDatePickViewController.m in Sources */,
 				E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */,

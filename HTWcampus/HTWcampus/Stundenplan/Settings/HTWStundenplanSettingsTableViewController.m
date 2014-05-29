@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *tageInPortraitCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *tageInLandscapeCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *parallaxCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *impressumCell;
 @property (weak, nonatomic) IBOutlet UISlider *markierSlider;
 @property (weak, nonatomic) IBOutlet UISlider *tageInPortraitSlider;
 @property (weak, nonatomic) IBOutlet UISlider *tageInLandscapeSlider;
@@ -89,10 +90,15 @@
     _matrikelnummernCell.textLabel.font = [UIFont HTWBaseFont];
     _matrikelnummernCell.detailTextLabel.textColor = [UIColor HTWBlueColor];
     _matrikelnummernCell.detailTextLabel.font = [UIFont HTWBaseFont];
-    
+
     _uebersichtCell.backgroundColor = [UIColor HTWWhiteColor];
     _uebersichtCell.textLabel.textColor = [UIColor HTWDarkGrayColor];
     _uebersichtCell.textLabel.font = [UIFont HTWBaseFont];
+
+
+    _impressumCell.backgroundColor = [UIColor HTWWhiteColor];
+    _impressumCell.textLabel.textColor = [UIColor HTWDarkGrayColor];
+    _impressumCell.textLabel.font = [UIFont HTWBaseFont];
     
     _parallaxCell.backgroundColor = [UIColor HTWWhiteColor];
     
