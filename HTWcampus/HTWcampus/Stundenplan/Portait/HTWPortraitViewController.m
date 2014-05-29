@@ -877,7 +877,8 @@
     self.currentDate = [NSDate date];
     [(UIDatePicker*)[self.view viewWithTag:DATEPICKER_TAG] setDate:[NSDate date]];
     [self dueDateChanged:(UIDatePicker*)[self.view viewWithTag:DATEPICKER_TAG]];
-    [self changeDatePressed:nil];
+    if(!_raumNummer) [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.leftBarButtonItems[1]];
+    else [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.rightBarButtonItem];
 }
 
 -(void) dueDateChanged:(UIDatePicker *)sender {
