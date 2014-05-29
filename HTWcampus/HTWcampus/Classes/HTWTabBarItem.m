@@ -8,7 +8,19 @@
 
 #import "HTWTabBarItem.h"
 
+@interface HTWTabBarItem ()
+
+@property (nonatomic, strong) NSArray *bilder;
+
+@end
+
 @implementation HTWTabBarItem
+
+-(UIImage *)selectedImage
+{
+    if(!_bilder) _bilder = @[[UIImage imageNamed:@"Kalender"], [UIImage imageNamed:@"Haus"], [UIImage imageNamed:@"Noten"], [UIImage imageNamed:@"Pruefung"], [UIImage imageNamed:@"Mensa"]];
+    return _bilder[self.tag];
+}
 
 - (void)awakeFromNib {
     [self setImage:self.image];

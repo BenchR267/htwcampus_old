@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "plus-7.png"
+      "filename" : "NotenTabBar.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "plus-7@2x.png"
+      "filename" : "NotenTabBar@2x.png"
     }
   ],
   "info" : {

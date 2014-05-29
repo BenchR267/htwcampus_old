@@ -25,6 +25,7 @@
     self.view.backgroundColor = [UIColor HTWBackgroundColor];
     self.textView.backgroundColor = [UIColor HTWBackgroundColor];
     self.textView.font = [UIFont HTWSmallFont];
+    self.textView.textColor = [UIColor HTWTextColor];
     NSString* filePath = [[NSBundle mainBundle] pathForResource:@"Impressum"
                                                          ofType:@"txt"];
     self.textView.text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];

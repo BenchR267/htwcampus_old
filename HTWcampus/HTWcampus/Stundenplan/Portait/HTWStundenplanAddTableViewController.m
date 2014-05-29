@@ -47,7 +47,6 @@
 {
     [super viewWillAppear:animated];
     self.view.backgroundColor = [UIColor HTWBackgroundColor];
-    self.title = _kurzel;
     if(!_textfield) _textfield = [[UITextField alloc] init];
     
 }
