@@ -108,7 +108,6 @@
 		E658457919295E110008A758 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E658457719295E110008A758 /* indicator.png */; };
 		E6642B1A191D0B260003FF5A /* HTWMensaDetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6642B19191D0B260003FF5A /* HTWMensaDetailParser.m */; };
 		E6642B1D191D0B8F0003FF5A /* HTWMensaDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6642B1C191D0B8E0003FF5A /* HTWMensaDetailTableViewController.m */; };
-		E6642B1F191D15AF0003FF5A /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = E6642B1E191D15AF0003FF5A /* noimage.png */; };
 		E67D2530191620F9009D7634 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D252F191620F9009D7634 /* User.m */; };
 		E67D2533191620FA009D7634 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D2532191620FA009D7634 /* Stunde.m */; };
 		E6949783192B6B4900E433E2 /* FirstLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6949782192B6B4900E433E2 /* FirstLaunch.storyboard */; };
@@ -306,7 +305,6 @@
 		E6642B19191D0B260003FF5A /* HTWMensaDetailParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaDetailParser.m; path = Mensa/HTWMensaDetailParser.m; sourceTree = "<group>"; };
 		E6642B1B191D0B8E0003FF5A /* HTWMensaDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaDetailTableViewController.h; path = Mensa/HTWMensaDetailTableViewController.h; sourceTree = "<group>"; };
 		E6642B1C191D0B8E0003FF5A /* HTWMensaDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaDetailTableViewController.m; path = Mensa/HTWMensaDetailTableViewController.m; sourceTree = "<group>"; };
-		E6642B1E191D15AF0003FF5A /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
 		E67D252E191620F9009D7634 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Stundenplan/Model/User.h; sourceTree = "<group>"; };
 		E67D252F191620F9009D7634 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Stundenplan/Model/User.m; sourceTree = "<group>"; };
 		E67D2531191620FA009D7634 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
@@ -386,7 +384,6 @@
 		6D753A361917A84500C6BAA1 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
-				E6642B1E191D15AF0003FF5A /* noimage.png */,
 				6D753A771917F20800C6BAA1 /* hausvii.jpg */,
 				6D753A751917F1D000C6BAA1 /* zittau.jpg */,
 				6D753A371917A8C300C6BAA1 /* altemensa.jpg */,
@@ -1013,7 +1010,6 @@
 				6D753A501917A8C300C6BAA1 /* mensa-wueins.jpg in Resources */,
 				6D753A641917C9A600C6BAA1 /* mensen.json in Resources */,
 				6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */,
-				E6642B1F191D15AF0003FF5A /* noimage.png in Resources */,
 				E658457819295E110008A758 /* indicator-grey.png in Resources */,
 				6D8B1CFD19351A1E00D519C8 /* fontawesome-webfont.svg in Resources */,
 				6D753A761917F1D000C6BAA1 /* zittau.jpg in Resources */,

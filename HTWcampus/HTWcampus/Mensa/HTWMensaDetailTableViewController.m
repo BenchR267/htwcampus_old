@@ -8,8 +8,11 @@
 
 #import "HTWMensaDetailTableViewController.h"
 #import "HTWMensaDetailParser.h"
+
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
+
+#define IMAGEVIEW_TAG 4
 
 @interface HTWMensaDetailTableViewController ()
 
@@ -89,13 +92,15 @@
     if(indexPath.section == 0)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
+        [[cell.contentView viewWithTag:IMAGEVIEW_TAG] removeFromSuperview];
         UIImage *image;
         if(_zusatzInfos[@"Bild"]) image = _zusatzInfos[@"Bild"];
-        else image = [UIImage imageNamed:@"noimage.png"];
+        else image = [UIImage imageNamed:@"noImage"];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(cell.contentView.center.x, cell.contentView.center.y, image.size.width, image.size.height)];
         imageView.center = cell.contentView.center;
         imageView.bounds = cell.contentView.bounds;
         imageView.image = image;
+        imageView.tag = IMAGEVIEW_TAG;
         [cell.contentView addSubview:imageView];
     }
     else

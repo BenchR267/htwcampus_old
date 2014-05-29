@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-433" y="306"/>
         </scene>
-        <!--Portrait View Controller - Plan-->
+        <!--Portrait View Controller - Stunden-->
         <scene sceneID="W7V-Tb-zzG">
             <objects>
                 <viewController id="7hh-2p-6tI" customClass="HTWPortraitViewController" sceneMemberID="viewController">
@@ -54,7 +54,7 @@
                             <constraint firstAttribute="bottom" secondItem="43P-Fj-3SQ" secondAttribute="bottom" id="QpJ-G7-P4G"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Plan" id="YO4-Qq-i9f">
+                    <navigationItem key="navigationItem" title="Stunden" id="YO4-Qq-i9f">
                         <barButtonItem key="leftBarButtonItem" image="Settings" id="rzC-X1-CYS">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1822,7 +1822,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Geschichte[Bearbeiten]
+                                <string key="text">Geschichte[Bearbeiten]
 Die Entstehung des Königreichs[Bearbeiten]
 
 
@@ -1887,7 +1887,7 @@ König Karl war entgegen der Politik seines Vaters ein Verfechter der Bildung ei
 
 In der Reichsverfassung vom 16. April 1871 erhielt Württemberg im Bundesrat vier von 58 Stimmen. Von den 397 Abgeordneten des Reichstags kamen 17 aus Württemberg. Als Reservatrechte wurden dem Land die Verwaltung des Eisenbahn-, des Post- und des Fernmeldewesens, die Einnahmen aus der Bier- und Branntweinsteuer und eine eigene Militärverwaltung unter preußischem Oberbefehl zugestanden.
 
-Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eintritt ins Kaiserreich einherging, wurde durch eine starke Besinnung auf die württembergische Identität kompensiert. 1876 wurde die Regierung neu organisiert. Kernstück der Reform war die Einrichtung eines Staatsministeriums unter Ministerpräsident Hermann von Mittnacht. König Karl zog sich in den Folgejahren weitgehend aus dem operativen Regierungsgeschäft zurück und widmete sich gemeinsam mit Königin Olga stärker kulturellen und sozialen Aufgaben. Obwohl er Oberhaupt (Summenepiskopus) der württembergischen evangelischen Landeskirche war, legte er starken Wert auf den Ausbau der Rechte der katholischen Minderheit. Dem Königreich Württemberg blieb dadurch ein Kulturkampf wie in Preußen erspart. Im Alter wurde die Homosexualität König Karls zwar nicht für breite Bevölkerungskreise offensichtlich; sie führte aber beinahe zu einer Staatskrise. Der seit 1883 als Bediensteter des Königs angestellte Amerikaner Charles Woodcock geriet durch seine von der Regierung als anmaßend empfundenen persönlichen Forderungen und durch sein Verhalten zunehmend in die Kritik. Er wurde auch von der Presse angegriffen. Der hieraus 1888 zwischen dem König und Ministerpräsident Mittnacht resultierende Konflikt konnte erst durch Vermittlung Bismarcks mit der Entlassung Woodcocks beendet werden.</mutableString>
+Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eintritt ins Kaiserreich einherging, wurde durch eine starke Besinnung auf die württembergische Identität kompensiert. 1876 wurde die Regierung neu organisiert. Kernstück der Reform war die Einrichtung eines Staatsministeriums unter Ministerpräsident Hermann von Mittnacht. König Karl zog sich in den Folgejahren weitgehend aus dem operativen Regierungsgeschäft zurück und widmete sich gemeinsam mit Königin Olga stärker kulturellen und sozialen Aufgaben. Obwohl er Oberhaupt (Summenepiskopus) der württembergischen evangelischen Landeskirche war, legte er starken Wert auf den Ausbau der Rechte der katholischen Minderheit. Dem Königreich Württemberg blieb dadurch ein Kulturkampf wie in Preußen erspart. Im Alter wurde die Homosexualität König Karls zwar nicht für breite Bevölkerungskreise offensichtlich; sie führte aber beinahe zu einer Staatskrise. Der seit 1883 als Bediensteter des Königs angestellte Amerikaner Charles Woodcock geriet durch seine von der Regierung als anmaßend empfundenen persönlichen Forderungen und durch sein Verhalten zunehmend in die Kritik. Er wurde auch von der Presse angegriffen. Der hieraus 1888 zwischen dem König und Ministerpräsident Mittnacht resultierende Konflikt konnte erst durch Vermittlung Bismarcks mit der Entlassung Woodcocks beendet werden.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
