@@ -121,7 +121,7 @@
                                                             style:UIBarButtonItemStyleBordered
                                                            target:self
                                                            action:@selector(addSegue)];
-    UIBarButtonItem *changeDate = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender"]
+    UIBarButtonItem *changeDate = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender2"]
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
                                                                   action:@selector(changeDatePressed:)];
@@ -817,10 +817,14 @@
                                                             style:UIBarButtonItemStyleBordered
                                                            target:self
                                                            action:@selector(addSegue)];
-    UIBarButtonItem *changeDate = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender"]
+    UIBarButtonItem *changeDate = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender2"]
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
                                                                   action:@selector(changeDatePressed:)];
+    UIBarButtonItem *changeDateDone = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender3"]
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(changeDatePressed:)];
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
@@ -843,11 +847,15 @@
         [self.view bringSubviewToFront:picker];
         self.scrollView.userInteractionEnabled = NO;
         UIBarButtonItem *heute = [[UIBarButtonItem alloc] initWithTitle:@"Heute" style:UIBarButtonItemStyleBordered target:self action:@selector(setToday)];
-        if(!_raumNummer) [self.navigationItem setRightBarButtonItems:@[heute] animated:YES];
-        else [self.navigationItem setRightBarButtonItems:@[changeDate, heute] animated:YES];
+        if(!_raumNummer) {
+            [self.navigationItem setRightBarButtonItems:@[heute] animated:YES];
+            [(UIBarButtonItem*)sender setImage:[UIImage imageNamed:@"Kalender3"]];
+        }
+        else [self.navigationItem setRightBarButtonItems:@[changeDateDone, heute] animated:YES];
     }
     else
     {
+        [(UIBarButtonItem*)sender setImage:[UIImage imageNamed:@"Kalender2"]];
         [[self.view viewWithTag:DATEPICKER_TAG] removeFromSuperview];
         self.scrollView.userInteractionEnabled = YES;
         datePickerIsVisible = NO;

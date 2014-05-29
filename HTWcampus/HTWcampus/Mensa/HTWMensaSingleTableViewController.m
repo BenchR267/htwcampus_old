@@ -59,7 +59,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(!_availableMeals[indexPath.row][@"price"] || [_availableMeals[indexPath.row][@"price"] isEqualToString:@""]) return 80;
+    if(!_availableMeals[indexPath.row][@"price"] || [_availableMeals[indexPath.row][@"price"] isEqualToString:@""]) return 100;
     return 120;
 }
 

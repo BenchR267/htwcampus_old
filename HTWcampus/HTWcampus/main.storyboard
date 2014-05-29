@@ -1547,7 +1547,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="FMd-oE-r4D">
-                                            <rect key="frame" x="20" y="94" width="280" height="17"/>
+                                            <rect key="frame" x="20" y="94" width="280" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" red="0.95294123890000004" green="0.60784316059999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
@@ -1569,6 +1569,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <constraint firstItem="sWF-na-0Aq" firstAttribute="trailing" secondItem="FMd-oE-r4D" secondAttribute="trailing" id="CtM-ap-mCR"/>
                                         <constraint firstItem="sWF-na-0Aq" firstAttribute="leading" secondItem="FMd-oE-r4D" secondAttribute="leading" id="MlF-Qq-vtZ"/>
                                         <constraint firstAttribute="trailing" secondItem="sWF-na-0Aq" secondAttribute="trailing" constant="-13" id="PcM-Wu-hce"/>
+                                        <constraint firstAttribute="bottom" secondItem="FMd-oE-r4D" secondAttribute="bottom" id="coS-np-PbF"/>
                                         <constraint firstItem="sWF-na-0Aq" firstAttribute="leading" secondItem="vhJ-Jt-bvU" secondAttribute="leading" constant="20" symbolic="YES" id="u61-Sm-Hwv"/>
                                         <constraint firstItem="FMd-oE-r4D" firstAttribute="top" secondItem="sWF-na-0Aq" secondAttribute="bottom" constant="8" symbolic="YES" id="ziG-ec-Zcd"/>
                                     </constraints>
@@ -2061,16 +2062,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </scenes>
     <resources>
         <image name="Haus" width="30" height="30"/>
-        <image name="Kalender" width="30" height="30"/>
+        <image name="Kalender" width="25" height="25"/>
         <image name="Mensa" width="30" height="30"/>
         <image name="Minus" width="29" height="30"/>
         <image name="Noten" width="29" height="30"/>
         <image name="Pruefung" width="30" height="30"/>
         <image name="Reload" width="24" height="28"/>
-        <image name="Settings" width="30" height="30"/>
-        <image name="Stern" width="30" height="30"/>
+        <image name="Settings" width="28" height="28"/>
+        <image name="Stern" width="28" height="26"/>
         <image name="add" width="28" height="28"/>
-        <image name="openInSafari" width="28" height="28"/>
+        <image name="openInSafari" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

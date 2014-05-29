@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "calendar-7.png"
+      "filename" : "calendar.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "calendar-7@2x.png"
+      "filename" : "calendar@2x.png"
     }
   ],
   "info" : {

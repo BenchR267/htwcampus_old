@@ -41,7 +41,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-       [self setMensaDay];
+        [self setMensaDay];
     }
     return self;
 }
@@ -49,39 +49,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
+
     NSError *error;
     _mensaMeta = [NSJSONSerialization
-                                JSONObjectWithData: [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mensen" ofType:@"json"]]
-                                options: NSJSONReadingMutableContainers
-                                error:&error];
-    
+                  JSONObjectWithData: [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mensen" ofType:@"json"]]
+                  options: NSJSONReadingMutableContainers
+                  error:&error];
+
     isLoading = YES;
-    
+
     //Preload Mensa Pictures
     _mensaPictureDict = [[NSMutableDictionary alloc] init];
     for (NSDictionary *currentMensa in _mensaMeta) {
         UIImage *image = [[UIImage imageNamed:[self getMensaImageNameForName:[currentMensa valueForKey:@"name"]]] thumbnailImage:128 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationDefault];
         [_mensaPictureDict setValue:image forKey:[currentMensa valueForKey:@"name"]];
     }
-    
+
     [self.mensaDaySwitcher addTarget:self
-                            action:@selector(setMensaDay)
-                  forControlEvents:UIControlEventValueChanged];
+                              action:@selector(setMensaDay)
+                    forControlEvents:UIControlEventValueChanged];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBarHidden = NO;
-    self.tableView.backgroundColor = [UIColor HTWSandColor];
-    self.navigationController.navigationBar.barTintColor = [UIColor HTWBlueColor];
-    _mensaDaySwitcher.tintColor = [UIColor HTWWhiteColor];
+    self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
 
     if([(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:@"letzteAktMensa"]
-                                    compare:[[NSDate date] getDayOnly]] != NSOrderedSame)
+        compare:[[NSDate date] getDayOnly]] != NSOrderedSame)
     {
         [self.navigationItem.rightBarButtonItem setEnabled:NO];
         [self loadMensa];
@@ -178,7 +172,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] getDayOnly] forKey:@"letzteAktMensa"];
     NSURL *RSSUrlToday =[NSURL URLWithString:mensaTodayUrl];
     NSURL *RSSUrlTomorrow = [NSURL URLWithString:mensaTomorrowUrl];
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.timeoutIntervalForRequest = 10;
@@ -202,15 +196,14 @@
         HTWMensaXMLParser *parser = [[HTWMensaXMLParser alloc] init];
         _allMensasOfToday = [[NSMutableArray alloc] initWithArray: [self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
         dispatch_async(dispatch_get_main_queue(), ^
-       {
-           isLoading = false;
+                       {
+                           isLoading = false;
 
-           [self.tableView reloadData];
-           [self checkAllOpeningHours];
-       });
-        
+                           [self.tableView reloadData];
+                       });
+
     }] resume];
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSURLSession *sessionForTomorrowsMensa = [NSURLSession sessionWithConfiguration:config];
     [[sessionForTomorrowsMensa dataTaskWithURL:RSSUrlTomorrow completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -221,29 +214,30 @@
         HTWMensaXMLParser *parser = [HTWMensaXMLParser new];
         _allMensasOfTomorrow = [[NSMutableArray alloc] initWithArray:[self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
         dispatch_async(dispatch_get_main_queue(), ^
-           {
-               isLoading = false;
-               [self.tableView reloadData];
-           });
+                       {
+                           isLoading = false;
+                           [self.tableView reloadData];
+                           [self checkAllOpeningHours];
+                       });
     }] resume];
-    
-    
+
+
 }
 
 - (NSArray *)groupMealsAccordingToMensa:(NSArray *)meals {
     if (meals == nil) return nil;
-    
-    
+
+
     NSMutableArray *allMealsOfOneMensa = [[NSMutableArray alloc] init];
     int mealCount = 0;
     NSMutableArray *allMensas = [[NSMutableArray alloc] init];
-    
+
     for (int i = 0; i < [meals count]; i++) {
         NSDictionary *tmpDict = [meals objectAtIndex:mealCount];
-		
+
 		if ([allMealsOfOneMensa count] == 0)
 			[allMealsOfOneMensa addObject:tmpDict];
-		
+
 		else if ([allMealsOfOneMensa count] >  0)
 		{
 			NSString *str1 = [tmpDict objectForKey:@"mensa"];
@@ -256,7 +250,7 @@
 				allMealsOfOneMensa = [NSMutableArray new];
 				[allMealsOfOneMensa addObject:tmpDict];
 			}
-			
+
 			if((mealCount+1) == [meals count])
 			{
 				[allMensas addObject:allMealsOfOneMensa];
@@ -312,20 +306,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-//    NSLog(@"%lu Mensen gefunden.", (unsigned long)[[self allMensasOfToday] count]);
-//    return [[self allMensas] count];
+    //    NSLog(@"%lu Mensen gefunden.", (unsigned long)[[self allMensasOfToday] count]);
+    //    return [[self allMensas] count];
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!isLoading) {
         if (mensaDay == 0) {
-//            NSLog(@"Zeige HEUTIGEN Speiseplan");
+            //            NSLog(@"Zeige HEUTIGEN Speiseplan");
             if(self.allMensasOfToday.count == 0) return 1;
             return [[self allMensasOfToday] count];
         }
         else {
-//            NSLog(@"Zeige MORGIGEN Speiseplan");
+            //            NSLog(@"Zeige MORGIGEN Speiseplan");
             if(self.allMensasOfTomorrow.count == 0) return 1;
             return [[self allMensasOfTomorrow] count];
         }
@@ -338,9 +332,9 @@
 {
     static NSString *CellIdentifier = @"Mensa";
     static NSString *LoadingCellIdentifier = @"MensaLoading";
-    
+
     HTWMensaSpeiseTableViewCell *cell;
-    
+
     if(!isLoading && mensaDay == 0 && self.allMensasOfToday.count == 0)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier forIndexPath:indexPath];
@@ -359,17 +353,17 @@
         cell.textLabel.textColor = [UIColor HTWTextColor];
         cell.textLabel.text = @"Leider haben morgen keine Mensen offen..";
     }
-    
+
     else if (!isLoading && ((mensaDay == 0 && self.allMensasOfToday.count) || (mensaDay == 1 && self.allMensasOfTomorrow.count))) {
         cell = (HTWMensaSpeiseTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         NSString *currentMensaName;
-        
+
         if (mensaDay == 0)
             currentMensaName = _allMensasOfToday[indexPath.row][0][@"mensa"];
         else
             currentMensaName = _allMensasOfTomorrow[indexPath.row][0][@"mensa"];
-        
-    
+
+
         [cell.textLabel setText:currentMensaName];
         if(!openingHoursLoaded)
             cell.detailTextLabel.text = @"Öffnungszeiten werden geladen";
@@ -385,7 +379,7 @@
 		[mensaSpinner startAnimating];
         [cell.contentView addSubview:mensaSpinner];
     }
-    
+
     return cell;
 }
 

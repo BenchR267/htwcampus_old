@@ -124,10 +124,12 @@
     {
         CGRect rect = CGRectMake(284, 6, 31, 31);
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:rect];
-        imageV.image = [[UIImage imageNamed:@"Stern"] resizedImage:rect.size interpolationQuality:kCGInterpolationDefault];
+        imageV.image = [[UIImage imageNamed:@"Kalender2"] resizedImage:rect.size interpolationQuality:kCGInterpolationDefault];
+        imageV.image = [imageV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        imageV.tintColor = [UIColor HTWDarkGrayColor];
         imageV.tag = ACCESSORY_VIEW_TAG;
         [cell.contentView addSubview:imageV];
-        [cell.contentView viewWithTag:ACCESSORY_VIEW_TAG].alpha = 0.6;
+//        [cell.contentView viewWithTag:ACCESSORY_VIEW_TAG].alpha = 0.6;
     }
     
     cell.textLabel.textColor = [UIColor HTWTextColor];
@@ -191,6 +193,14 @@
 
 - (IBAction)sternPressed:(id)sender {
     stern = !stern;
+    if(stern) self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Stern2"]
+                                                                                       style:UIBarButtonItemStyleBordered
+                                                                                      target:self
+                                                                                      action:@selector(sternPressed:)];
+    else self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Stern"]
+                                                                                  style:UIBarButtonItemStyleBordered
+                                                                                 target:self
+                                                                                 action:@selector(sternPressed:)];
     _searchBar.hidden = !_searchBar.hidden;
     [self.tableView reloadData];
 }
