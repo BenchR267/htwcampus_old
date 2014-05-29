@@ -455,7 +455,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Rechtliches" id="oZC-uG-3jm">
+                            <tableViewSection headerTitle="Impressum und Kontakt" id="oZC-uG-3jm">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Impressum" textLabel="vcd-bL-hZs" style="IBUITableViewCellStyleDefault" id="lhU-JB-Y3S">
                                         <rect key="frame" x="0.0" y="685" width="320" height="44"/>
