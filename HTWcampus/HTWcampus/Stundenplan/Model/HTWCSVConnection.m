@@ -118,37 +118,14 @@
                 NSRange range = [result rangeAtIndex:1];
                 NSString *filename = [html substringWithRange:range];
                 NSString *fileURL = [NSString stringWithFormat:@"http://www2.htw-dresden.de/~rawa/cgi-bin/plan/%@", filename];
-                
-                NSFetchRequest *request = [[NSFetchRequest alloc] init];
-                [request setEntity:[NSEntityDescription entityForName:@"User"
-                                               inManagedObjectContext:_context]];
-                
-                NSPredicate *pred =[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.password];
-                [request setPredicate:pred];
-                
-                NSMutableArray *objects = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
-                                                                                                 error:nil]];
-                
-                // Dürfte nur ein Ergebnis haben
-                for (User *this in objects) {
-                    for (Stunde *aktuell in this.stunden) {
-                        [_context deleteObject:aktuell];
-                    }
-                }
-                [_context save:nil];
-                
-                if ([objects count] != 0) {
-                    _student = objects[0];
-                }
-                else {
-                    _student = [NSEntityDescription
-                                insertNewObjectForEntityForName:@"User"
-                                inManagedObjectContext:_context];
-                    _student.matrnr = self.password;
-                    _student.letzteAktualisierung = [NSDate date];
-                    _student.raum = [NSNumber numberWithBool:NO];
-                }
-                
+
+                _student = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"User"
+                            inManagedObjectContext:_context];
+                _student.matrnr = [NSString stringWithFormat:@"%@+temp",self.password];
+                _student.letzteAktualisierung = [NSDate date];
+                _student.raum = [NSNumber numberWithBool:NO];
+
                 _student.name = _name;
                 _student.dozent = [NSNumber numberWithBool:YES];
                 
@@ -224,10 +201,74 @@
 -(void)HTWCSVParserDidFinishedWorking:(HTWCSVParser *)parser
 {
     [_context save:nil];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"User"
+                                   inManagedObjectContext:_context]];
+
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", [NSString stringWithFormat:@"%@+temp",self.password]]];
+
+    User *matches;
+
+    NSError *error;
+    NSArray *objects = [_context executeFetchRequest:request
+                                               error:&error];
+
+    if (error) {
+        NSLog(@"ERROR: %@", [error localizedDescription]);
+    }
+
+    if ([objects count] == 0) {
+        NSLog(@"No matches");
+    } else {
+        matches = objects[0];
+    }
+
+    // Vergleichen
+    NSFetchRequest *request2 = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    [request2 setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.password]];
+
+    User *matches2;
+    NSArray *objects2 = [_context executeFetchRequest:request2
+                                                error:&error];
+
+    if (error) {
+        NSLog(@"ERROR: %@", [error localizedDescription]);
+    }
+
+    if ([objects2 count] == 0) {
+        matches.matrnr = [matches.matrnr componentsSeparatedByString:@"+"][0];
+        NSLog(@"No matches. New User. Stunden: %lu", (unsigned long)matches.stunden.count);
+    } else {
+        NSLog(@"User exists in database. Add non existing Stunden..");
+        matches2 = objects2[0];
+        NSLog(@"Vorher: %lu", (unsigned long)matches2.stunden.count);
+        for (Stunde *temp1 in [matches.stunden allObjects]) {
+            if([self is:temp1 in:[matches2.stunden allObjects]])
+            {
+                continue;
+            }
+            else [matches2 addStundenObject:temp1];
+        }
+        NSLog(@"Nachher: %lu", (unsigned long)matches2.stunden.count);
+        [_context deleteObject:matches];
+    }
+    [_context save:nil];
+    [[NSUserDefaults standardUserDefaults] setObject:self.password forKey:@"Matrikelnummer"];
     [_delegate HTWCSVConnectionFinished:self];
 }
 
 #pragma mark - Hilfsfunktionen
+
+-(BOOL)is:(Stunde*)stunde in:(NSArray*)stunden
+{
+    for (Stunde *temp in stunden) {
+        if([temp.titel isEqualToString:stunde.titel] && [temp.anfang isEqualToDate:stunde.anfang] && [temp.kurzel isEqualToString:stunde.kurzel])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 -(NSDate*)dateFromString:(NSString*)date
 {

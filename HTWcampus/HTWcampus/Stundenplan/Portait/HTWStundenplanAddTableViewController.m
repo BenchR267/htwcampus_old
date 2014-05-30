@@ -229,9 +229,9 @@
     newStunde.dozent = _dozent;
     newStunde.anfang = _anfang;
     newStunde.ende = _ende;
+    newStunde.semester = [defaults objectForKey:@"Semester"];
     newStunde.anzeigen = [NSNumber numberWithBool:YES];
     newStunde.id = [NSString stringWithFormat:@"%@%d%@", _kurzel, [self wochentagFromDate:_anfang], [self uhrZeitFromDate:_anfang]];
-    newStunde.student.matrnr = [defaults objectForKey:@"Matrikelnummer"];
     
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
