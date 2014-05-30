@@ -63,15 +63,17 @@
 }
 
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible {
-    static NSInteger NumberOfCallsToSetVisible = 0;
-    if (setVisible)
-        NumberOfCallsToSetVisible++;
-    else
-        NumberOfCallsToSetVisible--;
+//    static NSInteger NumberOfCallsToSetVisible = 0;
+//    if (setVisible)
+//        NumberOfCallsToSetVisible++;
+//    else
+//        NumberOfCallsToSetVisible--;
+//
+//    if(NumberOfCallsToSetVisible <= 0) NumberOfCallsToSetVisible = 0;
+//    // Display the indicator as long as our static counter is > 0.
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
 
-    if(NumberOfCallsToSetVisible <= 0) NumberOfCallsToSetVisible = 0;
-    // Display the indicator as long as our static counter is > 0.
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:setVisible];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

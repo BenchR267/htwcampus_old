@@ -615,11 +615,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Raumplaner" id="Fn6-tV-g3r">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="TEST" id="NlH-sK-DY5">
-                            <connections>
-                                <segue destination="18J-fd-H3h" kind="push" id="RTB-Y1-tsy"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="add" id="xRy-7l-qiC">
                             <connections>
                                 <segue destination="4gJ-3g-ZOe" kind="modal" identifier="modalNeuerRaum" modalTransitionStyle="coverVertical" id="GnT-5e-7Fx"/>
@@ -839,44 +834,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVs-oC-R2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2332" y="756"/>
-        </scene>
-        <!--Test View Controller-->
-        <scene sceneID="r4S-ay-5Ff">
-            <objects>
-                <viewController id="18J-fd-H3h" customClass="HTWTestViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OSn-6q-0aZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Cto-4M-sak"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GCH-oD-opl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rva-Tt-J07">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="rva-Tt-J07" secondAttribute="bottom" id="5e2-6T-31r"/>
-                            <constraint firstItem="rva-Tt-J07" firstAttribute="leading" secondItem="GCH-oD-opl" secondAttribute="leading" id="PTn-C1-UTG"/>
-                            <constraint firstItem="rva-Tt-J07" firstAttribute="top" secondItem="GCH-oD-opl" secondAttribute="top" id="g5z-LC-dt0"/>
-                            <constraint firstAttribute="trailing" secondItem="rva-Tt-J07" secondAttribute="trailing" id="g9B-bH-pZ5"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="23N-nQ-v7F"/>
-                    <connections>
-                        <outlet property="textView" destination="rva-Tt-J07" id="gVm-fz-tzY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oKL-Eu-bJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1784" y="1274"/>
         </scene>
         <!--Noten Settings Table View Controller-->
         <scene sceneID="ns8-wB-Uxw">

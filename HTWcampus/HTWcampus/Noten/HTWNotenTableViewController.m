@@ -140,7 +140,7 @@
                             {
                                 NSString *notenspiegelHtmlResultAsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                 
-#warning PDF DOWNLOAD
+//#warning PDF DOWNLOAD
                                 // [self savePDFFromHtml:notenspiegelHtmlResultAsString];
                                 
                                 
@@ -401,7 +401,7 @@
 
 #pragma mark - Hilfsfunktionen
 
-#warning PDF DOWNLOAD UNVOLLSTÄNDIG
+//#warning PDF DOWNLOAD UNVOLLSTÄNDIG
 -(void)savePDFFromHtml:(NSString*)html
 {
     
