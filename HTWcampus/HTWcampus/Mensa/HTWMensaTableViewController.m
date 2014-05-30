@@ -125,7 +125,12 @@
         return @"Keine Öffnungszeiten verfügbar";
 
     NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=41JI0EUVFDHKEUXTB1DHBXP5W2GAUNHUQNMZP5XXAQWZE1BN&client_secret=QG1XL1SLIH2IFH5AT1ZFPBVNSZRAMKUG5BEWYJBALTXYRBUO&v=%@", s4sq, [NSDate dateFor4sq]]];
-    NSData *data = [NSData dataWithContentsOfURL:requestURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:requestURL
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                         timeoutInterval:5];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:nil
+                                                     error:nil];
     if(!data) return @"Problem mit der Internet-Verbindung..";
     NSDictionary *erg = [NSJSONSerialization JSONObjectWithData:data
                                                         options:NSJSONReadingMutableContainers
@@ -195,31 +200,28 @@
         }
         HTWMensaXMLParser *parser = [[HTWMensaXMLParser alloc] init];
         _allMensasOfToday = [[NSMutableArray alloc] initWithArray: [self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
-        dispatch_async(dispatch_get_main_queue(), ^
-                       {
-                           isLoading = false;
-
-                           [self.tableView reloadData];
-                       });
+        if(!_allMensasOfToday) _allMensasOfToday = [NSMutableArray new];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        NSURLSession *sessionForTomorrowsMensa = [NSURLSession sessionWithConfiguration:config];
+        [[sessionForTomorrowsMensa dataTaskWithURL:RSSUrlTomorrow completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if(error)
+            {
+                return;
+            }
+            HTWMensaXMLParser *parser = [HTWMensaXMLParser new];
+            _allMensasOfTomorrow = [[NSMutableArray alloc] initWithArray:[self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
+            if(!_allMensasOfTomorrow) _allMensasOfTomorrow = [NSMutableArray new];
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                               isLoading = false;
+                               [self.tableView reloadData];
+                               [self checkAllOpeningHours];
+                           });
+        }] resume];
 
     }] resume];
 
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    NSURLSession *sessionForTomorrowsMensa = [NSURLSession sessionWithConfiguration:config];
-    [[sessionForTomorrowsMensa dataTaskWithURL:RSSUrlTomorrow completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if(error)
-        {
-            return;
-        }
-        HTWMensaXMLParser *parser = [HTWMensaXMLParser new];
-        _allMensasOfTomorrow = [[NSMutableArray alloc] initWithArray:[self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
-        dispatch_async(dispatch_get_main_queue(), ^
-                       {
-                           isLoading = false;
-                           [self.tableView reloadData];
-                           [self checkAllOpeningHours];
-                       });
-    }] resume];
+
 
 
 }
