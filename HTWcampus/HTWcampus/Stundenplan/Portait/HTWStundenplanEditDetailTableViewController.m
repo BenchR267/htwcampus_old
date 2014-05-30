@@ -49,7 +49,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0) return 7;
+    if(section == 0) return 8;
     else if(section == 1) return 1;
     else return 1;
 }
@@ -108,10 +108,14 @@
                 if([_stunde.kurzel componentsSeparatedByString:@" "].count > 1) cell.detailTextLabel.text = [_stunde.kurzel componentsSeparatedByString:@" "][1];
                 break;
             case 5:
+                cell.textLabel.text = @"Semester";
+                cell.detailTextLabel.text = _stunde.semester;
+                break;
+            case 6:
                 cell.textLabel.text = @"Anfang";
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ um %@ Uhr", [self wochentagFromDate:_stunde.anfang], [self uhrZeitFromDate:_stunde.anfang]];
                 break;
-            case 6:
+            case 7:
                 cell.textLabel.text = @"Ende";
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ um %@ Uhr", [self wochentagFromDate:_stunde.ende], [self uhrZeitFromDate:_stunde.ende]];
                 break;
