@@ -48,7 +48,7 @@
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(connectionError)
         {
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            [(HTWAppDelegate *)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
             completition(nil,@"Leider besteht ein Problem bei der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut.");
             return;
         }

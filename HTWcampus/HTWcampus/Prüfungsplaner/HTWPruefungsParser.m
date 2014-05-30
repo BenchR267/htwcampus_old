@@ -117,7 +117,7 @@
         if(connectionError) {
             NSLog(@"%@", connectionError.localizedDescription);
             completion(nil,@"Es besteht ein Problem mit der Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut.");
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            [(HTWAppDelegate *)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
             return;
         }
         

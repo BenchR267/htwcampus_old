@@ -62,10 +62,15 @@
     return YES;
 }
 
-
-
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:setVisible];
+    static NSInteger NumberOfCallsToSetVisible = 0;
+    if (setVisible)
+        NumberOfCallsToSetVisible++;
+    else
+        NumberOfCallsToSetVisible--;
+
+    // Display the indicator as long as our static counter is > 0.
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

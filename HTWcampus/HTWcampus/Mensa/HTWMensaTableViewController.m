@@ -109,7 +109,7 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            [(HTWAppDelegate *)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
             openingHoursLoaded = YES;
             [self.navigationItem.rightBarButtonItem setEnabled:YES];
             [self.tableView reloadData];
@@ -178,14 +178,14 @@
     NSURL *RSSUrlToday =[NSURL URLWithString:mensaTodayUrl];
     NSURL *RSSUrlTomorrow = [NSURL URLWithString:mensaTomorrowUrl];
 
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [(HTWAppDelegate *)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.timeoutIntervalForRequest = 10;
     NSURLSession *sessionForTodaysMensa = [NSURLSession sessionWithConfiguration:config];
     [[sessionForTodaysMensa dataTaskWithURL:RSSUrlToday completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        [(HTWAppDelegate *)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
         if(error)
         {
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Fehler"
                                                                  message:@"Es scheint keine Verbindung zum Internet zu bestehen. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen sie es danach erneut."
                                                                 delegate:nil
@@ -201,9 +201,10 @@
         HTWMensaXMLParser *parser = [[HTWMensaXMLParser alloc] init];
         _allMensasOfToday = [[NSMutableArray alloc] initWithArray: [self groupMealsAccordingToMensa:[parser getAllMealsFromHTML:data]]];
         if(!_allMensasOfToday) _allMensasOfToday = [NSMutableArray new];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [(HTWAppDelegate *)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
         NSURLSession *sessionForTomorrowsMensa = [NSURLSession sessionWithConfiguration:config];
         [[sessionForTomorrowsMensa dataTaskWithURL:RSSUrlTomorrow completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            [(HTWAppDelegate *)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
             if(error)
             {
                 return;
