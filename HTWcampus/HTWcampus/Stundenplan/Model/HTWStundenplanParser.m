@@ -142,39 +142,15 @@ NSMutableData *receivedData;
 {
     if ([elementName isEqualToString:@"data"]) {
         isData = YES;
-        
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:[NSEntityDescription entityForName:@"User"
-                                       inManagedObjectContext:_context]];
-        
-        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.Matrnr];
-        [request setPredicate:pred];
-        
-        NSMutableArray *objects = [NSMutableArray arrayWithArray:[_context executeFetchRequest:request
-                                                                                         error:nil]];
-        
-        // Dürfte nur ein Ergebnis haben
-        for (User *student in objects) {
-            for (Stunde *aktuell in student.stunden) {
-                [_context deleteObject:aktuell];
-            }
-        }
-        [_context save:nil];
-        
-        if ([objects count] != 0) {
-            newStudent = objects[0];
-        }
-        else {
-            newStudent = [NSEntityDescription
-                          insertNewObjectForEntityForName:@"User"
-                          inManagedObjectContext:_context];
-            newStudent.matrnr = self.Matrnr;
-            newStudent.letzteAktualisierung = [NSDate date];
-            newStudent.raum = [NSNumber numberWithBool:self.boolRaum];
-            if(_name) newStudent.name = _name;
-        }
-        
-        
+
+        newStudent = [NSEntityDescription
+                      insertNewObjectForEntityForName:@"User"
+                      inManagedObjectContext:_context];
+        newStudent.matrnr = [NSString stringWithFormat:@"%@+temp",self.Matrnr];
+        newStudent.letzteAktualisierung = [NSDate date];
+        newStudent.raum = [NSNumber numberWithBool:self.boolRaum];
+        if(_name) newStudent.name = _name;
+
         [_context save:nil];
         return;
     }
@@ -279,14 +255,16 @@ NSMutableData *receivedData;
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if ([elementName isEqualToString:@"data"]) {
-        
+
+        [_context save:nil];
+
         isData = NO;
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:[NSEntityDescription entityForName:@"User"
                                        inManagedObjectContext:_context]];
         
-        [request setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.Matrnr]];
+        [request setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", [NSString stringWithFormat:@"%@+temp",self.Matrnr]]];
         
         User *matches;
         
@@ -302,10 +280,42 @@ NSMutableData *receivedData;
             NSLog(@"No matches");
         } else {
             matches = objects[0];
-            NSLog(@"Neuer Stundenplan-Datensatz:\tKennung: %@\tLetzte Aktualisierung: %@\tRaum:%@", matches.matrnr, matches.letzteAktualisierung, _boolRaum?@"ja":@"nein");
-//            NSLog(@"Es wurden %lu Datensätze gefunden. (Alles außer 1 ist falsch.)", (unsigned long)[objects count]);
-            
+            NSLog(@"Neuer Stundenplan-Datensatz:\tKennung: %@\tLetzte Aktualisierung: %@\tRaum:%@", [matches.matrnr componentsSeparatedByString:@"+"][0], matches.letzteAktualisierung, _boolRaum?@"ja":@"nein");
         }
+
+        // Vergleichen
+        NSFetchRequest *request2 = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+        [request2 setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", self.Matrnr]];
+
+        User *matches2;
+        NSArray *objects2 = [_context executeFetchRequest:request2
+                                                   error:&error];
+
+        if (error) {
+            NSLog(@"ERROR: %@", [error localizedDescription]);
+        }
+
+        if ([objects2 count] == 0) {
+            matches.matrnr = [matches.matrnr componentsSeparatedByString:@"+"][0];
+            NSLog(@"No matches. New User. Stunden: %lu", (unsigned long)matches.stunden.count);
+        } else {
+            NSLog(@"User exists in database. Add non existing Stunden..");
+            matches2 = objects2[0];
+            NSLog(@"Vorher: %lu", (unsigned long)matches2.stunden.count);
+            for (Stunde *temp1 in [matches.stunden allObjects]) {
+                if([self is:temp1 in:[matches2.stunden allObjects]])
+                {
+                    continue;
+                }
+                else [matches2 addStundenObject:temp1];
+            }
+            NSLog(@"Nachher: %lu", (unsigned long)matches2.stunden.count);
+            [_context deleteObject:matches];
+        }
+        [_context save:nil];
+
+
+        if(!_boolRaum) [[NSUserDefaults standardUserDefaults] setObject:self.Matrnr forKey:@"Matrikelnummer"];
         if(_delegate) [_delegate HTWStundenplanParserFinished:self];
         
         return;
@@ -330,8 +340,7 @@ NSMutableData *receivedData;
         
         stunde.id = [NSString stringWithFormat:@"%@%d%@", kuerzel, [stunde.anfang getWeekDay], anfangZeit];
         stunde.anzeigen = [NSNumber numberWithBool:YES];
-        stunde.student.matrnr = _Matrnr;
-        
+
         
         [newStudent addStundenObject:stunde];
         
@@ -382,6 +391,17 @@ NSMutableData *receivedData;
         isEnde = NO;
         return;
     }
+}
+
+-(BOOL)is:(Stunde*)stunde in:(NSArray*)stunden
+{
+    for (Stunde *temp in stunden) {
+        if([temp.titel isEqualToString:stunde.titel] && [temp.anfang isEqualToDate:stunde.anfang] && [temp.kurzel isEqualToString:stunde.kurzel])
+        {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError

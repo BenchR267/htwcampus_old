@@ -354,7 +354,7 @@
 -(void)didTabReloadButton:(UIButton *)sender
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Stundenplan wiederherstellen"
-                                                    message:@"Wenn Sie auf Ok tippen, werden alle momentanen Stunden incl aller Änderungen in der Datenbank gelöscht und durch das Original auf den HTW-Servern ersetzt. Sind Sie sicher?"
+                                                    message:@"Wenn Sie auf Ok tippen, wird der Stundenplan mit dem auf den HTW-Servern hinterlegten abgeglichen. Bereits gelöschte Wahlpflichtfächer sind dann evtl. wieder in der Datenbank vorhande. Selbst hinzugefügte Stunden sind davon nicht betroffen. Sind Sie sicher?"
                                                    delegate:self
                                           cancelButtonTitle:@"Abbrechen"
                                           otherButtonTitles:@"Ok", nil];
@@ -365,10 +365,7 @@
 #pragma mark - StundenplanParser Delegate
 
 -(void)HTWStundenplanParserFinished:(HTWStundenplanParser *)parser
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:_parser.Matrnr forKey:@"Matrikelnummer"];
-    
+{    
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
     
