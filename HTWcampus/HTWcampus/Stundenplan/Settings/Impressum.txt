@@ -24,7 +24,7 @@ www.smwk.de
 Kontakt:
 Telefon:	0351 462 ext. 0
 Telefax:	+49 351 81050-20
-E-Mail:		htwcampusapp@htw-dresden.de
+E-Mail:	htwcampusapp@htw-dresden.de
 
 Umsatzsteuer-ID:
 Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:
@@ -52,3 +52,5 @@ Datenschutz
 Die App verwendet die Matrikelnummer als interne Identifizierung zum Laden des Stundenplans. Alternativ kann auch eine weniger eindeutige und trotzdem ebenso ausreichende Studiengruppe angegeben werden. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
 Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
 Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der App behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
+Änderungen im Stundenplan sind komplett lokal. Hinzugefügte Stunden werden nicht über einen Server geleitet und sind komplett privat.
+Es werden keinerlei Analytic Tools eingesetzt, um das Nutzverhalten zu beobachten.

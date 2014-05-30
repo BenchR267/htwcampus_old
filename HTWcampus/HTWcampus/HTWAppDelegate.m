@@ -40,7 +40,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     if(![[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"])
-        [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"anzahlTageLandscape"];
+        [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"anzahlTageLandscape"];
     
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
     {
@@ -48,9 +48,9 @@
         [[NSUserDefaults standardUserDefaults] setFloat:30 forKey:@"markierSliderValue"];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"parallax"];
         HTWPageViewController *vc = [[UIStoryboard storyboardWithName:@"FirstLaunch" bundle:nil] instantiateViewControllerWithIdentifier:@"HTWPageViewController"];
-    [UIView animateWithDuration:0.5 animations:^{
-        [self.window setRootViewController:vc];
-    }];
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.window setRootViewController:vc];
+        }];
 
     }
     else
@@ -69,6 +69,7 @@
     else
         NumberOfCallsToSetVisible--;
 
+    if(NumberOfCallsToSetVisible <= 0) NumberOfCallsToSetVisible = 0;
     // Display the indicator as long as our static counter is > 0.
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
 }

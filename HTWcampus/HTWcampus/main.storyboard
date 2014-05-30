@@ -1890,6 +1890,7 @@ In der Reichsverfassung vom 16. April 1871 erhielt Württemberg im Bundesrat vie
 Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eintritt ins Kaiserreich einherging, wurde durch eine starke Besinnung auf die württembergische Identität kompensiert. 1876 wurde die Regierung neu organisiert. Kernstück der Reform war die Einrichtung eines Staatsministeriums unter Ministerpräsident Hermann von Mittnacht. König Karl zog sich in den Folgejahren weitgehend aus dem operativen Regierungsgeschäft zurück und widmete sich gemeinsam mit Königin Olga stärker kulturellen und sozialen Aufgaben. Obwohl er Oberhaupt (Summenepiskopus) der württembergischen evangelischen Landeskirche war, legte er starken Wert auf den Ausbau der Rechte der katholischen Minderheit. Dem Königreich Württemberg blieb dadurch ein Kulturkampf wie in Preußen erspart. Im Alter wurde die Homosexualität König Karls zwar nicht für breite Bevölkerungskreise offensichtlich; sie führte aber beinahe zu einer Staatskrise. Der seit 1883 als Bediensteter des Königs angestellte Amerikaner Charles Woodcock geriet durch seine von der Regierung als anmaßend empfundenen persönlichen Forderungen und durch sein Verhalten zunehmend in die Kritik. Er wurde auch von der Presse angegriffen. Der hieraus 1888 zwischen dem König und Ministerpräsident Mittnacht resultierende Konflikt konnte erst durch Vermittlung Bismarcks mit der Entlassung Woodcocks beendet werden.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2200,7 +2201,7 @@ Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eint
         <image name="Reload" width="24" height="28"/>
         <image name="Settings" width="30" height="30"/>
         <image name="Stern" width="28" height="26"/>
-        <image name="add" width="28" height="28"/>
+        <image name="add" width="30" height="30"/>
         <image name="openInSafari" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
