@@ -69,6 +69,7 @@
 		6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA55191538E600872FC8 /* UIImage+Alpha.m */; };
 		6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
+		E60F5FEF1938C2300093D5E8 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E60F5FEE1938C2300093D5E8 /* Stunde.m */; };
 		E61B6A2C1923B7BE0050EB10 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E61B6A2B1923B7BE0050EB10 /* Images.xcassets */; };
 		E61C34BD19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61C34BC19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m */; };
 		E61C4C7519193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61C4C7419193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m */; };
@@ -109,7 +110,6 @@
 		E6642B1A191D0B260003FF5A /* HTWMensaDetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6642B19191D0B260003FF5A /* HTWMensaDetailParser.m */; };
 		E6642B1D191D0B8F0003FF5A /* HTWMensaDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6642B1C191D0B8E0003FF5A /* HTWMensaDetailTableViewController.m */; };
 		E67D2530191620F9009D7634 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D252F191620F9009D7634 /* User.m */; };
-		E67D2533191620FA009D7634 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D2532191620FA009D7634 /* Stunde.m */; };
 		E6949783192B6B4900E433E2 /* FirstLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6949782192B6B4900E433E2 /* FirstLaunch.storyboard */; };
 		E6966E7C1921359B00EFB998 /* HTWPruefungsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E791921359B00EFB998 /* HTWPruefungsParser.m */; };
 		E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */; };
@@ -242,6 +242,8 @@
 		6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "Categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		E60BD347192173CA0018E3C2 /* HTWDozentEingebenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWDozentEingebenTableViewController.h; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.h"; sourceTree = "<group>"; };
 		E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWDozentEingebenTableViewController.m; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.m"; sourceTree = "<group>"; };
+		E60F5FED1938C2300093D5E8 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
+		E60F5FEE1938C2300093D5E8 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
 		E61B6A2B1923B7BE0050EB10 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E61C34BB19198BE500EBEBDD /* HTWStundenplanAddTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanAddTableViewController.h; path = Stundenplan/Portait/HTWStundenplanAddTableViewController.h; sourceTree = "<group>"; };
 		E61C34BC19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanAddTableViewController.m; path = Stundenplan/Portait/HTWStundenplanAddTableViewController.m; sourceTree = "<group>"; };
@@ -307,8 +309,6 @@
 		E6642B1C191D0B8E0003FF5A /* HTWMensaDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaDetailTableViewController.m; path = Mensa/HTWMensaDetailTableViewController.m; sourceTree = "<group>"; };
 		E67D252E191620F9009D7634 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Stundenplan/Model/User.h; sourceTree = "<group>"; };
 		E67D252F191620F9009D7634 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Stundenplan/Model/User.m; sourceTree = "<group>"; };
-		E67D2531191620FA009D7634 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
-		E67D2532191620FA009D7634 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
 		E6949782192B6B4900E433E2 /* FirstLaunch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FirstLaunch.storyboard; sourceTree = "<group>"; };
 		E6966E781921359B00EFB998 /* HTWPruefungsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsParser.h; path = "Prüfungsplaner/HTWPruefungsParser.h"; sourceTree = "<group>"; };
 		E6966E791921359B00EFB998 /* HTWPruefungsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsParser.m; path = "Prüfungsplaner/HTWPruefungsParser.m"; sourceTree = "<group>"; };
@@ -582,10 +582,10 @@
 			isa = PBXGroup;
 			children = (
 				E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */,
+				E60F5FED1938C2300093D5E8 /* Stunde.h */,
+				E60F5FEE1938C2300093D5E8 /* Stunde.m */,
 				E67D252E191620F9009D7634 /* User.h */,
 				E67D252F191620F9009D7634 /* User.m */,
-				E67D2531191620FA009D7634 /* Stunde.h */,
-				E67D2532191620FA009D7634 /* Stunde.m */,
 				E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */,
 				E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */,
 				E62C4847191422DE00788651 /* HTWCSVConnection.h */,
@@ -1096,7 +1096,6 @@
 				E63772D51908146300DEE8AB /* main.m in Sources */,
 				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
 				E62C484B191422DE00788651 /* HTWCSVConnection.m in Sources */,
-				E67D2533191620FA009D7634 /* Stunde.m in Sources */,
 				6D94EA4519152FDB00872FC8 /* URLParser.m in Sources */,
 				E6E624B019241800007AED51 /* HTWAlertNavigationController.m in Sources */,
 				E61C4C7519193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m in Sources */,
@@ -1110,6 +1109,7 @@
 				6D94EA3D19152FDB00872FC8 /* DocumentRoot.m in Sources */,
 				E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */,
 				E6506D8C193606F800603DFB /* HTWPruefungSettingsViewController.m in Sources */,
+				E60F5FEF1938C2300093D5E8 /* Stunde.m in Sources */,
 				6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */,
 				E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */,
 			);

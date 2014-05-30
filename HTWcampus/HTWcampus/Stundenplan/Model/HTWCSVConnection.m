@@ -17,6 +17,9 @@
 #define kURL [NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_kal.php"]
 
 @interface HTWCSVConnection () <HTWCSVParserDelegate>
+{
+    NSString *semester;
+}
 
 @property (nonatomic, strong) NSString *name;
 
@@ -86,6 +89,13 @@
                 [_delegate HTWCSVConnection:self Error:@"Leider war die Kennung nicht richtig. Bitte probieren Sie es nochmal."];
                 return;
             }
+
+            NSString *htmlForSemester = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"] encoding:NSASCIIStringEncoding error:nil];
+            semester = [htmlForSemester substringFromIndex:[htmlForSemester rangeOfString:@"</h3><h2>"].location + @"</h3><h2>".length];
+            NSArray *teile = [semester componentsSeparatedByString:@" "];
+            semester = [NSString stringWithFormat:@"%@ %@", teile[0], teile[1]];
+
+            [[NSUserDefaults standardUserDefaults] setObject:semester forKey:@"Semester"];
             
             if(!_eName)
             {
@@ -193,6 +203,7 @@
             _stunde.anzeigen = [NSNumber numberWithBool:YES];
             _stunde.id = [NSString stringWithFormat:@"%@%d%@", _stunde.kurzel, [_stunde.anfang getWeekDay], [self uhrZeitFromDate:_stunde.anfang]];
             _stunde.titel = [_stunde.kurzel componentsSeparatedByString:@" "][0];
+            _stunde.semester = semester;
             [_student addStundenObject:_stunde];
 
             [_context save:&error];

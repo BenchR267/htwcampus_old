@@ -43,6 +43,8 @@ NSMutableData *receivedData;
     NSMutableString *anfang;
     NSMutableString *ende;
     NSMutableString *anfangZeit;
+
+    NSString *semester;
 }
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -110,6 +112,13 @@ NSMutableData *receivedData;
             else [_delegate HTWStundenplanParser:self Error:@"Leider wurde der Raum mit dieser Kennung nicht gefunden. Bitte probieren Sie es nochmal."];
             return;
         }
+
+        NSString *htmlForSemester = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"] encoding:NSASCIIStringEncoding error:nil];
+        semester = [htmlForSemester substringFromIndex:[htmlForSemester rangeOfString:@"</h3><h2>"].location + @"</h3><h2>".length];
+        NSArray *teile = [semester componentsSeparatedByString:@" "];
+        semester = [NSString stringWithFormat:@"%@ %@", teile[0], teile[1]];
+
+        [[NSUserDefaults standardUserDefaults] setObject:semester forKey:@"Semester"];
         
         NSRange startRange = [html rangeOfString:@"<Stunde>"];
         NSString *dataAfterHtml = [html substringFromIndex:startRange.location];
@@ -341,6 +350,7 @@ NSMutableData *receivedData;
         stunde.id = [NSString stringWithFormat:@"%@%d%@", kuerzel, [stunde.anfang getWeekDay], anfangZeit];
         stunde.anzeigen = [NSNumber numberWithBool:YES];
 
+        stunde.semester = semester;
         
         [newStudent addStundenObject:stunde];
         

@@ -202,7 +202,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];
     [fetchRequest setEntity:entity];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"student.matrnr = %@", [defaults objectForKey:@"Matrikelnummer"]];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"student.matrnr = %@ && semester = %@", [defaults objectForKey:@"Matrikelnummer"], [defaults objectForKey:@"Semester"]];
     fetchRequest.predicate=pred;
     
     
