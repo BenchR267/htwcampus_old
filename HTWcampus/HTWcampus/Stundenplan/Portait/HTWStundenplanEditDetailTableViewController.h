@@ -11,6 +11,7 @@
 
 @interface HTWStundenplanEditDetailTableViewController : UITableViewController
 
+@property BOOL oneLessonOnly;
 @property (nonatomic, strong) Stunde *stunde;
 
 @end

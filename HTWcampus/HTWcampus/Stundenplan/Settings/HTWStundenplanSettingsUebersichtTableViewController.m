@@ -273,6 +273,7 @@
             NSIndexPath *indexPath = sender;
             HTWStundenplanEditDetailTableViewController *destVC = segue.destinationViewController;
             destVC.stunde = _array[indexPath.row];
+            destVC.oneLessonOnly = NO;
         }
     }
 }

@@ -1027,6 +1027,7 @@
         HTWStundenplanEditDetailTableViewController *dest = (HTWStundenplanEditDetailTableViewController*)segue.destinationViewController;
         HTWStundenplanButtonForLesson *button = (HTWStundenplanButtonForLesson*)sender;
         dest.stunde = button.lesson;
+        dest.oneLessonOnly = YES;
     }
 }
 

@@ -211,45 +211,71 @@
 {
     HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appdelegate managedObjectContext];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
-    NSPredicate *pred;
-    if(textField.tag == 4)
+    if(!_oneLessonOnly)
     {
-        pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@ && anfang = %@", _stunde.id, _stunde.student.matrnr, _stunde.anfang];
+
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
+        NSPredicate *pred;
+        if(textField.tag == 4)
+        {
+            pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@ && anfang = %@", _stunde.id, _stunde.student.matrnr, _stunde.anfang];
+        }
+        else
+        {
+            pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
+        }
+        [fetchRequest setPredicate:pred];
+
+        NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
+
+        for (Stunde *this in objects) {
+            switch (textField.tag) {
+                case 0:
+                    this.titel = textField.text;
+                    break;
+                case 1:
+                    this.kurzel = textField.text;
+                    break;
+                case 2:
+                    this.raum = textField.text;
+                    break;
+                case 3:
+                    this.dozent = textField.text;
+                    break;
+                case 4:
+                    this.bemerkungen = textField.text;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     else
     {
-        pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
-    }
-    [fetchRequest setPredicate:pred];
-    
-    NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
-    
-    for (Stunde *this in objects) {
         switch (textField.tag) {
             case 0:
-                this.titel = textField.text;
+                _stunde.titel = textField.text;
                 break;
             case 1:
-                this.kurzel = textField.text;
+                _stunde.kurzel = textField.text;
                 break;
             case 2:
-                this.raum = textField.text;
+                _stunde.raum = textField.text;
                 break;
             case 3:
-                this.dozent = textField.text;
+                _stunde.dozent = textField.text;
                 break;
             case 4:
-                this.bemerkungen = textField.text;
+                _stunde.bemerkungen = textField.text;
                 break;
             default:
                 break;
         }
     }
-    
+
+
     [context save:nil];
-    
+
     textField.text = @"";
     [textField resignFirstResponder];
     _textfield.hidden = YES;
@@ -328,16 +354,21 @@
         if ([buttonTitle isEqualToString:@"Ja"]) {
             HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
             NSManagedObjectContext *context = [appdelegate managedObjectContext];
-            
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
-            NSPredicate *pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
-            [fetchRequest setPredicate:pred];
-            
-            NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
-            
-            for (Stunde *this in objects) {
-                [context deleteObject:this];
+
+            if(!_oneLessonOnly)
+            {
+                NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
+                [fetchRequest setPredicate:pred];
+
+                NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
+
+                for (Stunde *this in objects) {
+                    [context deleteObject:this];
+                }
             }
+            else [context deleteObject:_stunde];
+
             
             [context save:nil];
             [self.navigationController popViewControllerAnimated:YES];
