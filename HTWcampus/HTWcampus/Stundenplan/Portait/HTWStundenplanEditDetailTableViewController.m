@@ -301,10 +301,13 @@
     {
         gesture.view.backgroundColor = [UIColor HTWRedColor];// Stunde löschen
         UIAlertView *alert = [[UIAlertView alloc] init];
-        alert.message = [NSString stringWithFormat:@"Sollen wirklich alle Stunden mit dem Kürzel %@ am %@ um %@ Uhr gelöscht werden?",
-                         _stunde.kurzel,
-                         [self wochentagFromDate:_stunde.anfang ],
-                         [self uhrZeitFromDate:_stunde.anfang]];
+        if(!_oneLessonOnly)
+            alert.message = [NSString stringWithFormat:@"Sollen wirklich alle Stunden mit dem Kürzel %@ am %@ um %@ Uhr gelöscht werden?",
+                             _stunde.kurzel,
+                             [self wochentagFromDate:_stunde.anfang ],
+                             [self uhrZeitFromDate:_stunde.anfang]];
+        else
+            alert.message = [NSString stringWithFormat:@"Soll diese Stunde wirklich gelöscht werden? %@", _stunde.kurzel];
         [alert addButtonWithTitle:@"Ja"];
         [alert addButtonWithTitle:@"Nein"];
         alert.tag = ALERT_CONFIRMATION;
