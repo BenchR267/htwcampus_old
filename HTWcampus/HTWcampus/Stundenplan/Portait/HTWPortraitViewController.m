@@ -289,7 +289,7 @@
     
     if(alertView.tag == ALERT_ERROR)
     {
-        if ([clickedButtonTitle isEqualToString:@"Nochmal"])
+        if ([clickedButtonTitle isEqualToString:@"Wiederholen"])
         {
             HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
             alert.htwTitle = @"Fehler";
@@ -503,7 +503,7 @@
 {
     UIAlertView *alert = [UIAlertView new];
     alert.message = errorMessage;
-    [alert addButtonWithTitle:@"Nochmal"];
+    [alert addButtonWithTitle:@"Wiederholen"];
     alert.tag = ALERT_ERROR;
     alert.delegate = self;
     [alert show];
@@ -513,7 +513,7 @@
 {
     UIAlertView *alert = [UIAlertView new];
     alert.message = errorMessage;
-    [alert addButtonWithTitle:@"Nochmal"];
+    [alert addButtonWithTitle:@"Wiederholen"];
     alert.tag = ALERT_ERROR;
     alert.delegate = self;
     [alert show];
@@ -577,17 +577,17 @@
     for (int i=0; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
         UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+60+_scrollView.contentSize.width, 20, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
-        this.font = [UIFont HTWLargeFont];
+        this.font = [UIFont HTWBaseBoldFont];
         this.tag = -1;
-        this.textColor = [UIColor HTWWhiteColor];
+        this.textColor = [UIColor HTWGrayColor];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
-        this.text = wochentage[wochentagePointer];
+        this.text = [wochentage[wochentagePointer] uppercaseString];
         
-        UILabel *thisDate = [[UILabel alloc] initWithFrame:CGRectMake(this.frame.origin.x+this.frame.size.width/4, this.frame.origin.y-10, this.frame.size.width/2, 15)];
+        UILabel *thisDate = [[UILabel alloc] initWithFrame:CGRectMake(this.frame.origin.x+this.frame.size.width/4, this.frame.origin.y-11, this.frame.size.width/2, 15)];
         thisDate.textAlignment = NSTextAlignmentCenter;
         thisDate.font = [UIFont HTWVerySmallFont];
         thisDate.tag = -1;
-        thisDate.textColor = [UIColor HTWWhiteColor];
+        thisDate.textColor = [UIColor HTWGrayColor];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
         thisDate.text = [cDate getAsStringWithFormat:@"dd.MM."];
         
@@ -597,6 +597,10 @@
         }
         cDate = [cDate dateByAddingTimeInterval:60*60*24];
         
+        //set active Day
+        if (i == 0) {
+            this.textColor = thisDate.textColor = [UIColor HTWWhiteColor];
+        }
         
         [labels addObject:this];
         [labels addObject:thisDate];
@@ -604,7 +608,7 @@
     
     UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50)];
     
-    UIImage *indicator = [UIImage imageNamed:@"indicator.png"];
+    UIImage *indicator = [UIImage imageNamed:@"indicator-gray@2x.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
     indicatorView.frame = CGRectMake(60+_scrollView.contentSize.width, 47, 108, 7);
     [heuteMorgenLabelsView addSubview:indicatorView];

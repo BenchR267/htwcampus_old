@@ -184,7 +184,7 @@
                     }
                     else {
                         //Login failed
-                        UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Nochmal" otherButtonTitles:nil];
+                        UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Wiederholen" otherButtonTitles:nil];
                         errorPopup.alertViewStyle = UIAlertViewStyleDefault;
                         errorPopup.tag = LOGIN_ERROR_TAG;
                         [errorPopup show];

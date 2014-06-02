@@ -13,7 +13,8 @@
 #import "UIFont+HTW.h"
 #import "NSDate+HTW.h"
 
-#define CornerRadius 5
+#define CELL_CORNER_RADIUS 0
+#define CELL_PADDING 4
 
 @interface HTWStundenplanButtonForLesson ()
 {
@@ -140,7 +141,7 @@
     self.frame = CGRectMake( x, y, width, height);
     
     self.backgroundColor = [UIColor HTWWhiteColor];
-    self.layer.cornerRadius = CornerRadius;
+    self.layer.cornerRadius = CELL_CORNER_RADIUS;
     
     if (!kurzel) kurzel = [[UILabel alloc] init];
     if (!raum) raum = [[UILabel alloc] init];
@@ -150,23 +151,23 @@
     if(_portait) kurzel.font = [UIFont HTWLargeFont];
     else kurzel.font = [UIFont HTWBaseFont];
     kurzel.textAlignment = NSTextAlignmentLeft;
-    kurzel.frame = CGRectMake(x+width*0.02f, y, width*0.98f, height*0.6);
+    kurzel.frame = CGRectMake(x+CELL_PADDING, y, width*0.98f, height*0.6);
     kurzel.textColor = [UIColor HTWDarkGrayColor];
     
     raum.text = lesson.raum;
-    if(_portait) raum.font = [UIFont HTWVerySmallFont];
+    if(_portait) raum.font = [UIFont HTWSmallFont];
     else raum.font = [UIFont HTWSmallestFont];
     raum.textAlignment = NSTextAlignmentLeft;
-    raum.frame = CGRectMake(x+3, y+(height*0.6), width-6, height*0.4);
-    raum.textColor = [UIColor HTWDarkGrayColor];
+    raum.frame = CGRectMake(x+CELL_PADDING, y+(height*0.50), width-6, height*0.4);
+    raum.textColor = [UIColor HTWGrayColor];
     
     if([lesson.kurzel componentsSeparatedByString:@" "].count > 1) {
         typ.text = [lesson.kurzel componentsSeparatedByString:@" "][1];
-        if(_portait) typ.font = [UIFont HTWLargeFont];
-        else typ.font = [UIFont HTWSmallFont];
+        if(_portait) typ.font = [UIFont HTWSmallFont];
+        else typ.font = [UIFont HTWVerySmallFont];
         typ.textAlignment = NSTextAlignmentRight;
-        typ.frame = CGRectMake(x+3, y+(height*0.5), width-6, height*0.4);
-        typ.textColor = [UIColor HTWDarkGrayColor];
+        typ.frame = CGRectMake(x, y+(height*0.50), width-6, height*0.4);
+        typ.textColor = [UIColor HTWGrayColor];
         [self addSubview:typ];
     }
     
