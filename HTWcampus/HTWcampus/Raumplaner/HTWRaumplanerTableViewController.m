@@ -41,6 +41,8 @@
     
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
+
+    [self.tableView reloadData];
 }
 
 #pragma mark - TableView Datasource
