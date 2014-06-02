@@ -30,6 +30,8 @@
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor HTWWhiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor HTWWhiteColor], NSForegroundColorAttributeName, nil]
                                              forState:UIControlStateNormal];
+
+    [[UITableViewCell appearance] setTintColor:[UIColor HTWTextColor]];
     
     [UINavigationBar appearance].barStyle = UIBarStyleBlackTranslucent;
     [UINavigationBar appearance].barTintColor = [UIColor HTWBlueColor];

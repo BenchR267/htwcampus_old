@@ -130,6 +130,52 @@
     _tageInPortraitLabel.lineBreakMode = NSLineBreakByWordWrapping;
 }
 
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *message;
+    if(indexPath.section == 0)
+    {
+        switch (indexPath.row) {
+            case 0:
+                message = @"Tippen Sie hier, um eine Übersicht über alle gespeicherten Stundenpläne zu erhalten. Außerdem kann hier der Stundenplan aktualisiert werden.";
+                break;
+            case 1:
+                message = @"Hier erhalten Sie eine Übersicht über alle Stunden im ausgewählten Stundenplan des aktuellen Semesters. Diese können einheitlich bearbeitet, gelöscht oder ausgeblendet werden.";
+                break;
+            default:
+                break;
+        }
+    }
+    else if(indexPath.section == 1)
+    {
+        switch (indexPath.row) {
+            case 0:
+                message = @"Hier können Sie einstellen, ab wann die nächste Stunde als die aktuelle Stunde farblich hervorgehoben wird. Der eingestellt Wert repräsentiert das Zeitintervall vor der Stunde.";
+                break;
+            case 1:
+                message = @"Dieser Wert gibt an, wieviele Tage in der Portrait (vertikal)-Ansicht dargestellt werden sollen.";
+                break;
+            case 2:
+                message = @"Dieser Wert gibt an, wieviele Tage in der Landscape (horizontal)-Ansicht dargestellt werden sollen.";
+                break;
+            case 3:
+                message = @"Der Parallax-Effekt ist ein 3D-Effekt, welcher in iOS 7 neu hinzugekommen ist. Ist dieser aktiviert, kann man durch Neigen des Geräts einen dreidimensionalen Eindruck im Stundenplan erwecken.";
+                break;
+                
+            default:
+                break;
+        }
+    }
+    if(message)
+    {
+        UIAlertView *alert = [UIAlertView new];
+        alert.message = message;
+        alert.title = @"Hilfe";
+        [alert addButtonWithTitle:@"Ok"];
+        [alert show];
+    }
+}
+
 #pragma mark - IBActions
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {
