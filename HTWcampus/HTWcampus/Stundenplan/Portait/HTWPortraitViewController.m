@@ -33,6 +33,10 @@
 #define DEPTH_FOR_PARALLAX 10
 #define DATEPICKER_TAG 222
 
+#define ZEITENVIEW_TAG -2
+#define LINEVIEW_TAG -3
+#define WOCHENTAGE_TAG -4
+
 @interface HTWPortraitViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIScrollViewDelegate, HTWAlertViewDelegate>
 {
     NSString *Matrnr; // Nur für Stundenplan Studenten
@@ -575,7 +579,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     for (int i=0; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
-        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+60+_scrollView.contentSize.width, 15, 108, 26)];
+        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+50+_scrollView.contentSize.width, 15, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
         this.font = [UIFont HTWBaseBoldFont];
         this.tag = -1;
@@ -610,9 +614,9 @@
     
     UIImage *indicator = [UIImage imageNamed:@"indicator-gray@2x.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
-    indicatorView.frame = CGRectMake(60+_scrollView.contentSize.width, 37, 108, 7);
+    indicatorView.frame = CGRectMake(50+_scrollView.contentSize.width, 37, 108, 7);
     [heuteMorgenLabelsView addSubview:indicatorView];
-    heuteMorgenLabelsView.tag = -4;
+    heuteMorgenLabelsView.tag = WOCHENTAGE_TAG;
     
     
     
@@ -633,7 +637,7 @@
     
     UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 40, _scrollView.contentSize.height+700)];
     zeitenView.backgroundColor = [UIColor HTWDarkGrayColor];
-    zeitenView.tag = -2;
+    zeitenView.tag = ZEITENVIEW_TAG;
     
     NSArray *vonStrings = @[@"07:30", @"09:20", @"11:10", @"13:10", @"15:00", @"16:50", @"18:30"];
     NSArray *bisStrings = @[@"09:00", @"10:50", @"12:40", @"14:40", @"16:30", @"18:20", @"20:00"];
@@ -672,31 +676,18 @@
     [self.scrollView addSubview:zeitenView];
     
     today = [NSDate date].getDayOnly;
-    if ([[NSDate date] compare:[today dateByAddingTimeInterval:7*60*60+30*60]] == NSOrderedDescending &&
+    if ([[NSDate date] compare:[today dateByAddingTimeInterval:7*60*60+00*60]] == NSOrderedDescending &&
         [[NSDate date] compare:[today dateByAddingTimeInterval:22*60*60]] == NSOrderedAscending)
     {
         UIColor *linieUndClock = [UIColor colorWithRed:221/255.f green:72/255.f blue:68/255.f alpha:1];
         
-        
-        
-        UIImage *clock = [UIImage imageNamed:@"Clock"];
-        UIImageView *clockView = [[UIImageView alloc] initWithImage:clock];
-        
-        clockView.image = [clockView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [clockView setTintColor:linieUndClock];
-        
         CGFloat y = 54 + [[NSDate date] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin;
-        clockView.frame = CGRectMake(0, y-7.5, 15, 15);
-        clockView.alpha = 0.6;
-        clockView.tag = -2;
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, y, self.scrollView.contentSize.width, 1)];
         lineView.backgroundColor = linieUndClock;
         lineView.alpha = 0.6;
-        lineView.tag = -3;
+        lineView.tag = LINEVIEW_TAG;
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:clockView depth:DEPTH_FOR_PARALLAX];
         [self.scrollView addSubview:lineView];
-        [self.scrollView addSubview:clockView];
         [_scrollView bringSubviewToFront:lineView];
     }
     
@@ -923,17 +914,17 @@
         CGPoint origin;
         switch (this.tag) {
             case 1: this.hidden = YES; break;
-            case -4:
+            case WOCHENTAGE_TAG:
                 this.frame = CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 40);
                 [scrollView bringSubviewToFront:this];
                 break;
-            case -2:
+            case ZEITENVIEW_TAG:
                 origin.x = scrollView.contentOffset.x;
                 origin.y = this.frame.origin.y;
                 this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
                 [scrollView bringSubviewToFront:this];
                 break;
-            case -3:
+            case LINEVIEW_TAG:
                 origin.x = scrollView.contentOffset.x+15;
                 origin.y = this.frame.origin.y;
                 this.frame = CGRectMake(origin.x, origin.y, this.frame.size.width, this.frame.size.height);
@@ -944,14 +935,14 @@
     }
     
     for (UIView *this in scrollView.subviews) {
-        if(this.tag == -3) {
+        if(this.tag == ZEITENVIEW_TAG) {
             [scrollView bringSubviewToFront:this];
             break;
         }
     }
     
     for (UIView *this in scrollView.subviews) {
-        if(this.tag == -4) {
+        if(this.tag == WOCHENTAGE_TAG) {
             [scrollView bringSubviewToFront:this];
             break;
         }

@@ -98,7 +98,7 @@
         }
         for (int i = 0; i < tage.count; i++) {
             if ([self isSameDayWithDate1:lesson.anfang date2:tage[i]]) {
-                x = 60+i*116;
+                x = 50+i*116;
                 y = 54 + (CGFloat)[lesson.anfang timeIntervalSinceDate:[tage[i] dateByAddingTimeInterval:60*60*7+60*30]] / 60 * PixelPerMin;
                 break;
             }
