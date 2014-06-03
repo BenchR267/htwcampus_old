@@ -575,7 +575,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     for (int i=0; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
-        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+60+_scrollView.contentSize.width, 20, 108, 26)];
+        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+60+_scrollView.contentSize.width, 15, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
         this.font = [UIFont HTWBaseBoldFont];
         this.tag = -1;
@@ -606,11 +606,11 @@
         [labels addObject:thisDate];
     }
     
-    UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50)];
+    UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 40)];
     
     UIImage *indicator = [UIImage imageNamed:@"indicator-gray@2x.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
-    indicatorView.frame = CGRectMake(60+_scrollView.contentSize.width, 47, 108, 7);
+    indicatorView.frame = CGRectMake(60+_scrollView.contentSize.width, 37, 108, 7);
     [heuteMorgenLabelsView addSubview:indicatorView];
     heuteMorgenLabelsView.tag = -4;
     
@@ -631,7 +631,7 @@
     NSDate *today = self.currentDate.getDayOnly;
     
     
-    UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 45, _scrollView.contentSize.height+700)];
+    UIView *zeitenView = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.contentOffset.x, -350, 40, _scrollView.contentSize.height+700)];
     zeitenView.backgroundColor = [UIColor HTWDarkGrayColor];
     zeitenView.tag = -2;
     
@@ -924,7 +924,7 @@
         switch (this.tag) {
             case 1: this.hidden = YES; break;
             case -4:
-                this.frame = CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 50);
+                this.frame = CGRectMake(-_scrollView.contentSize.width, _scrollView.contentOffset.y+64, _scrollView.contentSize.width*3, 40);
                 [scrollView bringSubviewToFront:this];
                 break;
             case -2:
