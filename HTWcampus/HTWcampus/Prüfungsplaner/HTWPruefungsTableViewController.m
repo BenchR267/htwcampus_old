@@ -168,7 +168,7 @@
     
     
     cell.textLabel.font = [UIFont HTWTableViewCellFont];
-    cell.detailTextLabel.font = [UIFont HTWMediumFont];
+    cell.detailTextLabel.font = [UIFont HTWBaseFont];
     cell.textLabel.textColor = [UIColor HTWTextColor];
     cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
     

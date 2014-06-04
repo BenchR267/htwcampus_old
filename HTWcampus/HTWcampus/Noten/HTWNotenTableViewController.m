@@ -341,10 +341,16 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && [self.notenspiegel count]>0) {
-        return 88;
+        return 25;
     }
-    return 50;
+    return UITableViewAutomaticDimension;
 }
+
+//-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+//    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+//    header.textLabel.textColor = [UIColor HTWGrayColor];
+//    header.textLabel.font = [UIFont HTWSmallBoldFont];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -372,18 +378,20 @@
     }
     
     if ([self.notenspiegel count] > 0) {
+        //Remove default separators
+        tableView.separatorColor = [UIColor HTWBackgroundColor];
+        
         if (indexPath.section == 0) {
-            cell.textLabel.text = @"Notendurchschnitt";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", notendurchschnitt];
-            cell.textLabel.font = cell.detailTextLabel.font = [UIFont HTWLargeFont];
-            cell.textLabel.textColor = [UIColor HTWTextColor];
-            cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.text = [NSString stringWithFormat:@"∅ %.2f", notendurchschnitt];
+            cell.textLabel.font = [UIFont HTWExtraLargeFont];
+            cell.textLabel.textColor = [UIColor HTWGrayColor];
+            cell.backgroundColor = [UIColor clearColor];
         }
         else {
             cell.textLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"name"];
             cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.detailTextLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"note"];
-            
         }
     }
     

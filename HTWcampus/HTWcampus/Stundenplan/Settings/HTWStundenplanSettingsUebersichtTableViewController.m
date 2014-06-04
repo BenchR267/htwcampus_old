@@ -121,7 +121,7 @@
     else typ = @" ";
     
     cell.titelLabel.text = [NSString stringWithFormat:@"%@ %@", typ, info.titel];
-    [cell.titelLabel setFont:[UIFont HTWMediumFont]];
+    [cell.titelLabel setFont:[UIFont HTWBaseFont]];
     cell.titelLabel.textColor = [UIColor HTWDarkGrayColor];
     cell.titelLabel.numberOfLines = 2;
     cell.titelLabel.lineBreakMode = NSLineBreakByCharWrapping;

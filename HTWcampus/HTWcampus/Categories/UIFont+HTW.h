@@ -10,9 +10,9 @@
 
 @interface UIFont (HTW)
 
++ (UIFont *)HTWExtraLargeFont;
 + (UIFont *)HTWLargeFont;
 + (UIFont *)HTWBaseFont;
-+ (UIFont *)HTWMediumFont;
 + (UIFont *)HTWSmallFont;
 + (UIFont *)HTWVerySmallFont;
 + (UIFont *)HTWSmallestFont;
