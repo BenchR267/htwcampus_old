@@ -93,7 +93,7 @@
         [self.vorher removeAllObjects];
         [self.nachher removeAllObjects];
         for (int i = 1; i < _pruefungsArray.count; i++) {
-            if([[self getAnfang:i] isBefore:[NSDate date]])
+            if([[self getAnfang:i] compare:[NSDate date]] == NSOrderedAscending || ![self getAnfang:i])
                [self.vorher addObject:_pruefungsArray[i]];
             else
                 [self.nachher addObject:_pruefungsArray[i]];
@@ -223,12 +223,22 @@
 
 -(NSDate*)getAnfang:(int)index
 {
-    NSString *string = _pruefungsArray[index][_keys[7]];
-    if([string rangeOfString:@"/"].length != 0)
-        string = [string substringFromIndex:[string rangeOfString:@"/"].location+1];
+    if(![NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]])
+        return nil;
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
-    [dateF setDateFormat:@"dd.MM.yyyy"];
-    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@", string, [self aktuellesJahrFuerPruefung]]];
+    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
+    NSMutableString *anfang = [NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]];
+    [anfang replaceOccurrencesOfString:@"." withString:@":" options:NSCaseInsensitiveSearch range:NSMakeRange(0, anfang.length)];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahrFuerPruefung], anfang]];
+}
+
+-(NSDate*)getEnde:(int)index
+{
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
+    NSMutableString *ende = [NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][2]];
+    [ende replaceOccurrencesOfString:@"." withString:@":" options:NSCaseInsensitiveSearch range:NSMakeRange(0, ende.length)];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahrFuerPruefung], ende]];
 }
 
 -(NSString*)aktuellesJahrFuerPruefung
