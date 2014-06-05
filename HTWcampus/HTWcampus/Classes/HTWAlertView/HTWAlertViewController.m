@@ -77,7 +77,16 @@
         cell.textLabel.font = [UIFont HTWTableViewCellFont];
         cell.textLabel.textColor = [UIColor HTWTextColor];
         
-        cell.detailTextLabel.text = _stringsFromTextField[indexPath.row];
+        if([_numberOfSecureTextField containsObject:[NSNumber numberWithInteger:indexPath.row]])
+        {
+            NSMutableString *platzhalter = [NSMutableString new];
+            for(int i = 0; i < [_stringsFromTextField[indexPath.row] length]; i++)
+                [platzhalter appendString:@"*"];
+            cell.detailTextLabel.text = platzhalter;
+                
+        }
+        else
+            cell.detailTextLabel.text = _stringsFromTextField[indexPath.row];
         cell.detailTextLabel.font = [UIFont HTWTableViewCellFont];
         cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
     }
