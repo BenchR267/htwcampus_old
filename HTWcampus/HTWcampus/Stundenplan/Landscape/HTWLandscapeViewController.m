@@ -258,12 +258,12 @@
 
 -(void)loadLabels
 {
-    CGFloat yWertTage = 15;
+    CGFloat yWertTage = 13;
     NSArray *stringsTage = [NSArray arrayWithObjects:@"Montag", @"Dienstag", @"Mittwoch", @"Donnerstag", @"Freitag", nil];
     
     UIView *heuteMorgenLabelsView = [[UIView alloc] initWithFrame:CGRectMake(-350, 0, _scrollView.contentSize.width+350+350, 36)];
     
-    UIImage *indicator = [UIImage imageNamed:@"indicator.png"];
+    UIImage *indicator = [UIImage imageNamed:@"indicator-gray@2x.png"];
     UIImageView *indicatorView = [[UIImageView alloc] initWithImage:indicator];
     indicatorView.frame = CGRectMake([self getScrollX]+350, 15+18, 90, 7);
     [heuteMorgenLabelsView addSubview:indicatorView];
@@ -285,19 +285,24 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x+350, yWertTage, 90, 21)];
         label.text = [stringsTage objectAtIndex:j];
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor HTWWhiteColor];
+        label.textColor = [UIColor HTWGrayColor];
         label.font = [UIFont HTWBaseFont];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:label depth:DEPTH_FOR_PARALLAX];
-        [heuteMorgenLabelsView addSubview:label];
         
         UILabel *thisDate = [[UILabel alloc] initWithFrame:CGRectMake(label.frame.origin.x+label.frame.size.width/4, label.frame.origin.y-10, label.frame.size.width/2, 15)];
         thisDate.textAlignment = NSTextAlignmentCenter;
         thisDate.font = [UIFont HTWVerySmallFont];
         thisDate.tag = -1;
-        thisDate.textColor = [UIColor HTWWhiteColor];
+        thisDate.textColor = [UIColor HTWGrayColor];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
         thisDate.text = [cDate getAsStringWithFormat:@"dd.MM."];
+        
+        if(i == [NSDate getWeekDay])
+            label.textColor = thisDate.textColor = [UIColor HTWWhiteColor];
+        
+        
         [heuteMorgenLabelsView addSubview:thisDate];
+        [heuteMorgenLabelsView addSubview:label];
         
         cDate = [cDate dateByAddingTimeInterval:60*60*24];
         if([cDate getWeekDay] == 5)

@@ -579,15 +579,16 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     for (int i=0; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
-        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+50+_scrollView.contentSize.width, 15, 108, 26)];
+        UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+50+_scrollView.contentSize.width, 13, 108, 26)];
         this.textAlignment = NSTextAlignmentCenter;
-        this.font = [UIFont HTWBaseBoldFont];
+        this.font = [UIFont HTWLargeFont];
         this.tag = -1;
         this.textColor = [UIColor HTWGrayColor];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
-        this.text = [wochentage[wochentagePointer] uppercaseString];
+//        this.text = [wochentage[wochentagePointer] uppercaseString];
+        this.text = wochentage[wochentagePointer];
         
-        UILabel *thisDate = [[UILabel alloc] initWithFrame:CGRectMake(this.frame.origin.x+this.frame.size.width/4, this.frame.origin.y-11, this.frame.size.width/2, 15)];
+        UILabel *thisDate = [[UILabel alloc] initWithFrame:CGRectMake(this.frame.origin.x+this.frame.size.width/4, this.frame.origin.y-9, this.frame.size.width/2, 15)];
         thisDate.textAlignment = NSTextAlignmentCenter;
         thisDate.font = [UIFont HTWVerySmallFont];
         thisDate.tag = -1;
