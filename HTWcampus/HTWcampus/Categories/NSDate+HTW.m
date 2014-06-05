@@ -130,4 +130,16 @@
     return NO;
 }
 
+
+-(BOOL)isBefore:(NSDate*)date
+{
+    return ([self compare:date] == NSOrderedAscending);
+}
+
+-(BOOL)isAfter:(NSDate*)date
+{
+    return ([self compare:date] == NSOrderedDescending);
+}
+
+
 @end

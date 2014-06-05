@@ -26,5 +26,7 @@
 -(int)year;
 -(BOOL)isYesterday:(NSDate*)date;
 -(BOOL)isTommorrow:(NSDate*)date;
+-(BOOL)isBefore:(NSDate*)date;
+-(BOOL)isAfter:(NSDate*)date;
 
 @end

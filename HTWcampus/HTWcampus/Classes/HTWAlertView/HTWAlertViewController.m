@@ -155,7 +155,7 @@
     }
     else if (gesture.state == UIGestureRecognizerStateEnded)
     {
-        _stringsFromTextField[_textfield.tag] = _textfield.text;
+        if(_textfield.hidden == NO) _stringsFromTextField[_textfield.tag] = _textfield.text;
         gesture.view.backgroundColor = [UIColor HTWBlueColor];
         
         
