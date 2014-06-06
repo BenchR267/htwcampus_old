@@ -221,32 +221,14 @@
     {
         UIColor *linieUndClock = [UIColor colorWithRed:255/255.f green:72/255.f blue:68/255.f alpha:1];
         
-        UIImage *clock = [UIImage imageNamed:@"Clock"];
-        UIImageView *clockView = [[UIImageView alloc] initWithImage:clock];
-        
-        clockView.image = [clockView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [clockView setTintColor:linieUndClock];
-        
         CGFloat y = 55 + [[NSDate date] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin;
         
-        clockView.frame = CGRectMake(0, y-7.5, 15, 15);
-        clockView.alpha = 0.6;
-        clockView.tag = -1;
-        
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, y, self.zeitenView.bounds.size.width, 1)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(-350, y, self.scrollView.contentSize.width+350-10, 1)];
         lineView.backgroundColor = linieUndClock;
         lineView.alpha = 0.6;
         lineView.tag = -1;
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:clockView depth:DEPTH_FOR_PARALLAX];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
-        [self.zeitenView addSubview:clockView];
-        [self.zeitenView addSubview:lineView];
-        UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(-350, y, self.scrollView.contentSize.width+350-10, 1)];
-        lineView2.backgroundColor = linieUndClock;
-        lineView2.alpha = 0.6;
-        lineView2.tag = -1;
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView2 depth:DEPTH_FOR_PARALLAX];
-        [self.scrollView addSubview:lineView2];
+        [self.scrollView addSubview:lineView];
     }
     
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];

@@ -143,7 +143,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    _stringsFromTextField[_textfield.tag] = _textfield.text;
+    if(_textfield.hidden == NO) _stringsFromTextField[_textfield.tag] = _textfield.text;
     
     textField.text = @"";
     [textField resignFirstResponder];
