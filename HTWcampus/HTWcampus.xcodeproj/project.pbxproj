@@ -117,7 +117,6 @@
 		E67D2530191620F9009D7634 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D252F191620F9009D7634 /* User.m */; };
 		E6949783192B6B4900E433E2 /* FirstLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6949782192B6B4900E433E2 /* FirstLaunch.storyboard */; };
 		E6966E7C1921359B00EFB998 /* HTWPruefungsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E791921359B00EFB998 /* HTWPruefungsParser.m */; };
-		E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */; };
 		E6966E831921473900EFB998 /* HTWPruefungsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */; };
 		E6966E8F19214DC300EFB998 /* HTWNeueStudiengruppe.m in Sources */ = {isa = PBXBuildFile; fileRef = E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */; };
 		E69A4AA6193741070072610A /* HTWImpressumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69A4AA5193741070072610A /* HTWImpressumViewController.m */; };
@@ -317,8 +316,6 @@
 		E6949782192B6B4900E433E2 /* FirstLaunch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FirstLaunch.storyboard; sourceTree = "<group>"; };
 		E6966E781921359B00EFB998 /* HTWPruefungsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsParser.h; path = "Prüfungsplaner/HTWPruefungsParser.h"; sourceTree = "<group>"; };
 		E6966E791921359B00EFB998 /* HTWPruefungsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsParser.m; path = "Prüfungsplaner/HTWPruefungsParser.m"; sourceTree = "<group>"; };
-		E6966E7E19213ABC00EFB998 /* HTWPruefungsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsTableViewController.h; path = "Prüfungsplaner/HTWPruefungsTableViewController.h"; sourceTree = "<group>"; };
-		E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsTableViewController.m; path = "Prüfungsplaner/HTWPruefungsTableViewController.m"; sourceTree = "<group>"; };
 		E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsDetailTableViewController.h; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.h"; sourceTree = "<group>"; };
 		E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsDetailTableViewController.m; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.m"; sourceTree = "<group>"; };
 		E6966E8D19214DC300EFB998 /* HTWNeueStudiengruppe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNeueStudiengruppe.h; path = "Prüfungsplaner/HTWNeueStudiengruppe.h"; sourceTree = "<group>"; };
@@ -826,8 +823,6 @@
 		E6966E8B19214D9500EFB998 /* Prüfungen anzeigen */ = {
 			isa = PBXGroup;
 			children = (
-				E6966E7E19213ABC00EFB998 /* HTWPruefungsTableViewController.h */,
-				E6966E7F19213ABC00EFB998 /* HTWPruefungsTableViewController.m */,
 				E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */,
 				E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */,
 			);
@@ -1111,7 +1106,6 @@
 				E6506D8C193606F800603DFB /* HTWPruefungSettingsViewController.m in Sources */,
 				E60F5FEF1938C2300093D5E8 /* Stunde.m in Sources */,
 				6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */,
-				E6966E8019213ABC00EFB998 /* HTWPruefungsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
