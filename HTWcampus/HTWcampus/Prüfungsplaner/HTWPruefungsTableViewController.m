@@ -93,7 +93,7 @@
         [self.vorher removeAllObjects];
         [self.nachher removeAllObjects];
         for (int i = 1; i < _pruefungsArray.count; i++) {
-            if([[self getAnfang:i] compare:[NSDate date]] == NSOrderedAscending || ![self getAnfang:i])
+            if([[self getAnfang:i] isBefore:[[NSDate date] getDayOnly]])
                 [self.vorher addObject:_pruefungsArray[i]];
             else
                 [self.nachher addObject:_pruefungsArray[i]];
