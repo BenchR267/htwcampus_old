@@ -826,10 +826,10 @@
 		E6966E8B19214D9500EFB998 /* Prüfungen anzeigen */ = {
 			isa = PBXGroup;
 			children = (
-				E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */,
-				E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */,
 				E0ED3BE6194756AD007022E3 /* HTWPruefungsTableViewController.h */,
 				E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */,
+				E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */,
+				E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */,
 			);
 			name = "Prüfungen anzeigen";
 			sourceTree = "<group>";

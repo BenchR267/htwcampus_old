@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E63772C21908146300DEE8AB"
-               BuildableName = "HTWcampus.app"
+               BuildableName = "HTWDresden.app"
                BlueprintName = "HTWcampus"
                ReferencedContainer = "container:HTWcampus.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E63772C21908146300DEE8AB"
-            BuildableName = "HTWcampus.app"
+            BuildableName = "HTWDresden.app"
             BlueprintName = "HTWcampus"
             ReferencedContainer = "container:HTWcampus.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E63772C21908146300DEE8AB"
-            BuildableName = "HTWcampus.app"
+            BuildableName = "HTWDresden.app"
             BlueprintName = "HTWcampus"
             ReferencedContainer = "container:HTWcampus.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E63772C21908146300DEE8AB"
-            BuildableName = "HTWcampus.app"
+            BuildableName = "HTWDresden.app"
             BlueprintName = "HTWcampus"
             ReferencedContainer = "container:HTWcampus.xcodeproj">
          </BuildableReference>

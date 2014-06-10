@@ -77,13 +77,11 @@
     if([(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:@"letzteAktMensa"]
         compare:[[NSDate date] getDayOnly]] != NSOrderedSame)
     {
-        [self.navigationItem.rightBarButtonItem setEnabled:NO];
         [self loadMensa];
         return;
     }
 
     if (![self allMensasOfToday]) {
-        [self.navigationItem.rightBarButtonItem setEnabled:NO];
         [self loadMensa];
     }
     else {
@@ -173,6 +171,7 @@
 }
 
 - (void)loadMensa {
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     openingHoursLoaded = NO;
     [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] getDayOnly] forKey:@"letzteAktMensa"];
     NSURL *RSSUrlToday =[NSURL URLWithString:mensaTodayUrl];
@@ -193,6 +192,7 @@
                                                        otherButtonTitles:nil];
             dispatch_async(dispatch_get_main_queue(), ^
                            {
+                               [self.navigationItem.rightBarButtonItem setEnabled:YES];
                                [errorAlert show];
                            });
             isLoading = false;
