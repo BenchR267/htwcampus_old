@@ -10,6 +10,7 @@
 #import "HTWPruefungsParser.h"
 #import "HTWPruefungsDetailTableViewController.h"
 #import "HTWPruefungSettingsViewController.h"
+#import "HTWPruefungenExportierenTableViewController.h"
 #import "HTWAppDelegate.h"
 #import "User.h"
 
@@ -53,6 +54,17 @@
     self.title = @"Prüfungen";
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
     _keys = @[@"Fakultät",@"Studiengang",@"Jahr/Semester",@"Abschluss",@"Studienrichtung",@"Modul",@"Art",@"Tag",@"Zeit",@"Raum",@"Prüfender",@"Nächste WD"];
+    
+    UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:self
+                                                           action:@selector(shareButtonPressed:)];
+    self.navigationItem.rightBarButtonItems = @[self.navigationItem.rightBarButtonItem, bbi];
+}
+
+-(IBAction)shareButtonPressed:(id)sender
+{
+    [self performSegueWithIdentifier:@"exportAll" sender:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -197,6 +209,11 @@
     {
         HTWPruefungSettingsViewController *svc = segue.destinationViewController;
         svc.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"exportAll"]) {
+        HTWPruefungenExportierenTableViewController *petvc = [(UINavigationController*)segue.destinationViewController viewControllers][0];
+        
+        petvc.pruefungen = _nachher;
     }
 }
 

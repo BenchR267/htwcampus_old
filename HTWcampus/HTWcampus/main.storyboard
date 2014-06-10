@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="286-Hk-2SQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="286-Hk-2SQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -1192,10 +1192,48 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="weh-Og-XUm" kind="modal" identifier="exportAll" id="VUE-I4-hBd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lo3-66-oLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="3816"/>
+            <point key="canvasLocation" x="1697" y="4240"/>
+        </scene>
+        <!--Pruefungen Exportieren Table View Controller-->
+        <scene sceneID="83V-oK-pep">
+            <objects>
+                <tableViewController id="fDm-13-KSh" customClass="HTWPruefungenExportierenTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ptU-Ug-SY6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Wzt-h5-UeO">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wzt-h5-UeO" id="ks9-eu-5Fk">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fDm-13-KSh" id="sXw-jP-ue8"/>
+                            <outlet property="delegate" destination="fDm-13-KSh" id="Bhg-We-z1x"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="bOz-Xo-CiW">
+                        <barButtonItem key="rightBarButtonItem" title="Fertig" id="nKr-To-qLS">
+                            <connections>
+                                <action selector="fertigButtonPressed:" destination="fDm-13-KSh" id="11r-kn-btA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGb-nd-HoT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2780" y="3953"/>
         </scene>
         <!--Neue Studiengruppe - Studiengruppe eingeben-->
         <scene sceneID="tAE-kb-QGA">
@@ -1295,7 +1333,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Y4-bt-vpM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3309" y="5050"/>
+            <point key="canvasLocation" x="4189" y="5430"/>
         </scene>
         <!--Dozent Eingeben Table View Controller-->
         <scene sceneID="O4v-Kz-rzp">
@@ -1355,7 +1393,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2x-Zc-ZGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3309" y="5747"/>
+            <point key="canvasLocation" x="4189" y="6127"/>
         </scene>
         <!--Pruefungs Detail Table View Controller-->
         <scene sceneID="BJ3-8K-JcW">
@@ -1406,7 +1444,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dW7-aT-Gio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2050" y="3816"/>
+            <point key="canvasLocation" x="2254" y="4636"/>
         </scene>
         <!--Navigation Controller - Mensa-->
         <scene sceneID="Iof-OO-tOb">
@@ -1916,7 +1954,7 @@ Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eint
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tkO-ss-GN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2071" y="4664"/>
+            <point key="canvasLocation" x="2275" y="5484"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KM5-i5-IlT">
@@ -2100,7 +2138,7 @@ Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eint
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ns2-eb-l2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1545" y="4664"/>
+            <point key="canvasLocation" x="1689" y="5088"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OXp-tb-Bw9">
@@ -2118,7 +2156,7 @@ Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eint
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFA-CD-95A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2783" y="5050"/>
+            <point key="canvasLocation" x="3663" y="5430"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="huu-pD-6Te">
@@ -2136,7 +2174,25 @@ Der politische Machtverlust des Landes und des Herrscherhauses, der mit dem Eint
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDg-Ez-3mW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2783" y="5747"/>
+            <point key="canvasLocation" x="3663" y="6127"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xZQ-ag-Nkf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="weh-Og-XUm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JnT-EE-Er8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fDm-13-KSh" kind="relationship" relationship="rootViewController" id="tcD-hm-4mn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cbI-fS-1dT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2254" y="3953"/>
         </scene>
     </scenes>
     <resources>

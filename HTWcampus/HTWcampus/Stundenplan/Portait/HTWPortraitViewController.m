@@ -494,6 +494,11 @@
     [self updateAngezeigteStunden];
     
     [self setUpInterface];
+    
+    UIAlertView *alert = [[UIAlertView alloc] init];
+    alert.title = @"Stundenplan erfolgreich heruntergeladen.";
+    [alert show];
+    [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
 }
 
 -(void)HTWCSVConnectionFinished:(HTWCSVConnection *)connection
@@ -501,6 +506,11 @@
     [self updateAngezeigteStunden];
     
     [self setUpInterface];
+    
+    UIAlertView *alert = [[UIAlertView alloc] init];
+    alert.title = @"Stundenplan erfolgreich heruntergeladen.";
+    [alert show];
+    [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
 }
 
 -(void)HTWStundenplanParser:(HTWStundenplanParser *)parser Error:(NSString *)errorMessage
