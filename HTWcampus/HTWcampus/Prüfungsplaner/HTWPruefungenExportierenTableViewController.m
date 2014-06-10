@@ -114,6 +114,11 @@
 }
 - (IBAction)fertigButtonPressed:(id)sender {
     
+    if([self countSelectedItems] == 0) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    
     NSManagedObjectContext *context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"(raum = %@)", [NSNumber numberWithBool:NO]];
@@ -214,6 +219,14 @@
         _selected[i] = @NO;
     }
     [self.tableView reloadData];
+}
+
+-(int)countSelectedItems {
+    int count = 0;
+    for (int i = 0; i < _pruefungen.count; i++) {
+        if([_selected[i] isEqual:@YES]) count++;
+    }
+    return count;
 }
 
 #pragma mark - Hilfsfunktionen
