@@ -223,22 +223,12 @@
 
 -(NSDate*)getAnfang:(int)index
 {
-    if(![NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]])
-        return nil;
+    NSString *string = _pruefungsArray[index][_keys[7]];
+    if([string rangeOfString:@"/"].length != 0)
+        string = [string substringFromIndex:[string rangeOfString:@"/"].location+1];
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
-    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
-    NSMutableString *anfang = [NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][0]];
-    [anfang replaceOccurrencesOfString:@"." withString:@":" options:NSCaseInsensitiveSearch range:NSMakeRange(0, anfang.length)];
-    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahrFuerPruefung], anfang]];
-}
-
--(NSDate*)getEnde:(int)index
-{
-    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
-    [dateF setDateFormat:@"dd.MM.yyyy HH:mm"];
-    NSMutableString *ende = [NSMutableString stringWithString:[(NSString*)_pruefungsArray[index][_keys[8]] componentsSeparatedByString:@" "][2]];
-    [ende replaceOccurrencesOfString:@"." withString:@":" options:NSCaseInsensitiveSearch range:NSMakeRange(0, ende.length)];
-    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@ %@", _pruefungsArray[index][_keys[7]], [self aktuellesJahrFuerPruefung], ende]];
+    [dateF setDateFormat:@"dd.MM.yyyy"];
+    return [dateF dateFromString:[NSString stringWithFormat:@"%@%@", string, [self aktuellesJahrFuerPruefung]]];
 }
 
 -(NSString*)aktuellesJahrFuerPruefung
