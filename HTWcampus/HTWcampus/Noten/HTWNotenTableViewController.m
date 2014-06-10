@@ -174,11 +174,13 @@
                             else if ([data length] == 0 && error == nil)
                             {
                                 NSLog(@"No data returned.");
+                                isLoading = false;
                             }
                             else if (error != nil){
                                 NSLog(@"Fehler beim Laden der Notenseite. Error: %@", error);
                                 [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
                                 [self.navigationItem.rightBarButtonItem setEnabled:YES];
+                                isLoading = false;
                             }
                         }];
                     }
@@ -188,6 +190,7 @@
                         errorPopup.alertViewStyle = UIAlertViewStyleDefault;
                         errorPopup.tag = LOGIN_ERROR_TAG;
                         [errorPopup show];
+                        isLoading = false;
                     }
                 }
                 else if ([data length] == 0 && error == nil)
@@ -198,6 +201,7 @@
                     NSLog(@"HISQIS Login Request Page nicht erreichbar. Error: %@", error);
                     [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
                     [self.navigationItem.rightBarButtonItem setEnabled:YES];
+                    isLoading = false;
                 }
             }];
 
@@ -206,6 +210,7 @@
         else if ([data length] == 0 && error == nil)
         {
             NSLog(@"No data was returned.");
+            isLoading = false;
         }
         else if (error != nil){
             NSLog(@"Fehler beim Laden der Noten. Error: %@", error);
@@ -216,6 +221,8 @@
                                                            cancelButtonTitle:@"Ok"
                                                            otherButtonTitles:nil];
                 [errorAlert show];
+                isLoading = false;
+                [self.tableView reloadData];
             });
             [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
             [self.navigationItem.rightBarButtonItem setEnabled:YES];
@@ -340,6 +347,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (!self.notenspiegel && !isLoading) return 80;
     if (indexPath.section == 0 && [self.notenspiegel count]>0) {
         return 25;
     }
@@ -395,13 +403,18 @@
         }
     }
     
-    if (!self.notenspiegel) {
-        
+    if (!self.notenspiegel && !isLoading) {
+        cell.textLabel.text = @"Leider konnte keine Verbindung aufgebaut werden...";
+        cell.textLabel.font = [UIFont HTWTableViewCellFont];
+        cell.textLabel.textColor = [UIColor HTWTextColor];
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 2;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     
     if (self.notenspiegel && [self.notenspiegel count] == 0) {
         cell.textLabel.text = @"Keine Noten verfügbar :(";
-        [cell.textLabel center];
+        [cell.textLabel center]; // ? was ist das?^^
     }
     
     return cell;
