@@ -69,7 +69,6 @@
 		6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA52191537BA00872FC8 /* UIImage+Resize.m */; };
 		6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA55191538E600872FC8 /* UIImage+Alpha.m */; };
 		6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */; };
-		E0B314B71946F611004704C8 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B314B61946F611004704C8 /* HTWPruefungsTableViewController.m */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
 		E60F5FEF1938C2300093D5E8 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E60F5FEE1938C2300093D5E8 /* Stunde.m */; };
 		E61B6A2C1923B7BE0050EB10 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E61B6A2B1923B7BE0050EB10 /* Images.xcassets */; };
@@ -241,8 +240,6 @@
 		6D94EA55191538E600872FC8 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "Categories/UIImage+Alpha.m"; sourceTree = "<group>"; };
 		6D94EA56191538E600872FC8 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "Categories/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "Categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		E0B314B51946F611004704C8 /* HTWPruefungsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsTableViewController.h; path = "Prüfungsplaner/HTWPruefungsTableViewController.h"; sourceTree = "<group>"; };
-		E0B314B61946F611004704C8 /* HTWPruefungsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsTableViewController.m; path = "Prüfungsplaner/HTWPruefungsTableViewController.m"; sourceTree = "<group>"; };
 		E60BD347192173CA0018E3C2 /* HTWDozentEingebenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWDozentEingebenTableViewController.h; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.h"; sourceTree = "<group>"; };
 		E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWDozentEingebenTableViewController.m; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.m"; sourceTree = "<group>"; };
 		E60F5FED1938C2300093D5E8 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
@@ -826,8 +823,6 @@
 		E6966E8B19214D9500EFB998 /* Prüfungen anzeigen */ = {
 			isa = PBXGroup;
 			children = (
-				E0B314B51946F611004704C8 /* HTWPruefungsTableViewController.h */,
-				E0B314B61946F611004704C8 /* HTWPruefungsTableViewController.m */,
 				E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */,
 				E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */,
 			);
@@ -1064,7 +1059,6 @@
 				6D753A741917CC1100C6BAA1 /* UIFont+HTW.m in Sources */,
 				E69BB0CC1928F89B002E5757 /* NSDate+HTW.m in Sources */,
 				E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */,
-				E0B314B71946F611004704C8 /* HTWPruefungsTableViewController.m in Sources */,
 				E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D753A611917C54B00C6BAA1 /* HTWMensaSpeiseTableViewCell.m in Sources */,
 				6D94E9DA191524B300872FC8 /* HTWNotenDetailTableViewController.m in Sources */,
