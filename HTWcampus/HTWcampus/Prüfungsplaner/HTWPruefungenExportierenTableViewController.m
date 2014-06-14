@@ -32,6 +32,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"Exportieren";
+    
     _keys = @[@"Fakultät",@"Studiengang",@"Jahr/Semester",@"Abschluss",@"Studienrichtung",@"Modul",@"Art",@"Tag",@"Zeit",@"Raum",@"Prüfender",@"Nächste WD"];
     
     UIBarButtonItem *selectBBI = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"selectAll"] style:UIBarButtonItemStylePlain target:self action:@selector(selectAllPressed:)];
