@@ -114,7 +114,7 @@
         [self.tableView reloadData];
         
         UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
-        CGRect frame = CGRectMake(sender.frame.size.width/4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width/4*3-20, sender.detailTextLabel.frame.size.height);
+        CGRect frame = CGRectMake(sender.frame.size.width/4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width/4*3-20, sender.detailTextLabel.frame.size.height == 0 ? 21 : sender.detailTextLabel.frame.size.height);
         _textfield.frame = frame;
         _textfield.hidden = NO;
         _textfield.font = [UIFont HTWTableViewCellFont];
