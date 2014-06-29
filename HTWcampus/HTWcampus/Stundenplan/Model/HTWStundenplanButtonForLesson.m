@@ -74,6 +74,24 @@
     }
 }
 
+-(void)markLesson {
+    self.backgroundColor = [UIColor HTWBlueColor];
+    
+    for (UIView *this in self.subviews) {
+        if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWWhiteColor]];
+        else if (this.tag == -9) this.backgroundColor = [UIColor whiteColor];
+    }
+}
+
+-(void)unmarkLesson {
+    self.backgroundColor = [UIColor HTWWhiteColor];
+    kurzel.textColor = [UIColor HTWDarkGrayColor];
+    raum.textColor = [UIColor HTWGrayColor];
+    typ.textColor = [UIColor HTWGrayColor];
+    _circle.backgroundColor = [UIColor HTWTextColor];
+    
+}
+
 -(void)setLesson:(Stunde *)lessonForButton
 {
     lesson = lessonForButton;

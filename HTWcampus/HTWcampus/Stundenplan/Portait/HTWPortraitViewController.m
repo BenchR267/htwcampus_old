@@ -729,11 +729,7 @@
 {
     HTWStundenplanButtonForLesson *buttonPressed = (HTWStundenplanButtonForLesson*)gesture.view;
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        buttonPressed.backgroundColor = [UIColor HTWBlueColor];
-        for (UIView *this in buttonPressed.subviews) {
-            if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWWhiteColor]];
-            else if (this.tag == -9) this.backgroundColor = [UIColor whiteColor];
-        }
+        [buttonPressed markLesson];
         
         CGFloat x = buttonPressed.frame.origin.x-buttonPressed.frame.size.width/2;
         CGFloat y = buttonPressed.frame.origin.y-180*PixelPerMin;
@@ -791,12 +787,7 @@
             [buttonPressed setNow:YES];
         }
         else {
-            buttonPressed.backgroundColor = [UIColor HTWWhiteColor];
-        
-            for (UIView *this in buttonPressed.subviews) {
-                if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWDarkGrayColor]];
-                else if (this.tag == -9) this.backgroundColor = [UIColor HTWTextColor];
-            }
+            [buttonPressed unmarkLesson];
         }
     }
 }
