@@ -93,6 +93,11 @@
     }];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.scrollView setContentOffset:CGPointMake([self getScrollX], 0) animated:YES];
+}
+
 -(BOOL)prefersStatusBarHidden
 {
     return YES;
@@ -279,7 +284,7 @@
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
         thisDate.text = [cDate getAsStringWithFormat:@"dd.MM."];
         
-        if(i == [NSDate getWeekDay])
+        if(j == [NSDate getWeekDay])
             label.textColor = thisDate.textColor = [UIColor HTWWhiteColor];
         
         
