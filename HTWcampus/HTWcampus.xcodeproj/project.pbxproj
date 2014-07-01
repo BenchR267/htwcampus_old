@@ -69,6 +69,12 @@
 		6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA52191537BA00872FC8 /* UIImage+Resize.m */; };
 		6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA55191538E600872FC8 /* UIImage+Alpha.m */; };
 		6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */; };
+		6DA949961963018300C0E50C /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949951963018300C0E50C /* page1.png */; };
+		6DA949A61963066300C0E50C /* page6.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A11963066300C0E50C /* page6.png */; };
+		6DA949A71963066300C0E50C /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A21963066300C0E50C /* page4.png */; };
+		6DA949A81963066300C0E50C /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A31963066300C0E50C /* page5.png */; };
+		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
+		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
 		E0D59BCF1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */; };
 		E0ED3BE8194756AD007022E3 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
@@ -105,11 +111,6 @@
 		E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C6E190D3F34002AE150 /* HTWRaumParser.m */; };
 		E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C70190D3F34002AE150 /* HTWTabParser.m */; };
 		E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C74190D3FD1002AE150 /* HTWTestViewController.m */; };
-		E639B3B41938E5C40085B43B /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = E639B3AF1938E5C40085B43B /* page2.png */; };
-		E639B3B51938E5C40085B43B /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = E639B3B01938E5C40085B43B /* page3.png */; };
-		E639B3B61938E5C40085B43B /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = E639B3B11938E5C40085B43B /* page4.png */; };
-		E639B3B71938E5C40085B43B /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = E639B3B21938E5C40085B43B /* page5.png */; };
-		E639B3B81938E5C40085B43B /* page6.png in Resources */ = {isa = PBXBuildFile; fileRef = E639B3B31938E5C40085B43B /* page6.png */; };
 		E6506D8C193606F800603DFB /* HTWPruefungSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6506D8B193606F800603DFB /* HTWPruefungSettingsViewController.m */; };
 		E65737AB19222AE600916A1A /* alleRaeume.txt in Resources */ = {isa = PBXBuildFile; fileRef = E65737A819222AE600916A1A /* alleRaeume.txt */; };
 		E65737AC19222AE600916A1A /* HTWAlleRaeumeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E65737AA19222AE600916A1A /* HTWAlleRaeumeTableViewController.m */; };
@@ -126,7 +127,6 @@
 		E69BB0CC1928F89B002E5757 /* NSDate+HTW.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */; };
 		E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */; };
 		E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */; };
-		E6B771EF191C370200E9A2A5 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B771E9191C370200E9A2A5 /* page1.png */; };
 		E6B87E74192A71AB0052EC20 /* HTWTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */; };
 		E6CE1CD71936303A00BD525A /* page7.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CE1CD61936303A00BD525A /* page7.png */; };
 		E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D2E56F190FF55C00DCD9EF /* HTWCSVExport.m */; };
@@ -242,6 +242,12 @@
 		6D94EA55191538E600872FC8 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "Categories/UIImage+Alpha.m"; sourceTree = "<group>"; };
 		6D94EA56191538E600872FC8 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "Categories/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		6D94EA57191538E600872FC8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "Categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		6DA949951963018300C0E50C /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
+		6DA949A11963066300C0E50C /* page6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page6.png; path = PageViewFirstLaunch/Bilder/page6.png; sourceTree = "<group>"; };
+		6DA949A21963066300C0E50C /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page4.png; path = PageViewFirstLaunch/Bilder/page4.png; sourceTree = "<group>"; };
+		6DA949A31963066300C0E50C /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page5.png; path = PageViewFirstLaunch/Bilder/page5.png; sourceTree = "<group>"; };
+		6DA949A41963066300C0E50C /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page3.png; path = PageViewFirstLaunch/Bilder/page3.png; sourceTree = "<group>"; };
+		6DA949A51963066300C0E50C /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
 		E0D59BCD1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungenExportierenTableViewController.h; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.h"; sourceTree = "<group>"; };
 		E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungenExportierenTableViewController.m; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.m"; sourceTree = "<group>"; };
 		E0ED3BE6194756AD007022E3 /* HTWPruefungsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsTableViewController.h; path = "Prüfungsplaner/HTWPruefungsTableViewController.h"; sourceTree = "<group>"; };
@@ -302,11 +308,6 @@
 		E6379C70190D3F34002AE150 /* HTWTabParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTabParser.m; path = Raumplaner/HTWTabParser.m; sourceTree = "<group>"; };
 		E6379C73190D3FD1002AE150 /* HTWTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTestViewController.h; path = Raumplaner/HTWTestViewController.h; sourceTree = "<group>"; };
 		E6379C74190D3FD1002AE150 /* HTWTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTestViewController.m; path = Raumplaner/HTWTestViewController.m; sourceTree = "<group>"; };
-		E639B3AF1938E5C40085B43B /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
-		E639B3B01938E5C40085B43B /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page3.png; path = PageViewFirstLaunch/Bilder/page3.png; sourceTree = "<group>"; };
-		E639B3B11938E5C40085B43B /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page4.png; path = PageViewFirstLaunch/Bilder/page4.png; sourceTree = "<group>"; };
-		E639B3B21938E5C40085B43B /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page5.png; path = PageViewFirstLaunch/Bilder/page5.png; sourceTree = "<group>"; };
-		E639B3B31938E5C40085B43B /* page6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page6.png; path = PageViewFirstLaunch/Bilder/page6.png; sourceTree = "<group>"; };
 		E6506D8A193606F800603DFB /* HTWPruefungSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungSettingsViewController.h; path = "Prüfungsplaner/HTWPruefungSettingsViewController.h"; sourceTree = "<group>"; };
 		E6506D8B193606F800603DFB /* HTWPruefungSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungSettingsViewController.m; path = "Prüfungsplaner/HTWPruefungSettingsViewController.m"; sourceTree = "<group>"; };
 		E65737A819222AE600916A1A /* alleRaeume.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = alleRaeume.txt; path = "Raumplaner/Alle Raeume/alleRaeume.txt"; sourceTree = "<group>"; };
@@ -335,7 +336,6 @@
 		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; };
 		E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageViewController.h; path = PageViewFirstLaunch/HTWPageViewController.h; sourceTree = "<group>"; };
 		E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageViewController.m; path = PageViewFirstLaunch/HTWPageViewController.m; sourceTree = "<group>"; };
-		E6B771E9191C370200E9A2A5 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page1.png; path = PageViewFirstLaunch/Bilder/page1.png; sourceTree = "<group>"; };
 		E6B87E72192A71AB0052EC20 /* HTWTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTabBarItem.h; path = Classes/HTWTabBarItem.h; sourceTree = "<group>"; };
 		E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTabBarItem.m; path = Classes/HTWTabBarItem.m; sourceTree = "<group>"; };
 		E6CE1CD61936303A00BD525A /* page7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page7.png; path = PageViewFirstLaunch/Bilder/page7.png; sourceTree = "<group>"; };
@@ -867,12 +867,12 @@
 		E6B771E8191C36E600E9A2A5 /* Bilder */ = {
 			isa = PBXGroup;
 			children = (
-				E6B771E9191C370200E9A2A5 /* page1.png */,
-				E639B3AF1938E5C40085B43B /* page2.png */,
-				E639B3B01938E5C40085B43B /* page3.png */,
-				E639B3B11938E5C40085B43B /* page4.png */,
-				E639B3B21938E5C40085B43B /* page5.png */,
-				E639B3B31938E5C40085B43B /* page6.png */,
+				6DA949951963018300C0E50C /* page1.png */,
+				6DA949A51963066300C0E50C /* page2.png */,
+				6DA949A41963066300C0E50C /* page3.png */,
+				6DA949A21963066300C0E50C /* page4.png */,
+				6DA949A31963066300C0E50C /* page5.png */,
+				6DA949A11963066300C0E50C /* page6.png */,
 				E6CE1CD61936303A00BD525A /* page7.png */,
 			);
 			name = Bilder;
@@ -979,26 +979,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DA949A61963066300C0E50C /* page6.png in Resources */,
 				E69A4AA8193744340072610A /* Impressum.txt in Resources */,
 				6D753A6E1917C9B500C6BAA1 /* PT_Sans-Web-Bold.ttf in Resources */,
 				6D753A711917C9B500C6BAA1 /* PT_Sans-Web-Regular.ttf in Resources */,
 				E61B6A2C1923B7BE0050EB10 /* Images.xcassets in Resources */,
+				6DA949A71963066300C0E50C /* page4.png in Resources */,
 				6D753A5A1917A8C300C6BAA1 /* uboot.jpg in Resources */,
-				E639B3B61938E5C40085B43B /* page4.png in Resources */,
 				E658457919295E110008A758 /* indicator.png in Resources */,
 				6D8B1CFE19351A1E00D519C8 /* fontawesome-webfont.ttf in Resources */,
 				E6CE1CD71936303A00BD525A /* page7.png in Resources */,
 				6D753A4D1917A8C300C6BAA1 /* mensa-bruehl.jpg in Resources */,
+				6DA949961963018300C0E50C /* page1.png in Resources */,
 				6D753A541917A8C300C6BAA1 /* noavailablemensaimage.jpg in Resources */,
 				6D753A561917A8C300C6BAA1 /* pillnitz.jpg in Resources */,
-				E639B3B71938E5C40085B43B /* page5.png in Resources */,
 				6D753A551917A8C300C6BAA1 /* palucca.jpg in Resources */,
-				E639B3B51938E5C40085B43B /* page3.png in Resources */,
 				6D753A6F1917C9B500C6BAA1 /* PT_Sans-Web-BoldItalic.ttf in Resources */,
 				6D8B1D0019351A1E00D519C8 /* FontAwesome.otf in Resources */,
 				6D753A701917C9B500C6BAA1 /* PT_Sans-Web-Italic.ttf in Resources */,
 				E65737AB19222AE600916A1A /* alleRaeume.txt in Resources */,
-				E6B771EF191C370200E9A2A5 /* page1.png in Resources */,
 				6D753A6D1917C9B500C6BAA1 /* OFL.txt in Resources */,
 				6D8B1CFC19351A1E00D519C8 /* fontawesome-webfont.eot in Resources */,
 				6D753A4C1917A8C300C6BAA1 /* johannstadt.jpg in Resources */,
@@ -1013,16 +1012,17 @@
 				6D03D9B5193CA1F3001ED846 /* indicator-gray@2x.png in Resources */,
 				6D753A781917F20800C6BAA1 /* hausvii.jpg in Resources */,
 				6D753A501917A8C300C6BAA1 /* mensa-wueins.jpg in Resources */,
+				6DA949A91963066300C0E50C /* page3.png in Resources */,
 				6D753A641917C9A600C6BAA1 /* mensen.json in Resources */,
 				6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */,
 				6D8B1CFD19351A1E00D519C8 /* fontawesome-webfont.svg in Resources */,
 				6D753A761917F1D000C6BAA1 /* zittau.jpg in Resources */,
 				6D753A4A1917A8C300C6BAA1 /* biomensa-uboot.jpg in Resources */,
-				E639B3B81938E5C40085B43B /* page6.png in Resources */,
+				6DA949AA1963066300C0E50C /* page2.png in Resources */,
 				6D8B1CFF19351A1E00D519C8 /* fontawesome-webfont.woff in Resources */,
 				E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */,
-				E639B3B41938E5C40085B43B /* page2.png in Resources */,
 				6D753A531917A8C300C6BAA1 /* neuemensa.jpg in Resources */,
+				6DA949A81963066300C0E50C /* page5.png in Resources */,
 				6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */,
 				6D753A571917A8C300C6BAA1 /* reichenbachstrasse.jpg in Resources */,
 				6D7B451C1908150F00D99C9D /* main.storyboard in Resources */,
