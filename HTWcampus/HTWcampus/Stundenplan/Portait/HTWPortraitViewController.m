@@ -32,6 +32,7 @@
 #define ALERT_NEW 3
 #define DEPTH_FOR_PARALLAX 10
 #define DATEPICKER_TAG 222
+#define KALENDERBUTTON_TAG 333
 
 #define ZEITENVIEW_TAG -2
 #define LINEVIEW_TAG -3
@@ -129,6 +130,7 @@
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
                                                                   action:@selector(changeDatePressed:)];
+    changeDate.tag = KALENDERBUTTON_TAG;
     
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
                                                                     style:UIBarButtonItemStyleBordered
@@ -818,10 +820,12 @@
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
                                                                   action:@selector(changeDatePressed:)];
+    changeDate.tag = KALENDERBUTTON_TAG;
     UIBarButtonItem *changeDateDone = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender3"]
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self
                                                                       action:@selector(changeDatePressed:)];
+    changeDateDone.tag = KALENDERBUTTON_TAG;
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
@@ -840,20 +844,50 @@
         
         picker.date = self.currentDate;
         
+        UIButton *buttonForDisablingPicker = [[UIButton alloc] initWithFrame:CGRectMake(0, picker.frame.size.height, self.view.frame.size.width, 500)];
+        buttonForDisablingPicker.tag = DATEPICKER_TAG;
+        [buttonForDisablingPicker addTarget:self action:@selector(changeDatePressed:) forControlEvents:UIControlEventTouchUpInside];
+        
         [self.view addSubview:picker];
+        [self.view addSubview:buttonForDisablingPicker];
         [self.view bringSubviewToFront:picker];
         self.scrollView.userInteractionEnabled = NO;
         UIBarButtonItem *heute = [[UIBarButtonItem alloc] initWithTitle:@"Heute" style:UIBarButtonItemStyleBordered target:self action:@selector(setToday)];
         if(!_raumNummer) {
             [self.navigationItem setRightBarButtonItems:@[heute] animated:YES];
-            [(UIBarButtonItem*)sender setImage:[UIImage imageNamed:@"Kalender3"]];
+            for (UIView *temp in self.navigationItem.rightBarButtonItems) {
+                if (temp.tag == KALENDERBUTTON_TAG) {
+                    [(UIBarButtonItem*)temp setImage:[UIImage imageNamed:@"Kalender3"]];
+                }
+            }
+            for (UIView *temp in self.navigationItem.leftBarButtonItems) {
+                if (temp.tag == KALENDERBUTTON_TAG) {
+                    [(UIBarButtonItem*)temp setImage:[UIImage imageNamed:@"Kalender3"]];
+                }
+            }
         }
         else [self.navigationItem setRightBarButtonItems:@[changeDateDone, heute] animated:YES];
     }
     else
     {
-        [(UIBarButtonItem*)sender setImage:[UIImage imageNamed:@"Kalender2"]];
-        [[self.view viewWithTag:DATEPICKER_TAG] removeFromSuperview];
+        for (UIView *temp in self.navigationItem.rightBarButtonItems) {
+            if (temp.tag == KALENDERBUTTON_TAG) {
+                [(UIBarButtonItem*)temp setImage:[UIImage imageNamed:@"Kalender2"]];
+            }
+        }
+        for (UIView *temp in self.navigationItem.leftBarButtonItems) {
+            if (temp.tag == KALENDERBUTTON_TAG) {
+                [(UIBarButtonItem*)temp setImage:[UIImage imageNamed:@"Kalender2"]];
+            }
+        }
+//        [(UIBarButtonItem*)[self.view viewWithTag:KALENDERBUTTON_TAG] setImage:[UIImage imageNamed:@"Kalender2"]];
+        for (UIView *temp in self.view.subviews) {
+            if (temp.tag == DATEPICKER_TAG) {
+                [temp removeFromSuperview];
+            }
+        }
+        
+//        [[self.view viewWithTag:DATEPICKER_TAG] removeFromSuperview];
         self.scrollView.userInteractionEnabled = YES;
         datePickerIsVisible = NO;
         
