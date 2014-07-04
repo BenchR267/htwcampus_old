@@ -180,7 +180,7 @@
     raum.textColor = [UIColor HTWGrayColor];
     
     if([lesson.kurzel componentsSeparatedByString:@" "].count > 1) {
-        typ.text = [lesson.kurzel componentsSeparatedByString:@" "][1];
+        typ.text = [lesson.kurzel componentsSeparatedByString:@" "].lastObject;
         if(_portait) typ.font = [UIFont HTWSmallFont];
         else typ.font = [UIFont HTWVerySmallFont];
         typ.textAlignment = NSTextAlignmentRight;

@@ -208,6 +208,9 @@
 #pragma mark - IBActions
 
 - (IBAction)speichernButtonPressed:(id)sender {
+    if (_textfield.isEnabled)
+        [self textFieldShouldReturn:_textfield];
+    
     if ([_titel isEqualToString:@""] || [_kurzel isEqualToString:@""] || [_raum isEqualToString:@""] || [_dozent isEqualToString:@""] || [_ende compare:_anfang] == NSOrderedAscending) {
         UIAlertView *alert = [[UIAlertView alloc] init];
         alert.message = @"Bitte alle Felder ausfüllen und darauf achten, dass der Anfang der Stunde vor dem Ende sein muss.";
