@@ -164,6 +164,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:nil forKey:@"LoginNoten"];
         [defaults setObject:nil forKey:@"PasswortNoten"];
+        self.textfield.text = @"";
         [self.tableView reloadData];
     }
 }
