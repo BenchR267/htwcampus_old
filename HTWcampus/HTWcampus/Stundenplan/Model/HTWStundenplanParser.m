@@ -67,6 +67,7 @@ NSMutableData *receivedData;
     _boolRaum = forRaum;
     appDelegate = [[UIApplication sharedApplication] delegate];
     _context = [appDelegate managedObjectContext];
+    self.tag = 0;
     return self;
 }
 

@@ -15,9 +15,11 @@
 #import "HTWPortraitViewController.h"
 #import "UIColor+HTW.h"
 
-@interface HTWRaumplanerTableViewController() <HTWStundenplanParserDelegate, HTWAlleRaeumeDelegate>
+@interface HTWRaumplanerTableViewController() <HTWStundenplanParserDelegate, HTWAlleRaeumeDelegate, UIAlertViewDelegate>
 {
     HTWAppDelegate *appdelegate;
+    
+    int indexForRefresh;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addBarButtonItem;
@@ -150,10 +152,29 @@
 #pragma mark - HTWStundenplanParser Delegate
 
 -(void)HTWStundenplanParserFinished:(HTWStundenplanParser *)parser
-{   
-    [self updateZimmerArray];
-    
-    [self.tableView reloadData];
+{
+    if(parser.tag == 0) {
+        [self updateZimmerArray];
+        
+        [self.tableView reloadData];
+    }
+    else if (parser.tag == 5) {
+        indexForRefresh++;
+        if (indexForRefresh >= _zimmer.count) {
+            [self updateZimmerArray];
+            
+            [self.tableView reloadData];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fertig" message:@"Alle Räume wurden ordnungsgemäß aktualisiert." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            [alert show];
+            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:2];
+            return;
+        }
+        User *temp = _zimmer[indexForRefresh];
+        _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:temp.matrnr andRaum:YES];
+        [_parser setDelegate:self];
+        _parser.tag = 5;
+        [_parser parserStart];
+    }
 }
 
 -(void)HTWStundenplanParser:(HTWStundenplanParser *)parser Error:(NSString *)errorMessage
@@ -216,6 +237,27 @@
     
     _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
 }
+
+#pragma mark - IBActions
+
+- (IBAction)reloadButtonPressed:(UIBarButtonItem *)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aktualisierung" message:@"Wenn Sie auf OK tippen, werden alle Pläne der eingetragenen Räume mit denen auf den HTW-Servern aktualisiert. Je nach Anzahl der eingetragenen Räume kann dieser Vorgang etwas dauern." delegate:self cancelButtonTitle:@"Abbrechen" otherButtonTitles:@"Ok", nil];
+    [alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        // OK pressed
+        if (_zimmer.count == 0) return;
+        indexForRefresh = 0;
+        User *temp = _zimmer[indexForRefresh];
+        _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:temp.matrnr andRaum:YES];
+        [_parser setDelegate:self];
+        _parser.tag = 5;
+        [_parser parserStart];
+    }
+}
+
 
 #pragma mark - Navigation
 

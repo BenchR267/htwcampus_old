@@ -35,8 +35,9 @@
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     controller.mailComposeDelegate = self;
     [controller setToRecipients:@[@"htwcampusapp@htw-dresden.de"]];
-    [controller setSubject:@"[iOS] Feedback HTWcampus"];
+    [controller setSubject:@"[iOS] Feedback HTWDresden-App"];
     [controller setMessageBody:@"" isHTML:NO];
+    [controller.navigationBar setTintColor:[UIColor HTWWhiteColor]];
     if (controller) [self presentViewController:controller animated:YES completion:nil];
 }
 

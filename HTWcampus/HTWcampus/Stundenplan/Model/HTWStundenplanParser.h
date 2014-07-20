@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) NSString *Matrnr;
 @property (nonatomic, strong) NSString *name;
+@property int tag;
 
 @property (nonatomic, assign) id <HTWStundenplanParserDelegate> delegate;
 
