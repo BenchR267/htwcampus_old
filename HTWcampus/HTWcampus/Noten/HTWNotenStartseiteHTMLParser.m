@@ -21,7 +21,7 @@
     DocumentRoot *document = [Element parseHTML:htmlString];
     NSMutableArray *notenspiegel = [[NSMutableArray alloc] init];
     NSUInteger rowCount = 0, cellCount = 0;
-    NSArray *htmlTable = [[[document selectElements:@"table"] objectAtIndex:3] selectElements:@"tr"];
+    NSArray *htmlTable = [[[document selectElements:@"table"] objectAtIndex:4] selectElements:@"tr"];
     
     for (Element *pruefungsfach in htmlTable) {
         //Skip the first two header tablerows

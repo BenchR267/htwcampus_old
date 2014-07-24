@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>CA807B54-98A0-4AB9-9256-D7AAA36C98B2</string>
+	<string>1D327340-051A-422B-9537-8D81694BF3CD</string>
 	<key>IDESourceControlProjectName</key>
 	<string>HTWcampus</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E4552E98-9FBB-4E94-975F-ACA3A6F4E5EA</key>
-		<string>https://github.com/BenchR267/htwcampus.git</string>
+		<key>1D10F90A-9971-44C0-969E-4DD06E05C63B</key>
+		<string>ssh://github.com/BenchR267/htwcampus</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>HTWcampus/HTWcampus.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E4552E98-9FBB-4E94-975F-ACA3A6F4E5EA</key>
+		<key>1D10F90A-9971-44C0-969E-4DD06E05C63B</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/BenchR267/htwcampus.git</string>
+	<string>ssh://github.com/BenchR267/htwcampus</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E4552E98-9FBB-4E94-975F-ACA3A6F4E5EA</string>
+	<string>1D10F90A-9971-44C0-969E-4DD06E05C63B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E4552E98-9FBB-4E94-975F-ACA3A6F4E5EA</string>
+			<string>1D10F90A-9971-44C0-969E-4DD06E05C63B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>htwcampus</string>
 		</dict>
