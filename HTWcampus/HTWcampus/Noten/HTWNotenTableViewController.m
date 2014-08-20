@@ -17,6 +17,7 @@
 #import "HTWNotenDetailTableViewController.h"
 #import "HTWAppDelegate.h"
 #import "HTWAlertNavigationController.h"
+#import "Note.h"
 
 
 #import "UIColor+HTW.h"
@@ -24,6 +25,8 @@
 
 
 @interface HTWNotenTableViewController () <NSURLSessionDelegate, HTWAlertViewDelegate>
+
+@property (nonatomic, strong) NSManagedObjectContext *context;
 
 @end
 
@@ -50,8 +53,39 @@
                                                                action:@selector(reloadNotenspiegel:)];
 
     self.navigationItem.rightBarButtonItem = refresh;
-
-    if (self.notenspiegel == nil) {
+    
+    _context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    
+    NSFetchRequest *request = [NSFetchRequest new];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:_context];
+    [request setEntity:entity];
+    [request setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+    
+    self.notenspiegel = [_context executeFetchRequest:request error:nil].mutableCopy;
+    if (self.notenspiegel.count != 0) {
+        HTWNotenStartseiteHTMLParser *startseiteParser = [HTWNotenStartseiteHTMLParser new];
+        self.notenspiegel = [startseiteParser groupSemester:self.notenspiegel].mutableCopy;
+        notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
+        self.notenspiegel = [self.notenspiegel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString *semester = [(Note*)[obj2 objectAtIndex:0] semester];
+            NSString *jahr;
+            if([semester componentsSeparatedByString:@" "].count > 1)
+                jahr = [semester componentsSeparatedByString:@" "][1];
+            else jahr = @" ";
+            NSComparisonResult result;
+            if([[(Note*)obj1[0] semester] componentsSeparatedByString:@" "].count > 1)
+                result = [(NSString*)[[(Note*)obj1[0] semester] componentsSeparatedByString:@" "][1] compare:jahr options:NSNumericSearch];
+            else result = NSOrderedSame;
+            switch(result)
+            {
+                case NSOrderedAscending: return NSOrderedDescending;
+                case NSOrderedDescending: return NSOrderedAscending;
+                default: return NSOrderedSame;
+            }
+        }].mutableCopy;
+        [self.tableView reloadData];
+    }
+    else {
         isLoading = true;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         username = [defaults objectForKey:@"LoginNoten"];
@@ -145,17 +179,17 @@
                                 
                                 
                                 
-                                self.notenspiegel = [[NSArray alloc] init];
+                                self.notenspiegel = [[NSMutableArray alloc] init];
                                 NSMutableArray *sortedNotenspiegel = [NSMutableArray arrayWithArray:[startseiteParser parseNotenspiegelFromString:notenspiegelHtmlResultAsString]];
                                 self.notenspiegel = [sortedNotenspiegel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                                    NSString *semester = [[obj2 objectAtIndex:0] objectForKey:@"semester"];
+                                    NSString *semester = [(Note*)[obj2 objectAtIndex:0] semester];
                                     NSString *jahr;
                                     if([semester componentsSeparatedByString:@" "].count > 1)
                                         jahr = [semester componentsSeparatedByString:@" "][1];
                                     else jahr = @" ";
                                     NSComparisonResult result;
-                                    if([(NSString*)[obj1[0] objectForKey:@"semester"] componentsSeparatedByString:@" "].count > 1)
-                                        result = [(NSString*)[(NSString*)[obj1[0] objectForKey:@"semester"] componentsSeparatedByString:@" "][1] compare:jahr options:NSNumericSearch];
+                                    if([[(Note*)obj1[0] semester] componentsSeparatedByString:@" "].count > 1)
+                                        result = [(NSString*)[[(Note*)obj1[0] semester] componentsSeparatedByString:@" "][1] compare:jahr options:NSNumericSearch];
                                     else result = NSOrderedSame;
                                     switch(result)
                                     {
@@ -163,7 +197,7 @@
                                         case NSOrderedDescending: return NSOrderedAscending;
                                         default: return NSOrderedSame;
                                     }
-                                }];
+                                }].mutableCopy;
                                 // NSLog(@"%@", self.notenspiegel);
                                 isLoading = false;
                                 notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
@@ -293,14 +327,14 @@
     float creditsSum = 0.0;
     
     for (NSArray *semester in notenspiegel) {
-        for (NSDictionary *fach in semester) {
-            if(!([(NSString*)[fach objectForKey:@"note"] isEqualToString:@""] || [(NSString*)[fach objectForKey:@"credits"] isEqualToString:@""]))
+        for (Note *fach in semester) {
+            if(!([fach.note.stringValue isEqualToString:@""] || [fach.credits.stringValue isEqualToString:@""]))
             {
-                NSMutableString *note = [NSMutableString stringWithString:[fach objectForKey:@"note"]];
-                [note replaceOccurrencesOfString:@"," withString:@"." options:NSCaseInsensitiveSearch range:NSMakeRange(0, note.length)];
+                NSNumber *note = fach.note;
+//                [note replaceOccurrencesOfString:@"," withString:@"." options:NSCaseInsensitiveSearch range:NSMakeRange(0, note.length)];
                 
-                tempSumme += [note floatValue] * [[fach objectForKey:@"credits"] floatValue];
-                creditsSum += [[fach objectForKey:@"credits"] floatValue];
+                tempSumme += note.floatValue * fach.credits.floatValue;
+                creditsSum += fach.credits.floatValue;
             }
         }
     }
@@ -341,7 +375,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if ([self.notenspiegel count] > 0 && section>0) {
-        return [[[self.notenspiegel objectAtIndex:section-1] objectAtIndex:0] objectForKey:@"semester"];
+        return [(Note*)[[self.notenspiegel objectAtIndex:section-1] objectAtIndex:0] semester];
     }
     return nil;
 }
@@ -370,6 +404,7 @@
     if (!isLoading) {
         if (indexPath.section > 0) {
             cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:reuseIdentifier];
         }
         else {
             cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierAverageGrade forIndexPath:indexPath];
@@ -397,13 +432,21 @@
             cell.backgroundColor = [UIColor clearColor];
         }
         else {
-            cell.textLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"name"];
+            cell.textLabel.text = [(Note*)[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] name];
+            NSString *detailTemp = [NSString stringWithFormat:@"%.1f",[(Note*)[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] note].floatValue];
+            if (![detailTemp isEqualToString:@"0.0"]) {
+                cell.detailTextLabel.text = detailTemp;
+            }
+            else {
+                cell.detailTextLabel.text = @"";
+            }
+            cell.textLabel.textColor = [UIColor HTWDarkGrayColor];
+            cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
             cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            cell.detailTextLabel.text = [[[self.notenspiegel objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row] objectForKey:@"note"];
         }
     }
     
-    if (!self.notenspiegel && !isLoading) {
+    if (self.notenspiegel.count == 0 && !isLoading) {
         cell.textLabel.text = @"Leider konnte keine Verbindung aufgebaut werden...";
         cell.textLabel.font = [UIFont HTWTableViewCellFont];
         cell.textLabel.textColor = [UIColor HTWTextColor];
@@ -414,7 +457,6 @@
     
     if (self.notenspiegel && [self.notenspiegel count] == 0) {
         cell.textLabel.text = @"Keine Noten verfügbar :(";
-        [cell.textLabel center]; // ? was ist das?^^
     }
     
     return cell;

@@ -7,6 +7,14 @@
 //
 
 #import "HTWNotenStartseiteHTMLParser.h"
+#import "HTWAppDelegate.h"
+#import "Note.h"
+
+@interface HTWNotenStartseiteHTMLParser ()
+
+@property (nonatomic, strong) NSManagedObjectContext *context;
+
+@end
 
 @implementation HTWNotenStartseiteHTMLParser
 
@@ -18,39 +26,53 @@
 }
 
 - (NSArray*) parseNotenspiegelFromString: (NSString*)htmlString {
+    
+    _context = [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    
+    // Noten löschen
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:_context];
+    [request setEntity:entity];
+    NSArray *tempArray = [_context executeFetchRequest:request error:nil];
+    for (Note *this in tempArray) {
+        [_context deleteObject:this];
+    }
+    
     DocumentRoot *document = [Element parseHTML:htmlString];
     NSMutableArray *notenspiegel = [[NSMutableArray alloc] init];
     NSUInteger rowCount = 0, cellCount = 0;
+    
     NSArray *htmlTable = [[[document selectElements:@"table"] objectAtIndex:4] selectElements:@"tr"];
     
     for (Element *pruefungsfach in htmlTable) {
         //Skip the first two header tablerows
         if (rowCount > 1) {
-            NSMutableDictionary *fach = [[NSMutableDictionary alloc] init];
+            Note *fach = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:_context];
             NSArray *fachDetails = [pruefungsfach selectElements:@"td"];
             for (Element *detail in fachDetails) {
-                NSString *content = [detail.contentsText stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+                NSMutableString *content = [detail.contentsText stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""].mutableCopy;
                 switch (cellCount) {
                     case 0:
-                        [fach setObject:content forKey:@"nr"];
+                        fach.nr = [NSNumber numberWithInt:content.intValue];
                         break;
                     case 1:
-                        [fach setObject:content forKey:@"name"];
+                        fach.name = content;
                         break;
                     case 2:
-                        [fach setObject:content forKey:@"semester"];
+                        fach.semester = content;
                         break;
                     case 3:
-                        [fach setObject:content forKey:@"note"];
+                        [content replaceOccurrencesOfString:@"," withString:@"." options:NSCaseInsensitiveSearch range:NSMakeRange(0, content.length)];
+                        fach.note = [NSNumber numberWithFloat:content.floatValue];
                         break;
                     case 4:
-                        [fach setObject:content forKey:@"status"];
+                        fach.status = content;
                         break;
                     case 5:
-                        [fach setObject:content forKey:@"credits"];
+                        fach.credits = [NSNumber numberWithFloat:content.floatValue];
                         break;
                     case 8:
-                        [fach setObject:content forKey:@"versuch"];
+                        fach.versuch = [NSNumber numberWithInt:content.intValue];
                         break;
                     default:
                         break;
@@ -63,6 +85,11 @@
         }
         rowCount++;
     }
+    notenspiegel = [notenspiegel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        Note *eins = obj1;
+        Note *zwei = obj2;
+        return [eins.name compare:zwei.name];
+    }].mutableCopy;
     return [self groupSemester:notenspiegel];
 }
 
@@ -72,9 +99,9 @@
     int indexCount = 0;
     NSMutableDictionary *semesterIndex = [[NSMutableDictionary alloc] init];
     
-    for (NSDictionary *fach in notenspiegel) {
+    for (Note *fach in notenspiegel) {
         if (!([semesterIndex count] == 0)) {
-            if ([[semesterIndex objectForKey:[NSNumber numberWithInt:tempIndex]] isEqualToString:[fach objectForKey:@"semester"]]) {
+            if ([[semesterIndex objectForKey:[NSNumber numberWithInt:tempIndex]] isEqualToString:fach.semester]) {
                 [[newNotenspiegel objectAtIndex:tempIndex] addObject:fach];
             }
             else {
@@ -83,14 +110,14 @@
                 for (NSString* key in semesterIndex) {
                     NSString *value = [semesterIndex objectForKey:key];
                     
-                    if ([value isEqualToString:[fach objectForKey:@"semester"]]) {
+                    if ([value isEqualToString:fach.semester]) {
                         foundSemester = true;
                         tempIndex = [key intValue];
                         break;
                     }
                 }
                 if (!foundSemester) {
-                    [semesterIndex setObject:[fach valueForKey:@"semester"] forKey:[@(indexCount) stringValue]];
+                    [semesterIndex setObject:fach.semester forKey:[@(indexCount) stringValue]];
                     [newNotenspiegel addObject:[[NSMutableArray alloc] init]];
                     tempIndex = indexCount;
                     indexCount++;
@@ -102,7 +129,7 @@
         else {
             tempIndex = indexCount;
             [newNotenspiegel addObject:[[NSMutableArray alloc] init]];
-            [semesterIndex setObject:[fach objectForKey:@"semester"] forKey:[@(tempIndex) stringValue]];
+            [semesterIndex setObject:fach.semester forKey:[@(tempIndex) stringValue]];
             [[newNotenspiegel objectAtIndex:tempIndex] addObject:fach];
             indexCount++;
         }

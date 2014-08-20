@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6220.14" systemVersion="14A329f" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Note" representedClassName="Note" syncable="YES">
+        <attribute name="credits" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="nr" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="semester" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="versuch" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Stunde" representedClassName="Stunde" syncable="YES">
         <attribute name="anfang" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="anzeigen" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -23,6 +32,7 @@
     </entity>
     <elements>
         <element name="Stunde" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="User" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="User" positionX="-252" positionY="-45" width="128" height="135"/>
+        <element name="Note" positionX="-126" positionY="63" width="128" height="148"/>
     </elements>
 </model>

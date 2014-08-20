@@ -17,5 +17,6 @@
 - (NSMutableArray*) getTableFromHtmlDocument: (DocumentRoot*) root withTablePos: (NSUInteger) tablePos;
 - (NSMutableArray*) getClearCellContent: (NSString*) cellContent;
 - (int) findFirstString:(NSString *) theString find:(NSString *) search;
+- (NSArray*) groupSemester:(NSArray *)notenspiegel;
 
 @end

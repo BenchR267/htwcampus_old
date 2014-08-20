@@ -20,7 +20,7 @@
     NSString *username;
     NSString *password;
 }
-@property (strong, nonatomic) NSArray *notenspiegel;
+@property (strong, nonatomic) NSMutableArray *notenspiegel;
 
 - (IBAction)reloadNotenspiegel:(id)sender;
 - (void)showLoginPopup;

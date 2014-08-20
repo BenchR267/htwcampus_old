@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Note.h"
 
 @interface HTWNotenDetailTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSDictionary *fach;
+@property (strong, nonatomic) Note *fach;
 @end

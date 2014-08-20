@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    self.title = self.fach[@"name"];
+    self.title = self.fach.name;
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
 }
 
@@ -64,31 +64,31 @@
     switch (indexPath.row) {
         case 0:
             text = @"Fach";
-            detailedText = [self.fach objectForKey:@"name"];
+            detailedText = self.fach.name;
             break;
         case 1:
             text = @"Note";
-            detailedText = [self.fach objectForKey:@"note"];
+            detailedText = [NSString stringWithFormat:@"%.1f",self.fach.note.floatValue];
             break;
         case 2:
             text = @"Status";
-            detailedText = [self.fach objectForKey:@"status"];
+            detailedText = self.fach.status;
             break;
         case 3:
             text = @"Credits";
-            detailedText = [self.fach objectForKey:@"credits"];
+            detailedText = [NSString stringWithFormat:@"%.1f",self.fach.credits.floatValue];
             break;
         case 4:
             text = @"Versuch";
-            detailedText = [self.fach objectForKey:@"versuch"];
+            detailedText = [NSString stringWithFormat:@"%d",self.fach.versuch.intValue];
             break;
         case 5:
             text = @"Semester";
-            detailedText = [self.fach objectForKey:@"semester"];
+            detailedText = self.fach.semester;
             break;
         case 6:
             text = @"Prüfungsnummer";
-            detailedText = [self.fach objectForKey:@"nr"];
+            detailedText = [NSString stringWithFormat:@"%d",self.fach.nr.intValue];
             break;
             
         default:

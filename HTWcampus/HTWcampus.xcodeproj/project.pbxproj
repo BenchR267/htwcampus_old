@@ -75,6 +75,7 @@
 		6DA949A81963066300C0E50C /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A31963066300C0E50C /* page5.png */; };
 		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
+		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
 		E0D59BCF1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */; };
 		E0ED3BE8194756AD007022E3 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
@@ -248,6 +249,8 @@
 		6DA949A31963066300C0E50C /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page5.png; path = PageViewFirstLaunch/Bilder/page5.png; sourceTree = "<group>"; };
 		6DA949A41963066300C0E50C /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page3.png; path = PageViewFirstLaunch/Bilder/page3.png; sourceTree = "<group>"; };
 		6DA949A51963066300C0E50C /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
+		E05B181619A48DD20057E2F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = Stundenplan/Model/Note.h; sourceTree = "<group>"; };
+		E05B181719A48DD20057E2F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = Stundenplan/Model/Note.m; sourceTree = "<group>"; };
 		E0D59BCD1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungenExportierenTableViewController.h; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.h"; sourceTree = "<group>"; };
 		E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungenExportierenTableViewController.m; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.m"; sourceTree = "<group>"; };
 		E0ED3BE6194756AD007022E3 /* HTWPruefungsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsTableViewController.h; path = "Prüfungsplaner/HTWPruefungsTableViewController.h"; sourceTree = "<group>"; };
@@ -569,6 +572,20 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		E05B181519A48BB90057E2F8 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */,
+				E05B181619A48DD20057E2F8 /* Note.h */,
+				E05B181719A48DD20057E2F8 /* Note.m */,
+				E60F5FED1938C2300093D5E8 /* Stunde.h */,
+				E60F5FEE1938C2300093D5E8 /* Stunde.m */,
+				E67D252E191620F9009D7634 /* User.h */,
+				E67D252F191620F9009D7634 /* User.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		E61D87D819082D870033D543 /* Stundenplan */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,11 +601,6 @@
 		E61D87D919082D920033D543 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */,
-				E60F5FED1938C2300093D5E8 /* Stunde.h */,
-				E60F5FEE1938C2300093D5E8 /* Stunde.m */,
-				E67D252E191620F9009D7634 /* User.h */,
-				E67D252F191620F9009D7634 /* User.m */,
 				E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */,
 				E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */,
 				E62C4847191422DE00788651 /* HTWCSVConnection.h */,
@@ -684,6 +696,7 @@
 		E63772CE1908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXGroup;
 			children = (
+				E05B181519A48BB90057E2F8 /* CoreData */,
 				E6B771E1191C36D700E9A2A5 /* FirstLaunch */,
 				6D7B451B1908150F00D99C9D /* main.storyboard */,
 				E6949782192B6B4900E433E2 /* FirstLaunch.storyboard */,
@@ -1044,6 +1057,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E05B181819A48DD20057E2F8 /* Note.m in Sources */,
 				E67D2530191620F9009D7634 /* User.m in Sources */,
 				E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */,
 				6D94EA4019152FDB00872FC8 /* EntityChunk.m in Sources */,
@@ -1234,6 +1248,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1241,8 +1256,10 @@
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "HTWDresden Debug";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1252,6 +1269,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1259,6 +1277,7 @@
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = HTWDresden;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
