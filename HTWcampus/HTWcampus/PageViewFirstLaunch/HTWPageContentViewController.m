@@ -38,7 +38,7 @@
     _goButton.layer.borderWidth = 1;
 }
 - (IBAction)goButtonClicked:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"skipTut"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setBool:YES forKey:@"skipTut"];
     HTWAppDelegate *appD = [[UIApplication sharedApplication] delegate];
     UITabBarController *tbc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabBarController"];
     [UIView transitionWithView:appD.window

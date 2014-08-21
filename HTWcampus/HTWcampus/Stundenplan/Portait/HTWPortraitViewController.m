@@ -149,7 +149,7 @@
     
     
     
-    if(!_raumNummer) Matrnr = [[NSUserDefaults standardUserDefaults] objectForKey:@"Matrikelnummer"];
+    if(!_raumNummer) Matrnr = [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] objectForKey:@"Matrikelnummer"];
     if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""]))) {
         
         HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
@@ -177,7 +177,7 @@
                                                object:nil];
     
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     if([defaults integerForKey:@"tageInPortrait"] < 2) [defaults setInteger:2 forKey:@"tageInPortrait"];
 
     
@@ -189,7 +189,7 @@
     
     _detailView = [[UIView alloc] init];
     _detailView.tag = 1;
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:_detailView depth:DEPTH_FOR_PARALLAX];
+    if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:_detailView depth:DEPTH_FOR_PARALLAX];
     [_scrollView addSubview:_detailView];
     
     
@@ -256,7 +256,7 @@
         if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
             
             Matrnr = strings[1];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
             
             [self updateAngezeigteStunden];
@@ -276,7 +276,7 @@
         }
         else {
             Matrnr = strings[1];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
             [defaults setBool:YES forKey:@"Dozent"];
             
@@ -338,7 +338,7 @@
             }
             
             NSString *dateinamenErweiterung;
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
             if ([defaults boolForKey:@"Dozent"]) {
                 dateinamenErweiterung = [(Stunde*)objects[0] student].name;
             }
@@ -392,7 +392,7 @@
             
             
             NSString *dateinamenErweiterung;
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
             if ([defaults boolForKey:@"Dozent"]) {
                 dateinamenErweiterung = [(Stunde*)objects[0] student].name;
             }
@@ -452,7 +452,7 @@
             UIImage *sendImage = [image croppedImage:CGRectMake(0, 0, image.size.width, 54+800*PixelPerMin)];
             
             NSString *dateinamenErweiterung;
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
             if ([defaults boolForKey:@"Dozent"]) {
                 dateinamenErweiterung = [(Stunde*)_angezeigteStunden[0] student].name;
             }
@@ -570,7 +570,7 @@
             tapGREdit.numberOfTapsRequired = 1;
             [button addGestureRecognizer:tapGREdit];
         }
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
     }
     [self reloadZeitenViewAndClockLine];
     
@@ -588,7 +588,7 @@
     int wochentagePointer = weekday;
     
     NSMutableArray *labels = [[NSMutableArray alloc] init];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     
     for (int i=0; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
         UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+50+_scrollView.contentSize.width, 13, 108, 26)];
@@ -596,7 +596,7 @@
         this.font = [UIFont HTWLargeFont];
         this.tag = -1;
         this.textColor = [UIColor HTWGrayColor];
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
 //        this.text = [wochentage[wochentagePointer] uppercaseString];
         this.text = wochentage[wochentagePointer];
         
@@ -605,7 +605,7 @@
         thisDate.font = [UIFont HTWVerySmallFont];
         thisDate.tag = -1;
         thisDate.textColor = [UIColor HTWGrayColor];
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
         thisDate.text = [cDate getAsStringWithFormat:@"dd.MM."];
         
         wochentagePointer++;
@@ -680,7 +680,7 @@
         strich.backgroundColor = [UIColor HTWWhiteColor];
         [vonBisView addSubview:strich];
         
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:vonBisView depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:vonBisView depth:DEPTH_FOR_PARALLAX];
         
         [zeitenView addSubview:vonBisView];
     }
@@ -699,12 +699,12 @@
         lineView.backgroundColor = linieUndClock;
         lineView.alpha = 0.6;
         lineView.tag = LINEVIEW_TAG;
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
         [self.scrollView addSubview:lineView];
         [_scrollView bringSubviewToFront:lineView];
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     for (UIView *view in self.scrollView.subviews) {
         if([view isKindOfClass:[HTWStundenplanButtonForLesson class]])
         {
@@ -784,7 +784,7 @@
     if (gesture.state == UIGestureRecognizerStateEnded) {
         _detailView.hidden = YES;
         
-        if ([[NSDate date] compare:[buttonPressed.lesson.anfang dateByAddingTimeInterval:-([[NSUserDefaults standardUserDefaults] floatForKey:@"markierSliderValue"]*60)]] == NSOrderedDescending &&
+        if ([[NSDate date] compare:[buttonPressed.lesson.anfang dateByAddingTimeInterval:-([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] floatForKey:@"markierSliderValue"]*60)]] == NSOrderedDescending &&
             [[NSDate date] compare:buttonPressed.lesson.ende] == NSOrderedAscending) {
             [buttonPressed setNow:YES];
         }
@@ -921,7 +921,7 @@
 
 -(void)updateAngezeigteStunden
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
     dayComponent.day = [defaults integerForKey:@"tageInPortrait"];
     
@@ -987,7 +987,7 @@
 
 - (void)registerEffectForView:(UIView *)aView depth:(CGFloat)depth;
 {
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) return;
+    if(![[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) return;
 	UIInterpolatingMotionEffect *effectX;
 	UIInterpolatingMotionEffect *effectY;
     effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"

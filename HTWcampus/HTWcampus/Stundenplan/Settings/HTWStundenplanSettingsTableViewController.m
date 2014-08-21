@@ -53,7 +53,7 @@
 {
     [super viewWillAppear:animated];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     
     HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appdelegate managedObjectContext];
@@ -181,7 +181,7 @@
 - (IBAction)sliderValueChanged:(UISlider *)sender {
     if (sender.tag == 0) {
         [_markierSlider setValue:(int)(sender.value/5)*5];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
         [defaults setFloat:_markierSlider.value forKey:@"markierSliderValue"];
         _markierungsWertLabel.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
     }
@@ -189,7 +189,7 @@
 - (IBAction)tageInPortraitSliderChangedValue:(UISlider *)sender {
     if (sender.tag == 1) {
         [_tageInPortraitSlider setValue:(int)sender.value];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
         [defaults setInteger:(int)_tageInPortraitSlider.value forKey:@"tageInPortrait"];
         _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Portrait", _tageInPortraitSlider.value];
     }
@@ -197,14 +197,14 @@
 - (IBAction)tageInLandscapeChangedValue:(UISlider *)sender {
     if (sender.tag == 2) {
         [_tageInLandscapeSlider setValue:(int)(sender.value/5)*5];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
         [defaults setInteger:(int)_tageInLandscapeSlider.value forKey:@"anzahlTageLandscape"];
         _landscapeTageSliderWert.text = [NSString stringWithFormat:@"%.0f Tage im Landscape", _tageInLandscapeSlider.value];
     }
 }
 - (IBAction)parallaxSwitchChanged:(id)sender {
     UISwitch *switchS = (UISwitch*)sender;
-    [[NSUserDefaults standardUserDefaults] setBool:switchS.isOn forKey:@"parallax"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setBool:switchS.isOn forKey:@"parallax"];
 }
 
 #pragma mark - Hilfsfunktionen

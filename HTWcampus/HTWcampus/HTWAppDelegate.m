@@ -41,14 +41,14 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    if(![[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"])
-        [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"anzahlTageLandscape"];
+    if(![[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] integerForKey:@"anzahlTageLandscape"])
+        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setInteger:10 forKey:@"anzahlTageLandscape"];
     
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
+    if(![[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"skipTut"])
     {
-        [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
-        [[NSUserDefaults standardUserDefaults] setFloat:0 forKey:@"markierSliderValue"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"parallax"];
+        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setInteger:7 forKey:@"tageInPortrait"];
+        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setFloat:0 forKey:@"markierSliderValue"];
+        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setBool:NO forKey:@"parallax"];
         HTWPageViewController *vc = [[UIStoryboard storyboardWithName:@"FirstLaunch" bundle:nil] instantiateViewControllerWithIdentifier:@"HTWPageViewController"];
         [UIView animateWithDuration:0.5 animations:^{
             [self.window setRootViewController:vc];
@@ -146,6 +146,9 @@
         return _managedObjectModel;
     }
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"HTWcampus" withExtension:@"momd"];
+//    NSURL *modelURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.BenchR.TodayExtensionSharingDefaults"];
+//    modelURL = [modelURL URLByAppendingPathComponent:@"HTWcampus.momd"];
+//    NSLog(@"%@", modelURL);
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -158,7 +161,11 @@
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"HTWcampus.sqlite"];
+//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"HTWcampus.sqlite"];
+    
+    NSURL *storeURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.BenchR.TodayExtensionSharingDefaults"];
+    storeURL = [storeURL URLByAppendingPathComponent:@"HTWcampus.sqlite"];
+    NSLog(@"StoreURL2: %@", storeURL);
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];

@@ -62,7 +62,7 @@
     UITableViewCell *cell;
     if(indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
             
         cell.textLabel.font = [UIFont HTWTableViewCellFont];
         cell.textLabel.textColor = [UIColor HTWTextColor];
@@ -100,7 +100,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     if(indexPath.section == 0)
     {
         if (indexPath.row <= 3) {
@@ -133,7 +133,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     
     switch (textField.tag) {
         case 0: [defaults setObject:textField.text forKey:@"LoginNoten"]; break;
@@ -161,7 +161,7 @@
     }
     else if (gesture.state == UIGestureRecognizerStateEnded)
     {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
         [defaults setObject:nil forKey:@"LoginNoten"];
         [defaults setObject:nil forKey:@"PasswortNoten"];
         self.textfield.text = @"";

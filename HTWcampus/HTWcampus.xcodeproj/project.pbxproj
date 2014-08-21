@@ -76,6 +76,14 @@
 		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
 		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
+		E09CA6E319A4F3B600251B7D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */; };
+		E09CA6E819A4F3B600251B7D /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CA6E719A4F3B600251B7D /* TodayViewController.swift */; };
+		E09CA6EA19A4F3B600251B7D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E09CA6E919A4F3B600251B7D /* MainInterface.storyboard */; };
+		E09CA6ED19A4F3B600251B7D /* HTWDresden.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E09CA6E119A4F3B600251B7D /* HTWDresden.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E09CA6F619A5FF4A00251B7D /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
+		E09CA6F719A5FF5B00251B7D /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
+		E09CA6F819A5FF5D00251B7D /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E60F5FEE1938C2300093D5E8 /* Stunde.m */; };
+		E09CA6F919A5FF6000251B7D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D252F191620F9009D7634 /* User.m */; };
 		E0D59BCF1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */; };
 		E0ED3BE8194756AD007022E3 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
@@ -142,6 +150,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E09CA6EB19A4F3B600251B7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E63772BB1908146300DEE8AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E09CA6E019A4F3B600251B7D;
+			remoteInfo = HTWDresden;
+		};
+		E09CA6EE19A4F3B600251B7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E63772BB1908146300DEE8AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E09CA6E019A4F3B600251B7D;
+			remoteInfo = HTWDresden;
+		};
 		E63772E91908146300DEE8AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E63772BB1908146300DEE8AB /* Project object */;
@@ -150,6 +172,20 @@
 			remoteInfo = HTWcampus;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E09CA6F319A4F3B600251B7D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E09CA6ED19A4F3B600251B7D /* HTWDresden.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6D03D9B4193CA1F3001ED846 /* indicator-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator-gray@2x.png"; path = "Stundenplan/Portait/indicator-gray@2x.png"; sourceTree = "<group>"; };
@@ -198,7 +234,7 @@
 		6D94E9D6191524B300872FC8 /* HTWNotenStartseiteHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNotenStartseiteHTMLParser.h; path = Noten/HTWNotenStartseiteHTMLParser.h; sourceTree = "<group>"; };
 		6D94E9D7191524B300872FC8 /* HTWNotenStartseiteHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNotenStartseiteHTMLParser.m; path = Noten/HTWNotenStartseiteHTMLParser.m; sourceTree = "<group>"; };
 		6D94E9D8191524B300872FC8 /* HTWNotenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNotenTableViewController.h; path = Noten/HTWNotenTableViewController.h; sourceTree = "<group>"; };
-		6D94E9D9191524B300872FC8 /* HTWNotenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNotenTableViewController.m; path = Noten/HTWNotenTableViewController.m; sourceTree = "<group>"; };
+		6D94E9D9191524B300872FC8 /* HTWNotenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWNotenTableViewController.m; path = Noten/HTWNotenTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6D94EA1319152FDB00872FC8 /* CDataChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataChunk.h; path = Vendor/ElementParser/CDataChunk.h; sourceTree = "<group>"; };
 		6D94EA1419152FDB00872FC8 /* CDataChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataChunk.m; path = Vendor/ElementParser/CDataChunk.m; sourceTree = "<group>"; };
 		6D94EA1519152FDB00872FC8 /* Chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chunk.h; path = Vendor/ElementParser/Chunk.h; sourceTree = "<group>"; };
@@ -236,7 +272,7 @@
 		6D94EA471915377E00872FC8 /* HTWMensaSingleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaSingleTableViewController.h; path = Mensa/HTWMensaSingleTableViewController.h; sourceTree = "<group>"; };
 		6D94EA481915377E00872FC8 /* HTWMensaSingleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaSingleTableViewController.m; path = Mensa/HTWMensaSingleTableViewController.m; sourceTree = "<group>"; };
 		6D94EA491915377E00872FC8 /* HTWMensaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaTableViewController.h; path = Mensa/HTWMensaTableViewController.h; sourceTree = "<group>"; };
-		6D94EA4A1915377E00872FC8 /* HTWMensaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaTableViewController.m; path = Mensa/HTWMensaTableViewController.m; sourceTree = "<group>"; };
+		6D94EA4A1915377E00872FC8 /* HTWMensaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWMensaTableViewController.m; path = Mensa/HTWMensaTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6D94EA51191537BA00872FC8 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "Categories/UIImage+Resize.h"; sourceTree = "<group>"; };
 		6D94EA52191537BA00872FC8 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "Categories/UIImage+Resize.m"; sourceTree = "<group>"; };
 		6D94EA54191538E600872FC8 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "Categories/UIImage+Alpha.h"; sourceTree = "<group>"; };
@@ -251,32 +287,40 @@
 		6DA949A51963066300C0E50C /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
 		E05B181619A48DD20057E2F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = Stundenplan/Model/Note.h; sourceTree = "<group>"; };
 		E05B181719A48DD20057E2F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = Stundenplan/Model/Note.m; sourceTree = "<group>"; };
+		E09CA6E119A4F3B600251B7D /* HTWDresden.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HTWDresden.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		E09CA6E619A4F3B600251B7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E09CA6E719A4F3B600251B7D /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		E09CA6E919A4F3B600251B7D /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		E09CA6F419A4F3C000251B7D /* HTWDresden Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "HTWDresden Debug.entitlements"; sourceTree = "<group>"; };
+		E09CA6F519A4F3C800251B7D /* HTWDresden.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HTWDresden.entitlements; sourceTree = "<group>"; };
+		E09CA6FF19A6038F00251B7D /* HTWcampus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTWcampus-Bridging-Header.h"; sourceTree = "<group>"; };
 		E0D59BCD1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungenExportierenTableViewController.h; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.h"; sourceTree = "<group>"; };
-		E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungenExportierenTableViewController.m; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.m"; sourceTree = "<group>"; };
+		E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPruefungenExportierenTableViewController.m; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E0ED3BE6194756AD007022E3 /* HTWPruefungsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsTableViewController.h; path = "Prüfungsplaner/HTWPruefungsTableViewController.h"; sourceTree = "<group>"; };
-		E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsTableViewController.m; path = "Prüfungsplaner/HTWPruefungsTableViewController.m"; sourceTree = "<group>"; };
+		E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPruefungsTableViewController.m; path = "Prüfungsplaner/HTWPruefungsTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E60BD347192173CA0018E3C2 /* HTWDozentEingebenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWDozentEingebenTableViewController.h; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.h"; sourceTree = "<group>"; };
-		E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWDozentEingebenTableViewController.m; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.m"; sourceTree = "<group>"; };
+		E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWDozentEingebenTableViewController.m; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E60F5FED1938C2300093D5E8 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
 		E60F5FEE1938C2300093D5E8 /* Stunde.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stunde.m; path = Stundenplan/Model/Stunde.m; sourceTree = "<group>"; };
 		E61B6A2B1923B7BE0050EB10 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E61C34BB19198BE500EBEBDD /* HTWStundenplanAddTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanAddTableViewController.h; path = Stundenplan/Portait/HTWStundenplanAddTableViewController.h; sourceTree = "<group>"; };
-		E61C34BC19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanAddTableViewController.m; path = Stundenplan/Portait/HTWStundenplanAddTableViewController.m; sourceTree = "<group>"; };
+		E61C34BC19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWStundenplanAddTableViewController.m; path = Stundenplan/Portait/HTWStundenplanAddTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E61C4C7319193AA400560C91 /* HTWStundenplanEditDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanEditDetailTableViewController.h; path = Stundenplan/Portait/HTWStundenplanEditDetailTableViewController.h; sourceTree = "<group>"; };
 		E61C4C7419193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanEditDetailTableViewController.m; path = Stundenplan/Portait/HTWStundenplanEditDetailTableViewController.m; sourceTree = "<group>"; };
 		E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HTWcampus.xcdatamodel; sourceTree = "<group>"; };
 		E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanParser.h; path = Stundenplan/Model/HTWStundenplanParser.h; sourceTree = "<group>"; };
-		E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanParser.m; path = Stundenplan/Model/HTWStundenplanParser.m; sourceTree = "<group>"; };
+		E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWStundenplanParser.m; path = Stundenplan/Model/HTWStundenplanParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E61D880F190857F90033D543 /* HTWPortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPortraitViewController.h; path = Stundenplan/Portait/HTWPortraitViewController.h; sourceTree = "<group>"; };
-		E61D8810190857F90033D543 /* HTWPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPortraitViewController.m; path = Stundenplan/Portait/HTWPortraitViewController.m; sourceTree = "<group>"; };
+		E61D8810190857F90033D543 /* HTWPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPortraitViewController.m; path = Stundenplan/Portait/HTWPortraitViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E61D88121908583C0033D543 /* HTWStundenplanButtonForLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanButtonForLesson.h; path = Stundenplan/Model/HTWStundenplanButtonForLesson.h; sourceTree = "<group>"; };
-		E61D88131908583C0033D543 /* HTWStundenplanButtonForLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanButtonForLesson.m; path = Stundenplan/Model/HTWStundenplanButtonForLesson.m; sourceTree = "<group>"; };
+		E61D88131908583C0033D543 /* HTWStundenplanButtonForLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWStundenplanButtonForLesson.m; path = Stundenplan/Model/HTWStundenplanButtonForLesson.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E61D881D190859180033D543 /* HTWLandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWLandscapeViewController.h; path = Stundenplan/Landscape/HTWLandscapeViewController.h; sourceTree = "<group>"; };
-		E61D881E190859180033D543 /* HTWLandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWLandscapeViewController.m; path = Stundenplan/Landscape/HTWLandscapeViewController.m; sourceTree = "<group>"; };
+		E61D881E190859180033D543 /* HTWLandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWLandscapeViewController.m; path = Stundenplan/Landscape/HTWLandscapeViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E61D882519085B4C0033D543 /* HTWDatePickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWDatePickViewController.h; path = Stundenplan/Settings/HTWDatePickViewController.h; sourceTree = "<group>"; };
 		E61D882619085B4C0033D543 /* HTWDatePickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWDatePickViewController.m; path = Stundenplan/Settings/HTWDatePickViewController.m; sourceTree = "<group>"; };
 		E61D882719085B4C0033D543 /* HTWMatrikelnummernTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMatrikelnummernTableViewController.h; path = Stundenplan/Settings/HTWMatrikelnummernTableViewController.h; sourceTree = "<group>"; };
-		E61D882819085B4C0033D543 /* HTWMatrikelnummernTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMatrikelnummernTableViewController.m; path = Stundenplan/Settings/HTWMatrikelnummernTableViewController.m; sourceTree = "<group>"; };
+		E61D882819085B4C0033D543 /* HTWMatrikelnummernTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWMatrikelnummernTableViewController.m; path = Stundenplan/Settings/HTWMatrikelnummernTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E61D882B19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanSettingsUebersichtTableViewCell.h; path = Stundenplan/Settings/HTWStundenplanSettingsUebersichtTableViewCell.h; sourceTree = "<group>"; };
 		E61D882C19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanSettingsUebersichtTableViewCell.m; path = Stundenplan/Settings/HTWStundenplanSettingsUebersichtTableViewCell.m; sourceTree = "<group>"; };
 		E61D882D19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanSettingsUebersichtTableViewController.h; path = Stundenplan/Settings/HTWStundenplanSettingsUebersichtTableViewController.h; sourceTree = "<group>"; };
@@ -286,7 +330,7 @@
 		E61D887D1908705E0033D543 /* HTWLandscapeSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWLandscapeSegue.h; path = Stundenplan/Landscape/HTWLandscapeSegue.h; sourceTree = "<group>"; };
 		E61D887E1908705E0033D543 /* HTWLandscapeSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWLandscapeSegue.m; path = Stundenplan/Landscape/HTWLandscapeSegue.m; sourceTree = "<group>"; };
 		E62C4847191422DE00788651 /* HTWCSVConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVConnection.h; path = Stundenplan/Model/HTWCSVConnection.h; sourceTree = "<group>"; };
-		E62C4848191422DE00788651 /* HTWCSVConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVConnection.m; path = Stundenplan/Model/HTWCSVConnection.m; sourceTree = "<group>"; };
+		E62C4848191422DE00788651 /* HTWCSVConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWCSVConnection.m; path = Stundenplan/Model/HTWCSVConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E62C4849191422DE00788651 /* HTWCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVParser.h; path = Stundenplan/Model/HTWCSVParser.h; sourceTree = "<group>"; };
 		E62C484A191422DE00788651 /* HTWCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVParser.m; path = Stundenplan/Model/HTWCSVParser.m; sourceTree = "<group>"; };
 		E63772C31908146300DEE8AB /* HTWDresden Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTWDresden Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,7 +343,7 @@
 		E63772D41908146300DEE8AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E63772D61908146300DEE8AB /* HTWcampus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTWcampus-Prefix.pch"; sourceTree = "<group>"; };
 		E63772D71908146300DEE8AB /* HTWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTWAppDelegate.h; sourceTree = "<group>"; };
-		E63772D81908146300DEE8AB /* HTWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTWAppDelegate.m; sourceTree = "<group>"; };
+		E63772D81908146300DEE8AB /* HTWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HTWAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E63772E31908146300DEE8AB /* HTWcampusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTWcampusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772E41908146300DEE8AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E63772ED1908146300DEE8AB /* HTWcampusTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTWcampusTests-Info.plist"; sourceTree = "<group>"; };
@@ -312,7 +356,7 @@
 		E6379C73190D3FD1002AE150 /* HTWTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTestViewController.h; path = Raumplaner/HTWTestViewController.h; sourceTree = "<group>"; };
 		E6379C74190D3FD1002AE150 /* HTWTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWTestViewController.m; path = Raumplaner/HTWTestViewController.m; sourceTree = "<group>"; };
 		E6506D8A193606F800603DFB /* HTWPruefungSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungSettingsViewController.h; path = "Prüfungsplaner/HTWPruefungSettingsViewController.h"; sourceTree = "<group>"; };
-		E6506D8B193606F800603DFB /* HTWPruefungSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungSettingsViewController.m; path = "Prüfungsplaner/HTWPruefungSettingsViewController.m"; sourceTree = "<group>"; };
+		E6506D8B193606F800603DFB /* HTWPruefungSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPruefungSettingsViewController.m; path = "Prüfungsplaner/HTWPruefungSettingsViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E65737A819222AE600916A1A /* alleRaeume.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = alleRaeume.txt; path = "Raumplaner/Alle Raeume/alleRaeume.txt"; sourceTree = "<group>"; };
 		E65737A919222AE600916A1A /* HTWAlleRaeumeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWAlleRaeumeTableViewController.h; path = "Raumplaner/Alle Raeume/HTWAlleRaeumeTableViewController.h"; sourceTree = "<group>"; };
 		E65737AA19222AE600916A1A /* HTWAlleRaeumeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWAlleRaeumeTableViewController.m; path = "Raumplaner/Alle Raeume/HTWAlleRaeumeTableViewController.m"; sourceTree = "<group>"; };
@@ -327,16 +371,16 @@
 		E6966E781921359B00EFB998 /* HTWPruefungsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsParser.h; path = "Prüfungsplaner/HTWPruefungsParser.h"; sourceTree = "<group>"; };
 		E6966E791921359B00EFB998 /* HTWPruefungsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsParser.m; path = "Prüfungsplaner/HTWPruefungsParser.m"; sourceTree = "<group>"; };
 		E6966E811921473900EFB998 /* HTWPruefungsDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsDetailTableViewController.h; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.h"; sourceTree = "<group>"; };
-		E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPruefungsDetailTableViewController.m; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.m"; sourceTree = "<group>"; };
+		E6966E821921473900EFB998 /* HTWPruefungsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPruefungsDetailTableViewController.m; path = "Prüfungsplaner/HTWPruefungsDetailTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E6966E8D19214DC300EFB998 /* HTWNeueStudiengruppe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNeueStudiengruppe.h; path = "Prüfungsplaner/HTWNeueStudiengruppe.h"; sourceTree = "<group>"; };
-		E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNeueStudiengruppe.m; path = "Prüfungsplaner/HTWNeueStudiengruppe.m"; sourceTree = "<group>"; };
+		E6966E8E19214DC300EFB998 /* HTWNeueStudiengruppe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWNeueStudiengruppe.m; path = "Prüfungsplaner/HTWNeueStudiengruppe.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E69A4AA4193741070072610A /* HTWImpressumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWImpressumViewController.h; path = Stundenplan/Settings/HTWImpressumViewController.h; sourceTree = "<group>"; };
 		E69A4AA5193741070072610A /* HTWImpressumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWImpressumViewController.m; path = Stundenplan/Settings/HTWImpressumViewController.m; sourceTree = "<group>"; };
 		E69A4AA7193744340072610A /* Impressum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Impressum.txt; path = Stundenplan/Settings/Impressum.txt; sourceTree = "<group>"; };
 		E69BB0CA1928F89B002E5757 /* NSDate+HTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+HTW.h"; path = "Categories/NSDate+HTW.h"; sourceTree = "<group>"; };
 		E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+HTW.m"; path = "Categories/NSDate+HTW.m"; sourceTree = "<group>"; };
 		E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageContentViewController.h; path = PageViewFirstLaunch/HTWPageContentViewController.h; sourceTree = "<group>"; };
-		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; };
+		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageViewController.h; path = PageViewFirstLaunch/HTWPageViewController.h; sourceTree = "<group>"; };
 		E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWPageViewController.m; path = PageViewFirstLaunch/HTWPageViewController.m; sourceTree = "<group>"; };
 		E6B87E72192A71AB0052EC20 /* HTWTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTabBarItem.h; path = Classes/HTWTabBarItem.h; sourceTree = "<group>"; };
@@ -347,21 +391,29 @@
 		E6D2E571190FF60400DCD9EF /* HTWICSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWICSExport.h; path = Stundenplan/Export/HTWICSExport.h; sourceTree = "<group>"; };
 		E6D2E572190FF60400DCD9EF /* HTWICSExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWICSExport.m; path = Stundenplan/Export/HTWICSExport.m; sourceTree = "<group>"; };
 		E6D6A8B6191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMatrikelnummernEditTableViewController.h; path = Stundenplan/Settings/HTWMatrikelnummernEditTableViewController.h; sourceTree = "<group>"; };
-		E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMatrikelnummernEditTableViewController.m; path = Stundenplan/Settings/HTWMatrikelnummernEditTableViewController.m; sourceTree = "<group>"; };
+		E6D6A8B7191BA1A300FD75F0 /* HTWMatrikelnummernEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWMatrikelnummernEditTableViewController.m; path = Stundenplan/Settings/HTWMatrikelnummernEditTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E6DF7E0519137F1200DDC69C /* HTWStundenplanSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWStundenplanSettingsTableViewController.h; path = Stundenplan/Settings/HTWStundenplanSettingsTableViewController.h; sourceTree = "<group>"; };
-		E6DF7E0619137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWStundenplanSettingsTableViewController.m; path = Stundenplan/Settings/HTWStundenplanSettingsTableViewController.m; sourceTree = "<group>"; };
+		E6DF7E0619137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWStundenplanSettingsTableViewController.m; path = Stundenplan/Settings/HTWStundenplanSettingsTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E6E624AC19241800007AED51 /* HTWAlertNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWAlertNavigationController.h; path = Classes/HTWAlertView/HTWAlertNavigationController.h; sourceTree = "<group>"; };
 		E6E624AD19241800007AED51 /* HTWAlertNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWAlertNavigationController.m; path = Classes/HTWAlertView/HTWAlertNavigationController.m; sourceTree = "<group>"; };
 		E6E624AE19241800007AED51 /* HTWAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWAlertViewController.h; path = Classes/HTWAlertView/HTWAlertViewController.h; sourceTree = "<group>"; };
 		E6E624AF19241800007AED51 /* HTWAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWAlertViewController.m; path = Classes/HTWAlertView/HTWAlertViewController.m; sourceTree = "<group>"; };
 		E6EBD38D191A8E3000720962 /* HTWNotenSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNotenSettingsTableViewController.h; path = Noten/HTWNotenSettingsTableViewController.h; sourceTree = "<group>"; };
-		E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWNotenSettingsTableViewController.m; path = Noten/HTWNotenSettingsTableViewController.m; sourceTree = "<group>"; };
+		E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWNotenSettingsTableViewController.m; path = Noten/HTWNotenSettingsTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E6FE12A019093D6700D56D52 /* indicator-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator-red.png"; path = "Stundenplan/Portait/indicator-red.png"; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E09CA6DE19A4F3B600251B7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E09CA6E319A4F3B600251B7D /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E63772C01908146300DEE8AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -586,6 +638,25 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		E09CA6E419A4F3B600251B7D /* HTWDresden */ = {
+			isa = PBXGroup;
+			children = (
+				E09CA6F519A4F3C800251B7D /* HTWDresden.entitlements */,
+				E09CA6E719A4F3B600251B7D /* TodayViewController.swift */,
+				E09CA6E919A4F3B600251B7D /* MainInterface.storyboard */,
+				E09CA6E519A4F3B600251B7D /* Supporting Files */,
+			);
+			path = HTWDresden;
+			sourceTree = "<group>";
+		};
+		E09CA6E519A4F3B600251B7D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E09CA6E619A4F3B600251B7D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E61D87D819082D870033D543 /* Stundenplan */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,8 +738,10 @@
 			children = (
 				E63772CE1908146300DEE8AB /* HTWcampus */,
 				E63772EB1908146300DEE8AB /* HTWcampusTests */,
+				E09CA6E419A4F3B600251B7D /* HTWDresden */,
 				E63772C51908146300DEE8AB /* Frameworks */,
 				E63772C41908146300DEE8AB /* Products */,
+				E09CA6FF19A6038F00251B7D /* HTWcampus-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -677,6 +750,7 @@
 			children = (
 				E63772C31908146300DEE8AB /* HTWDresden Debug.app */,
 				E63772E31908146300DEE8AB /* HTWcampusTests.xctest */,
+				E09CA6E119A4F3B600251B7D /* HTWDresden.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -689,6 +763,7 @@
 				E63772CA1908146300DEE8AB /* UIKit.framework */,
 				E63772CC1908146300DEE8AB /* CoreData.framework */,
 				E63772E41908146300DEE8AB /* XCTest.framework */,
+				E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -696,6 +771,7 @@
 		E63772CE1908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXGroup;
 			children = (
+				E09CA6F419A4F3C000251B7D /* HTWDresden Debug.entitlements */,
 				E05B181519A48BB90057E2F8 /* CoreData */,
 				E6B771E1191C36D700E9A2A5 /* FirstLaunch */,
 				6D7B451B1908150F00D99C9D /* main.storyboard */,
@@ -916,6 +992,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E09CA6E019A4F3B600251B7D /* HTWDresden */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E09CA6F219A4F3B600251B7D /* Build configuration list for PBXNativeTarget "HTWDresden" */;
+			buildPhases = (
+				E09CA6DD19A4F3B600251B7D /* Sources */,
+				E09CA6DE19A4F3B600251B7D /* Frameworks */,
+				E09CA6DF19A4F3B600251B7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HTWDresden;
+			productName = HTWDresden;
+			productReference = E09CA6E119A4F3B600251B7D /* HTWDresden.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E63772C21908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E63772F51908146300DEE8AB /* Build configuration list for PBXNativeTarget "HTWcampus" */;
@@ -923,10 +1016,13 @@
 				E63772BF1908146300DEE8AB /* Sources */,
 				E63772C01908146300DEE8AB /* Frameworks */,
 				E63772C11908146300DEE8AB /* Resources */,
+				E09CA6F319A4F3B600251B7D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E09CA6EC19A4F3B600251B7D /* PBXTargetDependency */,
+				E09CA6EF19A4F3B600251B7D /* PBXTargetDependency */,
 			);
 			name = HTWcampus;
 			productName = HTWcampus;
@@ -961,8 +1057,22 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Benjamin Herzog";
 				TargetAttributes = {
+					E09CA6E019A4F3B600251B7D = {
+						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 3E4PGPNR47;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					E63772C21908146300DEE8AB = {
 						DevelopmentTeam = 3E4PGPNR47;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E63772E21908146300DEE8AB = {
 						TestTargetID = E63772C21908146300DEE8AB;
@@ -983,11 +1093,20 @@
 			targets = (
 				E63772C21908146300DEE8AB /* HTWcampus */,
 				E63772E21908146300DEE8AB /* HTWcampusTests */,
+				E09CA6E019A4F3B600251B7D /* HTWDresden */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E09CA6DF19A4F3B600251B7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E09CA6EA19A4F3B600251B7D /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E63772C11908146300DEE8AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1053,6 +1172,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E09CA6DD19A4F3B600251B7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E09CA6F919A5FF6000251B7D /* User.m in Sources */,
+				E09CA6F719A5FF5B00251B7D /* Note.m in Sources */,
+				E09CA6F619A5FF4A00251B7D /* HTWcampus.xcdatamodeld in Sources */,
+				E09CA6F819A5FF5D00251B7D /* Stunde.m in Sources */,
+				E09CA6E819A4F3B600251B7D /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E63772BF1908146300DEE8AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1146,6 +1277,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E09CA6EC19A4F3B600251B7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E09CA6E019A4F3B600251B7D /* HTWDresden */;
+			targetProxy = E09CA6EB19A4F3B600251B7D /* PBXContainerItemProxy */;
+		};
+		E09CA6EF19A4F3B600251B7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E09CA6E019A4F3B600251B7D /* HTWDresden */;
+			targetProxy = E09CA6EE19A4F3B600251B7D /* PBXContainerItemProxy */;
+		};
 		E63772EA1908146300DEE8AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E63772C21908146300DEE8AB /* HTWcampus */;
@@ -1173,6 +1314,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E09CA6F019A4F3B600251B7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = HTWDresden/HTWDresden.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HTWDresden/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E09CA6F119A4F3B600251B7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = HTWDresden/HTWDresden.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = HTWDresden/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
+			};
+			name = Release;
+		};
 		E63772F31908146300DEE8AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1250,6 +1434,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "HTWcampus/HTWDresden Debug.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1259,6 +1444,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "HTWDresden Debug";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1271,6 +1457,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "HTWcampus/HTWDresden Debug.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1280,6 +1467,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = HTWDresden;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1329,6 +1517,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E09CA6F219A4F3B600251B7D /* Build configuration list for PBXNativeTarget "HTWDresden" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E09CA6F019A4F3B600251B7D /* Debug */,
+				E09CA6F119A4F3B600251B7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E63772BE1908146300DEE8AB /* Build configuration list for PBXProject "HTWcampus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -34,7 +34,7 @@
     _dozentTextField.textColor = [UIColor HTWBlueColor];
     _dozentTextField.delegate = self;
     
-    _dozentTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"pruefungDozent"];
+    _dozentTextField.text = [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] objectForKey:@"pruefungDozent"];
     
     UIBarButtonItem *fertigButton = [[UIBarButtonItem alloc] initWithTitle:@"Fertig" style:UIBarButtonItemStylePlain target:self action:@selector(fertigPressed:)];
     self.navigationItem.rightBarButtonItem = fertigButton;
@@ -48,15 +48,15 @@
 
 -(IBAction)fertigPressed:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:_dozentTextField.text forKey:@"pruefungDozent"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:_dozentTextField.text forKey:@"pruefungDozent"];
 
     [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"pruefungsPlanTyp"];
-    [[NSUserDefaults standardUserDefaults] setObject:_dozentTextField.text forKey:@"pruefungDozent"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setInteger:1 forKey:@"pruefungsPlanTyp"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:_dozentTextField.text forKey:@"pruefungDozent"];
     
     [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
     return YES;

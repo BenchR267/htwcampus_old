@@ -42,7 +42,7 @@
     
     _BDMData = @[@"Bachelor", @"Diplom", @"Master"];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     
     _jahrTextField.text = [defaults objectForKey:@"pruefungJahr"];
     _gruppeTextField.text = [defaults objectForKey:@"pruefungGruppe"];
@@ -94,7 +94,7 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[_BDMData[row] substringToIndex:1] forKey:@"pruefungTyp"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:[_BDMData[row] substringToIndex:1] forKey:@"pruefungTyp"];
 }
 
 @end

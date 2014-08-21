@@ -71,7 +71,7 @@
 {
     [super viewDidLoad];
     
-    ANZAHLTAGE = [[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"];
+    ANZAHLTAGE = [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] integerForKey:@"anzahlTageLandscape"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationWillEnterInForeground)
@@ -130,7 +130,7 @@
     _detailView = [[UIView alloc] init];
     _detailView.hidden = YES;
     _detailView.tag = 1;
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:_detailView depth:DEPTH_FOR_PARALLAX];
+    if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:_detailView depth:DEPTH_FOR_PARALLAX];
     [_scrollView addSubview:_detailView];
     
     self.scrollView.backgroundColor = [UIColor HTWSandColor];
@@ -195,7 +195,7 @@
     [self loadLabels];
     NSDate *today = [NSDate date].getDayOnly;
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     
     for (Stunde *aktuell in self.angezeigteStunden) {
         if(!aktuell.anzeigen.boolValue) continue;
@@ -210,7 +210,7 @@
             [[NSDate date] compare:button.lesson.ende] == NSOrderedAscending) {
             [button setNow:YES];
         }
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
         
         UIView *shadow = [[UIView alloc] initWithFrame:button.frame];
         shadow.layer.cornerRadius = button.layer.cornerRadius;
@@ -232,7 +232,7 @@
         lineView.backgroundColor = linieUndClock;
         lineView.alpha = 0.6;
         lineView.tag = -1;
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
         [self.scrollView addSubview:lineView];
     }
     
@@ -274,14 +274,14 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor HTWGrayColor];
         label.font = [UIFont HTWBaseFont];
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:label depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:label depth:DEPTH_FOR_PARALLAX];
         
         UILabel *thisDate = [[UILabel alloc] initWithFrame:CGRectMake(label.frame.origin.x+label.frame.size.width/4, label.frame.origin.y-10, label.frame.size.width/2, 15)];
         thisDate.textAlignment = NSTextAlignmentCenter;
         thisDate.font = [UIFont HTWVerySmallFont];
         thisDate.tag = -1;
         thisDate.textColor = [UIColor HTWGrayColor];
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
         thisDate.text = [cDate getAsStringWithFormat:@"dd.MM."];
         
         if(j == [NSDate getWeekDay])
@@ -328,7 +328,7 @@
         UIView *strich = [[UIView alloc] initWithFrame:CGRectMake(vonBisLabel.frame.size.width*0.25, von.frame.size.height, vonBisLabel.frame.size.width/2, 1)];
         strich.backgroundColor = [UIColor HTWWhiteColor];
         [vonBisLabel addSubview:strich];
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:vonBisLabel depth:DEPTH_FOR_PARALLAX];
+        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:vonBisLabel depth:DEPTH_FOR_PARALLAX];
         
         [_zeitenView addSubview:vonBisLabel];
     }
@@ -440,7 +440,7 @@
 
 - (void)registerEffectForView:(UIView *)aView depth:(CGFloat)depth;
 {
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) return;
+    if(![[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) return;
 	UIInterpolatingMotionEffect *effectX;
 	UIInterpolatingMotionEffect *effectY;
     effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"

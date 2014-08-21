@@ -75,7 +75,7 @@
 
 -(void)loadData
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
     
     if((!([defaults objectForKey:@"pruefungJahr"] && [defaults objectForKey:@"pruefungGruppe"] && [defaults objectForKey:@"pruefungTyp"]) && ![self isDozent]) || (![defaults objectForKey:@"pruefungDozent"] && [self isDozent]))
         [self performSegueWithIdentifier:@"modalEingeben" sender:self];
@@ -235,7 +235,7 @@
 
 -(BOOL)isDozent
 {
-    return ([[NSUserDefaults standardUserDefaults] integerForKey:@"pruefungsPlanTyp"] == 1);
+    return ([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] integerForKey:@"pruefungsPlanTyp"] == 1);
 }
 
 -(NSDate*)getAnfang:(int)index
