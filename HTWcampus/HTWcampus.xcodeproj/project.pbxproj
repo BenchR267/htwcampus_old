@@ -76,12 +76,6 @@
 		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
 		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
-		E09CA6E319A4F3B600251B7D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */; };
-		E09CA6ED19A4F3B600251B7D /* HTWDresden.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E09CA6E119A4F3B600251B7D /* HTWDresden.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E09CA6F619A5FF4A00251B7D /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
-		E09CA6F719A5FF5B00251B7D /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
-		E09CA6F819A5FF5D00251B7D /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E60F5FEE1938C2300093D5E8 /* Stunde.m */; };
-		E09CA6F919A5FF6000251B7D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E67D252F191620F9009D7634 /* User.m */; };
 		E0D59BCF1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */; };
 		E0ED3BE8194756AD007022E3 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
@@ -148,20 +142,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E09CA6EB19A4F3B600251B7D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E63772BB1908146300DEE8AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E09CA6E019A4F3B600251B7D;
-			remoteInfo = HTWDresden;
-		};
-		E09CA6EE19A4F3B600251B7D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E63772BB1908146300DEE8AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E09CA6E019A4F3B600251B7D;
-			remoteInfo = HTWDresden;
-		};
 		E63772E91908146300DEE8AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E63772BB1908146300DEE8AB /* Project object */;
@@ -178,7 +158,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				E09CA6ED19A4F3B600251B7D /* HTWDresden.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +264,6 @@
 		6DA949A51963066300C0E50C /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
 		E05B181619A48DD20057E2F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = Stundenplan/Model/Note.h; sourceTree = "<group>"; };
 		E05B181719A48DD20057E2F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = Stundenplan/Model/Note.m; sourceTree = "<group>"; };
-		E09CA6E119A4F3B600251B7D /* HTWDresden.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HTWDresden.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E09CA6F419A4F3C000251B7D /* HTWDresden Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "HTWDresden Debug.entitlements"; sourceTree = "<group>"; };
 		E09CA6FF19A6038F00251B7D /* HTWcampus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTWcampus-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -400,14 +378,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E09CA6DE19A4F3B600251B7D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E09CA6E319A4F3B600251B7D /* NotificationCenter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E63772C01908146300DEE8AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -724,7 +694,6 @@
 			children = (
 				E63772C31908146300DEE8AB /* HTWDresden Debug.app */,
 				E63772E31908146300DEE8AB /* HTWcampusTests.xctest */,
-				E09CA6E119A4F3B600251B7D /* HTWDresden.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -966,23 +935,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E09CA6E019A4F3B600251B7D /* HTWDresden */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E09CA6F219A4F3B600251B7D /* Build configuration list for PBXNativeTarget "HTWDresden" */;
-			buildPhases = (
-				E09CA6DD19A4F3B600251B7D /* Sources */,
-				E09CA6DE19A4F3B600251B7D /* Frameworks */,
-				E09CA6DF19A4F3B600251B7D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HTWDresden;
-			productName = HTWDresden;
-			productReference = E09CA6E119A4F3B600251B7D /* HTWDresden.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		E63772C21908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E63772F51908146300DEE8AB /* Build configuration list for PBXNativeTarget "HTWcampus" */;
@@ -995,8 +947,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E09CA6EC19A4F3B600251B7D /* PBXTargetDependency */,
-				E09CA6EF19A4F3B600251B7D /* PBXTargetDependency */,
 			);
 			name = HTWcampus;
 			productName = HTWcampus;
@@ -1031,15 +981,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Benjamin Herzog";
 				TargetAttributes = {
-					E09CA6E019A4F3B600251B7D = {
-						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 3E4PGPNR47;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
-					};
 					E63772C21908146300DEE8AB = {
 						DevelopmentTeam = 3E4PGPNR47;
 						SystemCapabilities = {
@@ -1067,19 +1008,11 @@
 			targets = (
 				E63772C21908146300DEE8AB /* HTWcampus */,
 				E63772E21908146300DEE8AB /* HTWcampusTests */,
-				E09CA6E019A4F3B600251B7D /* HTWDresden */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E09CA6DF19A4F3B600251B7D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E63772C11908146300DEE8AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1145,17 +1078,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E09CA6DD19A4F3B600251B7D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E09CA6F919A5FF6000251B7D /* User.m in Sources */,
-				E09CA6F719A5FF5B00251B7D /* Note.m in Sources */,
-				E09CA6F619A5FF4A00251B7D /* HTWcampus.xcdatamodeld in Sources */,
-				E09CA6F819A5FF5D00251B7D /* Stunde.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E63772BF1908146300DEE8AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1249,16 +1171,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E09CA6EC19A4F3B600251B7D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E09CA6E019A4F3B600251B7D /* HTWDresden */;
-			targetProxy = E09CA6EB19A4F3B600251B7D /* PBXContainerItemProxy */;
-		};
-		E09CA6EF19A4F3B600251B7D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E09CA6E019A4F3B600251B7D /* HTWDresden */;
-			targetProxy = E09CA6EE19A4F3B600251B7D /* PBXContainerItemProxy */;
-		};
 		E63772EA1908146300DEE8AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E63772C21908146300DEE8AB /* HTWcampus */;
@@ -1286,49 +1198,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E09CA6F019A4F3B600251B7D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = HTWDresden/HTWDresden.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = HTWDresden/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		E09CA6F119A4F3B600251B7D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = HTWDresden/HTWDresden.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = HTWDresden/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
-			};
-			name = Release;
-		};
 		E63772F31908146300DEE8AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1489,15 +1358,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E09CA6F219A4F3B600251B7D /* Build configuration list for PBXNativeTarget "HTWDresden" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E09CA6F019A4F3B600251B7D /* Debug */,
-				E09CA6F119A4F3B600251B7D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E63772BE1908146300DEE8AB /* Build configuration list for PBXProject "HTWcampus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
