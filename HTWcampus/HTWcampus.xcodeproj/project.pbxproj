@@ -77,8 +77,6 @@
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
 		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
 		E09CA6E319A4F3B600251B7D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */; };
-		E09CA6E819A4F3B600251B7D /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CA6E719A4F3B600251B7D /* TodayViewController.swift */; };
-		E09CA6EA19A4F3B600251B7D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E09CA6E919A4F3B600251B7D /* MainInterface.storyboard */; };
 		E09CA6ED19A4F3B600251B7D /* HTWDresden.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E09CA6E119A4F3B600251B7D /* HTWDresden.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E09CA6F619A5FF4A00251B7D /* HTWcampus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */; };
 		E09CA6F719A5FF5B00251B7D /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
@@ -289,11 +287,7 @@
 		E05B181719A48DD20057E2F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = Stundenplan/Model/Note.m; sourceTree = "<group>"; };
 		E09CA6E119A4F3B600251B7D /* HTWDresden.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HTWDresden.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		E09CA6E619A4F3B600251B7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E09CA6E719A4F3B600251B7D /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		E09CA6E919A4F3B600251B7D /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		E09CA6F419A4F3C000251B7D /* HTWDresden Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "HTWDresden Debug.entitlements"; sourceTree = "<group>"; };
-		E09CA6F519A4F3C800251B7D /* HTWDresden.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HTWDresden.entitlements; sourceTree = "<group>"; };
 		E09CA6FF19A6038F00251B7D /* HTWcampus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTWcampus-Bridging-Header.h"; sourceTree = "<group>"; };
 		E0D59BCD1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungenExportierenTableViewController.h; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.h"; sourceTree = "<group>"; };
 		E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPruefungenExportierenTableViewController.m; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -638,25 +632,6 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		E09CA6E419A4F3B600251B7D /* HTWDresden */ = {
-			isa = PBXGroup;
-			children = (
-				E09CA6F519A4F3C800251B7D /* HTWDresden.entitlements */,
-				E09CA6E719A4F3B600251B7D /* TodayViewController.swift */,
-				E09CA6E919A4F3B600251B7D /* MainInterface.storyboard */,
-				E09CA6E519A4F3B600251B7D /* Supporting Files */,
-			);
-			path = HTWDresden;
-			sourceTree = "<group>";
-		};
-		E09CA6E519A4F3B600251B7D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E09CA6E619A4F3B600251B7D /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		E61D87D819082D870033D543 /* Stundenplan */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,7 +713,6 @@
 			children = (
 				E63772CE1908146300DEE8AB /* HTWcampus */,
 				E63772EB1908146300DEE8AB /* HTWcampusTests */,
-				E09CA6E419A4F3B600251B7D /* HTWDresden */,
 				E63772C51908146300DEE8AB /* Frameworks */,
 				E63772C41908146300DEE8AB /* Products */,
 				E09CA6FF19A6038F00251B7D /* HTWcampus-Bridging-Header.h */,
@@ -1103,7 +1077,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E09CA6EA19A4F3B600251B7D /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1180,7 +1153,6 @@
 				E09CA6F719A5FF5B00251B7D /* Note.m in Sources */,
 				E09CA6F619A5FF4A00251B7D /* HTWcampus.xcdatamodeld in Sources */,
 				E09CA6F819A5FF5D00251B7D /* Stunde.m in Sources */,
-				E09CA6E819A4F3B600251B7D /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
