@@ -76,6 +76,8 @@
 		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
 		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
+		E0B2921419D2BE7000528070 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B2921319D2BE7000528070 /* Launch Screen.xib */; };
+		E0B2921719D2D1D500528070 /* HTWAlertTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B2921619D2D1D500528070 /* HTWAlertTextField.m */; };
 		E0D59BCF1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */; };
 		E0ED3BE8194756AD007022E3 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
@@ -267,6 +269,9 @@
 		E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E09CA6F419A4F3C000251B7D /* HTWDresden Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "HTWDresden Debug.entitlements"; sourceTree = "<group>"; };
 		E09CA6FF19A6038F00251B7D /* HTWcampus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTWcampus-Bridging-Header.h"; sourceTree = "<group>"; };
+		E0B2921319D2BE7000528070 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		E0B2921519D2D1D500528070 /* HTWAlertTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWAlertTextField.h; path = Classes/HTWAlertView/HTWAlertTextField.h; sourceTree = "<group>"; };
+		E0B2921619D2D1D500528070 /* HTWAlertTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWAlertTextField.m; path = Classes/HTWAlertView/HTWAlertTextField.m; sourceTree = "<group>"; };
 		E0D59BCD1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungenExportierenTableViewController.h; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.h"; sourceTree = "<group>"; };
 		E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPruefungenExportierenTableViewController.m; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E0ED3BE6194756AD007022E3 /* HTWPruefungsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsTableViewController.h; path = "Prüfungsplaner/HTWPruefungsTableViewController.h"; sourceTree = "<group>"; };
@@ -718,6 +723,7 @@
 				E05B181519A48BB90057E2F8 /* CoreData */,
 				E6B771E1191C36D700E9A2A5 /* FirstLaunch */,
 				6D7B451B1908150F00D99C9D /* main.storyboard */,
+				E0B2921319D2BE7000528070 /* Launch Screen.xib */,
 				E6949782192B6B4900E433E2 /* FirstLaunch.storyboard */,
 				E61B6A2B1923B7BE0050EB10 /* Images.xcassets */,
 				6D753A621917C99900C6BAA1 /* Assets */,
@@ -917,6 +923,8 @@
 				E6E624AD19241800007AED51 /* HTWAlertNavigationController.m */,
 				E6E624AE19241800007AED51 /* HTWAlertViewController.h */,
 				E6E624AF19241800007AED51 /* HTWAlertViewController.m */,
+				E0B2921519D2D1D500528070 /* HTWAlertTextField.h */,
+				E0B2921619D2D1D500528070 /* HTWAlertTextField.m */,
 			);
 			name = HTWAlert;
 			sourceTree = "<group>";
@@ -1046,6 +1054,7 @@
 				6D753A4F1917A8C300C6BAA1 /* mensa-siedepunkt.jpg in Resources */,
 				E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */,
 				6D753A4E1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg in Resources */,
+				E0B2921419D2BE7000528070 /* Launch Screen.xib in Resources */,
 				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,
 				6D03D9B5193CA1F3001ED846 /* indicator-gray@2x.png in Resources */,
 				6D753A781917F20800C6BAA1 /* hausvii.jpg in Resources */,
@@ -1148,6 +1157,7 @@
 				E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */,
 				E61D887F1908705E0033D543 /* HTWLandscapeSegue.m in Sources */,
 				E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */,
+				E0B2921719D2D1D500528070 /* HTWAlertTextField.m in Sources */,
 				E61D883419085B4C0033D543 /* HTWMatrikelnummernTableViewController.m in Sources */,
 				E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */,
 				6D94EA3C19152FDB00872FC8 /* DoctypeChunk.m in Sources */,

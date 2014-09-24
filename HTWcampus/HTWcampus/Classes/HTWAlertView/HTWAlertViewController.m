@@ -7,12 +7,14 @@
 //
 
 #import "HTWAlertViewController.h"
+#import "HTWAlertTextField.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
+#define TEXTFIELD_TAG 5
+
 @interface HTWAlertViewController () <UITextFieldDelegate>
 
-@property (nonatomic, strong) UITextField *textfield;
 @property (nonatomic, strong) NSMutableArray *stringsFromTextField;
 
 @end
@@ -26,7 +28,6 @@
     self.navigationItem.rightBarButtonItem = abbrechen;
     
     
-    if(!_textfield) _textfield = [[UITextField alloc] init];
     if(!_stringsFromTextField) _stringsFromTextField = [[NSMutableArray alloc] init];
     for (int i = 0; i < _mainTitle.count; i++) {
         [_stringsFromTextField addObject:@""];
@@ -73,22 +74,23 @@
     {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
         
+        HTWAlertTextField *detailTextField = (HTWAlertTextField*)[cell.contentView viewWithTag:TEXTFIELD_TAG];
+        detailTextField.stelle = (int)indexPath.row;
+        
         cell.textLabel.text = _mainTitle[indexPath.row];
         cell.textLabel.font = [UIFont HTWTableViewCellFont];
         cell.textLabel.textColor = [UIColor HTWTextColor];
         
         if([_numberOfSecureTextField containsObject:[NSNumber numberWithInteger:indexPath.row]])
         {
-            NSMutableString *platzhalter = [NSMutableString new];
-            for(int i = 0; i < [_stringsFromTextField[indexPath.row] length]; i++)
-                [platzhalter appendString:@"*"];
-            cell.detailTextLabel.text = platzhalter;
-                
+            detailTextField.secureTextEntry = YES;
         }
-        else
-            cell.detailTextLabel.text = _stringsFromTextField[indexPath.row];
-        cell.detailTextLabel.font = [UIFont HTWTableViewCellFont];
-        cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
+        
+        detailTextField.text = _stringsFromTextField[indexPath.row];
+        detailTextField.font = [UIFont HTWTableViewCellFont];
+        detailTextField.textColor = [UIColor HTWBlueColor];
+        
+        if (indexPath.row == 0) [detailTextField becomeFirstResponder];
     }
     else
     {
@@ -111,24 +113,12 @@
 {
     if(indexPath.section == 0)
     {
-        [self.tableView reloadData];
         
         UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
-        CGRect frame = CGRectMake(sender.frame.size.width/4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width/4*3-20, sender.detailTextLabel.frame.size.height == 0 ? 21 : sender.detailTextLabel.frame.size.height);
-        _textfield.frame = frame;
-        _textfield.hidden = NO;
-        _textfield.font = [UIFont HTWTableViewCellFont];
-        _textfield.textColor = [UIColor HTWBlueColor];
-        _textfield.textAlignment = NSTextAlignmentRight;
-        _textfield.text = _stringsFromTextField[indexPath.row];
+        UITextField *detailTextField = (UITextField*)[sender.contentView viewWithTag:TEXTFIELD_TAG];
+        detailTextField.text = _stringsFromTextField[indexPath.row];
         
-        _textfield.delegate = self;
-        _textfield.tag = indexPath.row;
-        if([_numberOfSecureTextField containsObject:[NSNumber numberWithInteger:_textfield.tag]]) _textfield.secureTextEntry = YES;
-        else _textfield.secureTextEntry = NO;
-        sender.detailTextLabel.text = @"";
-        [sender addSubview:_textfield];
-        [_textfield becomeFirstResponder];
+        [detailTextField becomeFirstResponder];
     }
     
     
@@ -143,13 +133,11 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if(_textfield.hidden == NO) _stringsFromTextField[_textfield.tag] = _textfield.text;
+    HTWAlertTextField *detailTextField = (HTWAlertTextField*)textField;
+    _stringsFromTextField[detailTextField.stelle] = textField.text;
     
-    textField.text = @"";
     [textField resignFirstResponder];
-    _textfield.hidden = YES;
-    [textField removeFromSuperview];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 -(IBAction)abbrechenPressed:(id)sender
@@ -164,7 +152,7 @@
     }
     else if (gesture.state == UIGestureRecognizerStateEnded)
     {
-        if(_textfield.hidden == NO) _stringsFromTextField[_textfield.tag] = _textfield.text;
+//        if(_textfield.hidden == NO) _stringsFromTextField[_textfield.tag] = _textfield.text;
         gesture.view.backgroundColor = [UIColor HTWBlueColor];
         
         

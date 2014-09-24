@@ -34,6 +34,8 @@
 		<string>PT_Sans-Web-Bolditalic.ttf</string>
 		<string>fontawesome-webfont.ttf</string>
 	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>main</string>
 	<key>UIRequiredDeviceCapabilities</key>

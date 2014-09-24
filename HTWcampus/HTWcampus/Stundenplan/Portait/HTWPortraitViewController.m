@@ -25,7 +25,7 @@
 #import "UIImage+Resize.h"
 #import "NSDate+HTW.h"
 
-#define PixelPerMin 0.5
+#define PixelPerMin 0.6
 #define ALERT_EINGEBEN 0
 #define ALERT_EXPORT 1
 #define ALERT_ERROR 2
@@ -840,7 +840,7 @@
         picker.backgroundColor = [UIColor HTWBackgroundColor];
         
         [picker addTarget:self action:@selector(dueDateChanged:) forControlEvents:UIControlEventValueChanged];
-        picker.frame = CGRectMake(0.0, self.view.frame.size.height - 460, self.view.frame.size.width, 460);
+        picker.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, 460);
         
         picker.date = self.currentDate;
         

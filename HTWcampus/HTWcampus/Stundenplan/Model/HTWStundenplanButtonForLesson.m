@@ -56,7 +56,7 @@
 
 -(void)setPortait:(BOOL)portait
 {
-    if (portait) PixelPerMin = 0.5;
+    if (portait) PixelPerMin = 0.6;
     else PixelPerMin = 0.35;
     _portait = portait;
 }
