@@ -80,6 +80,7 @@
 		E0B2921719D2D1D500528070 /* HTWAlertTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B2921619D2D1D500528070 /* HTWAlertTextField.m */; };
 		E0D59BCF1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */; };
 		E0ED3BE8194756AD007022E3 /* HTWPruefungsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */; };
+		E0FBC5FB19DAE11400794A7B /* zeltmensa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E0FBC5FA19DAE11400794A7B /* zeltmensa.jpg */; };
 		E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */; };
 		E60F5FEF1938C2300093D5E8 /* Stunde.m in Sources */ = {isa = PBXBuildFile; fileRef = E60F5FEE1938C2300093D5E8 /* Stunde.m */; };
 		E61B6A2C1923B7BE0050EB10 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E61B6A2B1923B7BE0050EB10 /* Images.xcassets */; };
@@ -276,6 +277,7 @@
 		E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPruefungenExportierenTableViewController.m; path = "Prüfungsplaner/HTWPruefungenExportierenTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E0ED3BE6194756AD007022E3 /* HTWPruefungsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPruefungsTableViewController.h; path = "Prüfungsplaner/HTWPruefungsTableViewController.h"; sourceTree = "<group>"; };
 		E0ED3BE7194756AD007022E3 /* HTWPruefungsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPruefungsTableViewController.m; path = "Prüfungsplaner/HTWPruefungsTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E0FBC5FA19DAE11400794A7B /* zeltmensa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zeltmensa.jpg; sourceTree = "<group>"; };
 		E60BD347192173CA0018E3C2 /* HTWDozentEingebenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWDozentEingebenTableViewController.h; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.h"; sourceTree = "<group>"; };
 		E60BD348192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWDozentEingebenTableViewController.m; path = "Prüfungsplaner/HTWDozentEingebenTableViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E60F5FED1938C2300093D5E8 /* Stunde.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stunde.h; path = Stundenplan/Model/Stunde.h; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				6D753A461917A8C300C6BAA1 /* stimmgabel.jpg */,
 				6D753A471917A8C300C6BAA1 /* tellerrandt.jpg */,
 				6D753A481917A8C300C6BAA1 /* uboot.jpg */,
+				E0FBC5FA19DAE11400794A7B /* zeltmensa.jpg */,
 			);
 			name = Pictures;
 			sourceTree = "<group>";
@@ -993,7 +996,7 @@
 						DevelopmentTeam = 3E4PGPNR47;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1053,6 +1056,7 @@
 				6D753A581917A8C300C6BAA1 /* stimmgabel.jpg in Resources */,
 				6D753A4F1917A8C300C6BAA1 /* mensa-siedepunkt.jpg in Resources */,
 				E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */,
+				E0FBC5FB19DAE11400794A7B /* zeltmensa.jpg in Resources */,
 				6D753A4E1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg in Resources */,
 				E0B2921419D2BE7000528070 /* Launch Screen.xib in Resources */,
 				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,

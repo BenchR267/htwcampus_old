@@ -32,6 +32,7 @@
 #define ALERT_NEW 3
 #define DEPTH_FOR_PARALLAX 10
 #define DATEPICKER_TAG 222
+#define DATEPICKER_BUTTON_TAG 223
 #define KALENDERBUTTON_TAG 333
 
 #define ZEITENVIEW_TAG -2
@@ -122,34 +123,26 @@
 
     _settingsBarButtonItem.tintColor = [UIColor HTWWhiteColor];
     
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"]
-                                                            style:UIBarButtonItemStyleBordered
-                                                           target:self
-                                                           action:@selector(addSegue)];
+//    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"]
+//                                                            style:UIBarButtonItemStyleBordered
+//                                                           target:self
+//                                                           action:@selector(addSegue)];
     UIBarButtonItem *changeDate = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender2"]
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
                                                                   action:@selector(changeDatePressed:)];
     changeDate.tag = KALENDERBUTTON_TAG;
     
-    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
-                                                                    style:UIBarButtonItemStyleBordered
-                                                                   target:self
-                                                                   action:@selector(shareTestButtonPressed:)];
+//    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
+//                                                                    style:UIBarButtonItemStyleBordered
+//                                                                   target:self
+//                                                                   action:@selector(shareTestButtonPressed:)];
     
-    if(!_raumNummer)
-    {
-        [self.navigationItem setRightBarButtonItems:@[add, shareButton]];
-        [self.navigationItem setLeftBarButtonItems:@[self.navigationItem.leftBarButtonItem, changeDate]];
-    }
-    else
-    {
-        [self.navigationItem setRightBarButtonItem:changeDate];
-    }
+    [self.navigationItem setRightBarButtonItem:changeDate];
     
     
     
-    if(!_raumNummer) Matrnr = [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] objectForKey:@"Matrikelnummer"];
+    if(!_raumNummer) Matrnr = [[NSUserDefaults standardUserDefaults] objectForKey:@"Matrikelnummer"];
     if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""]))) {
         
         HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
@@ -177,7 +170,7 @@
                                                object:nil];
     
     
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if([defaults integerForKey:@"tageInPortrait"] < 2) [defaults setInteger:2 forKey:@"tageInPortrait"];
 
     
@@ -189,7 +182,7 @@
     
     _detailView = [[UIView alloc] init];
     _detailView.tag = 1;
-    if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:_detailView depth:DEPTH_FOR_PARALLAX];
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:_detailView depth:DEPTH_FOR_PARALLAX];
     [_scrollView addSubview:_detailView];
     
     
@@ -256,7 +249,7 @@
         if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
             
             Matrnr = strings[1];
-            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
             
             [self updateAngezeigteStunden];
@@ -276,7 +269,7 @@
         }
         else {
             Matrnr = strings[1];
-            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
             [defaults setBool:YES forKey:@"Dozent"];
             
@@ -338,7 +331,7 @@
             }
             
             NSString *dateinamenErweiterung;
-            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([defaults boolForKey:@"Dozent"]) {
                 dateinamenErweiterung = [(Stunde*)objects[0] student].name;
             }
@@ -392,7 +385,7 @@
             
             
             NSString *dateinamenErweiterung;
-            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([defaults boolForKey:@"Dozent"]) {
                 dateinamenErweiterung = [(Stunde*)objects[0] student].name;
             }
@@ -452,7 +445,7 @@
             UIImage *sendImage = [image croppedImage:CGRectMake(0, 0, image.size.width, 54+800*PixelPerMin)];
             
             NSString *dateinamenErweiterung;
-            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([defaults boolForKey:@"Dozent"]) {
                 dateinamenErweiterung = [(Stunde*)_angezeigteStunden[0] student].name;
             }
@@ -570,7 +563,7 @@
             tapGREdit.numberOfTapsRequired = 1;
             [button addGestureRecognizer:tapGREdit];
         }
-        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:button depth:DEPTH_FOR_PARALLAX];
     }
     [self reloadZeitenViewAndClockLine];
     
@@ -588,7 +581,7 @@
     int wochentagePointer = weekday;
     
     NSMutableArray *labels = [[NSMutableArray alloc] init];
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     for (int i=0; i < [defaults integerForKey:@"tageInPortrait"]; i++) {
         UILabel *this = [[UILabel alloc] initWithFrame:CGRectMake(i*116+50+_scrollView.contentSize.width, 13, 108, 26)];
@@ -596,7 +589,7 @@
         this.font = [UIFont HTWLargeFont];
         this.tag = -1;
         this.textColor = [UIColor HTWGrayColor];
-        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:this depth:DEPTH_FOR_PARALLAX];
 //        this.text = [wochentage[wochentagePointer] uppercaseString];
         this.text = wochentage[wochentagePointer];
         
@@ -605,7 +598,7 @@
         thisDate.font = [UIFont HTWVerySmallFont];
         thisDate.tag = -1;
         thisDate.textColor = [UIColor HTWGrayColor];
-        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:thisDate depth:DEPTH_FOR_PARALLAX];
         thisDate.text = [cDate getAsStringWithFormat:@"dd.MM."];
         
         wochentagePointer++;
@@ -680,7 +673,7 @@
         strich.backgroundColor = [UIColor HTWWhiteColor];
         [vonBisView addSubview:strich];
         
-        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:vonBisView depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:vonBisView depth:DEPTH_FOR_PARALLAX];
         
         [zeitenView addSubview:vonBisView];
     }
@@ -699,12 +692,12 @@
         lineView.backgroundColor = linieUndClock;
         lineView.alpha = 0.6;
         lineView.tag = LINEVIEW_TAG;
-        if([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) [self registerEffectForView:lineView depth:DEPTH_FOR_PARALLAX];
         [self.scrollView addSubview:lineView];
         [_scrollView bringSubviewToFront:lineView];
     }
     
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     for (UIView *view in self.scrollView.subviews) {
         if([view isKindOfClass:[HTWStundenplanButtonForLesson class]])
         {
@@ -784,7 +777,7 @@
     if (gesture.state == UIGestureRecognizerStateEnded) {
         _detailView.hidden = YES;
         
-        if ([[NSDate date] compare:[buttonPressed.lesson.anfang dateByAddingTimeInterval:-([[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] floatForKey:@"markierSliderValue"]*60)]] == NSOrderedDescending &&
+        if ([[NSDate date] compare:[buttonPressed.lesson.anfang dateByAddingTimeInterval:-([[NSUserDefaults standardUserDefaults] floatForKey:@"markierSliderValue"]*60)]] == NSOrderedDescending &&
             [[NSDate date] compare:buttonPressed.lesson.ende] == NSOrderedAscending) {
             [buttonPressed setNow:YES];
         }
@@ -812,10 +805,10 @@
 
 -(IBAction)changeDatePressed:(id)sender
 {
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"]
-                                                            style:UIBarButtonItemStyleBordered
-                                                           target:self
-                                                           action:@selector(addSegue)];
+//    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"]
+//                                                            style:UIBarButtonItemStyleBordered
+//                                                           target:self
+//                                                           action:@selector(addSegue)];
     UIBarButtonItem *changeDate = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Kalender2"]
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
@@ -826,10 +819,10 @@
                                                                       target:self
                                                                       action:@selector(changeDatePressed:)];
     changeDateDone.tag = KALENDERBUTTON_TAG;
-    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
-                                                                    style:UIBarButtonItemStyleBordered
-                                                                   target:self
-                                                                   action:@selector(shareTestButtonPressed:)];
+//    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"]
+//                                                                    style:UIBarButtonItemStyleBordered
+//                                                                   target:self
+//                                                                   action:@selector(shareTestButtonPressed:)];
     if(!datePickerIsVisible)
     {
         datePickerIsVisible = YES;
@@ -845,7 +838,7 @@
         picker.date = self.currentDate;
         
         UIButton *buttonForDisablingPicker = [[UIButton alloc] initWithFrame:CGRectMake(0, picker.frame.size.height, self.view.frame.size.width, 500)];
-        buttonForDisablingPicker.tag = DATEPICKER_TAG;
+        buttonForDisablingPicker.tag = DATEPICKER_BUTTON_TAG;
         [buttonForDisablingPicker addTarget:self action:@selector(changeDatePressed:) forControlEvents:UIControlEventTouchUpInside];
         
         [self.view addSubview:picker];
@@ -853,20 +846,21 @@
         [self.view bringSubviewToFront:picker];
         self.scrollView.userInteractionEnabled = NO;
         UIBarButtonItem *heute = [[UIBarButtonItem alloc] initWithTitle:@"Heute" style:UIBarButtonItemStyleBordered target:self action:@selector(setToday)];
-        if(!_raumNummer) {
-            [self.navigationItem setRightBarButtonItems:@[heute] animated:YES];
-            for (UIView *temp in self.navigationItem.rightBarButtonItems) {
-                if (temp.tag == KALENDERBUTTON_TAG) {
-                    [(UIBarButtonItem*)temp setImage:[UIImage imageNamed:@"Kalender3"]];
-                }
-            }
-            for (UIView *temp in self.navigationItem.leftBarButtonItems) {
-                if (temp.tag == KALENDERBUTTON_TAG) {
-                    [(UIBarButtonItem*)temp setImage:[UIImage imageNamed:@"Kalender3"]];
-                }
-            }
-        }
-        else [self.navigationItem setRightBarButtonItems:@[changeDateDone, heute] animated:YES];
+//        if(!_raumNummer) {
+//            [self.navigationItem setRightBarButtonItems:@[heute] animated:YES];
+//            for (UIView *temp in self.navigationItem.rightBarButtonItems) {
+//                if (temp.tag == KALENDERBUTTON_TAG) {
+//                    [(UIBarButtonItem*)temp setImage:[UIImage imageNamed:@"Kalender3"]];
+//                }
+//            }
+//            for (UIView *temp in self.navigationItem.leftBarButtonItems) {
+//                if (temp.tag == KALENDERBUTTON_TAG) {
+//                    [(UIBarButtonItem*)temp setImage:[UIImage imageNamed:@"Kalender3"]];
+//                }
+//            }
+//        }
+//        else
+            [self.navigationItem setRightBarButtonItems:@[changeDateDone, heute] animated:YES];
     }
     else
     {
@@ -882,7 +876,7 @@
         }
 //        [(UIBarButtonItem*)[self.view viewWithTag:KALENDERBUTTON_TAG] setImage:[UIImage imageNamed:@"Kalender2"]];
         for (UIView *temp in self.view.subviews) {
-            if (temp.tag == DATEPICKER_TAG) {
+            if (temp.tag == DATEPICKER_TAG || temp.tag == DATEPICKER_BUTTON_TAG) {
                 [temp removeFromSuperview];
             }
         }
@@ -892,14 +886,7 @@
         datePickerIsVisible = NO;
         
         
-        if(!_raumNummer)
-        {
-            [self.navigationItem setRightBarButtonItems:@[add, shareButton] animated:YES];
-        }
-        else
-        {
-            [self.navigationItem setRightBarButtonItems:@[changeDate] animated:YES];
-        }
+        [self.navigationItem setRightBarButtonItems:@[changeDate] animated:YES];
     }
 }
 
@@ -908,8 +895,9 @@
     self.currentDate = [NSDate date];
     [(UIDatePicker*)[self.view viewWithTag:DATEPICKER_TAG] setDate:[NSDate date]];
     [self dueDateChanged:(UIDatePicker*)[self.view viewWithTag:DATEPICKER_TAG]];
-    if(!_raumNummer) [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.leftBarButtonItems[1]];
-    else [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.rightBarButtonItem];
+////    if(!_raumNummer) [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.leftBarButtonItems[1]];
+////    else
+        [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.rightBarButtonItem];
 }
 
 -(void) dueDateChanged:(UIDatePicker *)sender {
@@ -921,7 +909,7 @@
 
 -(void)updateAngezeigteStunden
 {
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
     dayComponent.day = [defaults integerForKey:@"tageInPortrait"];
     
@@ -987,7 +975,7 @@
 
 - (void)registerEffectForView:(UIView *)aView depth:(CGFloat)depth;
 {
-    if(![[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"parallax"]) return;
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"parallax"]) return;
 	UIInterpolatingMotionEffect *effectX;
 	UIInterpolatingMotionEffect *effectY;
     effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"

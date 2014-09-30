@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     Matrnr = [defaults objectForKey:@"Matrikelnummer"];
     
     [self updateArray];
@@ -86,7 +86,7 @@
 {
     [super viewWillAppear:animated];
     
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.navigationController.navigationBarHidden = NO;
 
     
@@ -197,7 +197,7 @@
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
     
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:_context];

@@ -74,7 +74,7 @@
 {
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
 
-    if([(NSDate*)[[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] objectForKey:@"letzteAktMensa"]
+    if([(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:@"letzteAktMensa"]
         compare:[[NSDate date] getDayOnly]] != NSOrderedSame)
     {
         [self loadMensa];
@@ -173,7 +173,7 @@
 - (void)loadMensa {
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
     openingHoursLoaded = NO;
-    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:[[NSDate date] getDayOnly] forKey:@"letzteAktMensa"];
+    [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] getDayOnly] forKey:@"letzteAktMensa"];
     NSURL *RSSUrlToday =[NSURL URLWithString:mensaTodayUrl];
     NSURL *RSSUrlTomorrow = [NSURL URLWithString:mensaTomorrowUrl];
 

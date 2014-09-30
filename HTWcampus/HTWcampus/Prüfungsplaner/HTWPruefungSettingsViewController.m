@@ -30,7 +30,7 @@
 
     self.allViewControllers = [[NSArray alloc] initWithObjects:vcA, vcB, nil];
 
-    self.switchViewControllers.selectedSegmentIndex = [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] integerForKey:@"pruefungsPlanTyp"];
+    self.switchViewControllers.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"pruefungsPlanTyp"];
     [self cycleFromViewController:self.currentViewController toViewController:[self.allViewControllers objectAtIndex:self.switchViewControllers.selectedSegmentIndex]];
 }
 
@@ -83,14 +83,14 @@
     
 }
 - (IBAction)fertigPressed:(id)sender {
-    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setInteger:_switchViewControllers.selectedSegmentIndex forKey:@"pruefungsPlanTyp"];
+    [[NSUserDefaults standardUserDefaults] setInteger:_switchViewControllers.selectedSegmentIndex forKey:@"pruefungsPlanTyp"];
     switch (_switchViewControllers.selectedSegmentIndex) {
         case 0: // Studiengruppe
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:[(HTWNeueStudiengruppe*)[_allViewControllers[0] viewControllers][0] jahrTextField].text forKey:@"pruefungJahr"];
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:[(HTWNeueStudiengruppe*)[_allViewControllers[0] viewControllers][0] gruppeTextField].text forKey:@"pruefungGruppe"];
+            [[NSUserDefaults standardUserDefaults] setObject:[(HTWNeueStudiengruppe*)[_allViewControllers[0] viewControllers][0] jahrTextField].text forKey:@"pruefungJahr"];
+            [[NSUserDefaults standardUserDefaults] setObject:[(HTWNeueStudiengruppe*)[_allViewControllers[0] viewControllers][0] gruppeTextField].text forKey:@"pruefungGruppe"];
             break;
         case 1: // Prüfender
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:[(HTWDozentEingebenTableViewController*)[_allViewControllers[1] viewControllers][0] dozentTextField].text forKey:@"pruefungDozent"];
+            [[NSUserDefaults standardUserDefaults] setObject:[(HTWDozentEingebenTableViewController*)[_allViewControllers[1] viewControllers][0] dozentTextField].text forKey:@"pruefungDozent"];
             break;
 
         default:

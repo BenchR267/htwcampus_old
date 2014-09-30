@@ -205,7 +205,7 @@
 -(IBAction)cellPressedForPop:(UITapGestureRecognizer*)gesture
 {
     UITableViewCell *senderCell = (UITableViewCell*)gesture.view;
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     User *info = _nummern[[self.tableView indexPathForCell:senderCell].row];
     [defaults setBool:info.dozent.boolValue forKey:@"Dozent"];
     [defaults setObject:info.matrnr forKey:@"Matrikelnummer"];
@@ -321,7 +321,7 @@
         
         _nummern = [_context executeFetchRequest:fetchRequest error:nil];
         
-        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         if ([zuLoeschendeNummer isEqualToString:[defaults objectForKey:@"Matrikelnummer"]]) {
             if(_nummern.count)
                 [defaults setObject:[(User*)_nummern[0] matrnr] forKey:@"Matrikelnummer"];
@@ -406,7 +406,7 @@
 
 -(void)HTWCSVConnectionFinished:(HTWCSVConnection *)connection
 {
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_dozentParser.password forKey:@"Matrikelnummer"];
     [defaults setBool:YES forKey:@"Dozent"];
     

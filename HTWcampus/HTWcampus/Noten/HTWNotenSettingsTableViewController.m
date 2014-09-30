@@ -7,12 +7,13 @@
 //
 
 #import "HTWNotenSettingsTableViewController.h"
+#import "HTWAlertTextField.h"
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
 @interface HTWNotenSettingsTableViewController () <UITextFieldDelegate>
 
-@property (nonatomic, strong) UITextField *textfield;
+
 
 @end
 
@@ -35,7 +36,6 @@
     [super viewWillAppear:animated];
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
     self.title = @"Einstellungen Noten";
-    _textfield = [[UITextField alloc] init];
 }
 
 #pragma mark - Table View Data Source
@@ -62,14 +62,13 @@
     UITableViewCell *cell;
     if(indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
-            
+        HTWAlertTextField *detailTextField = (HTWAlertTextField*)[cell.contentView viewWithTag:5];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
         cell.textLabel.font = [UIFont HTWTableViewCellFont];
         cell.textLabel.textColor = [UIColor HTWTextColor];
-        cell.detailTextLabel.font = [UIFont HTWTableViewCellFont];
-        cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
-        cell.detailTextLabel.numberOfLines = 3;
-        cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        detailTextField.font = [UIFont HTWTableViewCellFont];
+        detailTextField.textColor = [UIColor HTWBlueColor];
         
         switch (indexPath.row) {
             case 0:
@@ -78,12 +77,11 @@
                 break;
             case 1:
                 cell.textLabel.text = @"Passwort";
-                NSMutableString *passwordStern = [[NSMutableString alloc] init];
-                for(int i = 0; i < [(NSString*)[defaults objectForKey:@"PasswortNoten"] length]; i++)
-                    [passwordStern appendString:@"*"];
-                cell.detailTextLabel.text = passwordStern;
+                detailTextField.text = [defaults objectForKey:@"PasswortNoten"];
+                detailTextField.secureTextEntry = YES;
                 break;
         }
+        detailTextField.stelle = (int)indexPath.row;
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"LoeschenCell"];
@@ -100,32 +98,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if(indexPath.section == 0)
     {
-        if (indexPath.row <= 3) {
-            [self.tableView reloadData];
-            UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
-            CGRect frame = CGRectMake(sender.frame.size.width/4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width/4*3-20, sender.detailTextLabel.frame.size.height);
-            _textfield.frame = frame;
-            _textfield.hidden = NO;
-            _textfield.font = [UIFont HTWTableViewCellFont];
-            _textfield.textColor = [UIColor HTWBlueColor];
-            _textfield.textAlignment = NSTextAlignmentRight;
-            
-            switch (indexPath.row) {
-                case 0: _textfield.text = [defaults objectForKey:@"LoginNoten"]; _textfield.secureTextEntry = NO; break;
-                case 1: _textfield.text = @""; _textfield.secureTextEntry = YES; break;
-                default: _textfield.text = @"";
-                    break;
-            }
-            
-            _textfield.delegate = self;
-            _textfield.tag = indexPath.row;
-            sender.detailTextLabel.text = @"";
-            [sender addSubview:_textfield];
-            [_textfield becomeFirstResponder];
-        }
+        
+        UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
+        HTWAlertTextField *detailTextField = (HTWAlertTextField*)[sender.contentView viewWithTag:5];
+//        if (detailTextField.stel)
+//        detailTextField.text = _stringsFromTextField[indexPath.row];
+        
+        [detailTextField becomeFirstResponder];
     }
 }
 
@@ -133,17 +115,13 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
-    
-    switch (textField.tag) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    HTWAlertTextField *detaiLTextField = (HTWAlertTextField*)textField;
+    switch (detaiLTextField.stelle) {
         case 0: [defaults setObject:textField.text forKey:@"LoginNoten"]; break;
         case 1: [defaults setObject:textField.text forKey:@"PasswortNoten"]; break;
     }
-    
-    textField.text = @"";
     [textField resignFirstResponder];
-    _textfield.hidden = YES;
-    [self.tableView reloadData];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -161,10 +139,9 @@
     }
     else if (gesture.state == UIGestureRecognizerStateEnded)
     {
-        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:nil forKey:@"LoginNoten"];
         [defaults setObject:nil forKey:@"PasswortNoten"];
-        self.textfield.text = @"";
         [self.tableView reloadData];
     }
 }

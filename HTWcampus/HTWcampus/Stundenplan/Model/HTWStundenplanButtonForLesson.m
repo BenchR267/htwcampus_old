@@ -45,7 +45,7 @@
 -(id)initWithLesson:(Stunde *)lessonForButton andPortait:(BOOL)portaitForButton andCurrentDate:(NSDate*)date
 {
     self = [super init];
-    ANZAHLTAGE_LANDSCAPE = [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] integerForKey:@"anzahlTageLandscape"];
+    ANZAHLTAGE_LANDSCAPE = [[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"];
     [self setCurrentDate:date];
     [self setPortait:portaitForButton];
     [self setLesson:lessonForButton];
@@ -108,7 +108,7 @@
         
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
         
-        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *tage = [[NSMutableArray alloc] init];
         [tage addObject:today];
         for (int i = 1; i < [defaults integerForKey:@"tageInPortrait"]; i++) {

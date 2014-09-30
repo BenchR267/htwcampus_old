@@ -20,9 +20,23 @@
 #define ALERT_CONFIRMATION 0
 #define ALERT_EXPORT 1
 
-@interface HTWStundenplanEditDetailTableViewController () <UITextFieldDelegate, UIAlertViewDelegate>
+#define TEXTVIEW_TAG 5
 
-@property (nonatomic, strong) UITextField *textfield;
+@interface HTWStundenplanEditDetailTableViewController () <UITextViewDelegate, UIAlertViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextView *titelTextView;
+@property (weak, nonatomic) IBOutlet UITextView *kurzelTextView;
+@property (weak, nonatomic) IBOutlet UITextView *raumTextView;
+@property (weak, nonatomic) IBOutlet UITextView *dozentTextView;
+@property (weak, nonatomic) IBOutlet UITextView *typTextView;
+@property (weak, nonatomic) IBOutlet UITextView *semesterTextView;
+@property (weak, nonatomic) IBOutlet UITextView *anfangTextView;
+@property (weak, nonatomic) IBOutlet UITextView *endeTextView;
+@property (weak, nonatomic) IBOutlet UITextView *bemerkungenTextView;
+
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+@property (strong, nonatomic) IBOutletCollection(UITextView) NSArray *textViews;
+
 
 @end
 
@@ -35,6 +49,33 @@
     [super viewDidLoad];
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"] style:UIBarButtonItemStylePlain target:self action:@selector(shareButtonPressed:)];
     self.navigationItem.rightBarButtonItems = @[self.navigationItem.rightBarButtonItem, shareButton];
+    
+    
+    self.titelTextView.text = _stunde.titel;
+    self.kurzelTextView.text = _stunde.kurzel;
+    self.raumTextView.text = _stunde.raum;
+    self.dozentTextView.text = _stunde.dozent;
+    if([_stunde.kurzel componentsSeparatedByString:@" "].count > 1) self.typTextView.text = [_stunde.kurzel componentsSeparatedByString:@" "][1];
+    else self.typTextView.text = @"";
+    self.semesterTextView.text = _stunde.semester;
+    self.anfangTextView.text = [NSString stringWithFormat:@"%@ um %@ Uhr", [self wochentagFromDate:_stunde.anfang], [self uhrZeitFromDate:_stunde.anfang]];
+    self.endeTextView.text = [NSString stringWithFormat:@"%@ um %@ Uhr", [self wochentagFromDate:_stunde.ende], [self uhrZeitFromDate:_stunde.ende]];
+    self.bemerkungenTextView.text = _stunde.bemerkungen;
+    
+    self.titelTextView.delegate = self;
+    self.kurzelTextView.delegate = self;
+    self.raumTextView.delegate = self;
+    self.dozentTextView.delegate = self;
+    self.bemerkungenTextView.delegate = self;
+    
+    for (UILabel *this in self.labels) {
+        this.font = [UIFont HTWTableViewCellFont];
+        this.textColor = [UIColor HTWTextColor];
+    }
+    for (UITextView *this in self.textViews) {
+        this.font = [UIFont HTWTableViewCellFont];
+        this.textColor = [UIColor HTWBlueColor];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -42,172 +83,28 @@
     [super viewWillAppear:animated];
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
     self.title = _stunde.kurzel;
-    _textfield = [[UITextField alloc] init];
 }
 
-#pragma mark - Table View Data Source
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(section == 0) return 8;
-    else if(section == 1) return 1;
-    else return 1;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 3;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (indexPath.row) {
-        case 0:
-            if(indexPath.section == 0) return 82;
-            else if(indexPath.section == 1) return 120;
-            else return 50;
-        default: return 50;
-    }
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell;
-    
-    if(indexPath.section == 0)
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-        
-        cell.textLabel.font = [UIFont HTWTableViewCellFont];
-        cell.textLabel.textColor = [UIColor HTWTextColor];
-        cell.detailTextLabel.font = [UIFont HTWTableViewCellFont];
-        cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
-        cell.detailTextLabel.numberOfLines = 3;
-        cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"Titel";
-                cell.detailTextLabel.text = _stunde.titel;
-                break;
-            case 1:
-                cell.textLabel.text = @"Kürzel";
-                cell.detailTextLabel.text = _stunde.kurzel;
-                break;
-            case 2:
-                cell.textLabel.text = @"Raum";
-                cell.detailTextLabel.text = _stunde.raum;
-                break;
-            case 3:
-                if(!_stunde.student.dozent) cell.textLabel.text = @"Dozent";
-                else cell.textLabel.text = @"Studiengang";
-                cell.detailTextLabel.text = _stunde.dozent;
-                break;
-            case 4:
-                cell.textLabel.text = @"Typ";
-                if([_stunde.kurzel componentsSeparatedByString:@" "].count > 1) cell.detailTextLabel.text = [_stunde.kurzel componentsSeparatedByString:@" "][1];
-                break;
-            case 5:
-                cell.textLabel.text = @"Semester";
-                cell.detailTextLabel.text = _stunde.semester;
-                break;
-            case 6:
-                cell.textLabel.text = @"Anfang";
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ um %@ Uhr", [self wochentagFromDate:_stunde.anfang], [self uhrZeitFromDate:_stunde.anfang]];
-                break;
-            case 7:
-                cell.textLabel.text = @"Ende";
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ um %@ Uhr", [self wochentagFromDate:_stunde.ende], [self uhrZeitFromDate:_stunde.ende]];
-                break;
-                
-            default:
-                break;
-        }
-    }
-    else if(indexPath.section == 1)
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-        
-        cell.textLabel.font = [UIFont HTWTableViewCellFont];
-        cell.textLabel.textColor = [UIColor HTWTextColor];
-        cell.detailTextLabel.font = [UIFont HTWTableViewCellFont];
-        cell.detailTextLabel.textColor = [UIColor HTWBlueColor];
-        cell.detailTextLabel.numberOfLines = 3;
-        cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        
-        cell.textLabel.text = @"Bemerkungen";
-        cell.detailTextLabel.text = _stunde.bemerkungen;
-    }
-    else if(indexPath.section == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"LoeschenCell"];
-        cell.textLabel.text = @"Stunde löschen";
-        cell.textLabel.font = [UIFont HTWLargeFont];
-        cell.textLabel.textColor = [UIColor HTWWhiteColor];
-        cell.backgroundColor = [UIColor HTWRedColor];
-        UILongPressGestureRecognizer *longGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(stundeLoeschenPressed:)];
-        longGR.minimumPressDuration = 0.01;
-        [cell addGestureRecognizer:longGR];
-    }
-    return cell;
-}
+#pragma mark - UITableView Delegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0)
+    if(indexPath.section < 2)
     {
-        if (indexPath.row <= 3) {
-            [self.tableView reloadData];
-            UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
-            CGRect frame = CGRectMake(sender.frame.size.width/4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width/4*3-20, sender.detailTextLabel.frame.size.height);
-            _textfield.frame = frame;
-            _textfield.hidden = NO;
-            _textfield.font = [UIFont HTWTableViewCellFont];
-            _textfield.textColor = [UIColor HTWBlueColor];
-            _textfield.textAlignment = NSTextAlignmentRight;
-            
-            switch (indexPath.row) {
-                case 0: _textfield.text = _stunde.titel; break;
-                case 1: _textfield.text = _stunde.kurzel; break;
-                case 2: _textfield.text = _stunde.raum; break;
-                case 3: _textfield.text = _stunde.dozent; break;
-                default: _textfield.text = @"";
-                    break;
-            }
-            
-            _textfield.clearButtonMode = UITextFieldViewModeNever;
-            _textfield.delegate = self;
-            _textfield.tag = indexPath.row;
-            sender.detailTextLabel.text = @"";
-            [sender addSubview:_textfield];
-            [_textfield becomeFirstResponder];
-        }
+        UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
+        UITextView *currentTextView = (UITextView*)[currentCell.contentView viewWithTag:TEXTVIEW_TAG];
+        [currentTextView becomeFirstResponder];
     }
-    else if (indexPath.section == 1)
+    else
     {
-        [self.tableView reloadData];
-        UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
-        CGRect frame = CGRectMake(sender.frame.size.width*0.4, sender.detailTextLabel.frame.origin.y, sender.frame.size.width*0.6-20, sender.detailTextLabel.frame.size.height);
-        _textfield.frame = frame;
-        _textfield.hidden = NO;
-        _textfield.font = [UIFont HTWTableViewCellFont];
-        _textfield.textColor = [UIColor HTWBlueColor];
-        _textfield.textAlignment = NSTextAlignmentRight;
-        
-        _textfield.text = _stunde.bemerkungen;
-        
-        _textfield.clearButtonMode = UITextFieldViewModeAlways;
-        _textfield.delegate = self;
-        _textfield.tag = 4;
-        sender.detailTextLabel.text = @"";
-        [sender addSubview:_textfield];
-        [_textfield becomeFirstResponder];
+        // LÖSCHEN
+        [self stundeLoeschenPressed];
     }
 }
 
 #pragma mark - TextField Delegate
 
--(void)textFieldDidEndEditing:(UITextField *)textField
+-(void)textViewDidEndEditing:(UITextView *)textView
 {
     HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appdelegate managedObjectContext];
@@ -215,105 +112,71 @@
     {
 
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stunde"];
-        NSPredicate *pred;
-        if(textField.tag == 4)
-        {
-            pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@ && anfang = %@", _stunde.id, _stunde.student.matrnr, _stunde.anfang];
-        }
-        else
-        {
-            pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
-        }
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"id = %@ && student.matrnr = %@", _stunde.id, _stunde.student.matrnr];
         [fetchRequest setPredicate:pred];
 
         NSArray *objects = [context executeFetchRequest:fetchRequest error:nil];
 
         for (Stunde *this in objects) {
-            switch (textField.tag) {
-                case 0:
-                    this.titel = textField.text;
-                    break;
-                case 1:
-                    this.kurzel = textField.text;
-                    break;
-                case 2:
-                    this.raum = textField.text;
-                    break;
-                case 3:
-                    this.dozent = textField.text;
-                    break;
-                case 4:
-                    this.bemerkungen = textField.text;
-                    break;
-                default:
-                    break;
-            }
+            
+            this.titel = self.titelTextView.text;
+            this.kurzel = self.kurzelTextView.text;
+            this.raum = self.raumTextView.text;
+            this.dozent = self.dozentTextView.text;
+            
         }
     }
     else
     {
-        switch (textField.tag) {
-            case 0:
-                _stunde.titel = textField.text;
-                break;
-            case 1:
-                _stunde.kurzel = textField.text;
-                break;
-            case 2:
-                _stunde.raum = textField.text;
-                break;
-            case 3:
-                _stunde.dozent = textField.text;
-                break;
-            case 4:
-                _stunde.bemerkungen = textField.text;
-                break;
-            default:
-                break;
-        }
+        _stunde.titel = self.titelTextView.text;
+        _stunde.kurzel = self.kurzelTextView.text;
+        _stunde.raum = self.raumTextView.text;
+        _stunde.dozent = self.dozentTextView.text;
     }
-
+    
+    _stunde.bemerkungen = self.bemerkungenTextView.text;
 
     [context save:nil];
 
-    textField.text = @"";
-    [textField resignFirstResponder];
-    _textfield.hidden = YES;
-    [textField removeFromSuperview];
+    if([_stunde.kurzel componentsSeparatedByString:@" "].count > 1) self.typTextView.text = [_stunde.kurzel componentsSeparatedByString:@" "][1];
+    else self.typTextView.text = @"";
     self.title = _stunde.kurzel;
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    [textField resignFirstResponder];
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    
     return YES;
+}
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.text.length >= 30) {
+        textView.text = [textView.text substringToIndex:30];
+    }
 }
 
 #pragma mark - IBActions
 
--(IBAction)stundeLoeschenPressed:(UITapGestureRecognizer*)gesture
+-(IBAction)stundeLoeschenPressed
 {
-    if (gesture.state == UIGestureRecognizerStateBegan) {
-        gesture.view.backgroundColor = [UIColor HTWGrayColor];
-    }
-    else if (gesture.state == UIGestureRecognizerStateEnded)
-    {
-        gesture.view.backgroundColor = [UIColor HTWRedColor];// Stunde löschen
-        UIAlertView *alert = [[UIAlertView alloc] init];
-        if(!_oneLessonOnly)
-            alert.message = [NSString stringWithFormat:@"Sollen wirklich alle Stunden mit dem Kürzel %@ am %@ um %@ Uhr gelöscht werden?",
-                             _stunde.kurzel,
-                             [self wochentagFromDate:_stunde.anfang ],
-                             [self uhrZeitFromDate:_stunde.anfang]];
-        else
-            alert.message = [NSString stringWithFormat:@"Soll diese Stunde wirklich gelöscht werden? %@", _stunde.kurzel];
-        [alert addButtonWithTitle:@"Ja"];
-        [alert addButtonWithTitle:@"Nein"];
-        alert.tag = ALERT_CONFIRMATION;
-        alert.delegate = self;
-        [alert show];
-    }
+    UIAlertView *alert = [[UIAlertView alloc] init];
+    if(!_oneLessonOnly)
+        alert.message = [NSString stringWithFormat:@"Sollen wirklich alle Stunden mit dem Kürzel %@ am %@ um %@ Uhr gelöscht werden?",
+                         _stunde.kurzel,
+                         [self wochentagFromDate:_stunde.anfang ],
+                         [self uhrZeitFromDate:_stunde.anfang]];
+    else
+        alert.message = [NSString stringWithFormat:@"Soll diese Stunde wirklich gelöscht werden? %@", _stunde.kurzel];
+    [alert addButtonWithTitle:@"Ja"];
+    [alert addButtonWithTitle:@"Nein"];
+    alert.tag = ALERT_CONFIRMATION;
+    alert.delegate = self;
+    [alert show];
 }
 
 - (IBAction)stundeAusblendenPressed:(id)sender {

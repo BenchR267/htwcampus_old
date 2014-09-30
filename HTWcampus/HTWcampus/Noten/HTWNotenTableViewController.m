@@ -87,7 +87,7 @@
     }
     else {
         isLoading = true;
-        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         username = [defaults objectForKey:@"LoginNoten"];
         password = [defaults objectForKey:@"PasswortNoten"];
         if (username && password) [self loadNoten];
@@ -97,7 +97,7 @@
 }
 
 - (IBAction)reloadNotenspiegel:(id)sender {
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     username = [defaults objectForKey:@"LoginNoten"];
     password = [defaults objectForKey:@"PasswortNoten"];
     notendurchschnitt = 0.0;
@@ -105,6 +105,10 @@
     [self.tableView reloadData];
     if(!username || !password) [self showLoginPopup];
     else [self loadNoten];
+}
+
+- (IBAction)settingsButtonPressed:(id)sender {
+    [self showLoginPopup];
 }
 
 - (void) showLoginPopup {
@@ -152,9 +156,9 @@
                         HTWNotenStartseiteHTMLParser *startseiteParser = [HTWNotenStartseiteHTMLParser new];
                         NSString *asiToken = [startseiteParser parseAsiTokenFromString:loginHtmlResultAsString];
                         NSLog(@"Login erfolgreich. Asi Token: %@", asiToken);
-                        if(![[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"NotenLoginNieSpeichern"] &&
-                           ![username isEqualToString:[[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] objectForKey:@"LoginNoten"]] &&
-                           ![password isEqualToString:[[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] objectForKey:@"PasswortNoten"]])
+                        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NotenLoginNieSpeichern"] &&
+                           ![username isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginNoten"]] &&
+                           ![password isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"PasswortNoten"]])
                         {
                             UIAlertView *saveAlert = [[UIAlertView alloc] init];
                             saveAlert.message = @"Soll der Login gespeichert werden?";
@@ -276,7 +280,10 @@
                 username = usernameText;
                 password = passwordText;
                 
-                [self loadNoten];
+                [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"LoginNoten"];
+                [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"PasswortNoten"];
+                
+                [self reloadNotenspiegel:self.navigationItem.rightBarButtonItem];
             }
             else {
                 UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler" message:@"Alle Felder müssen ausgefüllt werden" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -304,13 +311,13 @@
     {
         NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
         if ([buttonTitle isEqualToString:@"Ja"]) {
-            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:username forKey:@"LoginNoten"];
             [defaults setObject:password forKey:@"PasswortNoten"];
         }
         else if ([buttonTitle isEqualToString:@"Nein, nicht mehr fragen"])
         {
-            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setBool:YES forKey:@"NotenLoginNieSpeichern"];
         }
     }

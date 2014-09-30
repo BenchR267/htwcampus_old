@@ -116,7 +116,7 @@
         
         UITableViewCell *sender = [tableView cellForRowAtIndexPath:indexPath];
         UITextField *detailTextField = (UITextField*)[sender.contentView viewWithTag:TEXTFIELD_TAG];
-        detailTextField.text = _stringsFromTextField[indexPath.row];
+//        detailTextField.text = _stringsFromTextField[indexPath.row];
         
         [detailTextField becomeFirstResponder];
     }

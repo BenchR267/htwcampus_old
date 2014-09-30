@@ -119,7 +119,7 @@ NSMutableData *receivedData;
         NSArray *teile = [semester componentsSeparatedByString:@" "];
         semester = [NSString stringWithFormat:@"%@ %@", teile[0], teile[1]];
 
-        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:semester forKey:@"Semester"];
+        [[NSUserDefaults standardUserDefaults] setObject:semester forKey:@"Semester"];
         
         NSRange startRange = [html rangeOfString:@"<Stunde>"];
         NSString *dataAfterHtml = [html substringFromIndex:startRange.location];
@@ -325,7 +325,7 @@ NSMutableData *receivedData;
         [_context save:nil];
 
 
-        if(!_boolRaum) [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:self.Matrnr forKey:@"Matrikelnummer"];
+        if(!_boolRaum) [[NSUserDefaults standardUserDefaults] setObject:self.Matrnr forKey:@"Matrikelnummer"];
         if(_delegate) [_delegate HTWStundenplanParserFinished:self];
         
         return;

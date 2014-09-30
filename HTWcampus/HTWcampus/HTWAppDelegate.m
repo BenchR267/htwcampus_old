@@ -30,7 +30,7 @@
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor HTWWhiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor HTWWhiteColor], NSForegroundColorAttributeName, nil]
                                              forState:UIControlStateNormal];
-
+    
     [[UITableViewCell appearance] setTintColor:[UIColor HTWTextColor]];
     
     [UINavigationBar appearance].barStyle = UIBarStyleBlackTranslucent;
@@ -41,40 +41,40 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    if(![[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] integerForKey:@"anzahlTageLandscape"])
-        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setInteger:10 forKey:@"anzahlTageLandscape"];
+    if(![[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"])
+        [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"anzahlTageLandscape"];
     
-    if(![[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] boolForKey:@"skipTut"])
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
     {
-        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setInteger:7 forKey:@"tageInPortrait"];
-        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setFloat:0 forKey:@"markierSliderValue"];
-        [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setBool:NO forKey:@"parallax"];
+        [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
+        [[NSUserDefaults standardUserDefaults] setFloat:0 forKey:@"markierSliderValue"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"parallax"];
         HTWPageViewController *vc = [[UIStoryboard storyboardWithName:@"FirstLaunch" bundle:nil] instantiateViewControllerWithIdentifier:@"HTWPageViewController"];
         [UIView animateWithDuration:0.5 animations:^{
             [self.window setRootViewController:vc];
         }];
-
+        
     }
     else
     {
         HTWPortraitViewController *vc = [[UIStoryboard storyboardWithName:@"main" bundle:nil] instantiateInitialViewController];
         [self.window setRootViewController:vc];
     }
-
+    
     return YES;
 }
 
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible {
-//    static NSInteger NumberOfCallsToSetVisible = 0;
-//    if (setVisible)
-//        NumberOfCallsToSetVisible++;
-//    else
-//        NumberOfCallsToSetVisible--;
-//
-//    if(NumberOfCallsToSetVisible <= 0) NumberOfCallsToSetVisible = 0;
-//    // Display the indicator as long as our static counter is > 0.
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
-
+    //    static NSInteger NumberOfCallsToSetVisible = 0;
+    //    if (setVisible)
+    //        NumberOfCallsToSetVisible++;
+    //    else
+    //        NumberOfCallsToSetVisible--;
+    //
+    //    if(NumberOfCallsToSetVisible <= 0) NumberOfCallsToSetVisible = 0;
+    //    // Display the indicator as long as our static counter is > 0.
+    //    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:setVisible];
 }
 
@@ -86,7 +86,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -112,11 +112,11 @@
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
-        } 
+        }
     }
 }
 
@@ -146,9 +146,6 @@
         return _managedObjectModel;
     }
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"HTWcampus" withExtension:@"momd"];
-//    NSURL *modelURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.BenchR.TodayExtensionSharingDefaults"];
-//    modelURL = [modelURL URLByAppendingPathComponent:@"HTWcampus.momd"];
-//    NSLog(@"%@", modelURL);
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -161,11 +158,7 @@
         return _persistentStoreCoordinator;
     }
     
-//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"HTWcampus.sqlite"];
-    
-    NSURL *storeURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.BenchR.TodayExtensionSharingDefaults"];
-    storeURL = [storeURL URLByAppendingPathComponent:@"HTWcampus.sqlite"];
-    NSLog(@"StoreURL2: %@", storeURL);
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"HTWcampus.sqlite"];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -173,7 +166,7 @@
         /*
          Replace this implementation with code to handle the error appropriately.
          
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
          
          Typical reasons for an error here include:
          * The persistent store is not accessible;
@@ -195,7 +188,7 @@
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
-    }    
+    }
     
     return _persistentStoreCoordinator;
 }

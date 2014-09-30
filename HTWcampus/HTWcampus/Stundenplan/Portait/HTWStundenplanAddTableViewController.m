@@ -74,7 +74,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     cell.textLabel.font = [UIFont HTWTableViewCellFont];
@@ -222,7 +222,7 @@
     
     HTWAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appdelegate managedObjectContext];
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     
     Stunde *newStunde = [[Stunde alloc] initWithEntity:[NSEntityDescription entityForName:@"Stunde" inManagedObjectContext:context] insertIntoManagedObjectContext:context];

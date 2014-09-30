@@ -25,7 +25,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"];
+    self.defaults = [NSUserDefaults standardUserDefaults];
     self.view.backgroundColor = [UIColor HTWBackgroundColor];
     self.title = _user.name;
     self.textfield = [[UITextField alloc] init];

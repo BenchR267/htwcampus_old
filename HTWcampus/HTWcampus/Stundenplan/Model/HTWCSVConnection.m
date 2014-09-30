@@ -95,7 +95,7 @@
             NSArray *teile = [semester componentsSeparatedByString:@" "];
             semester = [NSString stringWithFormat:@"%@ %@", teile[0], teile[1]];
 
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:semester forKey:@"Semester"];
+            [[NSUserDefaults standardUserDefaults] setObject:semester forKey:@"Semester"];
             
             if(!_eName)
             {
@@ -253,7 +253,7 @@
         [_context deleteObject:matches];
     }
     [_context save:nil];
-    [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] setObject:self.password forKey:@"Matrikelnummer"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.password forKey:@"Matrikelnummer"];
     [_delegate HTWCSVConnectionFinished:self];
 }
 

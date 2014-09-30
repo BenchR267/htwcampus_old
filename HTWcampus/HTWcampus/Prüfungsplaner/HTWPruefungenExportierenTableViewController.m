@@ -191,7 +191,7 @@
             neu.ende = [self getEnde:i];
             neu.anzeigen = [NSNumber numberWithBool:YES];
             neu.id = [NSString stringWithFormat:@"%@%d%@", neu.kurzel, [self weekdayFromDate:neu.anfang], [(NSString*)_pruefungen[i][_keys[8]] componentsSeparatedByString:@" "][0]];
-            neu.semester = [[[NSUserDefaults alloc] initWithSuiteName:@"group.BenchR.TodayExtensionSharingDefaults"] objectForKey:@"Semester"];
+            neu.semester = [[NSUserDefaults standardUserDefaults] objectForKey:@"Semester"];
             
             [info addStundenObject:neu];
             didAdd = YES;
