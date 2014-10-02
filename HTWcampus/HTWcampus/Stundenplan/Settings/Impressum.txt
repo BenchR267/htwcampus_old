@@ -33,7 +33,7 @@ DE 188 729 062
 Quellenangaben für die verwendeten Bilder und Grafiken:
 http://www.studentenwerk-dresden.de (Bilder der Mensen-Speisen)
 iPhone-App TabBar and Toolbar Icon Set for iOS von Zhong XiaoMi (TabBar und Toolbar-Icons)
-Das App-Icon wurde von Vincent Schmidt erstellt.
+Das App-Icon wurde in Eigenproduktion mit Hilfe von Vincent Schmidt gestaltet.
 
 Haftungsausschluss (Disclaimer)
 
