@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Jla-Rd-cJb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jla-Rd-cJb">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Page View Controller-->
@@ -14,14 +15,14 @@
                         <viewControllerLayoutGuide type="bottom" id="IRa-ge-4WR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wcy-3g-pym">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7n7-6z-yig" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1960" y="396"/>
+            <point key="canvasLocation" x="-3675" y="418.30985915492954"/>
         </scene>
         <!--Page Content View Controller-->
         <scene sceneID="CGP-eB-cDo">
@@ -32,14 +33,22 @@
                         <viewControllerLayoutGuide type="bottom" id="sXW-ZF-Fyd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AsT-fn-wp1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e98-Ug-7u2">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e98-Ug-7u2">
+                                <rect key="frame" x="140" y="0.0" width="320" height="568"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="568" id="PJh-0A-CN5"/>
+                                    <constraint firstAttribute="width" constant="320" id="avz-zd-GWj"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9w8-sf-QgG">
-                                <rect key="frame" x="20" y="262" width="280" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9w8-sf-QgG">
+                                <rect key="frame" x="160" y="262" width="280" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="gYD-pr-UQA"/>
+                                    <constraint firstAttribute="height" constant="44" id="t7b-h2-ETb"/>
+                                </constraints>
                                 <state key="normal" title="Jetzt starten!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -48,7 +57,13 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.22745098039215686" green="0.47450980392156861" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="9w8-sf-QgG" secondAttribute="centerX" id="75V-g8-uMc"/>
+                            <constraint firstItem="e98-Ug-7u2" firstAttribute="top" secondItem="AsT-fn-wp1" secondAttribute="topMargin" id="MJ4-BM-SsH"/>
+                            <constraint firstAttribute="centerX" secondItem="e98-Ug-7u2" secondAttribute="centerX" id="YVc-za-zM4"/>
+                            <constraint firstItem="9w8-sf-QgG" firstAttribute="top" secondItem="Z8s-6k-fzQ" secondAttribute="bottom" constant="242" id="why-DQ-vh4"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="e98-Ug-7u2" id="9zh-7b-12c"/>
@@ -57,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cw0-OY-9nk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1393" y="639"/>
+            <point key="canvasLocation" x="-2611.875" y="675"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="agk-Da-OEo">
@@ -65,15 +80,7 @@
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Jla-Rd-cJb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pr-pT-xj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1393" y="-28"/>
+            <point key="canvasLocation" x="-2611.875" y="-29.577464788732392"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
-    </simulatedMetricsContainer>
 </document>

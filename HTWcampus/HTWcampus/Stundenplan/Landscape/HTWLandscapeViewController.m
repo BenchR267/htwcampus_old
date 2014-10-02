@@ -78,6 +78,11 @@
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterBackground)
+                                                 name:UIApplicationWillTerminateNotification
+                                               object:nil];
+    
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -107,6 +112,13 @@
 -(void)applicationWillEnterInForeground
 {
     [self viewWillAppear:YES];
+}
+
+-(void)applicationWillEnterBackground
+{
+    if(_raum) [self.navigationController popViewControllerAnimated:NO];
+    else [self.navigationController popToRootViewControllerAnimated:NO];
+    isPortait = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
