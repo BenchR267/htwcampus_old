@@ -5,15 +5,15 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>de_DE</string>
 	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>HTWDresden</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
+	<string>HTWDresden</string>
 	<key>CFBundleIdentifier</key>
-	<string>de.htw.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>de.htw-dresden.www.HTWDresden</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>de.htw-dresden.www.HTWDresden</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -26,6 +26,8 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright (c) Hochschule für Technik und Wirtschaft Dresden</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>PT_Sans-Web-Bold.ttf</string>

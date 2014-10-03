@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>B0DD57D4FB234EDF421E1DBA17A2419C81AFE5AC</key>
-		<string>ssh://github.com/BenchR267/htwcampus</string>
+		<string>github.com:BenchR267/HTWcampus</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>HTWcampus/HTWcampus.xcodeproj/project.xcworkspace</string>
+	<string>HTWcampus/HTWcampus.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B0DD57D4FB234EDF421E1DBA17A2419C81AFE5AC</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/BenchR267/htwcampus</string>
+	<string>github.com:BenchR267/HTWcampus</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>B0DD57D4FB234EDF421E1DBA17A2419C81AFE5AC</string>
 			<key>IDESourceControlWCCName</key>
-			<string>htwcampus</string>
+			<string>HTWcampus</string>
 		</dict>
 	</array>
 </dict>

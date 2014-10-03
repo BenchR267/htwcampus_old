@@ -76,6 +76,7 @@
 		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
 		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
+		E09A735519DDDD610078EDD7 /* HTWDresden Debug.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E09A735419DDDD610078EDD7 /* HTWDresden Debug.entitlements */; };
 		E0B2921419D2BE7000528070 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B2921319D2BE7000528070 /* Launch Screen.xib */; };
 		E0B2921719D2D1D500528070 /* HTWAlertTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B2921619D2D1D500528070 /* HTWAlertTextField.m */; };
 		E0D59BCF1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D59BCE1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m */; };
@@ -267,8 +268,8 @@
 		6DA949A51963066300C0E50C /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
 		E05B181619A48DD20057E2F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = Stundenplan/Model/Note.h; sourceTree = "<group>"; };
 		E05B181719A48DD20057E2F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = Stundenplan/Model/Note.m; sourceTree = "<group>"; };
+		E09A735419DDDD610078EDD7 /* HTWDresden Debug.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "HTWDresden Debug.entitlements"; sourceTree = "<group>"; };
 		E09CA6E219A4F3B600251B7D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		E09CA6F419A4F3C000251B7D /* HTWDresden Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "HTWDresden Debug.entitlements"; sourceTree = "<group>"; };
 		E09CA6FF19A6038F00251B7D /* HTWcampus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTWcampus-Bridging-Header.h"; sourceTree = "<group>"; };
 		E0B2921319D2BE7000528070 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		E0B2921519D2D1D500528070 /* HTWAlertTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWAlertTextField.h; path = Classes/HTWAlertView/HTWAlertTextField.h; sourceTree = "<group>"; };
@@ -722,7 +723,7 @@
 		E63772CE1908146300DEE8AB /* HTWcampus */ = {
 			isa = PBXGroup;
 			children = (
-				E09CA6F419A4F3C000251B7D /* HTWDresden Debug.entitlements */,
+				E09A735419DDDD610078EDD7 /* HTWDresden Debug.entitlements */,
 				E05B181519A48BB90057E2F8 /* CoreData */,
 				E6B771E1191C36D700E9A2A5 /* FirstLaunch */,
 				6D7B451B1908150F00D99C9D /* main.storyboard */,
@@ -993,7 +994,7 @@
 				ORGANIZATIONNAME = "Benjamin Herzog";
 				TargetAttributes = {
 					E63772C21908146300DEE8AB = {
-						DevelopmentTeam = 3E4PGPNR47;
+						DevelopmentTeam = 2URYCAZR48;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -1058,6 +1059,7 @@
 				E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */,
 				E0FBC5FB19DAE11400794A7B /* zeltmensa.jpg in Resources */,
 				6D753A4E1917A8C300C6BAA1 /* mensa-kreuzgymnasium.jpg in Resources */,
+				E09A735519DDDD610078EDD7 /* HTWDresden Debug.entitlements in Resources */,
 				E0B2921419D2BE7000528070 /* Launch Screen.xib in Resources */,
 				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,
 				6D03D9B5193CA1F3001ED846 /* indicator-gray@2x.png in Resources */,
@@ -1289,9 +1291,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "HTWcampus/HTWDresden Debug.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hochschule für Technik und Wirtschaft Dresden";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hochschule für Technik und Wirtschaft Dresden";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
@@ -1312,9 +1313,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "HTWcampus/HTWDresden Debug.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hochschule für Technik und Wirtschaft Dresden";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hochschule für Technik und Wirtschaft Dresden";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
