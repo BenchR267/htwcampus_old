@@ -25,11 +25,17 @@
 #import "UIImage+Resize.h"
 #import "NSDate+HTW.h"
 
+#define VERSION_STRING @"1.0.0"
+#define UPDATE_CHECK_URL @"http://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/api/version.json"
+#define UPDATE_URL @"itms-services://?action=download-manifest&url=https://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/HTWcampus.plist"
+#define LAST_CHECK_DATE_KEY @"LASTCHECKDATEKEY"
+
 #define PixelPerMin 0.6
 #define ALERT_EINGEBEN 0
 #define ALERT_EXPORT 1
 #define ALERT_ERROR 2
 #define ALERT_NEW 3
+#define ALERT_VERSION 4
 #define DEPTH_FOR_PARALLAX 10
 #define DATEPICKER_TAG 222
 #define DATEPICKER_BUTTON_TAG 223
@@ -117,6 +123,8 @@
 {
     [super viewDidLoad];
     isPortrait = YES;
+    
+    [self checkVersion];
 
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
@@ -153,6 +161,38 @@
         alert.tag = ALERT_EINGEBEN;
         [self presentViewController:alert animated:NO completion:^{}];
     }
+}
+
+-(void)checkVersion
+{
+    NSDate *lastCheck = [[NSUserDefaults standardUserDefaults] objectForKey:LAST_CHECK_DATE_KEY];
+    if (lastCheck != nil) {
+        if ([[NSDate date] timeIntervalSinceDate:lastCheck] <= 60*60*24*7) {
+            return;
+        }
+    }
+    
+    NSString *urlString = UPDATE_CHECK_URL; // URL für das PHP, das die aktuelle Version enthält
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (data == nil) { return; }
+        NSError *error;
+        NSDictionary *versionDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_CHECK_DATE_KEY];
+        if ([(NSString*)[versionDic objectForKey:@"version"] isEqualToString:VERSION_STRING]) {
+            // aktuelle Version installiert, alles gut... :)
+        }
+        else {
+            // es gibt eine aktuellere Version
+            NSString *message = [NSString stringWithFormat:@"Die aktuelle Version (%@) ist nicht mehr aktuell. Aktuelle Version: %@. Soll die neue Version geladen werden?", VERSION_STRING, (NSString*)[versionDic objectForKey:@"version"]];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warnung" message:message delegate:nil cancelButtonTitle:@"Nicht jetzt" otherButtonTitles:@"Laden", nil];
+            alert.delegate = self;
+            alert.tag = ALERT_VERSION;
+            [alert show];
+        }
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -469,6 +509,11 @@
             [self presentViewController:activityVC animated:YES completion:^{
                 [self doubleTap:_scrollView];
             }];
+        }
+    }
+    else if (alertView.tag == ALERT_VERSION) {
+        if ([clickedButtonTitle isEqualToString:@"Laden"]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UPDATE_URL]];
         }
     }
 }

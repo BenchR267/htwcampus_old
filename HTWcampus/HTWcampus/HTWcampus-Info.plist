@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>de.htw-dresden.www.HTWDresden</string>
+	<string>HTWDresden</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -26,8 +26,6 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright (c) Hochschule für Technik und Wirtschaft Dresden</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>PT_Sans-Web-Bold.ttf</string>
