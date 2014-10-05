@@ -186,7 +186,7 @@
         }
         else {
             // es gibt eine aktuellere Version
-            NSString *message = [NSString stringWithFormat:@"Die aktuelle Version (%@) ist nicht mehr aktuell. Aktuelle Version: %@. Soll die neue Version geladen werden?", VERSION_STRING, (NSString*)[versionDic objectForKey:@"version"]];
+            NSString *message = [NSString stringWithFormat:@"Eine neue Version (%@) ist verfügbar. Möchtest du die neue Version laden? (Aktuelle Version: %@)", (NSString*)[versionDic objectForKey:@"version"], VERSION_STRING];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warnung" message:message delegate:nil cancelButtonTitle:@"Nicht jetzt" otherButtonTitles:@"Laden", nil];
             alert.delegate = self;
             alert.tag = ALERT_VERSION;
