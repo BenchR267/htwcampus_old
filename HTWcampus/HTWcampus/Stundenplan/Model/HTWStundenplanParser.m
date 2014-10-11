@@ -225,7 +225,8 @@ NSMutableData *receivedData;
     
     if (isRaum) {
         NSRange range = [kuerzel rangeOfString:@" "];
-        kuerzel = [NSMutableString stringWithString:[kuerzel substringToIndex:range.location + 2]];
+        if (kuerzel.length >= range.location + 2)
+            kuerzel = [NSMutableString stringWithString:[kuerzel substringToIndex:range.location + 2]];
         
         if(!raum) raum = [[NSMutableString alloc] init];
         [raum appendString:string];

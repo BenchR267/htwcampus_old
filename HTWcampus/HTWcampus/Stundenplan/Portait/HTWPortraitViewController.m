@@ -1057,14 +1057,15 @@
     if (array.count != 3) return NO;
     else
     {
-        for (NSString *this in array) {
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\d{2,}" options:0 error:nil];
-            NSTextCheckingResult *result = [regex firstMatchInString:this options:0 range:NSMakeRange(0, this.length)];
-            if (result) {
-                return YES;
-            }
-            else return NO;
-        }
+//        for (NSString *this in array) {
+//            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\d{2,}" options:0 error:nil];
+//            NSTextCheckingResult *result = [regex firstMatchInString:this options:0 range:NSMakeRange(0, this.length)];
+//            if (result) {
+//                return YES;
+//            }
+//            else return NO;
+//        }
+        return YES;
     }
     return NO;
 }
