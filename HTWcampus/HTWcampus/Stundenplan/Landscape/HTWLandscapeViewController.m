@@ -303,10 +303,12 @@
         [heuteMorgenLabelsView addSubview:thisDate];
         [heuteMorgenLabelsView addSubview:label];
         
-        cDate = [cDate dateByAddingTimeInterval:60*60*24];
+        cDate = [cDate addDays:1 months:0 years:0];
+//        cDate = [cDate dateByAddingTimeInterval:60*60*24];
         if([cDate getWeekDay] == 5)
         {
-            cDate = [cDate dateByAddingTimeInterval:60*60*24*2];
+            cDate = [cDate addDays:2 months:0 years:0];
+//            cDate = [cDate dateByAddingTimeInterval:60*60*24*2];
         }
     }
     [_scrollView addSubview:heuteMorgenLabelsView];

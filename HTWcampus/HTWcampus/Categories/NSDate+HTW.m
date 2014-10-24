@@ -141,5 +141,16 @@
     return ([self compare:date] == NSOrderedDescending);
 }
 
+-(NSDate*)addDays:(int)days months:(int)months years:(int)years
+{
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = days;
+    dayComponent.month = months;
+    dayComponent.year = years;
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    return [theCalendar dateByAddingComponents:dayComponent toDate:self options:0];
+}
+
 
 @end

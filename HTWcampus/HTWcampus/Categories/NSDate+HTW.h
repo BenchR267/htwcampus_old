@@ -28,5 +28,7 @@
 -(BOOL)isTommorrow:(NSDate*)date;
 -(BOOL)isBefore:(NSDate*)date;
 -(BOOL)isAfter:(NSDate*)date;
+-(NSDate*)addDays:(int)days months:(int)months years:(int)years;
+
 
 @end

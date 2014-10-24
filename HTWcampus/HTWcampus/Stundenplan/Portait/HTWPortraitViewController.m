@@ -25,8 +25,9 @@
 #import "UIImage+Resize.h"
 #import "NSDate+HTW.h"
 
-#define VERSION_STRING @"1.0.0"
-#define UPDATE_CHECK_URL @"http://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/api/version.json"
+#define VERSION_STRING @"1.0.1"
+//#define UPDATE_CHECK_URL @"http://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/api/version.json"
+#define UPDATE_CHECK_URL @"http://www.benchr.de/TEST/version.json"
 #define UPDATE_URL @"itms-services://?action=download-manifest&url=https://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/HTWcampus.plist"
 #define LAST_CHECK_DATE_KEY @"LASTCHECKDATEKEY"
 
@@ -167,7 +168,7 @@
 {
     NSDate *lastCheck = [[NSUserDefaults standardUserDefaults] objectForKey:LAST_CHECK_DATE_KEY];
     if (lastCheck != nil) {
-        if ([[NSDate date] timeIntervalSinceDate:lastCheck] <= 60*60*24*7) {
+        if ([[NSDate date] timeIntervalSinceDate:lastCheck] <= 60*60*24) {
             return;
         }
     }
@@ -177,12 +178,13 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (data == nil) { return; }
+        if (data == nil || connectionError ) { return; }
         NSError *error;
         NSDictionary *versionDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_CHECK_DATE_KEY];
         if ([(NSString*)[versionDic objectForKey:@"version"] isEqualToString:VERSION_STRING]) {
             // aktuelle Version installiert, alles gut... :)
+            return;
         }
         else {
             // es gibt eine aktuellere Version
@@ -650,7 +652,9 @@
         if (wochentagePointer > wochentage.count-1) {
             wochentagePointer = 0;
         }
-        cDate = [cDate dateByAddingTimeInterval:60*60*24];
+        
+        cDate = [cDate addDays:1 months:0 years:0];
+//        cDate = [cDate dateByAddingTimeInterval:60*60*24];
         
         //set active Day
         if (i == 0) {
