@@ -216,7 +216,7 @@
     if([defaults integerForKey:@"tageInPortrait"] < 2) [defaults setInteger:2 forKey:@"tageInPortrait"];
 
     
-    _scrollView.contentSize = CGSizeMake(60+116*[defaults integerForKey:@"tageInPortrait"], 459 + [UINavigationBar appearance].frame.size.height);
+    _scrollView.contentSize = CGSizeMake(60+116*[defaults integerForKey:@"tageInPortrait"], 40+PixelPerMin*(20.5*60-7.5*60));
     _scrollView.directionalLockEnabled = YES;
     _scrollView.delegate = self;
     [self reloadDaysLabelsAndBackground];
