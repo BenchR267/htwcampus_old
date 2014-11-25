@@ -124,38 +124,84 @@
 }
 
 - (void)loadNoten {
-    [self.navigationItem.rightBarButtonItem setEnabled:NO];
-    NSURL *hisqisUrl =[NSURL URLWithString:@"https://wwwqis.htw-dresden.de/qisserver/rds?state=user&type=0"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:hisqisUrl];
-    request.timeoutInterval = 10;
-    NSOperationQueue *queue = [NSOperationQueue mainQueue];
-    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"wwwqis.htw-dresden.de"];
-
-    NSLog(@"Noten werden geladen...");
-    isLoading = true;
-    [self.tableView reloadData];
     
-    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:YES];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
-        if ([data length]>0 && error == nil)
-        {
-            //send login post request
-            NSMutableURLRequest *loginRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://wwwqis.htw-dresden.de/qisserver/rds?state=user&type=1&category=auth.login&startpage=portal.vm"]];
-            [loginRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-            [loginRequest setHTTPBody:[[NSString stringWithFormat:@"username=%@&submit=Ok&password=%@", username, password] dataUsingEncoding:NSUTF8StringEncoding]];
-            [loginRequest setHTTPMethod:@"POST"];
-            
-            [NSURLConnection sendAsynchronousRequest:loginRequest queue:queue completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
-                if ([data length]>0 && error == nil)
-                {
-                    NSString *loginHtmlResultAsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+#define getPos @"https://wwwqis.htw-dresden.de/qisserver/api/student/getcourses"
+#define getGrade @"https://wwwqis.htw-dresden.de/qisserver/api/student/getgrades"
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sNummer=%@&RZLogin=%@", getPos, username, password]];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        // Fehler in der Übertragung
+        if (data == nil || connectionError != nil) {
+            NSLog(@"%@", connectionError.localizedDescription);
+            return;
+        }
+        
+        // HTTP Status Code ausgeben
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+        NSLog(@"HTTP Status Code: %ld", (long)httpResponse.statusCode);
+        
+        if (httpResponse.statusCode == 401) {
+            // sNummer/RZLogin sind falsch
+            UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Wiederholen" otherButtonTitles:nil];
+            errorPopup.alertViewStyle = UIAlertViewStyleDefault;
+            errorPopup.tag = LOGIN_ERROR_TAG;
+            [errorPopup show];
+            isLoading = false;
+            return;
+        }
+        else if (httpResponse.statusCode == 400) {
+            // sNummer/RZLogin fehlt
+            UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Wiederholen" otherButtonTitles:nil];
+            errorPopup.alertViewStyle = UIAlertViewStyleDefault;
+            errorPopup.tag = LOGIN_ERROR_TAG;
+            [errorPopup show];
+            isLoading = false;
+            return;
+        }
+        else {
+            // Angaben stimmen -> JSON-Array befindet sich in data
+            NSError *error;
+            NSArray *pos = (NSArray*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            if (error != nil) return;
+            for (NSDictionary *dic in pos) {
+                // Jeder Studiengang, für den Noten vorhanden sind
+                NSString *AbschlNr = dic[@"AbschlNr"];
+                NSString *StgNr = dic[@"StgNr"];
+                NSString *POVersion = dic[@"POVersion"];
+                NSURL *getGradeURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sNummer=%@&RZLogin=%@&AbschlNr=%@&StgNr=%@&POVersion=%@",getGrade, username, password, AbschlNr, StgNr, POVersion]];
+                [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:getGradeURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                    // Fehler in der Übertragung
+                    if (data == nil || connectionError != nil) {
+                        NSLog(@"%@", connectionError.localizedDescription);
+                        return;
+                    }
                     
-                    //Check if login was successful
-                    if ([[response.URL absoluteString] isEqualToString:HISQIS_LOGGEDIN_STARTPAGE]) {
-                        //parse asi token
-                        HTWNotenStartseiteHTMLParser *startseiteParser = [HTWNotenStartseiteHTMLParser new];
-                        NSString *asiToken = [startseiteParser parseAsiTokenFromString:loginHtmlResultAsString];
-                        NSLog(@"Login erfolgreich. Asi Token: %@", asiToken);
+                    // HTTP Status Code ausgeben
+                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+                    NSLog(@"HTTP Status Code: %ld", (long)httpResponse.statusCode);
+                    
+                    if (httpResponse.statusCode == 401) {
+                        // sNummer/RZLogin sind falsch
+                        UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Wiederholen" otherButtonTitles:nil];
+                        errorPopup.alertViewStyle = UIAlertViewStyleDefault;
+                        errorPopup.tag = LOGIN_ERROR_TAG;
+                        [errorPopup show];
+                        isLoading = false;
+                        return;
+                    }
+                    else if (httpResponse.statusCode == 400) {
+                        // sNummer/RZLogin fehlt
+                        UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Wiederholen" otherButtonTitles:nil];
+                        errorPopup.alertViewStyle = UIAlertViewStyleDefault;
+                        errorPopup.tag = LOGIN_ERROR_TAG;
+                        [errorPopup show];
+                        isLoading = false;
+                        return;
+                    }
+                    else {
+                        // Angaben stimmen JSON-Array befindet sich in data
+                        
                         if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NotenLoginNieSpeichern"] &&
                            ![username isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginNoten"]] &&
                            ![password isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"PasswortNoten"]])
@@ -170,102 +216,84 @@
                             [saveAlert show];
                         }
                         
-                        //send notenspiegel request
-                        NSURL *notenUrl =[NSURL URLWithString:[NSString stringWithFormat:@"https://wwwqis.htw-dresden.de/qisserver/rds?state=htmlbesch&stg=121&abschl=84&next=list.vm&asi=%@", asiToken]];
-                        NSURLRequest *notenRequest = [NSURLRequest requestWithURL:notenUrl];
-                        [NSURLConnection sendAsynchronousRequest:notenRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                            if ([data length]>0 && error == nil)
+                        [self deleteAllNoten];
+                        NSError *error;
+                        NSArray *grades = (NSArray*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+                        for (NSDictionary *fach in grades) {
+                            // Durch alle Noten durchgehen
+                            Note *neueNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.context];
+                            neueNote.credits = [NSNumber numberWithDouble:((NSString*)fach[@"EctsCredits"]).doubleValue];
+                            neueNote.name = fach[@"PrTxt"];
+                            neueNote.note = [NSNumber numberWithDouble:((NSString*)fach[@"EctsGrade"]).doubleValue];
+                            neueNote.nr = [NSNumber numberWithDouble:((NSString*)fach[@"PrNr"]).doubleValue];
+                            neueNote.semester = [self ausformuliertesSemesterVon:fach[@"Semester"]];
+                            neueNote.status = fach[@"Status"];
+                            neueNote.versuch = [NSNumber numberWithDouble:((NSString*)fach[@"Versuch"]).doubleValue];
+                            [self.context save:nil];
+                        }
+                        
+                        // Noten aus der DB laden und anzeigen
+                        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                        self.notenspiegel = (NSMutableArray*)[self.context executeFetchRequest:request error:nil];
+                        
+                        self.notenspiegel = [(NSArray*)[self.context executeFetchRequest:request error:nil] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                            NSString *semester = [(Note*)[obj2 objectAtIndex:0] semester];
+                            NSString *jahr;
+                            if([semester componentsSeparatedByString:@" "].count > 1)
+                                jahr = [semester componentsSeparatedByString:@" "][1];
+                            else jahr = @" ";
+                            NSComparisonResult result;
+                            if([[(Note*)obj1[0] semester] componentsSeparatedByString:@" "].count > 1)
+                                result = [(NSString*)[[(Note*)obj1[0] semester] componentsSeparatedByString:@" "][1] compare:jahr options:NSNumericSearch];
+                            else result = NSOrderedSame;
+                            switch(result)
                             {
-                                NSString *notenspiegelHtmlResultAsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                
-//#warning PDF DOWNLOAD
-                                // [self savePDFFromHtml:notenspiegelHtmlResultAsString];
-                                
-                                
-                                
-                                self.notenspiegel = [[NSMutableArray alloc] init];
-                                NSMutableArray *sortedNotenspiegel = [NSMutableArray arrayWithArray:[startseiteParser parseNotenspiegelFromString:notenspiegelHtmlResultAsString]];
-                                self.notenspiegel = [sortedNotenspiegel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                                    NSString *semester = [(Note*)[obj2 objectAtIndex:0] semester];
-                                    NSString *jahr;
-                                    if([semester componentsSeparatedByString:@" "].count > 1)
-                                        jahr = [semester componentsSeparatedByString:@" "][1];
-                                    else jahr = @" ";
-                                    NSComparisonResult result;
-                                    if([[(Note*)obj1[0] semester] componentsSeparatedByString:@" "].count > 1)
-                                        result = [(NSString*)[[(Note*)obj1[0] semester] componentsSeparatedByString:@" "][1] compare:jahr options:NSNumericSearch];
-                                    else result = NSOrderedSame;
-                                    switch(result)
-                                    {
-                                        case NSOrderedAscending: return NSOrderedDescending;
-                                        case NSOrderedDescending: return NSOrderedAscending;
-                                        default: return NSOrderedSame;
-                                    }
-                                }].mutableCopy;
-                                // NSLog(@"%@", self.notenspiegel);
-                                isLoading = false;
-                                notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
-                                [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
-                                [self.navigationItem.rightBarButtonItem setEnabled:YES];
-                                [self.tableView reloadData];
+                                case NSOrderedAscending: return NSOrderedDescending;
+                                case NSOrderedDescending: return NSOrderedAscending;
+                                default: return NSOrderedSame;
                             }
-                            else if ([data length] == 0 && error == nil)
-                            {
-                                NSLog(@"No data returned.");
-                                isLoading = false;
-                            }
-                            else if (error != nil){
-                                NSLog(@"Fehler beim Laden der Notenseite. Error: %@", error);
-                                [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
-                                [self.navigationItem.rightBarButtonItem setEnabled:YES];
-                                isLoading = false;
-                            }
-                        }];
-                    }
-                    else {
-                        //Login failed
-                        UIAlertView *errorPopup = [[UIAlertView alloc] initWithTitle:@"Fehler beim Login" message:@"Login fehlgeschlagen." delegate:self cancelButtonTitle:@"Wiederholen" otherButtonTitles:nil];
-                        errorPopup.alertViewStyle = UIAlertViewStyleDefault;
-                        errorPopup.tag = LOGIN_ERROR_TAG;
-                        [errorPopup show];
+                        }].mutableCopy;
+                        // NSLog(@"%@", self.notenspiegel);
                         isLoading = false;
+                        notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
+                        [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
+                        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+                        [self.tableView reloadData];
                     }
-                }
-                else if ([data length] == 0 && error == nil)
-                {
-                    NSLog(@"No data returned.");
-                }
-                else if (error != nil){
-                    NSLog(@"HISQIS Login Request Page nicht erreichbar. Error: %@", error);
-                    [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
-                    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-                    isLoading = false;
-                }
-            }];
-
-            
+                }];
+            }
         }
-        else if ([data length] == 0 && error == nil)
-        {
-            NSLog(@"No data was returned.");
-            isLoading = false;
-        }
-        else if (error != nil){
-            NSLog(@"Fehler beim Laden der Noten. Error: %@", error);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Fehler"
-                                                                     message:@"Das iPhone hat scheinbar keine Verbindung zum Internet. Bitte stellen Sie sicher, dass das iPhone online ist und versuchen Sie es danach erneut."
-                                                                    delegate:nil
-                                                           cancelButtonTitle:@"Ok"
-                                                           otherButtonTitles:nil];
-                [errorAlert show];
-                isLoading = false;
-                [self.tableView reloadData];
-            });
-            [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
-            [self.navigationItem.rightBarButtonItem setEnabled:YES];
-        }
+        
     }];
+    
+}
+
+-(void)deleteAllNoten
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+    NSArray *alleNoten = [self.context executeFetchRequest:request error:nil];
+    for (Note *temp in alleNoten) {
+        [self.context delete:temp];
+    }
+}
+
+-(NSString*)ausformuliertesSemesterVon:(NSString*)semester
+{
+    NSString *jahr = [semester substringToIndex:4];
+    NSString *typ = [semester substringFromIndex:4];
+    
+    switch (typ.intValue) {
+        case 1:
+            return [NSString stringWithFormat:@"Sommersemester %@", jahr];
+            break;
+        case 2:
+            return [NSString stringWithFormat:@"Wintersemester %@/%d", jahr, jahr.intValue - 2000 + 1];
+            break;
+        default:
+            break;
+    }
+    
+    return @"";
 }
 
 -(void)htwAlert:(HTWAlertNavigationController *)alert gotStringsFromTextFields:(NSArray *)strings
