@@ -98,6 +98,7 @@
 		E61D883719085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D882E19085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewController.m */; };
 		E61D883919085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D883219085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m */; };
 		E61D887F1908705E0033D543 /* HTWLandscapeSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D887E1908705E0033D543 /* HTWLandscapeSegue.m */; };
+		E623C8461A3252D2008338AF /* NSURLRequest+IgnoreSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = E623C8451A3252D2008338AF /* NSURLRequest+IgnoreSSL.m */; };
 		E62C484B191422DE00788651 /* HTWCSVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E62C4848191422DE00788651 /* HTWCSVConnection.m */; };
 		E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E62C484A191422DE00788651 /* HTWCSVParser.m */; };
 		E63772C71908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
@@ -309,6 +310,8 @@
 		E61D883219085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m; path = Stundenplan/Settings/HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m; sourceTree = "<group>"; };
 		E61D887D1908705E0033D543 /* HTWLandscapeSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWLandscapeSegue.h; path = Stundenplan/Landscape/HTWLandscapeSegue.h; sourceTree = "<group>"; };
 		E61D887E1908705E0033D543 /* HTWLandscapeSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWLandscapeSegue.m; path = Stundenplan/Landscape/HTWLandscapeSegue.m; sourceTree = "<group>"; };
+		E623C8441A3252D2008338AF /* NSURLRequest+IgnoreSSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+IgnoreSSL.h"; sourceTree = "<group>"; };
+		E623C8451A3252D2008338AF /* NSURLRequest+IgnoreSSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+IgnoreSSL.m"; sourceTree = "<group>"; };
 		E62C4847191422DE00788651 /* HTWCSVConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVConnection.h; path = Stundenplan/Model/HTWCSVConnection.h; sourceTree = "<group>"; };
 		E62C4848191422DE00788651 /* HTWCSVConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWCSVConnection.m; path = Stundenplan/Model/HTWCSVConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E62C4849191422DE00788651 /* HTWCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVParser.h; path = Stundenplan/Model/HTWCSVParser.h; sourceTree = "<group>"; };
@@ -515,6 +518,8 @@
 				6D94E9D5191524B300872FC8 /* HTWNotenDetailTableViewController.m */,
 				E6EBD38D191A8E3000720962 /* HTWNotenSettingsTableViewController.h */,
 				E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */,
+				E623C8441A3252D2008338AF /* NSURLRequest+IgnoreSSL.h */,
+				E623C8451A3252D2008338AF /* NSURLRequest+IgnoreSSL.m */,
 			);
 			name = Noten;
 			sourceTree = "<group>";
@@ -1100,6 +1105,7 @@
 				E05B181819A48DD20057E2F8 /* Note.m in Sources */,
 				E67D2530191620F9009D7634 /* User.m in Sources */,
 				E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */,
+				E623C8461A3252D2008338AF /* NSURLRequest+IgnoreSSL.m in Sources */,
 				6D94EA4019152FDB00872FC8 /* EntityChunk.m in Sources */,
 				6D5B71281923AC340061CEA6 /* HTWMensaXMLParser.m in Sources */,
 				6D94EA3A19152FDB00872FC8 /* CSSSelectorMatcher.m in Sources */,

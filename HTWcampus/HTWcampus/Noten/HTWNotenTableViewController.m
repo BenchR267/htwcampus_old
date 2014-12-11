@@ -22,6 +22,7 @@
 
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
+#import "NSURLRequest+IgnoreSSL.h"
 
 
 @interface HTWNotenTableViewController () <NSURLSessionDelegate, HTWAlertViewDelegate>
@@ -61,8 +62,16 @@
     [request setEntity:entity];
     [request setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     self.notenspiegel = [_context executeFetchRequest:request error:nil].mutableCopy;
     if (self.notenspiegel.count != 0) {
+        username = [defaults objectForKey:@"LoginNoten2"];
+        password = [defaults objectForKey:@"PasswortNoten2"];
+        if (username == nil || password == nil) {
+            [self showLoginPopup];
+        }
+        
         HTWNotenStartseiteHTMLParser *startseiteParser = [HTWNotenStartseiteHTMLParser new];
         self.notenspiegel = [startseiteParser groupSemester:self.notenspiegel].mutableCopy;
         notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
@@ -87,9 +96,8 @@
     }
     else {
         isLoading = true;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        username = [defaults objectForKey:@"LoginNoten"];
-        password = [defaults objectForKey:@"PasswortNoten"];
+        username = [defaults objectForKey:@"LoginNoten2"];
+        password = [defaults objectForKey:@"PasswortNoten2"];
         if (username && password) [self loadNoten];
         else //Ask for user login data
             [self showLoginPopup];
@@ -98,8 +106,8 @@
 
 - (IBAction)reloadNotenspiegel:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    username = [defaults objectForKey:@"LoginNoten"];
-    password = [defaults objectForKey:@"PasswortNoten"];
+    username = [defaults objectForKey:@"LoginNoten2"];
+    password = [defaults objectForKey:@"PasswortNoten2"];
     notendurchschnitt = 0.0;
     self.notenspiegel = nil;
     [self.tableView reloadData];
@@ -115,8 +123,8 @@
     
     HTWAlertNavigationController *loginModal = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
     loginModal.htwTitle = @"HISQIS Portal";
-    loginModal.message = @"Bitte geben Sie Ihre Matrikelnummer und das zugehörige HISQIS-Passwort ein.";
-    loginModal.mainTitle = @[@"Login", @"Passwort"];
+    loginModal.message = @"ACHTUNG! Bitte geben Sie Ihre S-Nummer und das zugehörige Unix-Passwort an. Das System wurde umgestellt.";
+    loginModal.mainTitle = @[@"S-Nummer", @"Unix-Passwort"];
     loginModal.numberOfSecureTextField = @[@1];
     loginModal.htwDelegate = self;
     loginModal.tag = LOGINMODAL_TAG;
@@ -125,11 +133,28 @@
 
 - (void)loadNoten {
     
-#define getPos @"https://wwwqis.htw-dresden.de/qisserver/api/student/getcourses"
-#define getGrade @"https://wwwqis.htw-dresden.de/qisserver/api/student/getgrades"
+    
+#define getPos @"https://wwwqis.htw-dresden.de/appservice/getcourses"
+#define getGrade @"https://wwwqis.htw-dresden.de/appservice/getgrades"
+//#define getPos @"https://wwwqis.htw-dresden.de/qisserver/api/student/getcourses"
+//#define getGrade @"https://wwwqis.htw-dresden.de/qisserver/api/student/getgrades"
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sNummer=%@&RZLogin=%@", getPos, username, password]];
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sNummer=%@&RZLogin=%@", getPos, username, password]];
+    
+    NSString *post = [NSString stringWithFormat:@"sNummer=%@&RZLogin=%@",username, password];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[post length]];
+    
+//    [NSURLRequest allowsAnyHTTPSCertificateForHost:[[NSURL URLWithString:getPos] host]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:getPos]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:postData];
+    [request setTimeoutInterval:10];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
         
         // Fehler in der Übertragung
         if (data == nil || connectionError != nil) {
@@ -139,7 +164,6 @@
         
         // HTTP Status Code ausgeben
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-        NSLog(@"HTTP Status Code: %ld", (long)httpResponse.statusCode);
         
         if (httpResponse.statusCode == 401) {
             // sNummer/RZLogin sind falsch
@@ -169,8 +193,21 @@
                 NSString *AbschlNr = dic[@"AbschlNr"];
                 NSString *StgNr = dic[@"StgNr"];
                 NSString *POVersion = dic[@"POVersion"];
-                NSURL *getGradeURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?sNummer=%@&RZLogin=%@&AbschlNr=%@&StgNr=%@&POVersion=%@",getGrade, username, password, AbschlNr, StgNr, POVersion]];
-                [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:getGradeURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                
+                NSString *post2 = [NSString stringWithFormat:@"sNummer=%@&RZLogin=%@&AbschlNr=%@&StgNr=%@&POVersion=%@",username, password, AbschlNr, StgNr, POVersion];
+                NSData *postData2 = [post2 dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+                NSString *postLength2 = [NSString stringWithFormat:@"%lu", (unsigned long)[post length]];
+                
+                NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:getGrade]];
+                
+                [request2 setHTTPMethod:@"POST"];
+                [request2 setValue:postLength2 forHTTPHeaderField:@"Content-Length"];
+                [request2 setHTTPBody:postData2];
+                [request2 setTimeoutInterval:10];
+                
+                
+                
+                [NSURLConnection sendAsynchronousRequest:request2 queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                     // Fehler in der Übertragung
                     if (data == nil || connectionError != nil) {
                         NSLog(@"%@", connectionError.localizedDescription);
@@ -179,7 +216,6 @@
                     
                     // HTTP Status Code ausgeben
                     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-                    NSLog(@"HTTP Status Code: %ld", (long)httpResponse.statusCode);
                     
                     if (httpResponse.statusCode == 401) {
                         // sNummer/RZLogin sind falsch
@@ -203,8 +239,8 @@
                         // Angaben stimmen JSON-Array befindet sich in data
                         
                         if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NotenLoginNieSpeichern"] &&
-                           ![username isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginNoten"]] &&
-                           ![password isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"PasswortNoten"]])
+                           ![username isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginNoten2"]] &&
+                           ![password isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"PasswortNoten2"]])
                         {
                             UIAlertView *saveAlert = [[UIAlertView alloc] init];
                             saveAlert.message = @"Soll der Login gespeichert werden?";
@@ -224,7 +260,7 @@
                             Note *neueNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.context];
                             neueNote.credits = [NSNumber numberWithDouble:((NSString*)fach[@"EctsCredits"]).doubleValue];
                             neueNote.name = fach[@"PrTxt"];
-                            neueNote.note = [NSNumber numberWithDouble:((NSString*)fach[@"EctsGrade"]).doubleValue];
+                            neueNote.note = [NSNumber numberWithDouble:((NSString*)fach[@"PrNote"]).doubleValue/100];
                             neueNote.nr = [NSNumber numberWithDouble:((NSString*)fach[@"PrNr"]).doubleValue];
                             neueNote.semester = [self ausformuliertesSemesterVon:fach[@"Semester"]];
                             neueNote.status = fach[@"Status"];
@@ -234,9 +270,9 @@
                         
                         // Noten aus der DB laden und anzeigen
                         NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-                        self.notenspiegel = (NSMutableArray*)[self.context executeFetchRequest:request error:nil];
+                        NSMutableArray *allenoten = (NSMutableArray*)[self.context executeFetchRequest:request error:nil];
                         
-                        self.notenspiegel = [(NSArray*)[self.context executeFetchRequest:request error:nil] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                        self.notenspiegel = [[self groupNotenBySemester:allenoten] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
                             NSString *semester = [(Note*)[obj2 objectAtIndex:0] semester];
                             NSString *jahr;
                             if([semester componentsSeparatedByString:@" "].count > 1)
@@ -271,10 +307,11 @@
 -(void)deleteAllNoten
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-    NSArray *alleNoten = [self.context executeFetchRequest:request error:nil];
+    NSMutableArray *alleNoten = (NSMutableArray*)[self.context executeFetchRequest:request error:nil];
     for (Note *temp in alleNoten) {
-        [self.context delete:temp];
+        [self.context deleteObject:temp];
     }
+    [self.context save:nil];
 }
 
 -(NSString*)ausformuliertesSemesterVon:(NSString*)semester
@@ -296,10 +333,60 @@
     return @"";
 }
 
+-(NSMutableArray*)groupNotenBySemester:(NSMutableArray*)alleNoten
+{
+    NSMutableArray *newNotenspiegel = [[NSMutableArray alloc] init];
+    int tempIndex = 0;
+    int indexCount = 0;
+    NSMutableDictionary *semesterIndex = [[NSMutableDictionary alloc] init];
+    
+    for (Note *fach in alleNoten) {
+        if (!([semesterIndex count] == 0)) {
+            if ([[semesterIndex objectForKey:[NSNumber numberWithInt:tempIndex]] isEqualToString:fach.semester]) {
+                [[newNotenspiegel objectAtIndex:tempIndex] addObject:fach];
+            }
+            else {
+                //check if semester alread exists or not
+                bool foundSemester = false;
+                for (NSString* key in semesterIndex) {
+                    NSString *value = [semesterIndex objectForKey:key];
+                    
+                    if ([value isEqualToString:fach.semester]) {
+                        foundSemester = true;
+                        tempIndex = [key intValue];
+                        break;
+                    }
+                }
+                if (!foundSemester) {
+                    [semesterIndex setObject:fach.semester forKey:[@(indexCount) stringValue]];
+                    [newNotenspiegel addObject:[[NSMutableArray alloc] init]];
+                    tempIndex = indexCount;
+                    indexCount++;
+                }
+                
+                [[newNotenspiegel objectAtIndex:tempIndex] addObject:fach];
+            }
+        }
+        else {
+            tempIndex = indexCount;
+            [newNotenspiegel addObject:[[NSMutableArray alloc] init]];
+            [semesterIndex setObject:fach.semester forKey:[@(tempIndex) stringValue]];
+            [[newNotenspiegel objectAtIndex:tempIndex] addObject:fach];
+            indexCount++;
+        }
+    }
+    return newNotenspiegel;
+}
+
 -(void)htwAlert:(HTWAlertNavigationController *)alert gotStringsFromTextFields:(NSArray *)strings
 {
     if(alert.tag == LOGINMODAL_TAG) {
             NSString *usernameText = strings[0];
+        
+        if (![usernameText hasPrefix:@"s"]) {
+            usernameText = [NSString stringWithFormat:@"s%@", usernameText];
+        }
+        
             NSString *passwordText = strings[1];
             
             if (usernameText && usernameText.length > 0 &&
@@ -308,8 +395,8 @@
                 username = usernameText;
                 password = passwordText;
                 
-                [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"LoginNoten"];
-                [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"PasswortNoten"];
+                [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"LoginNoten2"];
+                [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"PasswortNoten2"];
                 
                 [self reloadNotenspiegel:self.navigationItem.rightBarButtonItem];
             }
@@ -340,8 +427,8 @@
         NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
         if ([buttonTitle isEqualToString:@"Ja"]) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:username forKey:@"LoginNoten"];
-            [defaults setObject:password forKey:@"PasswortNoten"];
+            [defaults setObject:username forKey:@"LoginNoten2"];
+            [defaults setObject:password forKey:@"PasswortNoten2"];
         }
         else if ([buttonTitle isEqualToString:@"Nein, nicht mehr fragen"])
         {
