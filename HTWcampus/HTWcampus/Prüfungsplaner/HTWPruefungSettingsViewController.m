@@ -87,7 +87,13 @@
     switch (_switchViewControllers.selectedSegmentIndex) {
         case 0: // Studiengruppe
             [[NSUserDefaults standardUserDefaults] setObject:[(HTWNeueStudiengruppe*)[_allViewControllers[0] viewControllers][0] jahrTextField].text forKey:@"pruefungJahr"];
+            if ([[(HTWNeueStudiengruppe*)[_allViewControllers[0] viewControllers][0] jahrTextField].text isEqualToString:@""]) {
+                [[NSUserDefaults standardUserDefaults] setObject:@"12" forKey:@"pruefungJahr"];
+            }
             [[NSUserDefaults standardUserDefaults] setObject:[(HTWNeueStudiengruppe*)[_allViewControllers[0] viewControllers][0] gruppeTextField].text forKey:@"pruefungGruppe"];
+            if ([[(HTWNeueStudiengruppe*)[_allViewControllers[0] viewControllers][0] gruppeTextField].text isEqualToString:@""]) {
+                [[NSUserDefaults standardUserDefaults] setObject:@"041" forKey:@"pruefungGruppe"];
+            }
             break;
         case 1: // Prüfender
             [[NSUserDefaults standardUserDefaults] setObject:[(HTWDozentEingebenTableViewController*)[_allViewControllers[1] viewControllers][0] dozentTextField].text forKey:@"pruefungDozent"];

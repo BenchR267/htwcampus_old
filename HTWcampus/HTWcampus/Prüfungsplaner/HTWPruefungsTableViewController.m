@@ -101,6 +101,17 @@
                 [errorAlert show];
             });
             return;}
+        if (erg.count == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Fehler"
+                                                                     message:@"Es wurden leider keine Prüfungen für diese Eingabe gefunden."
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"Ok"
+                                                           otherButtonTitles:nil];
+                [errorAlert show];
+            });
+            return;
+        }
         self.pruefungsArray = [NSArray arrayWithArray:erg];
         [self.vorher removeAllObjects];
         [self.nachher removeAllObjects];

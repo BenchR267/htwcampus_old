@@ -383,12 +383,13 @@
     if(alert.tag == LOGINMODAL_TAG) {
             NSString *usernameText = strings[0];
         
+        usernameText = [NSString stringWithFormat:@"%ld", (long)usernameText.integerValue];
         if (![usernameText hasPrefix:@"s"]) {
             usernameText = [NSString stringWithFormat:@"s%@", usernameText];
         }
         
             NSString *passwordText = strings[1];
-            
+        
             if (usernameText && usernameText.length > 0 &&
                 passwordText && passwordText.length > 0) {
 //                NSLog(@"%@ %@", strings[0], strings[1]);
@@ -548,7 +549,7 @@
         
         if (indexPath.section == 0) {
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            cell.textLabel.text = [NSString stringWithFormat:@"∅ %.2f", notendurchschnitt];
+            cell.textLabel.text = [NSString stringWithFormat:@"Gesamt: ∅ %.2f", notendurchschnitt];
             cell.textLabel.font = [UIFont HTWExtraLargeFont];
             cell.textLabel.textColor = [UIColor HTWGrayColor];
             cell.backgroundColor = [UIColor clearColor];

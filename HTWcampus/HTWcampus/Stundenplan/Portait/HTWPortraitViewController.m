@@ -156,8 +156,8 @@
         
         HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
         alert.htwTitle = @"Hallo";
-        alert.message = @"Bitte geben Sie Ihre Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein, damit der Stundenplan geladen werden kann.";
-        alert.mainTitle = @[@"Name (optional)",@"Kennung"];
+        alert.message = @"Bitte geben Sie Ihre Kennung ein, damit der Stundenplan geladen werden kann.\n(Matrnr oder Studiengruppe oder Dozentenkennung)";
+        alert.mainTitle = @[@"Kennung",@"Name (optional)"];
         alert.htwDelegate = self;
         alert.tag = ALERT_EINGEBEN;
         [self presentViewController:alert animated:NO completion:^{}];
@@ -287,10 +287,10 @@
 {
     if(alert.tag == ALERT_EINGEBEN)
     {   
-        NSString *eingegeben = strings[1];
+        NSString *eingegeben = strings[0];
         if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
             
-            Matrnr = strings[1];
+            Matrnr = strings[0];
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
             
@@ -299,7 +299,7 @@
             if ([_angezeigteStunden count] == 0) {
                 Matrnr = [defaults objectForKey:@"Matrikelnummer"];
                 _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:Matrnr andRaum:NO];
-                if(strings[0] && ![strings[0] isEqualToString:@""]) _parser.name = strings[0];
+                if(strings[1] && ![strings[1] isEqualToString:@""]) _parser.name = strings[1];
                 [_parser setDelegate:self];
                 [defaults setObject:Matrnr forKey:@"altMatrikelnummer"];
                 [_parser parserStart];
@@ -310,13 +310,13 @@
             }
         }
         else {
-            Matrnr = strings[1];
+            Matrnr = strings[0];
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
             [defaults setBool:YES forKey:@"Dozent"];
             
             _csvParser = [[HTWCSVConnection alloc] initWithPassword:Matrnr];
-            if(strings[0] && ![strings[0] isEqualToString:@""]) _csvParser.eName = strings[0];
+            if(strings[1] && ![strings[1] isEqualToString:@""]) _csvParser.eName = strings[1];
             _csvParser.delegate = self;
             [_csvParser startParser];
         }
@@ -737,7 +737,7 @@
         UIColor *linieUndClock = [UIColor colorWithRed:221/255.f green:72/255.f blue:68/255.f alpha:1];
         
         CGFloat y = 54 + [[NSDate date] timeIntervalSinceDate:[today dateByAddingTimeInterval:7*60*60+30*60]] / 60 * PixelPerMin;
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, y, self.scrollView.contentSize.width, 1)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, y, self.scrollView.contentSize.width, 1.5)];
         lineView.backgroundColor = linieUndClock;
         lineView.alpha = 0.6;
         lineView.tag = LINEVIEW_TAG;
@@ -886,15 +886,32 @@
         
         picker.date = self.currentDate;
         
-        UIButton *buttonForDisablingPicker = [[UIButton alloc] initWithFrame:CGRectMake(0, picker.frame.size.height, self.view.frame.size.width, 500)];
-        buttonForDisablingPicker.tag = DATEPICKER_BUTTON_TAG;
-        [buttonForDisablingPicker addTarget:self action:@selector(changeDatePressed:) forControlEvents:UIControlEventTouchUpInside];
+#define BUTTONSHEIGHT 40
+        
+        UIView *buttonsView = [[UIView alloc] initWithFrame:CGRectMake(0, picker.frame.origin.y+picker.frame.size.height, self.view.frame.size.width, BUTTONSHEIGHT)];
+        buttonsView.tag = DATEPICKER_BUTTON_TAG;
+        buttonsView.backgroundColor = [UIColor HTWDarkGrayColor];
+        
+        UIButton *heuteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2, BUTTONSHEIGHT)];
+        [heuteButton setTitle:@"Heute" forState:UIControlStateNormal];
+        [heuteButton addTarget:self action:@selector(setToday) forControlEvents:UIControlEventTouchUpInside];
+        [buttonsView addSubview:heuteButton];
+        
+        UIButton *fertigButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, BUTTONSHEIGHT)];
+        [fertigButton setTitle:@"Fertig" forState:UIControlStateNormal];
+        [fertigButton addTarget:self action:@selector(changeDatePressed:) forControlEvents:UIControlEventTouchUpInside];
+        [buttonsView addSubview:fertigButton];
+        
+//        UIButton *buttonForDisablingPicker = [[UIButton alloc] initWithFrame:CGRectMake(0, picker.frame.size.height, self.view.frame.size.width, 500)];
+//        buttonForDisablingPicker.tag = DATEPICKER_BUTTON_TAG;
+//        [buttonForDisablingPicker addTarget:self action:@selector(changeDatePressed:) forControlEvents:UIControlEventTouchUpInside];
         
         [self.view addSubview:picker];
-        [self.view addSubview:buttonForDisablingPicker];
+        [self.view addSubview:buttonsView];
+//        [self.view addSubview:buttonForDisablingPicker];
         [self.view bringSubviewToFront:picker];
         self.scrollView.userInteractionEnabled = NO;
-        UIBarButtonItem *heute = [[UIBarButtonItem alloc] initWithTitle:@"Heute" style:UIBarButtonItemStyleBordered target:self action:@selector(setToday)];
+//        UIBarButtonItem *heute = [[UIBarButtonItem alloc] initWithTitle:@"Heute" style:UIBarButtonItemStyleBordered target:self action:@selector(setToday)];
 //        if(!_raumNummer) {
 //            [self.navigationItem setRightBarButtonItems:@[heute] animated:YES];
 //            for (UIView *temp in self.navigationItem.rightBarButtonItems) {
@@ -909,7 +926,7 @@
 //            }
 //        }
 //        else
-            [self.navigationItem setRightBarButtonItems:@[changeDateDone, heute] animated:YES];
+            [self.navigationItem setRightBarButtonItems:@[] animated:YES];
     }
     else
     {
@@ -946,7 +963,7 @@
     [self dueDateChanged:(UIDatePicker*)[self.view viewWithTag:DATEPICKER_TAG]];
 ////    if(!_raumNummer) [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.leftBarButtonItems[1]];
 ////    else
-        [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.rightBarButtonItem];
+//        [self changeDatePressed:(UIBarButtonItem*)self.navigationItem.rightBarButtonItem];
 }
 
 -(void) dueDateChanged:(UIDatePicker *)sender {

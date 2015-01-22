@@ -15,6 +15,8 @@
 #import "HTWPortraitViewController.h"
 #import "UIColor+HTW.h"
 
+#define IMAGEVIEW_TAG 8
+
 @interface HTWRaumplanerTableViewController() <HTWStundenplanParserDelegate, HTWAlleRaeumeDelegate, UIAlertViewDelegate>
 {
     HTWAppDelegate *appdelegate;
@@ -236,6 +238,16 @@
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum = 1)"]];
     
     _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
+    
+    if (_zimmer.count == 0) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+        imageView.image = [UIImage imageNamed:@"neuerRaum.png"];
+        imageView.tag = IMAGEVIEW_TAG;
+        [self.view addSubview:imageView];
+    }
+    else {
+        [[self.view viewWithTag:IMAGEVIEW_TAG] removeFromSuperview];
+    }
 }
 
 #pragma mark - IBActions

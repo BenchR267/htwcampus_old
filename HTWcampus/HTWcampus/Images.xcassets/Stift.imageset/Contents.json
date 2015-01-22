@@ -2,18 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "date_to.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "calendar@2x.png"
+      "filename" : "pencil@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "calendar@3x.png"
+      "filename" : "pencil@3x.png"
     }
   ],
   "info" : {

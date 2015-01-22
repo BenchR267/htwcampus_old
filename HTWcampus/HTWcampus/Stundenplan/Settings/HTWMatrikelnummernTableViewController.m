@@ -84,7 +84,7 @@
 {
     if(alert.tag == ALERT_EINGEBEN)
     {
-        NSString *eingegeben = strings[1];
+        NSString *eingegeben = strings[0];
         if (eingegeben.length == 0) return;
             if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
                 
@@ -108,7 +108,7 @@
                 if(tempArray.count == 0)
                 {
                     _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:matrNr andRaum:NO];
-                    if(strings[0] && ![strings[0] isEqualToString:@""]) _parser.name = strings[0];
+                    if(strings[1] && ![strings[1] isEqualToString:@""]) _parser.name = strings[1];
                     [_parser setDelegate:self];
                     [_parser parserStart];
                 }
@@ -123,7 +123,7 @@
                 }
             }
             else {
-                NSString *matrNr = strings[1];
+                NSString *matrNr = strings[0];
                 _dozentParser = nil;
                 
                 appdelegate = [[UIApplication sharedApplication] delegate];
@@ -142,7 +142,7 @@
                 if(tempArray.count == 0)
                 {
                     _dozentParser = [[HTWCSVConnection alloc] initWithPassword:matrNr];
-                    if(strings[0] && ![strings[0] isEqualToString:@""]) _dozentParser.eName = strings[0];
+                    if(strings[1] && ![strings[1] isEqualToString:@""]) _dozentParser.eName = strings[1];
                     _dozentParser.delegate = self;
                     [_dozentParser startParser];
                 }
@@ -330,7 +330,8 @@
         }
         
         
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
     }
 }
 
@@ -344,8 +345,8 @@
     
     HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
     [alert setHtwTitle:@"Neuer Stundenplan"];
-    alert.message = @"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:";
-    alert.mainTitle = @[@"Name (optional)",@"Kennung"];
+    alert.message = @"Bitte geben Sie Ihre Kennung ein, damit der Stundenplan geladen werden kann.\n(Matrnr oder Studiengruppe oder Dozentenkennung)";
+    alert.mainTitle = @[@"Kennung",@"Name (optional)"];
     alert.htwDelegate = self;
     alert.tag = ALERT_EINGEBEN;
     [self presentViewController:alert animated:YES completion:^{}];

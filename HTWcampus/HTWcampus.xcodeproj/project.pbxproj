@@ -131,6 +131,7 @@
 		E69A4AA6193741070072610A /* HTWImpressumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69A4AA5193741070072610A /* HTWImpressumViewController.m */; };
 		E69A4AA8193744340072610A /* Impressum.txt in Resources */ = {isa = PBXBuildFile; fileRef = E69A4AA7193744340072610A /* Impressum.txt */; };
 		E69BB0CC1928F89B002E5757 /* NSDate+HTW.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */; };
+		E6AA35E41A6D3454007EC39B /* neuerRaum.png in Resources */ = {isa = PBXBuildFile; fileRef = E6AA35E31A6D3454007EC39B /* neuerRaum.png */; };
 		E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */; };
 		E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */; };
 		E6B87E74192A71AB0052EC20 /* HTWTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */; };
@@ -362,6 +363,7 @@
 		E69A4AA7193744340072610A /* Impressum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Impressum.txt; path = Stundenplan/Settings/Impressum.txt; sourceTree = "<group>"; };
 		E69BB0CA1928F89B002E5757 /* NSDate+HTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+HTW.h"; path = "Categories/NSDate+HTW.h"; sourceTree = "<group>"; };
 		E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+HTW.m"; path = "Categories/NSDate+HTW.m"; sourceTree = "<group>"; };
+		E6AA35E31A6D3454007EC39B /* neuerRaum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neuerRaum.png; sourceTree = "<group>"; };
 		E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageContentViewController.h; path = PageViewFirstLaunch/HTWPageContentViewController.h; sourceTree = "<group>"; };
 		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageViewController.h; path = PageViewFirstLaunch/HTWPageViewController.h; sourceTree = "<group>"; };
@@ -796,6 +798,7 @@
 			children = (
 				E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */,
 				E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */,
+				E6AA35E31A6D3454007EC39B /* neuerRaum.png */,
 			);
 			name = "Raumübersicht";
 			sourceTree = "<group>";
@@ -1069,6 +1072,7 @@
 				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,
 				6D03D9B5193CA1F3001ED846 /* indicator-gray@2x.png in Resources */,
 				6D753A781917F20800C6BAA1 /* hausvii.jpg in Resources */,
+				E6AA35E41A6D3454007EC39B /* neuerRaum.png in Resources */,
 				6D753A501917A8C300C6BAA1 /* mensa-wueins.jpg in Resources */,
 				6DA949A91963066300C0E50C /* page3.png in Resources */,
 				6D753A641917C9A600C6BAA1 /* mensen.json in Resources */,

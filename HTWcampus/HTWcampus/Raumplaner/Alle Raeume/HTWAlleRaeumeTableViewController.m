@@ -175,7 +175,14 @@
 
 #pragma mark - UISearchDisplayController Delegate Methods
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    [self filterContentForSearchText:searchString scope:
+    
+    NSMutableString *mutableSearchString = [NSMutableString stringWithString:searchString];
+    if (mutableSearchString.length >= 2 && [mutableSearchString characterAtIndex:1] != ' ') {
+        [mutableSearchString insertString:@" " atIndex:1];
+    }
+    
+    
+    [self filterContentForSearchText:mutableSearchString scope:
      [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     return YES;
 }

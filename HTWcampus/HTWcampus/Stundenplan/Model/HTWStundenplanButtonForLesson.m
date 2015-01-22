@@ -31,7 +31,7 @@
 @property (nonatomic, strong) UILabel *kurzel;
 @property (nonatomic, strong) UILabel *raum;
 @property (nonatomic, strong) UILabel *typ;
-@property (nonatomic, strong) UIView *circle;
+@property (nonatomic, strong) UIImageView *circle;
 @property (nonatomic, strong) NSDate *currentDate;
 
 @end
@@ -70,7 +70,7 @@
         kurzel.textColor = [UIColor HTWWhiteColor];
         raum.textColor = [UIColor HTWWhiteColor];
         typ.textColor = [UIColor HTWWhiteColor];
-        _circle.backgroundColor = [UIColor HTWWhiteColor];
+//        _circle.backgroundColor = [UIColor HTWWhiteColor];
     }
 }
 
@@ -79,7 +79,7 @@
     
     for (UIView *this in self.subviews) {
         if([this isKindOfClass:[UILabel class]]) [(UILabel*)this setTextColor:[UIColor HTWWhiteColor]];
-        else if (this.tag == -9) this.backgroundColor = [UIColor whiteColor];
+//        else if (this.tag == -9) this.backgroundColor = [UIColor whiteColor];
     }
 }
 
@@ -88,7 +88,7 @@
     kurzel.textColor = [UIColor HTWDarkGrayColor];
     raum.textColor = [UIColor HTWGrayColor];
     typ.textColor = [UIColor HTWGrayColor];
-    _circle.backgroundColor = [UIColor HTWTextColor];
+//    _circle.backgroundColor = [UIColor HTWTextColor];
     
 }
 
@@ -192,11 +192,12 @@
     if(lesson.bemerkungen && ![lesson.bemerkungen isEqualToString:@""])
     {
         // Bemerkung ist vorhanden, muss im Button bemerkbar sein..
-        _circle = [[UIView alloc] init];
-        if(_portait) _circle.frame = CGRectMake(x+(width*6/7)+2, y+3, 10, 10);
+        _circle = [[UIImageView alloc] init];
+        [_circle setImage:[UIImage imageNamed:@"Stift"]];
+        if(_portait) _circle.frame = CGRectMake(x+width-10-2, y+3, 10, 10);
         else _circle.frame = CGRectMake(x+(width*6/7)+2, y+3, 7, 7);
-        _circle.backgroundColor = [UIColor HTWTextColor];
-        _circle.layer.cornerRadius = _circle.frame.size.height/2;
+//        _circle.backgroundColor = [UIColor HTWTextColor];
+//        _circle.layer.cornerRadius = _circle.frame.size.height/2;
         _circle.tag = -9;
         [self addSubview:_circle];
     }

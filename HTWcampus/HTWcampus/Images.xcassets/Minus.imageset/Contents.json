@@ -8,11 +8,12 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "minus-circle-7@2x.png"
+      "filename" : "visible@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "visible@3x.png"
     }
   ],
   "info" : {

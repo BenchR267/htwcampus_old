@@ -78,8 +78,8 @@
     _tageInPortraitSlider.value = (float)[defaults integerForKey:@"tageInPortrait"];
     _tageInLandscapeSlider.value = (float)[defaults integerForKey:@"anzahlTageLandscape"];
     _markierungsWertLabel.text = [NSString stringWithFormat:@"%.0f min Markierung vor Beginn der Stunde", _markierSlider.value];
-    _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Portrait", _tageInPortraitSlider.value];
-    _landscapeTageSliderWert.text = [NSString stringWithFormat:@"%.0f Tage im Landscape", _tageInLandscapeSlider.value];
+    _tageInPortraitLabel.text = [NSString stringWithFormat:@"%.0f Tage im Hochformat", _tageInPortraitSlider.value];
+    _landscapeTageSliderWert.text = [NSString stringWithFormat:@"%.0f Tage im Querformat", _tageInLandscapeSlider.value];
     
     self.navigationController.navigationBarHidden = NO;
     
