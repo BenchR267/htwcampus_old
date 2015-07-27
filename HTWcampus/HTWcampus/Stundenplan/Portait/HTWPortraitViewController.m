@@ -25,7 +25,7 @@
 #import "UIImage+Resize.h"
 #import "NSDate+HTW.h"
 
-#define VERSION_STRING @"1.1.0"
+#define VERSION_STRING @"1.2.0"
 #define UPDATE_CHECK_URL @"http://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/api/version.json"
 //#define UPDATE_CHECK_URL @"http://www.benchr.de/TEST/version.json"
 #define UPDATE_URL @"itms-services://?action=download-manifest&url=https://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/HTWcampus.plist"
