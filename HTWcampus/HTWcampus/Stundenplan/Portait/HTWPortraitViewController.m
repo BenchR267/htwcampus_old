@@ -155,8 +155,8 @@
     if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""]))) {
         
         HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
-        alert.htwTitle = @"Hallo";
-        alert.message = @"Bitte geben Sie Ihre Kennung ein, damit der Stundenplan geladen werden kann.\n(Matrnr oder Studiengruppe oder Dozentenkennung)";
+        alert.htwTitle = @"Neuer Stundenplan";
+        alert.message = @"Bitte Matrnr, Studiengruppe oder Dozentenkennung eingeben.";
         alert.mainTitle = @[@"Kennung",@"Name (optional)"];
         alert.htwDelegate = self;
         alert.tag = ALERT_EINGEBEN;

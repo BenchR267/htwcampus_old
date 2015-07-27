@@ -45,6 +45,7 @@
     
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.backgroundColor = [UIColor HTWBackgroundColor];
+    self.view.backgroundColor = [UIColor HTWBackgroundColor];
 
     [self.tableView reloadData];
 }
@@ -83,7 +84,7 @@
                 break;
             }
             if ([[NSDate date] compare:aktuell.anfang] == NSOrderedAscending &&
-                fabsf([aktuell.anfang timeIntervalSinceDate:[NSDate date]]) < fabsf([naechsteZeit timeIntervalSinceDate:[NSDate date]]))
+                fabs([aktuell.anfang timeIntervalSinceDate:[NSDate date]]) < fabs([naechsteZeit timeIntervalSinceDate:[NSDate date]]))
             {
                 naechsteZeit = aktuell.anfang;
             }
@@ -240,6 +241,9 @@
     _zimmer = [_context executeFetchRequest:fetchRequest error:nil];
     
     if (_zimmer.count == 0) {
+//        UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2000, 2000)];
+//        background.backgroundColor = [UIColor HTWSandColor];
+//        [self.view addSubview:background];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
         imageView.image = [UIImage imageNamed:@"neuerRaum.png"];
         imageView.tag = IMAGEVIEW_TAG;
@@ -253,7 +257,13 @@
 #pragma mark - IBActions
 
 - (IBAction)reloadButtonPressed:(UIBarButtonItem *)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aktualisierung" message:@"Wenn Sie auf OK tippen, werden alle Pläne der eingetragenen Räume mit denen auf den HTW-Servern aktualisiert. Je nach Anzahl der eingetragenen Räume kann dieser Vorgang etwas dauern." delegate:self cancelButtonTitle:@"Abbrechen" otherButtonTitles:@"Ok", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aktualisierung"
+                                                    message:@"Wenn Sie auf OK tippen, werden alle Pläne der eingetragenen Räume mit denen auf "
+                          "den HTW-Servern aktualisiert. Je nach Anzahl der eingetragenen Räume kann dieser Vorgang etwas dauern."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Abbrechen"
+                                          otherButtonTitles:@"Ok", nil];
+    
     [alert show];
 }
 

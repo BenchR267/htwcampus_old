@@ -345,7 +345,7 @@
     
     HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
     [alert setHtwTitle:@"Neuer Stundenplan"];
-    alert.message = @"Bitte geben Sie Ihre Kennung ein, damit der Stundenplan geladen werden kann.\n(Matrnr oder Studiengruppe oder Dozentenkennung)";
+    alert.message = @"Bitte Matrnr, Studiengruppe oder Dozentenkennung eingeben.";
     alert.mainTitle = @[@"Kennung",@"Name (optional)"];
     alert.htwDelegate = self;
     alert.tag = ALERT_EINGEBEN;

@@ -122,9 +122,9 @@
 - (void) showLoginPopup {
     
     HTWAlertNavigationController *loginModal = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
-    loginModal.htwTitle = @"HISQIS Portal";
-    loginModal.message = @"ACHTUNG! Bitte geben Sie Ihre S-Nummer und das zugehörige Unix-Passwort an. Das System wurde umgestellt.";
-    loginModal.mainTitle = @[@"S-Nummer", @"Unix-Passwort"];
+    loginModal.htwTitle = @"Noten abrufen";
+    loginModal.message = @"Bitte geben Sie Ihre Daten ein.";
+    loginModal.mainTitle = @[@"S-Nummer", @"Passwort"];
     loginModal.numberOfSecureTextField = @[@1];
     loginModal.htwDelegate = self;
     loginModal.tag = LOGINMODAL_TAG;
@@ -455,6 +455,8 @@
             {
                 NSNumber *note = fach.note;
 //                [note replaceOccurrencesOfString:@"," withString:@"." options:NSCaseInsensitiveSearch range:NSMakeRange(0, note.length)];
+                if (note.doubleValue == 0)
+                    continue;
                 
                 tempSumme += note.floatValue * fach.credits.floatValue;
                 creditsSum += fach.credits.floatValue;

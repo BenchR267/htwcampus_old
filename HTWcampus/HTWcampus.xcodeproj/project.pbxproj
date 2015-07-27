@@ -101,6 +101,7 @@
 		E623C8461A3252D2008338AF /* NSURLRequest+IgnoreSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = E623C8451A3252D2008338AF /* NSURLRequest+IgnoreSSL.m */; };
 		E62C484B191422DE00788651 /* HTWCSVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E62C4848191422DE00788651 /* HTWCSVConnection.m */; };
 		E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E62C484A191422DE00788651 /* HTWCSVParser.m */; };
+		E636AD4C1A79179200C3E772 /* neuerRaum.png in Resources */ = {isa = PBXBuildFile; fileRef = E636AD4B1A79179200C3E772 /* neuerRaum.png */; };
 		E63772C71908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
 		E63772C91908146300DEE8AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C81908146300DEE8AB /* CoreGraphics.framework */; };
 		E63772CB1908146300DEE8AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CA1908146300DEE8AB /* UIKit.framework */; };
@@ -108,12 +109,6 @@
 		E63772D31908146300DEE8AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E63772D11908146300DEE8AB /* InfoPlist.strings */; };
 		E63772D51908146300DEE8AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772D41908146300DEE8AB /* main.m */; };
 		E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772D81908146300DEE8AB /* HTWAppDelegate.m */; };
-		E63772E51908146300DEE8AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772E41908146300DEE8AB /* XCTest.framework */; };
-		E63772E61908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
-		E63772E71908146300DEE8AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CA1908146300DEE8AB /* UIKit.framework */; };
-		E63772E81908146300DEE8AB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772CC1908146300DEE8AB /* CoreData.framework */; };
-		E63772F01908146300DEE8AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E63772EE1908146300DEE8AB /* InfoPlist.strings */; };
-		E63772F21908146300DEE8AB /* HTWcampusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E63772F11908146300DEE8AB /* HTWcampusTests.m */; };
 		E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C6E190D3F34002AE150 /* HTWRaumParser.m */; };
 		E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C70190D3F34002AE150 /* HTWTabParser.m */; };
 		E6379C75190D3FD1002AE150 /* HTWTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6379C74190D3FD1002AE150 /* HTWTestViewController.m */; };
@@ -131,7 +126,6 @@
 		E69A4AA6193741070072610A /* HTWImpressumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69A4AA5193741070072610A /* HTWImpressumViewController.m */; };
 		E69A4AA8193744340072610A /* Impressum.txt in Resources */ = {isa = PBXBuildFile; fileRef = E69A4AA7193744340072610A /* Impressum.txt */; };
 		E69BB0CC1928F89B002E5757 /* NSDate+HTW.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */; };
-		E6AA35E41A6D3454007EC39B /* neuerRaum.png in Resources */ = {isa = PBXBuildFile; fileRef = E6AA35E31A6D3454007EC39B /* neuerRaum.png */; };
 		E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */; };
 		E6B771E7191C36E200E9A2A5 /* HTWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B771E5191C36E200E9A2A5 /* HTWPageViewController.m */; };
 		E6B87E74192A71AB0052EC20 /* HTWTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B87E73192A71AB0052EC20 /* HTWTabBarItem.m */; };
@@ -146,16 +140,6 @@
 		E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator-red.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E63772E91908146300DEE8AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E63772BB1908146300DEE8AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E63772C21908146300DEE8AB;
-			remoteInfo = HTWcampus;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E09CA6F319A4F3B600251B7D /* Embed App Extensions */ = {
@@ -317,6 +301,7 @@
 		E62C4848191422DE00788651 /* HTWCSVConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWCSVConnection.m; path = Stundenplan/Model/HTWCSVConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E62C4849191422DE00788651 /* HTWCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVParser.h; path = Stundenplan/Model/HTWCSVParser.h; sourceTree = "<group>"; };
 		E62C484A191422DE00788651 /* HTWCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVParser.m; path = Stundenplan/Model/HTWCSVParser.m; sourceTree = "<group>"; };
+		E636AD4B1A79179200C3E772 /* neuerRaum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neuerRaum.png; sourceTree = "<group>"; };
 		E63772C31908146300DEE8AB /* HTWDresden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTWDresden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772C61908146300DEE8AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E63772C81908146300DEE8AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -328,11 +313,7 @@
 		E63772D61908146300DEE8AB /* HTWcampus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTWcampus-Prefix.pch"; sourceTree = "<group>"; };
 		E63772D71908146300DEE8AB /* HTWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTWAppDelegate.h; sourceTree = "<group>"; };
 		E63772D81908146300DEE8AB /* HTWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HTWAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		E63772E31908146300DEE8AB /* HTWcampusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTWcampusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772E41908146300DEE8AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		E63772ED1908146300DEE8AB /* HTWcampusTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTWcampusTests-Info.plist"; sourceTree = "<group>"; };
-		E63772EF1908146300DEE8AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E63772F11908146300DEE8AB /* HTWcampusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTWcampusTests.m; sourceTree = "<group>"; };
 		E6379C6D190D3F34002AE150 /* HTWRaumParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumParser.h; path = Raumplaner/HTWRaumParser.h; sourceTree = "<group>"; };
 		E6379C6E190D3F34002AE150 /* HTWRaumParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumParser.m; path = Raumplaner/HTWRaumParser.m; sourceTree = "<group>"; };
 		E6379C6F190D3F34002AE150 /* HTWTabParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWTabParser.h; path = Raumplaner/HTWTabParser.h; sourceTree = "<group>"; };
@@ -363,7 +344,6 @@
 		E69A4AA7193744340072610A /* Impressum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Impressum.txt; path = Stundenplan/Settings/Impressum.txt; sourceTree = "<group>"; };
 		E69BB0CA1928F89B002E5757 /* NSDate+HTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+HTW.h"; path = "Categories/NSDate+HTW.h"; sourceTree = "<group>"; };
 		E69BB0CB1928F89B002E5757 /* NSDate+HTW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+HTW.m"; path = "Categories/NSDate+HTW.m"; sourceTree = "<group>"; };
-		E6AA35E31A6D3454007EC39B /* neuerRaum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neuerRaum.png; sourceTree = "<group>"; };
 		E6B771E2191C36E200E9A2A5 /* HTWPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageContentViewController.h; path = PageViewFirstLaunch/HTWPageContentViewController.h; sourceTree = "<group>"; };
 		E6B771E3191C36E200E9A2A5 /* HTWPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWPageContentViewController.m; path = PageViewFirstLaunch/HTWPageContentViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E6B771E4191C36E200E9A2A5 /* HTWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWPageViewController.h; path = PageViewFirstLaunch/HTWPageViewController.h; sourceTree = "<group>"; };
@@ -399,17 +379,6 @@
 				E63772CD1908146300DEE8AB /* CoreData.framework in Frameworks */,
 				E63772CB1908146300DEE8AB /* UIKit.framework in Frameworks */,
 				E63772C71908146300DEE8AB /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E63772E01908146300DEE8AB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E63772E51908146300DEE8AB /* XCTest.framework in Frameworks */,
-				E63772E81908146300DEE8AB /* CoreData.framework in Frameworks */,
-				E63772E71908146300DEE8AB /* UIKit.framework in Frameworks */,
-				E63772E61908146300DEE8AB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,7 +667,6 @@
 			isa = PBXGroup;
 			children = (
 				E63772CE1908146300DEE8AB /* HTWcampus */,
-				E63772EB1908146300DEE8AB /* HTWcampusTests */,
 				E63772C51908146300DEE8AB /* Frameworks */,
 				E63772C41908146300DEE8AB /* Products */,
 				E09CA6FF19A6038F00251B7D /* HTWcampus-Bridging-Header.h */,
@@ -709,7 +677,6 @@
 			isa = PBXGroup;
 			children = (
 				E63772C31908146300DEE8AB /* HTWDresden.app */,
-				E63772E31908146300DEE8AB /* HTWcampusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -764,24 +731,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E63772EB1908146300DEE8AB /* HTWcampusTests */ = {
-			isa = PBXGroup;
-			children = (
-				E63772F11908146300DEE8AB /* HTWcampusTests.m */,
-				E63772EC1908146300DEE8AB /* Supporting Files */,
-			);
-			path = HTWcampusTests;
-			sourceTree = "<group>";
-		};
-		E63772EC1908146300DEE8AB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E63772ED1908146300DEE8AB /* HTWcampusTests-Info.plist */,
-				E63772EE1908146300DEE8AB /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		E65737A419222AC100916A1A /* Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,7 +747,7 @@
 			children = (
 				E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */,
 				E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */,
-				E6AA35E31A6D3454007EC39B /* neuerRaum.png */,
+				E636AD4B1A79179200C3E772 /* neuerRaum.png */,
 			);
 			name = "Raumübersicht";
 			sourceTree = "<group>";
@@ -973,24 +922,6 @@
 			productReference = E63772C31908146300DEE8AB /* HTWDresden.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E63772E21908146300DEE8AB /* HTWcampusTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E63772F81908146300DEE8AB /* Build configuration list for PBXNativeTarget "HTWcampusTests" */;
-			buildPhases = (
-				E63772DF1908146300DEE8AB /* Sources */,
-				E63772E01908146300DEE8AB /* Frameworks */,
-				E63772E11908146300DEE8AB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E63772EA1908146300DEE8AB /* PBXTargetDependency */,
-			);
-			name = HTWcampusTests;
-			productName = HTWcampusTests;
-			productReference = E63772E31908146300DEE8AB /* HTWcampusTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1009,9 +940,6 @@
 							};
 						};
 					};
-					E63772E21908146300DEE8AB = {
-						TestTargetID = E63772C21908146300DEE8AB;
-					};
 				};
 			};
 			buildConfigurationList = E63772BE1908146300DEE8AB /* Build configuration list for PBXProject "HTWcampus" */;
@@ -1027,7 +955,6 @@
 			projectRoot = "";
 			targets = (
 				E63772C21908146300DEE8AB /* HTWcampus */,
-				E63772E21908146300DEE8AB /* HTWcampusTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1072,8 +999,8 @@
 				6D753A4B1917A8C300C6BAA1 /* goerlitz.jpg in Resources */,
 				6D03D9B5193CA1F3001ED846 /* indicator-gray@2x.png in Resources */,
 				6D753A781917F20800C6BAA1 /* hausvii.jpg in Resources */,
-				E6AA35E41A6D3454007EC39B /* neuerRaum.png in Resources */,
 				6D753A501917A8C300C6BAA1 /* mensa-wueins.jpg in Resources */,
+				E636AD4C1A79179200C3E772 /* neuerRaum.png in Resources */,
 				6DA949A91963066300C0E50C /* page3.png in Resources */,
 				6D753A641917C9A600C6BAA1 /* mensen.json in Resources */,
 				6D753A511917A8C300C6BAA1 /* mensasport.jpg in Resources */,
@@ -1088,14 +1015,6 @@
 				6D753A491917A8C300C6BAA1 /* altemensa.jpg in Resources */,
 				6D753A571917A8C300C6BAA1 /* reichenbachstrasse.jpg in Resources */,
 				6D7B451C1908150F00D99C9D /* main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E63772E11908146300DEE8AB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E63772F01908146300DEE8AB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1186,37 +1105,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E63772DF1908146300DEE8AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E63772F21908146300DEE8AB /* HTWcampusTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E63772EA1908146300DEE8AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E63772C21908146300DEE8AB /* HTWcampus */;
-			targetProxy = E63772E91908146300DEE8AB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E63772D11908146300DEE8AB /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E63772D21908146300DEE8AB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E63772EE1908146300DEE8AB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E63772EF1908146300DEE8AB /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1337,48 +1232,6 @@
 			};
 			name = Release;
 		};
-		E63772F91908146300DEE8AB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTWcampus.app/HTWcampus";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "HTWcampusTests/HTWcampusTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		E63772FA1908146300DEE8AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTWcampus.app/HTWcampus";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
-				INFOPLIST_FILE = "HTWcampusTests/HTWcampusTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1396,15 +1249,6 @@
 			buildConfigurations = (
 				E63772F61908146300DEE8AB /* Debug */,
 				E63772F71908146300DEE8AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E63772F81908146300DEE8AB /* Build configuration list for PBXNativeTarget "HTWcampusTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E63772F91908146300DEE8AB /* Debug */,
-				E63772FA1908146300DEE8AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
