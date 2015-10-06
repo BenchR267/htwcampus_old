@@ -25,7 +25,7 @@
 #import "UIImage+Resize.h"
 #import "NSDate+HTW.h"
 
-#define VERSION_STRING @"1.2.0"
+#define VERSION_STRING @"1.3.0"
 #define UPDATE_CHECK_URL @"http://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/api/version.json"
 //#define UPDATE_CHECK_URL @"http://www.benchr.de/TEST/version.json"
 #define UPDATE_URL @"itms-services://?action=download-manifest&url=https://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/HTWcampus.plist"
@@ -168,7 +168,7 @@
 {
     NSDate *lastCheck = [[NSUserDefaults standardUserDefaults] objectForKey:LAST_CHECK_DATE_KEY];
     if (lastCheck != nil) {
-        if ([[NSDate date] timeIntervalSinceDate:lastCheck] <= 60*60*24) {
+        if ([[NSDate date] timeIntervalSinceDate:lastCheck] <= 60*60) {
             return;
         }
     }
@@ -694,8 +694,8 @@
     zeitenView.backgroundColor = [UIColor HTWDarkGrayColor];
     zeitenView.tag = ZEITENVIEW_TAG;
     
-    NSArray *vonStrings = @[@"07:30", @"09:20", @"11:10", @"13:10", @"15:00", @"16:50", @"18:30"];
-    NSArray *bisStrings = @[@"09:00", @"10:50", @"12:40", @"14:40", @"16:30", @"18:20", @"20:00"];
+    NSArray *vonStrings = @[@"07:30", @"09:20", @"11:10", @"13:20", @"15:10", @"17:00", @"18:40"];
+    NSArray *bisStrings = @[@"09:00", @"10:50", @"12:40", @"14:50", @"16:40", @"18:30", @"20:10"];
     NSArray *stundenZeiten = @[[today dateByAddingTimeInterval:60*60*7+60*30],
                                [today dateByAddingTimeInterval:60*60*9+60*20],
                                [today dateByAddingTimeInterval:60*60*11+60*10],
