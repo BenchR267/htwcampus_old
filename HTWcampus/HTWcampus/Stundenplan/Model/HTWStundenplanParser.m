@@ -76,7 +76,7 @@ NSMutableData *receivedData;
 -(void)parserStart
 {
     // Request String für PHP-Argumente
-    NSString *myRequestString = [NSString stringWithFormat:@"matr=%@&pressme=%@",self.Matrnr,@"S+T+A+R+T"];
+    NSString *myRequestString = [NSString stringWithFormat:@"matr=%@&pressme=%@",self.Matrnr,@"S T A R T"];
     
     // NSData synchron füllen (wird im ViewController durch unterschiedliche Threads ansynchron)
     NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
