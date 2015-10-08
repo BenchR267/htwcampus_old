@@ -100,6 +100,8 @@
         detailTextField.textColor = [UIColor HTWBlueColor];
         
         if (indexPath.row == 0) [detailTextField becomeFirstResponder];
+        
+        [cell.contentView bringSubviewToFront:detailTextField];
     }
     else
     {
