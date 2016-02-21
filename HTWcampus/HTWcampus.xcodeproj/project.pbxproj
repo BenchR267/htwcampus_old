@@ -75,6 +75,7 @@
 		6DA949A81963066300C0E50C /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A31963066300C0E50C /* page5.png */; };
 		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
+		B54E0C981C7A0A10008C6F31 /* HTWTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E0C971C7A0A10008C6F31 /* HTWTrack.swift */; };
 		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
 		E09A735519DDDD610078EDD7 /* HTWDresden Debug.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E09A735419DDDD610078EDD7 /* HTWDresden Debug.entitlements */; };
 		E0B2921419D2BE7000528070 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B2921319D2BE7000528070 /* Launch Screen.xib */; };
@@ -252,6 +253,7 @@
 		6DA949A31963066300C0E50C /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page5.png; path = PageViewFirstLaunch/Bilder/page5.png; sourceTree = "<group>"; };
 		6DA949A41963066300C0E50C /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page3.png; path = PageViewFirstLaunch/Bilder/page3.png; sourceTree = "<group>"; };
 		6DA949A51963066300C0E50C /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
+		B54E0C971C7A0A10008C6F31 /* HTWTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTWTrack.swift; sourceTree = "<group>"; };
 		E05B181619A48DD20057E2F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = Stundenplan/Model/Note.h; sourceTree = "<group>"; };
 		E05B181719A48DD20057E2F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = Stundenplan/Model/Note.m; sourceTree = "<group>"; };
 		E09A735419DDDD610078EDD7 /* HTWDresden Debug.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "HTWDresden Debug.entitlements"; sourceTree = "<group>"; };
@@ -723,6 +725,7 @@
 			children = (
 				E63772D71908146300DEE8AB /* HTWAppDelegate.h */,
 				E63772D81908146300DEE8AB /* HTWAppDelegate.m */,
+				B54E0C971C7A0A10008C6F31 /* HTWTrack.swift */,
 				E63772D01908146300DEE8AB /* HTWcampus-Info.plist */,
 				E63772D11908146300DEE8AB /* InfoPlist.strings */,
 				E63772D41908146300DEE8AB /* main.m */,
@@ -1072,6 +1075,7 @@
 				E61D883919085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D94EA4419152FDB00872FC8 /* TxtChunk.m in Sources */,
 				E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */,
+				B54E0C981C7A0A10008C6F31 /* HTWTrack.swift in Sources */,
 				E61D88141908583C0033D543 /* HTWStundenplanButtonForLesson.m in Sources */,
 				6D94E9DB191524B300872FC8 /* HTWNotenStartseiteHTMLParser.m in Sources */,
 				6D94EA3719152FDB00872FC8 /* CommentChunk.m in Sources */,
