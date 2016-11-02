@@ -937,6 +937,7 @@
 				TargetAttributes = {
 					E63772C21908146300DEE8AB = {
 						DevelopmentTeam = 2URYCAZR48;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -1211,6 +1212,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1232,6 +1234,7 @@
 				PRODUCT_NAME = HTWDresden;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

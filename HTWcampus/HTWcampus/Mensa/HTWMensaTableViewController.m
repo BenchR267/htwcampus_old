@@ -9,8 +9,8 @@
 #define MENSAERROR_1 1
 #define MENSAERROR_2 2
 
-#define mensaTodayUrl @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss"
-#define mensaTomorrowUrl @"http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen"
+#define mensaTodayUrl @"https://www.studentenwerk-dresden.de/feeds/speiseplan.rss"
+#define mensaTomorrowUrl @"https://www.studentenwerk-dresden.de/feeds/speiseplan.rss?tag=morgen"
 
 #import "HTWMensaTableViewController.h"
 #import "HTWMensaSingleTableViewController.h"

@@ -14,7 +14,7 @@
 
 #import "NSDate+HTW.h"
 
-#define kURL [NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_kal.php"]
+#define kURL [NSURL URLWithString:@"https://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_kal.php"]
 
 @interface HTWCSVConnection () <HTWCSVParserDelegate>
 {
@@ -90,7 +90,7 @@
                 return;
             }
 
-            NSString *htmlForSemester = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"] encoding:NSASCIIStringEncoding error:nil];
+            NSString *htmlForSemester = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"] encoding:NSASCIIStringEncoding error:nil];
             semester = [htmlForSemester substringFromIndex:[htmlForSemester rangeOfString:@"</h3><h2>"].location + @"</h3><h2>".length];
             NSArray *teile = [semester componentsSeparatedByString:@" "];
             semester = [NSString stringWithFormat:@"%@ %@", teile[0], teile[1]];
@@ -117,7 +117,7 @@
             if(result) {
                 NSRange range = [result rangeAtIndex:1];
                 NSString *filename = [html substringWithRange:range];
-                NSString *fileURL = [NSString stringWithFormat:@"http://www2.htw-dresden.de/~rawa/cgi-bin/plan/%@", filename];
+                NSString *fileURL = [NSString stringWithFormat:@"https://www2.htw-dresden.de/~rawa/cgi-bin/plan/%@", filename];
 
                 _student = [NSEntityDescription
                             insertNewObjectForEntityForName:@"User"

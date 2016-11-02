@@ -12,7 +12,7 @@
 
 #import "NSDate+HTW.h"
 
-#define kURL @"http://www2.htw-dresden.de/~rawa/cgi-bin/plan/plan_quelle_app.txt"
+#define kURL @"https://www2.htw-dresden.de/~rawa/cgi-bin/plan/plan_quelle_app.txt"
 
 @interface HTWRaumParser () <HTWTabParserDelegate>
 {

@@ -18,7 +18,7 @@
 #import "UIFont+HTW.h"
 #import "NSDate+HTW.h"
 
-#define kURL [NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/pr_abfrage.php"]
+#define kURL [NSURL URLWithString:@"https://www2.htw-dresden.de/~rawa/cgi-bin/pr_abfrage.php"]
 
 @interface HTWPruefungsTableViewController () <HTWPruefungsSettingsDelegate>
 

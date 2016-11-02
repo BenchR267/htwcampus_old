@@ -80,7 +80,7 @@ NSMutableData *receivedData;
     
     // NSData synchron füllen (wird im ViewController durch unterschiedliche Threads ansynchron)
     NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: @"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"]
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: @"https://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:10];
 
@@ -114,7 +114,7 @@ NSMutableData *receivedData;
             return;
         }
 
-        NSString *htmlForSemester = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"] encoding:NSASCIIStringEncoding error:nil];
+        NSString *htmlForSemester = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan_app.php"] encoding:NSASCIIStringEncoding error:nil];
         semester = [htmlForSemester substringFromIndex:[htmlForSemester rangeOfString:@"</h3><h2>"].location + @"</h3><h2>".length];
         NSArray *teile = [semester componentsSeparatedByString:@" "];
         semester = [NSString stringWithFormat:@"%@ %@", teile[0], teile[1]];

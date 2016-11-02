@@ -9,43 +9,40 @@
 import UIKit
 
 @objc enum TrackType: Int {
-    case Start, Open
+    case start, open
 }
 
 enum Platform: Int {
-    case Android, iOS
+    case android, iOS
 }
 
 @objc class HTWTrack: NSObject {
     
-    class func track(type: TrackType) {
+    class func track(_ type: TrackType) {
         
-        let r = NSMutableURLRequest(URL: NSURL(string: "http://track.benchr.de/track")!)
+        var r = URLRequest(url: URL(string: "https://track.benchr.de/track")!)
         
-        r.HTTPMethod = "POST"
+        r.httpMethod = "POST"
         
         let p = [
             "plattform": Platform.iOS.rawValue,
-            "api": UIDevice.currentDevice().systemVersion,
-            "version": NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String,
-            "unique": UIDevice.currentDevice().identifierForVendor?.UUIDString ?? "unkown",
+            "api": UIDevice.current.systemVersion,
+            "version": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String,
+            "unique": UIDevice.current.identifierForVendor?.uuidString ?? "unkown",
             "type": type.rawValue
-        ]
+        ] as [String : Any]
         
-        let d = try? NSJSONSerialization.dataWithJSONObject(p, options: .PrettyPrinted)
-        r.HTTPBody = d
-        r.setValue(d?.length.description ?? "0", forHTTPHeaderField: "Content-Length")
+        let d = try? JSONSerialization.data(withJSONObject: p, options: .prettyPrinted)
+        r.httpBody = d
+        r.setValue(d?.count.description ?? "0", forHTTPHeaderField: "Content-Length")
         
-        NSURLSession.sharedSession().dataTaskWithRequest(r) {
+        URLSession.shared.dataTask(with: r, completionHandler: {
             d, r, e in
             
             if let e = e {
                 print(e)
                 return
             }
-            
-            print((r as? NSHTTPURLResponse)?.statusCode)
-            print(String(data: d!, encoding: NSUTF8StringEncoding))
-        }.resume()
+        }) .resume()
     }
 }
