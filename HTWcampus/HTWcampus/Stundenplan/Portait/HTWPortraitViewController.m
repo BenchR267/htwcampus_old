@@ -175,7 +175,8 @@
     
     NSString *urlString = UPDATE_CHECK_URL; // URL für das PHP, das die aktuelle Version enthält
     NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (data == nil || connectionError ) { return; }
