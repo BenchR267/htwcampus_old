@@ -20,7 +20,7 @@ enum Platform: Int {
     
     class func track(_ type: TrackType) {
         
-        var r = URLRequest(url: URL(string: "https://track.benchr.de/track")!)
+        var r = URLRequest(url: URL(string: "http://rubu2.rz.htw-dresden.de/API/track")!)
         r.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         
         r.httpMethod = "POST"
