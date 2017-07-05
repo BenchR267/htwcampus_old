@@ -936,9 +936,9 @@
 				ORGANIZATIONNAME = "Benjamin Herzog";
 				TargetAttributes = {
 					E63772C21908146300DEE8AB = {
-						DevelopmentTeam = 2URYCAZR48;
+						DevelopmentTeam = 3E4PGPNR47;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -1204,15 +1204,16 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2URYCAZR48;
+				DEVELOPMENT_TEAM = 3E4PGPNR47;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.htw-dresden.ios";
 				PRODUCT_NAME = HTWDresden;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "23ac1ed9-d5ff-40dd-b6e6-65676b733551";
+				PROVISIONING_PROFILE_SPECIFIER = "HTW App Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1228,15 +1229,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2URYCAZR48;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 3E4PGPNR47;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.htw-dresden.ios";
 				PRODUCT_NAME = HTWDresden;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4be22951-7cfe-4d20-b1f6-7e62e809c6ee";
+				PROVISIONING_PROFILE_SPECIFIER = "HTW App Distribution";
 				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
