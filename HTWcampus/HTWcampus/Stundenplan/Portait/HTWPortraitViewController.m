@@ -15,7 +15,6 @@
 #import "HTWLandscapeViewController.h"
 #import "HTWCSVExport.h"
 #import "HTWICSExport.h"
-#import "HTWCSVConnection.h"
 #import "HTWStundenplanEditDetailTableViewController.h"
 #import "HTWAlertNavigationController.h"
 
@@ -25,10 +24,6 @@
 #import "UIImage+Resize.h"
 #import "NSDate+HTW.h"
 
-#define VERSION_STRING @"1.4.1"
-#define UPDATE_CHECK_URL @"https://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/api/version.json"
-#define UPDATE_URL @"itms-services://?action=download-manifest&url=https://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/HTWcampus.plist"
-
 #define LAST_CHECK_DATE_KEY @"LASTCHECKDATEKEY"
 
 #define PixelPerMin 0.6
@@ -36,7 +31,6 @@
 #define ALERT_EXPORT 1
 #define ALERT_ERROR 2
 #define ALERT_NEW 3
-#define ALERT_VERSION 4
 #define DEPTH_FOR_PARALLAX 10
 #define DATEPICKER_TAG 222
 #define DATEPICKER_BUTTON_TAG 223
@@ -46,7 +40,7 @@
 #define LINEVIEW_TAG -3
 #define WOCHENTAGE_TAG -4
 
-@interface HTWPortraitViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, UIScrollViewDelegate, HTWAlertViewDelegate>
+@interface HTWPortraitViewController () <HTWStundenplanParserDelegate, UIScrollViewDelegate, HTWAlertViewDelegate>
 {
     NSString *Matrnr; // Nur für Stundenplan Studenten
     BOOL isPortrait;
@@ -63,7 +57,6 @@
 @property (nonatomic, strong) UIView *detailView;
 
 @property (nonatomic, strong) HTWStundenplanParser *parser;
-@property (nonatomic, strong) HTWCSVConnection *csvParser;
 
 
 @end
@@ -125,8 +118,6 @@
     [super viewDidLoad];
     isPortrait = YES;
     
-    [self checkVersion];
-
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
 
@@ -162,40 +153,6 @@
         alert.tag = ALERT_EINGEBEN;
         [self presentViewController:alert animated:NO completion:^{}];
     }
-}
-
--(void)checkVersion
-{
-    NSDate *lastCheck = [[NSUserDefaults standardUserDefaults] objectForKey:LAST_CHECK_DATE_KEY];
-    if (lastCheck != nil) {
-        if ([[NSDate date] timeIntervalSinceDate:lastCheck] <= 60*60) {
-            return;
-        }
-    }
-    
-    NSString *urlString = UPDATE_CHECK_URL; // URL für das PHP, das die aktuelle Version enthält
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (data == nil || connectionError ) { return; }
-        NSError *error;
-        NSDictionary *versionDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_CHECK_DATE_KEY];
-        if ([(NSString*)[versionDic objectForKey:@"version"] isEqualToString:VERSION_STRING]) {
-            // aktuelle Version installiert, alles gut... :)
-            return;
-        }
-        else {
-            // es gibt eine aktuellere Version
-            NSString *message = [NSString stringWithFormat:@"Eine neue Version (%@) ist verfügbar. Möchtest du die neue Version laden? (Aktuelle Version: %@)", (NSString*)[versionDic objectForKey:@"version"], VERSION_STRING];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warnung" message:message delegate:nil cancelButtonTitle:@"Nicht jetzt" otherButtonTitles:@"Laden", nil];
-            alert.delegate = self;
-            alert.tag = ALERT_VERSION;
-            [alert show];
-        }
-    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -236,7 +193,7 @@
     else self.title = self.raumNummer;
 
     
-    if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""])) && !_parser && !_csvParser) {
+    if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""])) && !_parser) {
         
         NSLog(@"Keine Kennung eingegeben.");
     }
@@ -315,11 +272,6 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
             [defaults setBool:YES forKey:@"Dozent"];
-            
-            _csvParser = [[HTWCSVConnection alloc] initWithPassword:Matrnr];
-            if(strings[1] && ![strings[1] isEqualToString:@""]) _csvParser.eName = strings[1];
-            _csvParser.delegate = self;
-            [_csvParser startParser];
         }
     }
     
@@ -514,11 +466,6 @@
             }];
         }
     }
-    else if (alertView.tag == ALERT_VERSION) {
-        if ([clickedButtonTitle isEqualToString:@"Laden"]) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UPDATE_URL]];
-        }
-    }
 }
 
 -(NSString *)alertViewCancelButtonTitle
@@ -544,18 +491,6 @@
     [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
 }
 
--(void)HTWCSVConnectionFinished:(HTWCSVConnection *)connection
-{
-    [self updateAngezeigteStunden];
-    
-    [self setUpInterface];
-    
-    UIAlertView *alert = [[UIAlertView alloc] init];
-    alert.title = @"Stundenplan erfolgreich heruntergeladen.";
-    [alert show];
-    [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
-}
-
 -(void)HTWStundenplanParser:(HTWStundenplanParser *)parser Error:(NSString *)errorMessage
 {
     UIAlertView *alert = [UIAlertView new];
@@ -565,17 +500,6 @@
     alert.delegate = self;
     [alert show];
 }
-
--(void)HTWCSVConnection:(HTWCSVConnection *)connection Error:(NSString *)errorMessage
-{
-    UIAlertView *alert = [UIAlertView new];
-    alert.message = errorMessage;
-    [alert addButtonWithTitle:@"Wiederholen"];
-    alert.tag = ALERT_ERROR;
-    alert.delegate = self;
-    [alert show];
-}
-
 
 #pragma mark - Interface
 

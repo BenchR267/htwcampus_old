@@ -381,9 +381,8 @@
 -(void)htwAlert:(HTWAlertNavigationController *)alert gotStringsFromTextFields:(NSArray *)strings
 {
     if(alert.tag == LOGINMODAL_TAG) {
-            NSString *usernameText = strings[0];
+        NSString *usernameText = strings[0];
         
-        usernameText = [NSString stringWithFormat:@"%ld", (long)usernameText.integerValue];
         if (![usernameText hasPrefix:@"s"]) {
             usernameText = [NSString stringWithFormat:@"s%@", usernameText];
         }

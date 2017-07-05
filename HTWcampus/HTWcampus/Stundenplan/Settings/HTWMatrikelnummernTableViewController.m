@@ -10,7 +10,6 @@
 
 #import "HTWAppDelegate.h"
 #import "HTWStundenplanParser.h"
-#import "HTWCSVConnection.h"
 #import "User.h"
 #import "HTWMatrikelnummernEditTableViewController.h"
 #import "HTWAlertNavigationController.h"
@@ -23,7 +22,7 @@
 #define ALERT_FEHLER 111
 #define ALERT_WARNUNG 112
 
-@interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWCSVConnectionDelegate, HTWAlertViewDelegate, UIAlertViewDelegate>
+@interface HTWMatrikelnummernTableViewController () <HTWStundenplanParserDelegate, HTWAlertViewDelegate, UIAlertViewDelegate>
 {
     HTWAppDelegate *appdelegate;
     NSString *Matrnr;
@@ -31,7 +30,6 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) HTWStundenplanParser *parser;
-@property (nonatomic, strong) HTWCSVConnection *dozentParser;
 @property (nonatomic, strong) NSArray *nummern;
 
 @end
@@ -122,40 +120,6 @@
                     [alert show];
                 }
             }
-            else {
-                NSString *matrNr = strings[0];
-                _dozentParser = nil;
-                
-                appdelegate = [[UIApplication sharedApplication] delegate];
-                _context = [appdelegate managedObjectContext];
-                
-                NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-                NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
-                [fetchRequest setEntity:entity];
-                
-                [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-                
-                [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0) && (matrnr = %@)", matrNr]];
-                
-                NSMutableArray *tempArray = [NSMutableArray arrayWithArray:[_context executeFetchRequest:fetchRequest error:nil]];
-                
-                if(tempArray.count == 0)
-                {
-                    _dozentParser = [[HTWCSVConnection alloc] initWithPassword:matrNr];
-                    if(strings[1] && ![strings[1] isEqualToString:@""]) _dozentParser.eName = strings[1];
-                    _dozentParser.delegate = self;
-                    [_dozentParser startParser];
-                }
-                else
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nummer schon vorhanden"
-                                                                    message:@"Die Nummer ist in der Datenbank schon vorhanden, bitte tippen Sie stattdessen auf das Aktualisieren-Symbol."
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"Ok"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-                }
-            }
     }
 }
 
@@ -180,11 +144,6 @@
                 [_parser setDelegate:self];
                 [_parser parserStart];
             }
-            else {
-                _dozentParser = [[HTWCSVConnection alloc] initWithPassword:[(User*)_nummern[path.row] matrnr]];
-                _dozentParser.delegate = self;
-                [_dozentParser startParser];
-            }
             
         }
     }
@@ -192,7 +151,7 @@
     {
         HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
         [alert setHtwTitle:@"Neuer Stundenplan"];
-        alert.message = @"Bitte geben Sie eine Matrikelnummer oder Studiengruppe bzw. Dozenten-Kennung ein:";
+        alert.message = @"Bitte geben Sie eine Matrikelnummer oder Studiengruppe ein:";
         alert.mainTitle = @[@"Name (optional)",@"Kennung"];
         alert.htwDelegate = self;
         alert.tag = ALERT_EINGEBEN;
@@ -405,61 +364,7 @@
     
 }
 
--(void)HTWCSVConnectionFinished:(HTWCSVConnection *)connection
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:_dozentParser.password forKey:@"Matrikelnummer"];
-    [defaults setBool:YES forKey:@"Dozent"];
-    
-    appdelegate = [[UIApplication sharedApplication] delegate];
-    _context = [appdelegate managedObjectContext];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:_context];
-    [fetchRequest setEntity:entity];
-    
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"matrnr" ascending:YES]]];
-    
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(raum == 0)"]];
-    
-    _nummern = [_context executeFetchRequest:fetchRequest error:nil];
-    
-    [self.tableView reloadData];
-    for (int i=0; i<_nummern.count; i++) {
-        User *aktuell = _nummern[i];
-        if ([aktuell.matrnr isEqualToString:_dozentParser.password]) {
-            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-            UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
-            imageView.tag = i;
-            [imageView setImage:[UIImage imageNamed:@"Reload"] forState:UIControlStateNormal];
-            imageView.imageView.image = [imageView.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            [imageView setTintColor:[UIColor HTWDarkGrayColor]];
-            imageView.frame = CGRectMake(0, 0, 50, 50);
-            imageView.userInteractionEnabled = YES;
-            [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
-            cell.accessoryView = imageView;
-            
-            UIAlertView *alert = [[UIAlertView alloc] init];
-            alert.title = @"Stundenplan erfolgreich heruntergeladen.";
-            [alert show];
-            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
-            return;
-        }
-    }
-}
-
 -(void)HTWStundenplanParser:(HTWStundenplanParser *)parser Error:(NSString *)errorMessage
-{
-    UIAlertView *alert = [[UIAlertView alloc] init];
-    alert.title = @"Fehler";
-    alert.message = errorMessage;
-    [alert addButtonWithTitle:@"Ok"];
-    alert.tag = ALERT_FEHLER;
-    alert.delegate = self;
-    [alert show];
-}
-
--(void)HTWCSVConnection:(HTWCSVConnection *)connection Error:(NSString *)errorMessage
 {
     UIAlertView *alert = [[UIAlertView alloc] init];
     alert.title = @"Fehler";

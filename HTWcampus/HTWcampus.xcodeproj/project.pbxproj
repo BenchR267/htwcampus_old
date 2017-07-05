@@ -100,8 +100,6 @@
 		E61D883919085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D883219085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m */; };
 		E61D887F1908705E0033D543 /* HTWLandscapeSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E61D887E1908705E0033D543 /* HTWLandscapeSegue.m */; };
 		E623C8461A3252D2008338AF /* NSURLRequest+IgnoreSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = E623C8451A3252D2008338AF /* NSURLRequest+IgnoreSSL.m */; };
-		E62C484B191422DE00788651 /* HTWCSVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E62C4848191422DE00788651 /* HTWCSVConnection.m */; };
-		E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E62C484A191422DE00788651 /* HTWCSVParser.m */; };
 		E636AD4C1A79179200C3E772 /* neuerRaum.png in Resources */ = {isa = PBXBuildFile; fileRef = E636AD4B1A79179200C3E772 /* neuerRaum.png */; };
 		E63772C71908146300DEE8AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C61908146300DEE8AB /* Foundation.framework */; };
 		E63772C91908146300DEE8AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63772C81908146300DEE8AB /* CoreGraphics.framework */; };
@@ -137,7 +135,6 @@
 		E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DF7E0619137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m */; };
 		E6E624B019241800007AED51 /* HTWAlertNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E624AD19241800007AED51 /* HTWAlertNavigationController.m */; };
 		E6E624B119241800007AED51 /* HTWAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E624AF19241800007AED51 /* HTWAlertViewController.m */; };
-		E6EBD38F191A8E3000720962 /* HTWNotenSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */; };
 		E6FE12A119093D6700D56D52 /* indicator-red.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FE12A019093D6700D56D52 /* indicator-red.png */; };
 		E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -299,10 +296,6 @@
 		E61D887E1908705E0033D543 /* HTWLandscapeSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWLandscapeSegue.m; path = Stundenplan/Landscape/HTWLandscapeSegue.m; sourceTree = "<group>"; };
 		E623C8441A3252D2008338AF /* NSURLRequest+IgnoreSSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+IgnoreSSL.h"; sourceTree = "<group>"; };
 		E623C8451A3252D2008338AF /* NSURLRequest+IgnoreSSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+IgnoreSSL.m"; sourceTree = "<group>"; };
-		E62C4847191422DE00788651 /* HTWCSVConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVConnection.h; path = Stundenplan/Model/HTWCSVConnection.h; sourceTree = "<group>"; };
-		E62C4848191422DE00788651 /* HTWCSVConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWCSVConnection.m; path = Stundenplan/Model/HTWCSVConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		E62C4849191422DE00788651 /* HTWCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWCSVParser.h; path = Stundenplan/Model/HTWCSVParser.h; sourceTree = "<group>"; };
-		E62C484A191422DE00788651 /* HTWCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWCSVParser.m; path = Stundenplan/Model/HTWCSVParser.m; sourceTree = "<group>"; };
 		E636AD4B1A79179200C3E772 /* neuerRaum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neuerRaum.png; sourceTree = "<group>"; };
 		E63772C31908146300DEE8AB /* HTWDresden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTWDresden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63772C61908146300DEE8AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -365,8 +358,6 @@
 		E6E624AD19241800007AED51 /* HTWAlertNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWAlertNavigationController.m; path = Classes/HTWAlertView/HTWAlertNavigationController.m; sourceTree = "<group>"; };
 		E6E624AE19241800007AED51 /* HTWAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWAlertViewController.h; path = Classes/HTWAlertView/HTWAlertViewController.h; sourceTree = "<group>"; };
 		E6E624AF19241800007AED51 /* HTWAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWAlertViewController.m; path = Classes/HTWAlertView/HTWAlertViewController.m; sourceTree = "<group>"; };
-		E6EBD38D191A8E3000720962 /* HTWNotenSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWNotenSettingsTableViewController.h; path = Noten/HTWNotenSettingsTableViewController.h; sourceTree = "<group>"; };
-		E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTWNotenSettingsTableViewController.m; path = Noten/HTWNotenSettingsTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E6FE12A019093D6700D56D52 /* indicator-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator-red.png"; path = "Stundenplan/Portait/indicator-red.png"; sourceTree = "<group>"; };
 		E6FE12A31909881400D56D52 /* HTWRaumplanerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWRaumplanerTableViewController.h; path = Raumplaner/HTWRaumplanerTableViewController.h; sourceTree = "<group>"; };
 		E6FE12A41909881400D56D52 /* HTWRaumplanerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWRaumplanerTableViewController.m; path = Raumplaner/HTWRaumplanerTableViewController.m; sourceTree = "<group>"; };
@@ -489,8 +480,6 @@
 				6D94E9D7191524B300872FC8 /* HTWNotenStartseiteHTMLParser.m */,
 				6D94E9D4191524B300872FC8 /* HTWNotenDetailTableViewController.h */,
 				6D94E9D5191524B300872FC8 /* HTWNotenDetailTableViewController.m */,
-				E6EBD38D191A8E3000720962 /* HTWNotenSettingsTableViewController.h */,
-				E6EBD38E191A8E3000720962 /* HTWNotenSettingsTableViewController.m */,
 				E623C8441A3252D2008338AF /* NSURLRequest+IgnoreSSL.h */,
 				E623C8451A3252D2008338AF /* NSURLRequest+IgnoreSSL.m */,
 			);
@@ -606,10 +595,6 @@
 			children = (
 				E61D87FC19082F2B0033D543 /* HTWStundenplanParser.h */,
 				E61D87FD19082F2B0033D543 /* HTWStundenplanParser.m */,
-				E62C4847191422DE00788651 /* HTWCSVConnection.h */,
-				E62C4848191422DE00788651 /* HTWCSVConnection.m */,
-				E62C4849191422DE00788651 /* HTWCSVParser.h */,
-				E62C484A191422DE00788651 /* HTWCSVParser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1044,7 +1029,6 @@
 				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
 				6D94EA4319152FDB00872FC8 /* TagChunk.m in Sources */,
 				E65737AC19222AE600916A1A /* HTWAlleRaeumeTableViewController.m in Sources */,
-				E62C484C191422DE00788651 /* HTWCSVParser.m in Sources */,
 				6D94EA59191538E600872FC8 /* UIImage+RoundedCorner.m in Sources */,
 				E63772D91908146300DEE8AB /* HTWAppDelegate.m in Sources */,
 				6D94EA4D1915377E00872FC8 /* HTWMensaSingleTableViewController.m in Sources */,
@@ -1063,7 +1047,6 @@
 				6D94E9DA191524B300872FC8 /* HTWNotenDetailTableViewController.m in Sources */,
 				6D94EA3B19152FDB00872FC8 /* CSSSelectorPart.m in Sources */,
 				6D94EA3519152FDB00872FC8 /* CDataChunk.m in Sources */,
-				E6EBD38F191A8E3000720962 /* HTWNotenSettingsTableViewController.m in Sources */,
 				6D94EA3619152FDB00872FC8 /* Chunk.m in Sources */,
 				E6642B1A191D0B260003FF5A /* HTWMensaDetailParser.m in Sources */,
 				6D94E9DC191524B300872FC8 /* HTWNotenTableViewController.m in Sources */,
@@ -1090,7 +1073,6 @@
 				6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
 				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
-				E62C484B191422DE00788651 /* HTWCSVConnection.m in Sources */,
 				6D94EA4519152FDB00872FC8 /* URLParser.m in Sources */,
 				E6E624B019241800007AED51 /* HTWAlertNavigationController.m in Sources */,
 				E61C4C7519193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m in Sources */,
@@ -1208,7 +1190,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.htw-dresden.ios";
 				PRODUCT_NAME = HTWDresden;
@@ -1234,7 +1216,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.htw-dresden.ios";
 				PRODUCT_NAME = HTWDresden;
