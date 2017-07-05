@@ -18,11 +18,12 @@
 #import "HTWStundenplanEditDetailTableViewController.h"
 #import "HTWAlertNavigationController.h"
 
-
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 #import "UIImage+Resize.h"
 #import "NSDate+HTW.h"
+
+#import "HTWDresden-Swift.h"
 
 #define LAST_CHECK_DATE_KEY @"LASTCHECKDATEKEY"
 
@@ -220,6 +221,12 @@
     [self orderViewsInScrollView:_scrollView];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [HTWDialogs triggerDialogs];
+}
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -227,9 +234,6 @@
     [nc removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
     isPortrait = YES;
 }
-
-
-
 
 #pragma mark - UIScrollView Delegate
 

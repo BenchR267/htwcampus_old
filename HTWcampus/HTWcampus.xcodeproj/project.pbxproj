@@ -76,6 +76,7 @@
 		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
 		B54E0C981C7A0A10008C6F31 /* HTWTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E0C971C7A0A10008C6F31 /* HTWTrack.swift */; };
+		B5BFB1E51F0CDCC0000AD60F /* HTWDialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BFB1E41F0CDCC0000AD60F /* HTWDialogs.swift */; };
 		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
 		E09A735519DDDD610078EDD7 /* HTWDresden Debug.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E09A735419DDDD610078EDD7 /* HTWDresden Debug.entitlements */; };
 		E0B2921419D2BE7000528070 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B2921319D2BE7000528070 /* Launch Screen.xib */; };
@@ -251,6 +252,7 @@
 		6DA949A41963066300C0E50C /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page3.png; path = PageViewFirstLaunch/Bilder/page3.png; sourceTree = "<group>"; };
 		6DA949A51963066300C0E50C /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page2.png; path = PageViewFirstLaunch/Bilder/page2.png; sourceTree = "<group>"; };
 		B54E0C971C7A0A10008C6F31 /* HTWTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTWTrack.swift; sourceTree = "<group>"; };
+		B5BFB1E41F0CDCC0000AD60F /* HTWDialogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTWDialogs.swift; sourceTree = "<group>"; };
 		E05B181619A48DD20057E2F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = Stundenplan/Model/Note.h; sourceTree = "<group>"; };
 		E05B181719A48DD20057E2F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = Stundenplan/Model/Note.m; sourceTree = "<group>"; };
 		E09A735419DDDD610078EDD7 /* HTWDresden Debug.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "HTWDresden Debug.entitlements"; sourceTree = "<group>"; };
@@ -711,6 +713,7 @@
 				E63772D71908146300DEE8AB /* HTWAppDelegate.h */,
 				E63772D81908146300DEE8AB /* HTWAppDelegate.m */,
 				B54E0C971C7A0A10008C6F31 /* HTWTrack.swift */,
+				B5BFB1E41F0CDCC0000AD60F /* HTWDialogs.swift */,
 				E63772D01908146300DEE8AB /* HTWcampus-Info.plist */,
 				E63772D11908146300DEE8AB /* InfoPlist.strings */,
 				E63772D41908146300DEE8AB /* main.m */,
@@ -1052,6 +1055,7 @@
 				6D94E9DC191524B300872FC8 /* HTWNotenTableViewController.m in Sources */,
 				E6642B1D191D0B8F0003FF5A /* HTWMensaDetailTableViewController.m in Sources */,
 				6D94EA3F19152FDB00872FC8 /* ElementParser.m in Sources */,
+				B5BFB1E51F0CDCC0000AD60F /* HTWDialogs.swift in Sources */,
 				E61D8820190859180033D543 /* HTWLandscapeViewController.m in Sources */,
 				6D94EA4219152FDB00872FC8 /* ProcessingInstructionChunk.m in Sources */,
 				6D94EA3E19152FDB00872FC8 /* Element.m in Sources */,
@@ -1139,7 +1143,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1171,7 +1175,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1190,7 +1194,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.htw-dresden.ios";
 				PRODUCT_NAME = HTWDresden;
@@ -1216,7 +1220,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.htw-dresden.ios";
 				PRODUCT_NAME = HTWDresden;
