@@ -1,7 +1,7 @@
 Impressum
 
 Diese App wurde programmiert und entwickelt von Benjamin Herzog und Konstantin Werner unter der Leitung von Prof. Dr.-Ing. Sabine Kühn.
-Der Stundenplan, der Prüfungsplan, die Noten-Daten und die Daten für den Raumplaner kommen von öffentlich zugänglichen Seiten der Hochschule für Technik und Wirtschaft Dresden. Die Speisepläne der Mensen werden dem öffentlichen RSS-Feed des Studentenwerks Dresden entnommen. An dieser Stelle ist festzuhalten, dass dies keine offizielle App des Studentenwerks ist. Die ausgegebenen Daten liegen in der Verantwortung der jeweiligen Bereitsteller.
+Der Stundenplan, der Prüfungsplan, die Noten-Daten und die Daten für den Raumplaner kommen von öffentlich zugänglichen Seiten der Hochschule für Technik und Wirtschaft Dresden. Die Speisepläne der Mensen werden dem öffentlichen RSS-Feed des Studentenwerks Dresden entnommen. An dieser Stelle ist festzuhalten, dass dies keine offizielle App des Studentenwerks oder der HTW Dresden ist. Die ausgegebenen Daten liegen in der Verantwortung der jeweiligen Bereitsteller.
 
 
 Angaben gemäß § 5 TMG:
@@ -11,7 +11,7 @@ Friedrich-List-Platz 1
 
 Vertreten durch:
 Rektor Prof. Dr.-Ing. habil. Roland Stenzel
-Friedrich-List-Platz1, D-01069 Dresden
+Friedrich-List-Platz 1, D-01069 Dresden
 
 Die HTW Dresden ist eine rechtsfähige Körperschaft des öffentlichen Rechts mit dem Recht der Selbstverwaltung im Rahmen der Gesetze.
 

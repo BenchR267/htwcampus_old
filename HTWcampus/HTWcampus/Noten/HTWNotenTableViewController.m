@@ -133,6 +133,59 @@
 
 - (void)loadNoten {
     
+    if ([username isEqualToString:@"s12345"] && [password isEqualToString:@"qwertyui"])
+    {
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"noten" withExtension:@"json"];
+        
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        
+        [self deleteAllNoten];
+        NSError *error;
+        NSArray *grades = (NSArray*)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        for (NSDictionary *fach in grades) {
+            // Durch alle Noten durchgehen
+            Note *neueNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.context];
+            neueNote.credits = [NSNumber numberWithDouble:((NSString*)fach[@"EctsCredits"]).doubleValue];
+            neueNote.name = fach[@"PrTxt"];
+            neueNote.note = [NSNumber numberWithDouble:((NSString*)fach[@"PrNote"]).doubleValue/100];
+            neueNote.nr = [NSNumber numberWithDouble:((NSString*)fach[@"PrNr"]).doubleValue];
+            neueNote.semester = [self ausformuliertesSemesterVon:fach[@"Semester"]];
+            neueNote.status = fach[@"Status"];
+            neueNote.versuch = [NSNumber numberWithDouble:((NSString*)fach[@"Versuch"]).doubleValue];
+            [self.context save:nil];
+        }
+        
+        // Noten aus der DB laden und anzeigen
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+        NSMutableArray *allenoten = (NSMutableArray*)[self.context executeFetchRequest:request error:nil];
+        
+        self.notenspiegel = [[self groupNotenBySemester:allenoten] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString *semester = [(Note*)[obj2 objectAtIndex:0] semester];
+            NSString *jahr;
+            if([semester componentsSeparatedByString:@" "].count > 1)
+                jahr = [semester componentsSeparatedByString:@" "][1];
+            else jahr = @" ";
+            NSComparisonResult result;
+            if([[(Note*)obj1[0] semester] componentsSeparatedByString:@" "].count > 1)
+                result = [(NSString*)[[(Note*)obj1[0] semester] componentsSeparatedByString:@" "][1] compare:jahr options:NSNumericSearch];
+            else result = NSOrderedSame;
+            switch(result)
+            {
+                case NSOrderedAscending: return NSOrderedDescending;
+                case NSOrderedDescending: return NSOrderedAscending;
+                default: return NSOrderedSame;
+            }
+        }].mutableCopy;
+        // NSLog(@"%@", self.notenspiegel);
+        isLoading = false;
+        notendurchschnitt = [self calculateAverageGradeFromNotenspiegel:self.notenspiegel];
+        [(HTWAppDelegate*)[[UIApplication sharedApplication] delegate] setNetworkActivityIndicatorVisible:NO];
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+        [self.tableView reloadData];
+        
+        return;
+    }
+    
     
 #define getPos @"https://wwwqis.htw-dresden.de/appservice/getcourses"
 #define getGrade @"https://wwwqis.htw-dresden.de/appservice/getgrades"

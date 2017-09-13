@@ -63,6 +63,8 @@ xcuserdata/
 
 
 # Carthage - Refactored to standalone file
+Carthage/Checkouts
+Carthage/Build
 
 # fastlane
 #
