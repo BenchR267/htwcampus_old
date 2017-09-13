@@ -18,6 +18,8 @@
 #import "UIColor+HTW.h"
 #import "UIFont+HTW.h"
 
+#import "HTWDresden-Swift.h"
+
 #define ALERT_EINGEBEN 110
 #define ALERT_FEHLER 111
 #define ALERT_WARNUNG 112
@@ -29,7 +31,6 @@
 }
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
-@property (nonatomic, strong) HTWStundenplanParser *parser;
 @property (nonatomic, strong) NSArray *nummern;
 
 @end
@@ -86,8 +87,6 @@
         if (eingegeben.length == 0) return;
             if ([self isMatrikelnummer:eingegeben] || [self isStudiengruppe:eingegeben]) {
                 
-                _parser = nil;
-                
                 NSString *matrNr = [eingegeben copy];
                 
                 appdelegate = [[UIApplication sharedApplication] delegate];
@@ -105,10 +104,16 @@
                 
                 if(tempArray.count == 0)
                 {
-                    _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:matrNr andRaum:NO];
-                    if(strings[1] && ![strings[1] isEqualToString:@""]) _parser.name = strings[1];
-                    [_parser setDelegate:self];
-                    [_parser parserStart];
+                    [LessonLoader loadLessonsWithContext:self.context key:matrNr completion:^(NSString * _Nullable message) {
+                        
+                        if (message) {
+                            [self loadDidFail:message];
+                            return;
+                        }
+                        
+                        [self loadDidSucceed:matrNr];
+                    }];
+                    
                 }
                 else
                 {
@@ -140,9 +145,17 @@
             [spinner startAnimating];
             
             if ([self.tableView cellForRowAtIndexPath:path].tag == 0) {
-                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:[(User*)_nummern[path.row] matrnr] andRaum:NO];
-                [_parser setDelegate:self];
-                [_parser parserStart];
+                NSString *key = [(User*)_nummern[path.row] matrnr];
+                
+                [LessonLoader loadLessonsWithContext:self.context key:key completion:^(NSString * _Nullable message) {
+                    
+                    if (message) {
+                        [self loadDidFail:message];
+                        return;
+                    }
+                    
+                    [self loadDidSucceed:key];
+                }];
             }
             
         }
@@ -285,7 +298,10 @@
             if(_nummern.count)
                 [defaults setObject:[(User*)_nummern[0] matrnr] forKey:@"Matrikelnummer"];
             else
+            {
                 [defaults setObject:nil forKey:@"Matrikelnummer"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"userDeleted" object:nil];
+            }
         }
         
         
@@ -324,7 +340,7 @@
 
 #pragma mark - StundenplanParser Delegate
 
--(void)HTWStundenplanParserFinished:(HTWStundenplanParser *)parser
+-(void)loadDidSucceed:(NSString *)key
 {    
     appdelegate = [[UIApplication sharedApplication] delegate];
     _context = [appdelegate managedObjectContext];
@@ -342,7 +358,7 @@
     [self.tableView reloadData];
     for (int i=0; i<_nummern.count; i++) {
         User *aktuell = _nummern[i];
-        if ([aktuell.matrnr isEqualToString:_parser.Matrnr]) {
+        if ([aktuell.matrnr isEqualToString:key]) {
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             UIButton *imageView = [UIButton buttonWithType:UIButtonTypeSystem];
             imageView.tag = i;
@@ -354,6 +370,8 @@
             [imageView addTarget:self action:@selector(didTabReloadButton:) forControlEvents:UIControlEventTouchUpInside];
             cell.accessoryView = imageView;
             
+            [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"Matrikelnummer"];
+            
             UIAlertView *alert = [[UIAlertView alloc] init];
             alert.title = @"Stundenplan erfolgreich heruntergeladen.";
             [alert show];
@@ -364,7 +382,7 @@
     
 }
 
--(void)HTWStundenplanParser:(HTWStundenplanParser *)parser Error:(NSString *)errorMessage
+-(void)loadDidFail:(NSString *)errorMessage
 {
     UIAlertView *alert = [[UIAlertView alloc] init];
     alert.title = @"Fehler";

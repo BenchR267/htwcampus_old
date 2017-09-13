@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ScheduleDataSource: CollectionViewDataSource {
+class ScheduleDataSource {
 
     struct Auth {
         let year: String
@@ -33,7 +33,7 @@ class ScheduleDataSource: CollectionViewDataSource {
         }
     }
 
-    private let days = [Loca.monday, Loca.tuesday, Loca.wednesday, Loca.thursday, Loca.friday, Loca.saturday, Loca.sunday]
+    private let days = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Loca.friday", "Loca.saturday", "Loca.sunday"]
 
     private(set) var lectures = [Day: [Lecture]]()
     private var semesterInformations = [SemesterInformation]() {
@@ -43,11 +43,7 @@ class ScheduleDataSource: CollectionViewDataSource {
     }
     private var semesterInformation: SemesterInformation?
 
-    private var data = [[Lecture]]() {
-        didSet {
-            self.invalidate()
-        }
-    }
+    private var data = [[Lecture]]()
 
     private let disposeBag = DisposeBag()
     private let network = Network()
@@ -58,8 +54,8 @@ class ScheduleDataSource: CollectionViewDataSource {
         self.auth = auth
     }
 
-    func load() {
-        let lecturesObservable = Lecture.get(network: self.network, year: "2016", major: "044", group: "71")
+    func load(completion: @escaping ([[Lecture]]?) -> Void) {
+        let lecturesObservable = Lecture.get(network: self.network, year: self.auth.year, major: self.auth.major, group: self.auth.group)
             .map(Lecture.groupByDay)
 
         let informationObservable = SemesterInformation.get(network: self.network)
@@ -68,12 +64,17 @@ class ScheduleDataSource: CollectionViewDataSource {
                   .observeOn(MainScheduler.instance)
             .subscribe { [weak self] (event) in
                 guard case let .next((lectures, information)) = event else {
+                    if case .error(_) = event {
+                        completion(nil)
+                    }
                     return
                 }
 
                 self?.lectures = lectures
                 self?.semesterInformations = information
                 self?.data = self?.calculate() ?? []
+                guard let `self` = self else { return completion(nil) }
+                completion(self.data)
         }.addDisposableTo(self.disposeBag)
     }
 
@@ -91,7 +92,7 @@ class ScheduleDataSource: CollectionViewDataSource {
             return []
         }
 
-        let sections = 0..<self.numberOfSections()
+        let sections = 0..<self.numberOfDays
         let originDay = self.originDate.weekday
         let startWeek = self.originDate.weekNumber
 
@@ -116,17 +117,4 @@ class ScheduleDataSource: CollectionViewDataSource {
         return a
     }
 
-    // MARK: CollectionViewDataSource methods
-
-    override func item(at index: IndexPath) -> Identifiable? {
-        return self.lecture(at: index)
-    }
-
-    override func numberOfSections() -> Int {
-        return self.numberOfDays
-    }
-
-    override func numberOfItems(in section: Int) -> Int {
-        return self.data[safe: section]?.count ?? 0
-    }
 }

@@ -76,6 +76,28 @@
 		6DA949A91963066300C0E50C /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A41963066300C0E50C /* page3.png */; };
 		6DA949AA1963066300C0E50C /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA949A51963066300C0E50C /* page2.png */; };
 		B54E0C981C7A0A10008C6F31 /* HTWTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E0C971C7A0A10008C6F31 /* HTWTrack.swift */; };
+		B55D876C1F698CA400D0AC67 /* LessonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D876B1F698CA400D0AC67 /* LessonLoader.swift */; };
+		B55D87721F698DB900D0AC67 /* EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D876D1F698DB900D0AC67 /* EventDate.swift */; };
+		B55D87731F698DB900D0AC67 /* SemesterInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D876E1F698DB900D0AC67 /* SemesterInformation.swift */; };
+		B55D87741F698DB900D0AC67 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D876F1F698DB900D0AC67 /* Semester.swift */; };
+		B55D87751F698DB900D0AC67 /* EventPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D87701F698DB900D0AC67 /* EventPeriod.swift */; };
+		B55D87761F698DB900D0AC67 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D87711F698DB900D0AC67 /* Event.swift */; };
+		B56BF2FB1F698E340061ED68 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56BF2F91F698E340061ED68 /* RxSwift.framework */; };
+		B56BF2FC1F698E340061ED68 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56BF2FA1F698E340061ED68 /* Marshal.framework */; };
+		B56BF3011F698E4A0061ED68 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF2FD1F698E4A0061ED68 /* Network.swift */; };
+		B56BF3031F698E4A0061ED68 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF2FF1F698E4A0061ED68 /* Authenticator.swift */; };
+		B56BF3041F698E4A0061ED68 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF3001F698E4A0061ED68 /* Parameter.swift */; };
+		B56BF3071F698E650061ED68 /* DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF3051F698E650061ED68 /* DateComponents.swift */; };
+		B56BF30A1F698E900061ED68 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF3091F698E8F0061ED68 /* Date.swift */; };
+		B56BF30C1F698EA50061ED68 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF30B1F698EA50061ED68 /* TimeInterval.swift */; };
+		B56BF30D1F698EAE0061ED68 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D87671F6989A700D0AC67 /* Day.swift */; };
+		B56BF30E1F698EB10061ED68 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D87681F6989A700D0AC67 /* Lecture.swift */; };
+		B56BF30F1F698EB40061ED68 /* Week.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D87691F6989A700D0AC67 /* Week.swift */; };
+		B56BF3101F698EB90061ED68 /* ScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D87661F69899900D0AC67 /* ScheduleDataSource.swift */; };
+		B56BF3121F698F660061ED68 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF3111F698F650061ED68 /* Dictionary.swift */; };
+		B56BF3141F698F790061ED68 /* DataSourceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF3131F698F780061ED68 /* DataSourceProtocols.swift */; };
+		B56BF3161F698F9D0061ED68 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56BF3151F698F9D0061ED68 /* String.swift */; };
+		B56BF3181F69975B0061ED68 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56BF3171F69975B0061ED68 /* RxCocoa.framework */; };
 		B5BFB1E51F0CDCC0000AD60F /* HTWDialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BFB1E41F0CDCC0000AD60F /* HTWDialogs.swift */; };
 		B5BFB1E71F0CE989000AD60F /* noten.json in Resources */ = {isa = PBXBuildFile; fileRef = B5BFB1E61F0CE989000AD60F /* noten.json */; };
 		E05B181819A48DD20057E2F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E05B181719A48DD20057E2F8 /* Note.m */; };
@@ -256,6 +278,24 @@
 		B55D87671F6989A700D0AC67 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		B55D87681F6989A700D0AC67 /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
 		B55D87691F6989A700D0AC67 /* Week.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Week.swift; sourceTree = "<group>"; };
+		B55D876B1F698CA400D0AC67 /* LessonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonLoader.swift; sourceTree = "<group>"; };
+		B55D876D1F698DB900D0AC67 /* EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDate.swift; sourceTree = "<group>"; };
+		B55D876E1F698DB900D0AC67 /* SemesterInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterInformation.swift; sourceTree = "<group>"; };
+		B55D876F1F698DB900D0AC67 /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
+		B55D87701F698DB900D0AC67 /* EventPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPeriod.swift; sourceTree = "<group>"; };
+		B55D87711F698DB900D0AC67 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		B56BF2F91F698E340061ED68 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		B56BF2FA1F698E340061ED68 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Marshal.framework; path = Carthage/Build/iOS/Marshal.framework; sourceTree = "<group>"; };
+		B56BF2FD1F698E4A0061ED68 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		B56BF2FF1F698E4A0061ED68 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		B56BF3001F698E4A0061ED68 /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
+		B56BF3051F698E650061ED68 /* DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponents.swift; sourceTree = "<group>"; };
+		B56BF3091F698E8F0061ED68 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		B56BF30B1F698EA50061ED68 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		B56BF3111F698F650061ED68 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		B56BF3131F698F780061ED68 /* DataSourceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceProtocols.swift; sourceTree = "<group>"; };
+		B56BF3151F698F9D0061ED68 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		B56BF3171F69975B0061ED68 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		B5BFB1E41F0CDCC0000AD60F /* HTWDialogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTWDialogs.swift; sourceTree = "<group>"; };
 		B5BFB1E61F0CE989000AD60F /* noten.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noten.json; sourceTree = "<group>"; };
 		E05B181619A48DD20057E2F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = Stundenplan/Model/Note.h; sourceTree = "<group>"; };
@@ -374,6 +414,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56BF3181F69975B0061ED68 /* RxCocoa.framework in Frameworks */,
+				B56BF2FB1F698E340061ED68 /* RxSwift.framework in Frameworks */,
+				B56BF2FC1F698E340061ED68 /* Marshal.framework in Frameworks */,
 				E63772C91908146300DEE8AB /* CoreGraphics.framework in Frameworks */,
 				E63772CD1908146300DEE8AB /* CoreData.framework in Frameworks */,
 				E63772CB1908146300DEE8AB /* UIKit.framework in Frameworks */,
@@ -574,10 +617,25 @@
 		B55D87651F69899000D0AC67 /* New */ = {
 			isa = PBXGroup;
 			children = (
+				B56BF30B1F698EA50061ED68 /* TimeInterval.swift */,
+				B56BF3091F698E8F0061ED68 /* Date.swift */,
+				B56BF3151F698F9D0061ED68 /* String.swift */,
+				B56BF3051F698E650061ED68 /* DateComponents.swift */,
+				B56BF3111F698F650061ED68 /* Dictionary.swift */,
+				B56BF3131F698F780061ED68 /* DataSourceProtocols.swift */,
+				B56BF2FF1F698E4A0061ED68 /* Authenticator.swift */,
+				B56BF2FD1F698E4A0061ED68 /* Network.swift */,
+				B56BF3001F698E4A0061ED68 /* Parameter.swift */,
+				B55D87711F698DB900D0AC67 /* Event.swift */,
+				B55D876D1F698DB900D0AC67 /* EventDate.swift */,
+				B55D87701F698DB900D0AC67 /* EventPeriod.swift */,
+				B55D876F1F698DB900D0AC67 /* Semester.swift */,
+				B55D876E1F698DB900D0AC67 /* SemesterInformation.swift */,
 				B55D87661F69899900D0AC67 /* ScheduleDataSource.swift */,
 				B55D87671F6989A700D0AC67 /* Day.swift */,
 				B55D87681F6989A700D0AC67 /* Lecture.swift */,
 				B55D87691F6989A700D0AC67 /* Week.swift */,
+				B55D876B1F698CA400D0AC67 /* LessonLoader.swift */,
 			);
 			name = New;
 			sourceTree = "<group>";
@@ -690,6 +748,9 @@
 		E63772C51908146300DEE8AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B56BF3171F69975B0061ED68 /* RxCocoa.framework */,
+				B56BF2FA1F698E340061ED68 /* Marshal.framework */,
+				B56BF2F91F698E340061ED68 /* RxSwift.framework */,
 				E63772C61908146300DEE8AB /* Foundation.framework */,
 				E63772C81908146300DEE8AB /* CoreGraphics.framework */,
 				E63772CA1908146300DEE8AB /* UIKit.framework */,
@@ -1038,6 +1099,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Marshal.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -1064,6 +1127,8 @@
 				E6DF7E0719137F1200DDC69C /* HTWStundenplanSettingsTableViewController.m in Sources */,
 				6D94EA4119152FDB00872FC8 /* NSString_HTML.m in Sources */,
 				E6966E8F19214DC300EFB998 /* HTWNeueStudiengruppe.m in Sources */,
+				B56BF3121F698F660061ED68 /* Dictionary.swift in Sources */,
+				B56BF3101F698EB90061ED68 /* ScheduleDataSource.swift in Sources */,
 				E61D87F119082ED30033D543 /* HTWcampus.xcdatamodeld in Sources */,
 				6D94EA4319152FDB00872FC8 /* TagChunk.m in Sources */,
 				E65737AC19222AE600916A1A /* HTWAlleRaeumeTableViewController.m in Sources */,
@@ -1077,13 +1142,18 @@
 				E6D2E570190FF55C00DCD9EF /* HTWCSVExport.m in Sources */,
 				6D94EA3819152FDB00872FC8 /* CSSPartMatcher.m in Sources */,
 				6D753A741917CC1100C6BAA1 /* UIFont+HTW.m in Sources */,
+				B56BF3141F698F790061ED68 /* DataSourceProtocols.swift in Sources */,
 				E69BB0CC1928F89B002E5757 /* NSDate+HTW.m in Sources */,
 				E6B771E6191C36E200E9A2A5 /* HTWPageContentViewController.m in Sources */,
 				E0ED3BE8194756AD007022E3 /* HTWPruefungsTableViewController.m in Sources */,
 				E61D883619085B4C0033D543 /* HTWStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D753A611917C54B00C6BAA1 /* HTWMensaSpeiseTableViewCell.m in Sources */,
 				6D94E9DA191524B300872FC8 /* HTWNotenDetailTableViewController.m in Sources */,
+				B55D87721F698DB900D0AC67 /* EventDate.swift in Sources */,
+				B55D876C1F698CA400D0AC67 /* LessonLoader.swift in Sources */,
 				6D94EA3B19152FDB00872FC8 /* CSSSelectorPart.m in Sources */,
+				B55D87741F698DB900D0AC67 /* Semester.swift in Sources */,
+				B56BF30A1F698E900061ED68 /* Date.swift in Sources */,
 				6D94EA3519152FDB00872FC8 /* CDataChunk.m in Sources */,
 				6D94EA3619152FDB00872FC8 /* Chunk.m in Sources */,
 				E6642B1A191D0B260003FF5A /* HTWMensaDetailParser.m in Sources */,
@@ -1098,9 +1168,13 @@
 				E6B87E74192A71AB0052EC20 /* HTWTabBarItem.m in Sources */,
 				E61D883919085B4C0033D543 /* HTWSwitchInStundenplanSettingsUebersichtTableViewCell.m in Sources */,
 				6D94EA4419152FDB00872FC8 /* TxtChunk.m in Sources */,
+				B56BF3011F698E4A0061ED68 /* Network.swift in Sources */,
 				E6379C72190D3F34002AE150 /* HTWTabParser.m in Sources */,
 				B54E0C981C7A0A10008C6F31 /* HTWTrack.swift in Sources */,
+				B56BF3071F698E650061ED68 /* DateComponents.swift in Sources */,
 				E61D88141908583C0033D543 /* HTWStundenplanButtonForLesson.m in Sources */,
+				B56BF3161F698F9D0061ED68 /* String.swift in Sources */,
+				B56BF30E1F698EB10061ED68 /* Lecture.swift in Sources */,
 				6D94E9DB191524B300872FC8 /* HTWNotenStartseiteHTMLParser.m in Sources */,
 				6D94EA3719152FDB00872FC8 /* CommentChunk.m in Sources */,
 				E61C34BD19198BE500EBEBDD /* HTWStundenplanAddTableViewController.m in Sources */,
@@ -1112,23 +1186,31 @@
 				6D94EA58191538E600872FC8 /* UIImage+Alpha.m in Sources */,
 				E63772D51908146300DEE8AB /* main.m in Sources */,
 				E61D87FF19082F2B0033D543 /* HTWStundenplanParser.m in Sources */,
+				B56BF30C1F698EA50061ED68 /* TimeInterval.swift in Sources */,
 				6D94EA4519152FDB00872FC8 /* URLParser.m in Sources */,
 				E6E624B019241800007AED51 /* HTWAlertNavigationController.m in Sources */,
 				E61C4C7519193AA400560C91 /* HTWStundenplanEditDetailTableViewController.m in Sources */,
 				E6E624B119241800007AED51 /* HTWAlertViewController.m in Sources */,
 				E60BD349192173CA0018E3C2 /* HTWDozentEingebenTableViewController.m in Sources */,
+				B56BF30F1F698EB40061ED68 /* Week.swift in Sources */,
 				E61D887F1908705E0033D543 /* HTWLandscapeSegue.m in Sources */,
 				E6379C71190D3F34002AE150 /* HTWRaumParser.m in Sources */,
 				E0B2921719D2D1D500528070 /* HTWAlertTextField.m in Sources */,
+				B55D87761F698DB900D0AC67 /* Event.swift in Sources */,
 				E61D883419085B4C0033D543 /* HTWMatrikelnummernTableViewController.m in Sources */,
+				B55D87731F698DB900D0AC67 /* SemesterInformation.swift in Sources */,
 				E6D2E573190FF60400DCD9EF /* HTWICSExport.m in Sources */,
 				6D94EA3C19152FDB00872FC8 /* DoctypeChunk.m in Sources */,
 				6D94EA3D19152FDB00872FC8 /* DocumentRoot.m in Sources */,
 				E6FE12A51909881400D56D52 /* HTWRaumplanerTableViewController.m in Sources */,
 				E6506D8C193606F800603DFB /* HTWPruefungSettingsViewController.m in Sources */,
+				B56BF3031F698E4A0061ED68 /* Authenticator.swift in Sources */,
+				B56BF30D1F698EAE0061ED68 /* Day.swift in Sources */,
 				E60F5FEF1938C2300093D5E8 /* Stunde.m in Sources */,
 				E0D59BCF1947AB5200E44F18 /* HTWPruefungenExportierenTableViewController.m in Sources */,
 				6D94EA53191537BA00872FC8 /* UIImage+Resize.m in Sources */,
+				B55D87751F698DB900D0AC67 /* EventPeriod.swift in Sources */,
+				B56BF3041F698E4A0061ED68 /* Parameter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,6 +1308,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3E4PGPNR47;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";
@@ -1252,6 +1338,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 3E4PGPNR47;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTWcampus/HTWcampus-Prefix.pch";
 				INFOPLIST_FILE = "HTWcampus/HTWcampus-Info.plist";

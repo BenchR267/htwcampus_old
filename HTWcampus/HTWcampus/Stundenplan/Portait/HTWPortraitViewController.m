@@ -57,8 +57,9 @@
 
 @property (nonatomic, strong) UIView *detailView;
 
-@property (nonatomic, strong) HTWStundenplanParser *parser;
+@property (nonatomic, strong) id observer;
 
+@property BOOL isInvalid;
 
 @end
 
@@ -141,10 +142,14 @@
     
     [self.navigationItem setRightBarButtonItem:changeDate];
     
-    
+    self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:@"userDeleted" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        [self updateAngezeigteStunden];
+        [self setUpInterface];
+        self.isInvalid = YES;
+    }];
     
     if(!_raumNummer) Matrnr = [[NSUserDefaults standardUserDefaults] objectForKey:@"Matrikelnummer"];
-    if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""]))) {
+    if ((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""])) {
         
         HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
         alert.htwTitle = @"Neuer Stundenplan";
@@ -153,6 +158,30 @@
         alert.htwDelegate = self;
         alert.tag = ALERT_EINGEBEN;
         [self presentViewController:alert animated:NO completion:^{}];
+        [self setUpInterface];
+        
+    }
+    else
+    {
+        
+        [self updateAngezeigteStunden];
+        
+        NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+        [req setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", Matrnr]];
+        NSArray<User *> *res = [self.context executeFetchRequest:req error:nil];
+        User *user = res.firstObject;
+        
+        if (user == nil || [user.stunden count] == 0) {
+            [self load:Matrnr];
+        }
+        else
+        {
+            [self setUpInterface];
+            
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+            [tapRecognizer setNumberOfTapsRequired:2];
+            [self.scrollView addGestureRecognizer:tapRecognizer];
+        }
     }
 }
 
@@ -192,30 +221,19 @@
     
     if(!self.raumNummer) Matrnr = [defaults objectForKey:@"Matrikelnummer"];
     else self.title = self.raumNummer;
-
     
-    if (((!Matrnr && !self.raumNummer) || ([Matrnr isEqualToString:@""] && [_raumNummer isEqualToString:@""]) || ([Matrnr isEqualToString:@""] && !_raumNummer) || (!Matrnr && [_raumNummer isEqualToString:@""])) && !_parser) {
+    if (self.isInvalid) {
+        self.isInvalid = NO;
+    
+        HTWAlertNavigationController *alert = [self.storyboard instantiateViewControllerWithIdentifier:@"HTWAlert"];
+        alert.htwTitle = @"Neuer Stundenplan";
+        alert.message = @"Bitte Matrnr, Studiengruppe oder Dozentenkennung eingeben.";
+        alert.mainTitle = @[@"Kennung",@"Name (optional)"];
+        alert.htwDelegate = self;
+        alert.tag = ALERT_EINGEBEN;
+        [self presentViewController:alert animated:NO completion:^{}];
         
-        NSLog(@"Keine Kennung eingegeben.");
-    }
-    else
-    {
-        
-        [self updateAngezeigteStunden];
-        
-        if ([_angezeigteStunden count] == 0) {
-            NSLog(@"Keine Stunden gefunden.");
-            [self setUpInterface];
-        }
-        else
-        {
-        
-            [self setUpInterface];
-            
-            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
-            [tapRecognizer setNumberOfTapsRequired:2];
-            [self.scrollView addGestureRecognizer:tapRecognizer];
-        }
+        [self setUpInterface];
     }
     
     [self orderViewsInScrollView:_scrollView];
@@ -226,6 +244,9 @@
     [super viewDidAppear:animated];
     
     [HTWDialogs triggerDialogs];
+    
+    [self updateAngezeigteStunden];
+    [self setUpInterface];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -255,16 +276,18 @@
             Matrnr = strings[0];
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:Matrnr forKey:@"Matrikelnummer"];
+            [defaults synchronize];
             
             [self updateAngezeigteStunden];
             
-            if ([_angezeigteStunden count] == 0) {
-                Matrnr = [defaults objectForKey:@"Matrikelnummer"];
-                _parser = [[HTWStundenplanParser alloc] initWithMatrikelNummer:Matrnr andRaum:NO];
-                if(strings[1] && ![strings[1] isEqualToString:@""]) _parser.name = strings[1];
-                [_parser setDelegate:self];
-                [defaults setObject:Matrnr forKey:@"altMatrikelnummer"];
-                [_parser parserStart];
+            NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+            [req setPredicate:[NSPredicate predicateWithFormat:@"(matrnr = %@)", Matrnr]];
+            NSArray<User *> *res = [self.context executeFetchRequest:req error:nil];
+            User *user = res.firstObject;
+            
+            if (user == nil || [user.stunden count] == 0) {
+                NSString *key = [defaults objectForKey:@"Matrikelnummer"];
+                [self load:key];
             }
             else
             {
@@ -279,6 +302,28 @@
         }
     }
     
+}
+
+- (void)load:(NSString *)key {
+    [LessonLoader loadLessonsWithContext:self.context key:key completion:^(NSString * _Nullable message) {
+        if (message) {
+            UIAlertView *alert = [UIAlertView new];
+            alert.message = message;
+            [alert addButtonWithTitle:@"Wiederholen"];
+            alert.tag = ALERT_ERROR;
+            alert.delegate = self;
+            [alert show];
+        } else {
+            [self updateAngezeigteStunden];
+            
+            [self setUpInterface];
+            
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            alert.title = @"Stundenplan erfolgreich heruntergeladen.";
+            [alert show];
+            [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+        }
+    }];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -481,30 +526,6 @@
     return @"Ok";
 }
 
-#pragma mark - Stundenplan Parser Delegate
-
--(void)HTWStundenplanParserFinished:(HTWStundenplanParser *)parser
-{
-    [self updateAngezeigteStunden];
-    
-    [self setUpInterface];
-    
-    UIAlertView *alert = [[UIAlertView alloc] init];
-    alert.title = @"Stundenplan erfolgreich heruntergeladen.";
-    [alert show];
-    [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
-}
-
--(void)HTWStundenplanParser:(HTWStundenplanParser *)parser Error:(NSString *)errorMessage
-{
-    UIAlertView *alert = [UIAlertView new];
-    alert.message = errorMessage;
-    [alert addButtonWithTitle:@"Wiederholen"];
-    alert.tag = ALERT_ERROR;
-    alert.delegate = self;
-    [alert show];
-}
-
 #pragma mark - Interface
 
 -(void)setUpInterface
@@ -543,7 +564,7 @@
     }
     [self reloadZeitenViewAndClockLine];
     
-    
+    [self orderViewsInScrollView:_scrollView];
 }
 
 -(void)reloadDaysLabelsAndBackground
@@ -897,7 +918,8 @@
 
 -(void) dueDateChanged:(UIDatePicker *)sender {
     self.currentDate = sender.date;
-    [self viewWillAppear:YES];
+    [self updateAngezeigteStunden];
+    [self setUpInterface];
 }
 
 #pragma mark - Hilfsfunktionen
@@ -956,14 +978,12 @@
     for (UIView *this in scrollView.subviews) {
         if(this.tag == ZEITENVIEW_TAG) {
             [scrollView bringSubviewToFront:this];
-            break;
         }
     }
     
     for (UIView *this in scrollView.subviews) {
         if(this.tag == WOCHENTAGE_TAG) {
             [scrollView bringSubviewToFront:this];
-            break;
         }
     }
 }

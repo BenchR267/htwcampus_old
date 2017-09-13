@@ -48,7 +48,7 @@
 	if(![[NSUserDefaults standardUserDefaults] integerForKey:@"anzahlTageLandscape"])
 		[[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"anzahlTageLandscape"];
 	
-	if(![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
+	if(NO)//![[NSUserDefaults standardUserDefaults] boolForKey:@"skipTut"])
 	{
 		[[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"tageInPortrait"];
 		[[NSUserDefaults standardUserDefaults] setFloat:0 forKey:@"markierSliderValue"];
