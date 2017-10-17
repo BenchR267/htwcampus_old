@@ -176,6 +176,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1FB1F1821F96303F002D213E /* HTWcampus v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "HTWcampus v2.xcdatamodel"; sourceTree = "<group>"; };
 		6D03D9B4193CA1F3001ED846 /* indicator-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator-gray@2x.png"; path = "Stundenplan/Portait/indicator-gray@2x.png"; sourceTree = "<group>"; };
 		6D5B71261923AC340061CEA6 /* HTWMensaXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTWMensaXMLParser.h; path = Mensa/HTWMensaXMLParser.h; sourceTree = "<group>"; };
 		6D5B71271923AC340061CEA6 /* HTWMensaXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTWMensaXMLParser.m; path = Mensa/HTWMensaXMLParser.m; sourceTree = "<group>"; };
@@ -1384,9 +1385,10 @@
 		E61D87EB19082ED30033D543 /* HTWcampus.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1FB1F1821F96303F002D213E /* HTWcampus v2.xcdatamodel */,
 				E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */,
 			);
-			currentVersion = E61D87EC19082ED30033D543 /* HTWcampus.xcdatamodel */;
+			currentVersion = 1FB1F1821F96303F002D213E /* HTWcampus v2.xcdatamodel */;
 			name = HTWcampus.xcdatamodeld;
 			path = Stundenplan/Model/HTWcampus.xcdatamodeld;
 			sourceTree = "<group>";

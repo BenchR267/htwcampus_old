@@ -20,6 +20,7 @@
         <attribute name="raum" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="semester" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="stunden" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
@@ -32,7 +33,7 @@
     </entity>
     <elements>
         <element name="Note" positionX="-126" positionY="63" width="128" height="148"/>
-        <element name="Stunde" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="Stunde" positionX="0" positionY="0" width="128" height="225"/>
         <element name="User" positionX="-252" positionY="-45" width="128" height="135"/>
     </elements>
 </model>
