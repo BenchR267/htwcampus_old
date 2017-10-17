@@ -55,9 +55,16 @@
     self.kurzelTextView.text = _stunde.kurzel;
     self.raumTextView.text = _stunde.raum;
     self.dozentTextView.text = _stunde.dozent;
-    if([_stunde.kurzel componentsSeparatedByString:@" "].count > 1) self.typTextView.text = [_stunde.kurzel componentsSeparatedByString:@" "][1];
-    else self.typTextView.text = @"";
-    self.semesterTextView.text = _stunde.semester;
+	
+//	if ([_stunde.kurzel componentsSeparatedByString:@" "].count > 1) {
+//		self.typTextView.text = [_stunde.kurzel componentsSeparatedByString:@" "][1];
+//	} else {
+//		self.typTextView.text = @"";
+//	}
+
+	self.typTextView.text = _stunde.type;
+	
+	self.semesterTextView.text = _stunde.semester;
     self.anfangTextView.text = [NSString stringWithFormat:@"%@ um %@ Uhr", [self wochentagFromDate:_stunde.anfang], [self uhrZeitFromDate:_stunde.anfang]];
     self.endeTextView.text = [NSString stringWithFormat:@"%@ um %@ Uhr", [self wochentagFromDate:_stunde.ende], [self uhrZeitFromDate:_stunde.ende]];
     self.bemerkungenTextView.text = _stunde.bemerkungen;
@@ -138,8 +145,14 @@
 
     [context save:nil];
 
-    if([_stunde.kurzel componentsSeparatedByString:@" "].count > 1) self.typTextView.text = [_stunde.kurzel componentsSeparatedByString:@" "][1];
-    else self.typTextView.text = @"";
+//	if ([_stunde.kurzel componentsSeparatedByString:@" "].count > 1) {
+//		self.typTextView.text = [_stunde.kurzel componentsSeparatedByString:@" "][1];
+//	} else {
+//		self.typTextView.text = @"";
+//	}
+	
+	self.typTextView.text = _stunde.type;
+	
     self.title = _stunde.kurzel;
 //    [self.tableView reloadData];
 }

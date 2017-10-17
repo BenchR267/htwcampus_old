@@ -72,6 +72,7 @@ class LessonLoader: NSObject {
                         newStunde.kurzel = l.tag ?? l.name
                         newStunde.raum = l.rooms.first ?? ""
                         newStunde.titel = l.name
+						newStunde.type = l.type
                         newStunde.semester = information.semester.description
                         let start = date.addingTimeInterval(TimeInterval(l.begin.hour ?? 0).hours).addingTimeInterval(TimeInterval(l.begin.minute ?? 0).minutes)
                         let end = date.addingTimeInterval(TimeInterval(l.end.hour ?? 0).hours).addingTimeInterval(TimeInterval(l.end.minute ?? 0).minutes)

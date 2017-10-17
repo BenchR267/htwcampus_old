@@ -23,5 +23,6 @@
 @dynamic titel;
 @dynamic semester;
 @dynamic student;
+@dynamic type;
 
 @end

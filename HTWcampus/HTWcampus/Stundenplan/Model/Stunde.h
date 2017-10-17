@@ -23,6 +23,7 @@
 @property (nonatomic, retain) NSString * raum;
 @property (nonatomic, retain) NSString * titel;
 @property (nonatomic, retain) NSString * semester;
+@property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) User *student;
 
 @end
