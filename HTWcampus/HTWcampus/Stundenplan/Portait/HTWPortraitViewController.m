@@ -159,7 +159,9 @@
         alert.tag = ALERT_EINGEBEN;
         [self presentViewController:alert animated:NO completion:^{}];
         [self setUpInterface];
-        
+		
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"v1.6.1-launched"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
     }
     else
     {
@@ -176,6 +178,13 @@
         }
         else
         {
+			// Force lecture data refetch after 1.6.1 update
+			if (![[NSUserDefaults standardUserDefaults] boolForKey:@"v1.6.1-launched"]) {
+				[self load:Matrnr];
+				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"v1.6.1-launched"];
+				[[NSUserDefaults standardUserDefaults] synchronize];
+			}
+			
             [self setUpInterface];
             
             UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
