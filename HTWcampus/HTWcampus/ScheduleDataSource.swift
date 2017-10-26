@@ -97,7 +97,7 @@ class ScheduleDataSource {
         let startWeek = self.originDate.weekNumber
 
         let a: [[Lecture]] = sections.map { section in
-            let date = self.originDate.byAdding(days: TimeInterval(section))
+            let date = self.originDate.byAdding(days: TimeInterval(section + 1))
 
             guard semesterInformation.lecturesContains(date: date) else {
                 return []
