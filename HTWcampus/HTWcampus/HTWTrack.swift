@@ -18,6 +18,7 @@ enum Platform: Int {
 
 @objc class HTWTrack: NSObject {
     
+    @objc
     class func track(_ type: TrackType) {
         
         var r = URLRequest(url: URL(string: "https://rubu2.rz.htw-dresden.de/API/track")!)

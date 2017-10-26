@@ -12,6 +12,7 @@ import UIKit
     
     private static let url = "https://www.htw-dresden.de/fileadmin/userfiles/htw/img/HTW-App/api/dialogs.json"
     
+    @objc
     class func triggerDialogs() {
         
         URLSession.shared.dataTask(with: URL(string: url)!) { data, _, _ in

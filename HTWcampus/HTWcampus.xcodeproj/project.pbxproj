@@ -1324,7 +1324,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "HTW App Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1353,7 +1353,7 @@
 				PROVISIONING_PROFILE = "4be22951-7cfe-4d20-b1f6-7e62e809c6ee";
 				PROVISIONING_PROFILE_SPECIFIER = "HTW App Distribution";
 				SWIFT_OBJC_BRIDGING_HEADER = "HTWcampus-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
